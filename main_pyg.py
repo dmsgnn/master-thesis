@@ -15,6 +15,12 @@ from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 # profiling
 from torch.profiler import profile, record_function, ProfilerActivity
 
+
+"""
+    this class allows to train and then test the model
+"""
+
+
 cls_criterion = torch.nn.BCEWithLogitsLoss()
 reg_criterion = torch.nn.MSELoss()
 
@@ -148,13 +154,13 @@ def main():
         train_perf = eval(model, device, train_loader, evaluator)
         valid_perf = eval(model, device, valid_loader, evaluator)
         ### testing (inference)
-        #starttime = time.time()
-        #test_perf = eval(model, device, test_loader, evaluator)
-        #print((time.time() - starttime)/len(test_loader))
+        # starttime = time.time()
+        # test_perf = eval(model, device, test_loader, evaluator)
+        # print((time.time() - starttime)/len(test_loader))
 
-        with profile(activities=[ProfilerActivity.CPU], record_shapes=True) as prof:
-            with record_function("model_inference"):
-                test_perf = eval(model, device, test_loader, evaluator)
+        # with profile(activities=[ProfilerActivity.CPU], record_shapes=True) as prof:
+        #    with record_function("model_inference"):
+        test_perf = eval(model, device, test_loader, evaluator)
 
         print({'Train': train_perf, 'Validation': valid_perf, 'Test': test_perf})
 
@@ -174,7 +180,7 @@ def main():
     print('Test score: {}'.format(test_curve[best_val_epoch]))
 
     # profiling output
-    print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
+    # print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
 
     if not args.filename == '':
         torch.save({'Val': valid_curve[best_val_epoch], 'Test': test_curve[best_val_epoch],
