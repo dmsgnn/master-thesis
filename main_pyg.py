@@ -1,19 +1,16 @@
 import torch
 from torch_geometric.loader import DataLoader
 import torch.optim as optim
-import torch.nn.functional as F
-from gnn import GNN
+from gnn.gnn import GNN
 
 from tqdm import tqdm
 import argparse
-import time
 import numpy as np
 
 # importing OGB
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 
 # profiling
-from torch.profiler import profile, record_function, ProfilerActivity
 
 
 """
