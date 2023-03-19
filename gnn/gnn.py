@@ -61,11 +61,12 @@ class GNN(torch.nn.Module):
             self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)
 
     def forward(self, batched_data):
-        # starttime = time.time()
+        """
+        forward function used for prediction
+        """
         h_node = self.gnn_node(batched_data)
 
         h_graph = self.pool(h_node, batched_data.batch)
-        # print(time.time() - starttime)
 
         return self.graph_pred_linear(h_graph)
 

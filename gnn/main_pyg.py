@@ -1,28 +1,22 @@
 import torch
 from torch_geometric.loader import DataLoader
 import torch.optim as optim
-from gnn.gnn import GNN
+from gnn import GNN
 
-from tqdm import tqdm
 import argparse
 import numpy as np
+from tqdm import tqdm
 
 # importing OGB
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 
-# profiling
-
-
-"""
-    this class allows to train and then test the model
-"""
-
-
 cls_criterion = torch.nn.BCEWithLogitsLoss()
 reg_criterion = torch.nn.MSELoss()
 
-
 def train(model, device, loader, optimizer, task_type):
+    """
+    function used to train a model
+    """
     model.train()
 
     for step, batch in enumerate(tqdm(loader, desc="Iteration")):
@@ -44,6 +38,9 @@ def train(model, device, loader, optimizer, task_type):
 
 
 def eval(model, device, loader, evaluator):
+    """
+    function used to evaluate the model and make inference
+    """
     model.eval()
     y_true = []
     y_pred = []
@@ -69,6 +66,9 @@ def eval(model, device, loader, evaluator):
 
 
 def main():
+    """
+    main function which allow the user to train a new model and make inference (graph classification)
+    """
     # Training settings
     parser = argparse.ArgumentParser(description='GNN baselines on ogbgmol* data with Pytorch Geometrics')
     parser.add_argument('--device', type=int, default=0,
@@ -89,11 +89,13 @@ def main():
                         help='number of workers (default: 0)')
     parser.add_argument('--dataset', type=str, default="ogbg-molhiv",
                         help='dataset name (default: ogbg-molhiv)')
-
     parser.add_argument('--feature', type=str, default="full",
                         help='full feature or simple feature')
     parser.add_argument('--filename', type=str, default="",
                         help='filename to output result (default: )')
+    ### argument used to save the model
+    parser.add_argument('--inference', type=bool, default=False,
+                        help='only inference is performed (default: False)')
     args = parser.parse_args()
 
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
@@ -138,6 +140,12 @@ def main():
 
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+    if args.inference:
+        model.load_state_dict(torch.load(args.gnn + '.pt'))
+        inference = eval(model, device, test_loader, evaluator)
+        print(inference[dataset.eval_metric])
+        return
+
     valid_curve = []
     test_curve = []
     train_curve = []
@@ -150,13 +158,6 @@ def main():
         print('Evaluating...')
         train_perf = eval(model, device, train_loader, evaluator)
         valid_perf = eval(model, device, valid_loader, evaluator)
-        ### testing (inference)
-        # starttime = time.time()
-        # test_perf = eval(model, device, test_loader, evaluator)
-        # print((time.time() - starttime)/len(test_loader))
-
-        # with profile(activities=[ProfilerActivity.CPU], record_shapes=True) as prof:
-        #    with record_function("model_inference"):
         test_perf = eval(model, device, test_loader, evaluator)
 
         print({'Train': train_perf, 'Validation': valid_perf, 'Test': test_perf})
@@ -176,8 +177,8 @@ def main():
     print('Best validation score: {}'.format(valid_curve[best_val_epoch]))
     print('Test score: {}'.format(test_curve[best_val_epoch]))
 
-    # profiling output
-    # print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
+    ### model is saved
+    torch.save(model.state_dict(), args.gnn + '.pt')
 
     if not args.filename == '':
         torch.save({'Val': valid_curve[best_val_epoch], 'Test': test_curve[best_val_epoch],
