@@ -2,6 +2,7 @@ import torch
 from torch_geometric.loader import DataLoader
 import torch.optim as optim
 from gnn import GNN
+from torch.profiler import profile, record_function, ProfilerActivity
 
 import argparse
 import numpy as np
@@ -12,6 +13,7 @@ from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 
 cls_criterion = torch.nn.BCEWithLogitsLoss()
 reg_criterion = torch.nn.MSELoss()
+
 
 def train(model, device, loader, optimizer, task_type):
     """
@@ -140,10 +142,15 @@ def main():
 
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+    ### only inference is performed on test data
     if args.inference:
         model.load_state_dict(torch.load(args.gnn + '.pt'))
-        inference = eval(model, device, test_loader, evaluator)
+        print('===== Inference...')
+        with profile(activities=[ProfilerActivity.CPU], record_shapes=True) as prof:
+            with record_function("model_inference"):
+                inference = eval(model, device, test_loader, evaluator)
         print(inference[dataset.eval_metric])
+        print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
         return
 
     valid_curve = []
