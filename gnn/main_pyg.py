@@ -98,6 +98,9 @@ def main():
     ### argument used to save the model
     parser.add_argument('--inference', type=bool, default=False,
                         help='only inference is performed (default: False)')
+    ### argument used to profile inference time
+    parser.add_argument('--profile', type=bool, default=False,
+                        help='profiling of inference time (default: False)')
     args = parser.parse_args()
 
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
@@ -144,13 +147,16 @@ def main():
 
     ### only inference is performed on test data
     if args.inference:
-        model.load_state_dict(torch.load(args.gnn + '.pt'))
-        print('===== Inference...')
-        with profile(activities=[ProfilerActivity.CPU], record_shapes=True) as prof:
-            with record_function("model_inference"):
-                inference = eval(model, device, test_loader, evaluator)
+        model.load_state_dict(torch.load(args.gnn + '-batch' + str(args.batch_size) + '.pt'))
+        print('=====>> Inference')
+        if args.profile:
+            with profile(activities=[ProfilerActivity.CPU], record_shapes=True) as prof:
+                with record_function("model_inference"):
+                    inference = eval(model, device, test_loader, evaluator)
+            print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
+        else:
+            inference = eval(model, device, test_loader, evaluator)
         print(inference[dataset.eval_metric])
-        print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
         return
 
     valid_curve = []
@@ -185,7 +191,7 @@ def main():
     print('Test score: {}'.format(test_curve[best_val_epoch]))
 
     ### model is saved
-    torch.save(model.state_dict(), args.gnn + '.pt')
+    torch.save(model.state_dict(), args.gnn + '-batch' + str(args.batch_size) + '.pt')
 
     if not args.filename == '':
         torch.save({'Val': valid_curve[best_val_epoch], 'Test': test_curve[best_val_epoch],
