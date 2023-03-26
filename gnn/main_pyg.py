@@ -145,9 +145,12 @@ def main():
 
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+    ### file name of the exported scripted model
+    export_model_name = args.gnn + '-scripted-batch' + str(args.batch_size) + '.pt'
+
     ### only inference is performed on test data
     if args.inference:
-        model.load_state_dict(torch.load(args.gnn + '-batch' + str(args.batch_size) + '.pt'))
+        model = torch.jit.load(export_model_name)
         print('=====>> Inference')
         if args.profile:
             with profile(activities=[ProfilerActivity.CPU], record_shapes=True) as prof:
@@ -191,7 +194,8 @@ def main():
     print('Test score: {}'.format(test_curve[best_val_epoch]))
 
     ### model is saved
-    torch.save(model.state_dict(), args.gnn + '-batch' + str(args.batch_size) + '.pt')
+    model_scripted = torch.jit.script(model)  # Export to TorchScript
+    model_scripted.save(export_model_name)    # Save
 
     if not args.filename == '':
         torch.save({'Val': valid_curve[best_val_epoch], 'Test': test_curve[best_val_epoch],
