@@ -194,8 +194,8 @@ def main():
     print('Test score: {}'.format(test_curve[best_val_epoch]))
 
     ### model is saved
-    model_scripted = torch.jit.script(model)  # Export to TorchScript
-    model_scripted.save(export_model_name)    # Save
+    # model_scripted = torch.jit.script(model)  # Export to TorchScript
+    # model_scripted.save(export_model_name)    # Save
 
     if not args.filename == '':
         torch.save({'Val': valid_curve[best_val_epoch], 'Test': test_curve[best_val_epoch],
