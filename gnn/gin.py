@@ -21,6 +21,8 @@ reg_criterion = torch.nn.MSELoss()
 
 ### GIN convolution along the graph structure
 class GINConv(MessagePassing):
+    propagate_type = {'x': torch.Tensor, 'edge_attr': torch.Tensor}
+
     def __init__(self, emb_dim):
         '''
             emb_dim (int): node embedding dimensionality
@@ -34,11 +36,10 @@ class GINConv(MessagePassing):
 
         self.bond_encoder = BondEncoder(emb_dim=emb_dim)
 
-    def forward(self, x, edge_index, edge_attr):
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor) -> torch.Tensor:
         edge_embedding = self.bond_encoder(edge_attr)
-        out = self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
-
-        return out
+        assert isinstance(edge_embedding, torch.Tensor)
+        return self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding, size=None))
 
     def message(self, x_j, edge_attr):
         return F.relu(x_j + edge_attr)
@@ -90,10 +91,11 @@ class GNN(torch.nn.Module):
         else:
             self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)
 
-    def forward(self, x, edge_index, edge_attr, batch):
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor, batch) -> torch.Tensor:
         """
         forward function used for prediction
         """
+
         h_node = self.gnn_node(x, edge_index, edge_attr)
 
         h_graph = self.pool(h_node, batch)
@@ -120,6 +122,7 @@ class GNN_node(torch.nn.Module):
         self.JK = JK
         ### add residual connection or not
         self.residual = residual
+        self.layers = [1, 2, 3, 4, 5]
 
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
@@ -131,18 +134,19 @@ class GNN_node(torch.nn.Module):
         self.batch_norms = torch.nn.ModuleList()
 
         for layer in range(num_layer):
-            self.convs.append(GINConv(emb_dim))
+            self.convs.append(GINConv(emb_dim).jittable())
 
             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
 
-    def forward(self, x, edge_index, edge_attr):
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor) -> torch.Tensor:
         ### computing input node embedding
 
         h_list = [self.atom_encoder(x)]
-        for layer in range(self.num_layer):
 
-            h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-            h = self.batch_norms[layer](h)
+        for layer, (conv, norm) in enumerate(zip(self.convs, self.batch_norms)):
+            assert isinstance(h_list[layer], torch.Tensor)
+            h = conv(h_list[layer], edge_index, edge_attr)
+            h = norm(h)
 
             if layer == self.num_layer - 1:
                 # remove relu for the last layer
@@ -266,6 +270,9 @@ def main():
     test_curve = []
     train_curve = []
 
+    model_scripted = torch.jit.script(model)  # Export to TorchScript
+    model_scripted.save("gin-script.pt")  # Save
+
     for epoch in range(1, 1 + 1):
         print("=====Epoch {}".format(epoch))
         print('Training...')
@@ -292,24 +299,6 @@ def main():
     print('Finished training!')
     # print('Best validation score: {}'.format(valid_curve[best_val_epoch]))
     # print('Test score: {}'.format(test_curve[best_val_epoch]))
-
-    for step, batch in enumerate(tqdm(test_loader, desc="Iteration")):
-        batch = batch.to(device)
-        x, edge_index, edge_attr, batch_f = batch.x, batch.edge_index, batch.edge_attr, batch.batch
-
-        print("### original model inference result")
-        with torch.no_grad():
-            print(model(x, edge_index, edge_attr, batch_f))
-        model_scripted = torch.jit.trace(model, (x, edge_index, edge_attr, batch_f))  # Export to TorchScript trace
-        model_scripted.save('model.pt')
-
-        print("### loaded model inference result")
-        loaded_trace = torch.jit.load("model.pt")
-        with torch.no_grad():
-            print(loaded_trace(x, edge_index, edge_attr, batch_f))
-
-        if step == 0:
-            break
 
 
 if __name__ == "__main__":
