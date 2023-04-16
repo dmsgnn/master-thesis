@@ -12,6 +12,8 @@ import argparse
 import numpy as np
 from tqdm import tqdm
 
+from torch_geometric.nn.models import GIN
+
 # importing OGB
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 
@@ -270,8 +272,7 @@ def main():
     test_curve = []
     train_curve = []
 
-    model_scripted = torch.jit.script(model)  # Export to TorchScript
-    model_scripted.save("gin-script.pt")  # Save
+
 
     for epoch in range(1, 1 + 1):
         print("=====Epoch {}".format(epoch))
@@ -299,6 +300,28 @@ def main():
     print('Finished training!')
     # print('Best validation score: {}'.format(valid_curve[best_val_epoch]))
     # print('Test score: {}'.format(test_curve[best_val_epoch]))
+
+    model_scripted = torch.jit.script(model)  # Export to TorchScript
+    model_scripted.save("gin-script.pt")  # Save
+
+    model_load = torch.jit.load("gin-script.pt")
+    model.eval()
+    model_load.eval()
+
+    for step, batch in enumerate(tqdm(test_loader, desc="Iteration")):
+        batch = batch.to("cpu")
+        x, edge_index, edge_attr, batch_f = batch.x, batch.edge_index, batch.edge_attr, batch.batch
+
+        with torch.no_grad():
+            print('=====>> Inference gin model')
+            print(model(x, edge_index, edge_attr, batch_f))
+
+            print('=====>> Inference loaded model')
+            print(model_load(x, edge_index, edge_attr, batch_f))
+
+        if step == 2:
+            break
+    return
 
 
 if __name__ == "__main__":

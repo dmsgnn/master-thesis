@@ -60,7 +60,7 @@ class GNN(torch.nn.Module):
         else:
             self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)
 
-    def forward(self, batched_data):
+    def forward(self, batched_data: dict) -> torch.Tensor:
         """
         forward function used for prediction
         """

@@ -3,7 +3,9 @@ from torch_geometric.nn import MessagePassing
 import torch.nn.functional as F
 from torch_geometric.nn import global_mean_pool, global_add_pool
 from ogb.graphproppred.mol_encoder import AtomEncoder, BondEncoder
+from torch_geometric.typing import Size
 from torch_geometric.utils import degree
+from typing import Optional
 
 import math
 import time
@@ -11,6 +13,8 @@ import time
 
 ### GIN convolution along the graph structure
 class GINConv(MessagePassing):
+    propagate_type = {'x': torch.Tensor, 'edge_attr': torch.Tensor}
+
     def __init__(self, emb_dim):
         '''
             emb_dim (int): node embedding dimensionality
@@ -24,11 +28,10 @@ class GINConv(MessagePassing):
 
         self.bond_encoder = BondEncoder(emb_dim=emb_dim)
 
-    def forward(self, x, edge_index, edge_attr):
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor) -> torch.Tensor:
         edge_embedding = self.bond_encoder(edge_attr)
-        out = self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
-
-        return out
+        assert isinstance(edge_embedding, torch.Tensor)
+        return self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding, size=None))
 
     def message(self, x_j, edge_attr):
         return F.relu(x_j + edge_attr)
@@ -100,7 +103,7 @@ class GNN_node(torch.nn.Module):
 
         for layer in range(num_layer):
             if gnn_type == 'gin':
-                self.convs.append(GINConv(emb_dim))
+                self.convs.append(GINConv(emb_dim).jittable())
             elif gnn_type == 'gcn':
                 self.convs.append(GCNConv(emb_dim))
             else:
@@ -194,7 +197,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
                                     torch.nn.BatchNorm1d(emb_dim),
                                     torch.nn.ReLU()))
 
-    def forward(self, batched_data):
+    def forward(self, batched_data: dict) -> torch.Tensor:
 
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
