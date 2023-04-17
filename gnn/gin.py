@@ -124,7 +124,6 @@ class GNN_node(torch.nn.Module):
         self.JK = JK
         ### add residual connection or not
         self.residual = residual
-        self.layers = [1, 2, 3, 4, 5]
 
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
@@ -162,12 +161,15 @@ class GNN_node(torch.nn.Module):
             h_list.append(h)
 
         ### Different implementations of Jk-concat
-        if self.JK == "last":
-            node_representation = h_list[-1]
-        elif self.JK == "sum":
-            node_representation = 0
-            for layer in range(self.num_layer + 1):
-                node_representation += h_list[layer]
+        ### if self.JK == "last":
+        ###    node_representation = h_list[-1]
+        ### elif self.JK == "sum":
+        ###     node_representation = 0
+        ###     for layer in range(self.num_layer + 1):
+        ###         node_representation += h_list[layer]
+
+        ### upper lines changed with:
+        node_representation = h_list[-1]
 
         return node_representation
 
@@ -274,14 +276,14 @@ def main():
 
 
 
-    for epoch in range(1, 1 + 1):
+    for epoch in range(1, 1+1):
         print("=====Epoch {}".format(epoch))
         print('Training...')
         train(model, device, train_loader, optimizer, dataset.task_type)
 
         print('Evaluating...')
         train_perf = eval(model, device, train_loader, evaluator)
-        # valid_perf = eval(model, device, valid_loader, evaluator)
+        valid_perf = eval(model, device, valid_loader, evaluator)
         # test_perf = eval(model, device, test_loader, evaluator)
 
         # print({'Train': train_perf, 'Validation': valid_perf, 'Test': test_perf})
@@ -302,26 +304,31 @@ def main():
     # print('Test score: {}'.format(test_curve[best_val_epoch]))
 
     model_scripted = torch.jit.script(model)  # Export to TorchScript
-    model_scripted.save("gin-script.pt")  # Save
+    ## model_scripted.save("gin-script.pt")  # Save
 
-    model_load = torch.jit.load("gin-script.pt")
-    model.eval()
-    model_load.eval()
+    ## model_load = torch.jit.load("gin-script.pt")
+    ##model.eval()
+    ## model_load.eval()
+
+    model_scripted.eval()
 
     for step, batch in enumerate(tqdm(test_loader, desc="Iteration")):
-        batch = batch.to("cpu")
+        batch = batch.to(device)
         x, edge_index, edge_attr, batch_f = batch.x, batch.edge_index, batch.edge_attr, batch.batch
 
-        with torch.no_grad():
-            print('=====>> Inference gin model')
-            print(model(x, edge_index, edge_attr, batch_f))
+        if batch.x.shape[0] == 1:
+            pass
+        else:
+            with torch.no_grad():
+                pred = model(x, edge_index, edge_attr, batch_f)
+                scripted_pred = model_scripted(x, edge_index, edge_attr, batch_f)
 
-            print('=====>> Inference loaded model')
-            print(model_load(x, edge_index, edge_attr, batch_f))
+            print('=====>> Inference normal model')
+            print(pred)
+            print('=====>> Inference scripted model')
+            print(scripted_pred)
 
-        if step == 2:
             break
-    return
 
 
 if __name__ == "__main__":
