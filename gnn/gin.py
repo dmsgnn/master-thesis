@@ -304,10 +304,11 @@ def main():
     # print('Test score: {}'.format(test_curve[best_val_epoch]))
 
     model_scripted = torch.jit.script(model)  # Export to TorchScript
-    ## model_scripted.save("gin-script.pt")  # Save
+    model_scripted.save("gin-script.pt")  # Save
 
-    ## model_load = torch.jit.load("gin-script.pt")
-    ##model.eval()
+    model_scripted = torch.jit.load("gin-script.pt")
+    ## print(model_scripted)
+    ## model.eval()
     ## model_load.eval()
 
     model_scripted.eval()
