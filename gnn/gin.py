@@ -274,9 +274,7 @@ def main():
     test_curve = []
     train_curve = []
 
-
-
-    for epoch in range(1, 1+1):
+    for epoch in range(1, 1 + 1):
         print("=====Epoch {}".format(epoch))
         print('Training...')
         train(model, device, train_loader, optimizer, dataset.task_type)
@@ -307,7 +305,17 @@ def main():
     model_scripted.save("gin-script.pt")  # Save
 
     model_scripted = torch.jit.load("gin-script.pt")
+
+    ##torch._C.parse_ir(str(model_scripted.graph))
+
+    ## print(model_scripted.code)
+    ## print(model_scripted.graph)
+
+    frozen_model = torch.jit.freeze(model_scripted)
+    print(frozen_model.graph)
+
     ## print(model_scripted)
+
     ## model.eval()
     ## model_load.eval()
 
