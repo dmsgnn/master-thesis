@@ -108,6 +108,13 @@ print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 ### model_script = torch.jit.script(model)
 
 module = torch_mlir.compile(model, (features, adj), output_type="linalg-on-tensors")
+
+### print mlir model on file
+file = open("pygcn_linalg.mlir", "a")
+print("LINALG_ON_TENSORS OutputType saved on file")
+file.write(module.operation.get_asm(large_elements_limit=10))
+file.close()
+
 backend = refbackend.RefBackendLinalgOnTensorsBackend()
 compiled = backend.compile(module)
 jit_module = backend.load(compiled)
