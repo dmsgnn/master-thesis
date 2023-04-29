@@ -8,6 +8,15 @@ import sys
 from PIL import Image
 import requests
 
+import sys
+
+sys.path.insert(1, '/Users/dvlpr/torch-mlir/build/tools/torch-mlir/python_packages/torch_mlir/')
+
+import torch_mlir
+from torch_mlir_e2e_test.linalg_on_tensors_backends import refbackend
+
+
+
 import torch
 from torchvision import transforms
 from tqdm import tqdm
@@ -16,9 +25,6 @@ from gnn import GNN
 import torch.optim as optim
 
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
-
-import torch_mlir
-from torch_mlir_e2e_test.linalg_on_tensors_backends import refbackend
 
 
 def train(model, device, loader, optimizer, task_type):

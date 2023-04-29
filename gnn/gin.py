@@ -17,6 +17,12 @@ from torch_geometric.nn.models import GIN
 # importing OGB
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 
+## MLIR import from source
+## import sys
+## sys.path.insert(1, '/Users/dvlpr/torch-mlir/build/tools/torch-mlir/python_packages/torch_mlir/')
+## import torch_mlir
+## from torch_mlir_e2e_test.linalg_on_tensors_backends import refbackend
+
 cls_criterion = torch.nn.BCEWithLogitsLoss()
 reg_criterion = torch.nn.MSELoss()
 
@@ -311,8 +317,8 @@ def main():
     ## print(model_scripted.code)
     ## print(model_scripted.graph)
 
-    frozen_model = torch.jit.freeze(model_scripted)
-    print(frozen_model.graph)
+    ## frozen_model = torch.jit.freeze(model_scripted)
+    ## print(frozen_model.graph)
 
     ## print(model_scripted)
 
@@ -329,6 +335,7 @@ def main():
             pass
         else:
             with torch.no_grad():
+                ## module = torch_mlir.compile(model, (x, edge_index, edge_attr, batch_f), output_type="linalg-on-tensors")
                 pred = model(x, edge_index, edge_attr, batch_f)
                 scripted_pred = model_scripted(x, edge_index, edge_attr, batch_f)
 

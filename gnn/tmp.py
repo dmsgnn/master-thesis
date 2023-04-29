@@ -1,4 +1,13 @@
+import numpy as np
 import torch
+from torch_scatter import segment_csr
+from torch_sparse import storage
+
+import sys
+sys.path.insert(1, '/Users/dvlpr/torch-mlir/build/tools/torch-mlir/python_packages/torch_mlir/')
+import torch_mlir
+from torch_mlir_e2e_test.linalg_on_tensors_backends import refbackend
+
 
 graph = """
 graph(%self.1 : __torch__.___torch_mangle_0.GNN,
@@ -1358,3 +1367,89 @@ graph(%self.1 : __torch__.___torch_mangle_0.GNN,
 """
 
 ## torch._C.parse_ir(graph)
+
+x = torch.tensor(np.array( [[ 5,  0,  4,  5,  3,  0,  2,  0,  0],
+                            [ 5,  0,  4,  5,  2,  0,  2,  0,  0],
+                            [ 5,  0,  3,  5,  0,  0,  1,  0,  1],
+                            [ 7,  0,  2,  6,  0,  0,  1,  0,  1],
+                            [28,  0,  4,  2,  0,  0,  5,  0,  1],
+                            [ 7,  0,  2,  6,  0,  0,  1,  0,  1],
+                            [ 5,  0,  3,  5,  0,  0,  1,  0,  1],
+                            [ 5,  0,  4,  5,  2,  0,  2,  0,  0],
+                            [ 5,  0,  4,  5,  3,  0,  2,  0,  0],
+                            [ 5,  0,  4,  5,  2,  0,  2,  0,  1],
+                            [ 7,  0,  2,  6,  0,  0,  1,  0,  1],
+                            [ 5,  0,  3,  5,  0,  0,  1,  0,  1],
+                            [ 5,  0,  4,  5,  2,  0,  2,  0,  0],
+                            [ 5,  0,  4,  5,  3,  0,  2,  0,  0],
+                            [ 5,  0,  4,  5,  2,  0,  2,  0,  1],
+                            [ 5,  0,  3,  5,  0,  0,  1,  0,  1],
+                            [ 5,  0,  4,  5,  2,  0,  2,  0,  0],
+                            [ 5,  0,  4,  5,  3,  0,  2,  0,  0],
+                            [ 7,  0,  2,  6,  0,  0,  1,  0,  1]]))
+
+edge_index = torch.tensor(np.array([[ 0,  1,  1,  2,  2,  3,  3,  4,  4,  5,  5,  6,  6,  7,  7,  8,  6,  9,
+                                       4, 10, 10, 11, 11, 12, 12, 13, 11, 14, 14, 15, 15, 16, 16, 17, 15, 18,
+                                       9,  2, 18,  4],
+                                     [ 1,  0,  2,  1,  3,  2,  4,  3,  5,  4,  6,  5,  7,  6,  8,  7,  9,  6,
+                                      10,  4, 11, 10, 12, 11, 13, 12, 14, 11, 15, 14, 16, 15, 17, 16, 18, 15,
+                                       2,  9,  4, 18]]))
+
+edge_attr = torch.tensor(np.array([[0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [1, 0, 0],
+                                    [1, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [1, 0, 0],
+                                    [1, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [1, 0, 0],
+                                    [1, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [1, 0, 0],
+                                    [1, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0],
+                                    [0, 0, 0]]))
+
+batch = torch.tensor(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
+
+print(x)
+print(edge_index)
+print(edge_attr)
+print(batch)
+
+## the jit load need the import of the torch geometric Data Loader OR
+## the import of both torch scatter and torch sparse, otherwise an error arises
+load = torch.jit.load("gin-script.pt")
+load.eval()
+
+with torch.no_grad():
+    module = torch_mlir.compile(load, (x, edge_index, edge_attr, batch), output_type="linalg-on-tensors")
+backend = refbackend.RefBackendLinalgOnTensorsBackend()
+compiled = backend.compile(module)
+jit_module = backend.load(compiled)
