@@ -110,10 +110,9 @@ print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 module = torch_mlir.compile(model, (features, adj), output_type="linalg-on-tensors")
 
 ### print mlir model on file
-file = open("pygcn_linalg.mlir", "a")
-print("LINALG_ON_TENSORS OutputType saved on file")
-file.write(module.operation.get_asm(large_elements_limit=10))
-file.close()
+with open("pygcn_linalg.mlir", "w", encoding="utf-8") as outf:
+    outf.write(str(module))
+print("LINALG_ON_TENSORS OutputType saved on file pygcn_linalg.mlir\n")
 
 backend = refbackend.RefBackendLinalgOnTensorsBackend()
 compiled = backend.compile(module)

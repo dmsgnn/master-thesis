@@ -1,7 +1,10 @@
 import numpy as np
 import torch
-from torch_scatter import segment_csr
-from torch_sparse import storage
+#from torch_sparse import storage
+
+#from torch_scatter import segment_csr
+#from torch_geometric.utils.segment import segment
+from ogb.graphproppred.mol_encoder import AtomEncoder
 
 import sys
 sys.path.insert(1, '/Users/dvlpr/torch-mlir/build/tools/torch-mlir/python_packages/torch_mlir/')
