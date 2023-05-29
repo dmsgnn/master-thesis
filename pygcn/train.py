@@ -92,7 +92,7 @@ def test():
 
     with torch.autograd.profiler.profile(record_shapes=True, with_flops=True) as prof:
         output = model(features, adj)
-    print(prof.key_averages(group_by_input_shape=True).table(sort_by="self_cpu_time_total"))
+    print(prof.key_averages().table(sort_by="self_cpu_time_total"))
 
     loss_test = F.nll_loss(output[idx_test], labels[idx_test])
     acc_test = accuracy(output[idx_test], labels[idx_test])
