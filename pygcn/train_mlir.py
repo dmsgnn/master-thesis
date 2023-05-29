@@ -12,6 +12,9 @@ import torch.optim as optim
 from utils import load_data, accuracy
 from models import GCN
 
+import torch_mlir
+from torch_mlir_e2e_test.linalg_on_tensors_backends import refbackend
+
 # Training settings
 parser = argparse.ArgumentParser()
 parser.add_argument('--no-cuda', action='store_true', default=False,
@@ -103,6 +106,28 @@ print("Optimization Finished!")
 print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
 ### model_script = torch.jit.script(model)
+
+module = torch_mlir.compile(model, (features, adj), output_type="linalg-on-tensors")
+
+### print mlir model on file
+with open("pygcn_linalg.mlir", "w", encoding="utf-8") as outf:
+    outf.write(str(module))
+print("LINALG_ON_TENSORS OutputType saved on file pygcn_linalg.mlir\n")
+
+backend = refbackend.RefBackendLinalgOnTensorsBackend()
+compiled = backend.compile(module)
+jit_module = backend.load(compiled)
+
+### pytorch
+model.eval()
+pytorch_prediction = model(features, adj)
+print("PyTorch prediction")
+print(pytorch_prediction.detach().numpy())
+
+### mlir
+mlir_prediction = jit_module.forward(features.numpy(), adj.to_dense().numpy())
+print("torch-mlir prediction")
+print(mlir_prediction)
 
 # Testing
 test()
