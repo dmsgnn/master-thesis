@@ -109,7 +109,7 @@
             \\
             {{\color{black} \singlespacing \huge \bfseries \thesistitle \par}}
             \vspace{2.75cm}
-            {\color{black} \bfseries \large{\textsc{Tesi di Laurea Magistrale in\\ \course}}\par}
+            {\color{black} \bfseries \large{\textsc{Master of Science Thesis in\\ \course}}\par}
             \vspace{1.5 cm}
             {\color{black} \Large {Author:} \bfseries{\name}}
         \end{minipage}
