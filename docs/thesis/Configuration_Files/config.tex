@@ -1,16 +1,13 @@
-% Define blue color typical of polimi
-\definecolor{bluepoli}{cmyk}{0.4,0.1,0,0.4}
-
 % Custom theorem environments
 \declaretheoremstyle[
-  headfont=\color{bluepoli}\normalfont\bfseries,
-  bodyfont=\color{black}\normalfont\itshape,
+    headfont=\color{black}\normalfont\bfseries,
+    bodyfont=\color{black}\normalfont\itshape,
 ]{colored}
 
 % Set-up caption colors
-\captionsetup[figure]{labelfont={color=bluepoli}} % Set colour of the captions
-\captionsetup[table]{labelfont={color=bluepoli}} % Set colour of the captions
-\captionsetup[algorithm]{labelfont={color=bluepoli}} % Set colour of the captions
+\captionsetup[figure]{labelfont={color=black}} % Set colour of the captions
+\captionsetup[table]{labelfont={color=black}} % Set colour of the captions
+\captionsetup[algorithm]{labelfont={color=black}} % Set colour of the captions
 
 \theoremstyle{colored}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -24,34 +21,34 @@
 \newcounter{algsubstate}
 \renewcommand{\thealgsubstate}{\alph{algsubstate}}
 \newenvironment{algsubstates}
-  {\setcounter{algsubstate}{0}%
-   \renewcommand{\STATE}{%
-     \stepcounter{algsubstate}%
-     \Statex {\small\thealgsubstate:}\space}}
-  {}
+{\setcounter{algsubstate}{0}%
+\renewcommand{\STATE}{%
+    \stepcounter{algsubstate}%
+    \Statex {\small\thealgsubstate:}\space}}
+{}
 
 % New font size
 \newcommand\numfontsize{\@setfontsize\Huge{200}{60}}
 
 % Title format: chapter
 \titleformat{\chapter}[hang]{
-\fontsize{50}{20}\selectfont\bfseries\filright}{\textcolor{bluepoli} \thechapter\hsp\hspace{2mm}\textcolor{bluepoli}{|   }\hsp}{0pt}{\huge\bfseries \textcolor{bluepoli}
+    \fontsize{50}{20}\selectfont\bfseries\filright}{\textcolor{black} \thechapter\hsp\hspace{2mm}\textcolor{black}{|   }\hsp}{0pt}{\huge\bfseries \textcolor{black}
 }
 
 % Title format: section
 \titleformat{\section}
-{\color{bluepoli}\normalfont\Large\bfseries}
-{\color{bluepoli}\thesection.}{1em}{}
+{\color{black}\normalfont\Large\bfseries}
+{\color{black}\thesection.}{1em}{}
 
 % Title format: subsection
 \titleformat{\subsection}
-{\color{bluepoli}\normalfont\large\bfseries}
-{\color{bluepoli}\thesubsection.}{1em}{}
+{\color{black}\normalfont\large\bfseries}
+{\color{black}\thesubsection.}{1em}{}
 
 % Title format: subsubsection
 \titleformat{\subsubsection}
-{\color{bluepoli}\normalfont\large\bfseries}
-{\color{bluepoli}\thesubsubsection.}{1em}{}
+{\color{black}\normalfont\large\bfseries}
+{\color{black}\thesubsubsection.}{1em}{}
 
 % Shortening for setting no horizontal-spacing
 \newcommand{\hsp}{\hspace{0pt}}
@@ -59,12 +56,12 @@
 \makeatletter
 % Renewcommand: cleardoublepage including the background pic
 \renewcommand*\cleardoublepage{%
-  \clearpage\if@twoside\ifodd\c@page\else
-  \null
-  \AddToShipoutPicture*{\BackgroundPic}
-  \thispagestyle{empty}%
-  \newpage
-  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+    \clearpage\if@twoside\ifodd\c@page\else
+    \null
+    \AddToShipoutPicture*{\BackgroundPic}
+    \thispagestyle{empty}%
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \makeatother
 
 %For correctly numbering algorithms

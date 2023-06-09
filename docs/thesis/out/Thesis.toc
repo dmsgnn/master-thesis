@@ -1,0 +1,17 @@
+\babel@toc {english}{}
+\contentsline {chapter}{Abstract}{i}{chapter*.2}%
+\contentsline {chapter}{Abstract in lingua italiana}{iii}{chapter*.4}%
+\contentsline {chapter}{Contents\markboth {\MakeUppercase {Contents}}{\MakeUppercase {Contents}}}{v}{chapter*.6}%
+\vspace {2em}
+\contentsline {chapter}{Introduction}{1}{chapter*.8}%
+\contentsline {chapter}{\numberline {1}Background}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Conclusions and future developments}{5}{chapter.2}%
+\vspace {2em}
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{7}{chapter*.12}%
+\vspace {2em}
+\contentsline {chapter}{\numberline {A}Appendix A}{9}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Appendix B}{11}{appendix.B}%
+\contentsline {chapter}{List of Figures}{13}{appendix*.16}%
+\contentsline {chapter}{List of Tables}{15}{appendix*.18}%
+\contentsline {chapter}{List of Symbols}{17}{appendix*.20}%
+\contentsline {chapter}{Acknowledgements}{19}{appendix*.23}%

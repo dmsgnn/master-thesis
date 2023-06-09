@@ -1,0 +1,87 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abi{-}Karam et~al.(2022)Abi{-}Karam, He, Sarkar, Sathidevi, Qiao, and
+  Hao]{DBLP:journals/corr/abs-2201-08475}
+S.~Abi{-}Karam, Y.~He, R.~Sarkar, L.~Sathidevi, Z.~Qiao, and C.~Hao.
+\newblock Gengnn: {A} generic {FPGA} framework for graph neural network
+  acceleration.
+\newblock \emph{CoRR}, abs/2201.08475, 2022.
+\newblock URL \url{https://arxiv.org/abs/2201.08475}.
+
+\bibitem[Agostini et~al.(2022)Agostini, Curzel, Zhang, Limaye, Tan, Amatya,
+  Minutoli, Castellana, Manzano, Brooks, Wei, and Tumeo]{9786533}
+N.~B. Agostini, S.~Curzel, J.~J. Zhang, A.~Limaye, C.~Tan, V.~Amatya,
+  M.~Minutoli, V.~G. Castellana, J.~Manzano, D.~Brooks, G.-Y. Wei, and
+  A.~Tumeo.
+\newblock Bridging python to silicon: The soda toolchain.
+\newblock \emph{IEEE Micro}, 42\penalty0 (5):\penalty0 78--88, 2022.
+\newblock \doi{10.1109/MM.2022.3178580}.
+
+\bibitem[Auten et~al.(2020)Auten, Tomei, and Kumar]{9218751}
+A.~Auten, M.~Tomei, and R.~Kumar.
+\newblock Hardware acceleration of graph neural networks.
+\newblock In \emph{2020 57th ACM/IEEE Design Automation Conference (DAC)},
+  pages 1--6, 2020.
+\newblock \doi{10.1109/DAC18072.2020.9218751}.
+
+\bibitem[He(2019)]{DBLP:journals/corr/abs-1909-00155}
+L.~He.
+\newblock Engn: {A} high-throughput and energy-efficient accelerator for large
+  graph neural networks.
+\newblock \emph{CoRR}, abs/1909.00155, 2019.
+\newblock URL \url{http://arxiv.org/abs/1909.00155}.
+
+\bibitem[Hu et~al.(2020)Hu, Fey, Zitnik, Dong, Ren, Liu, Catasta, and
+  Leskovec]{NEURIPS2020_fb60d411}
+W.~Hu, M.~Fey, M.~Zitnik, Y.~Dong, H.~Ren, B.~Liu, M.~Catasta, and J.~Leskovec.
+\newblock Open graph benchmark: Datasets for machine learning on graphs.
+\newblock In H.~Larochelle, M.~Ranzato, R.~Hadsell, M.~Balcan, and H.~Lin,
+  editors, \emph{Advances in Neural Information Processing Systems}, volume~33,
+  pages 22118--22133. Curran Associates, Inc., 2020.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2020/file/fb60d411a5c5b72b2e7d3527cfc84fd0-Paper.pdf}.
+
+\bibitem[Hu et~al.(2021)Hu, Du, Ustun, and Zhang]{9643582}
+Y.~Hu, Y.~Du, E.~Ustun, and Z.~Zhang.
+\newblock Graphlily: Accelerating graph linear algebra on hbm-equipped fpgas.
+\newblock In \emph{2021 IEEE/ACM International Conference On Computer Aided
+  Design (ICCAD)}, pages 1--9, 2021.
+\newblock \doi{10.1109/ICCAD51958.2021.9643582}.
+
+\bibitem[Kiningham et~al.(2020)Kiningham, R{\'{e}}, and
+  Levis]{DBLP:journals/corr/abs-2007-13828}
+K.~Kiningham, C.~R{\'{e}}, and P.~A. Levis.
+\newblock {GRIP:} {A} graph neural network accelerator architecture.
+\newblock \emph{CoRR}, abs/2007.13828, 2020.
+\newblock URL \url{https://arxiv.org/abs/2007.13828}.
+
+\bibitem[Kipf and Welling(2016)]{DBLP:journals/corr/KipfW16}
+T.~N. Kipf and M.~Welling.
+\newblock Semi-supervised classification with graph convolutional networks.
+\newblock \emph{CoRR}, abs/1609.02907, 2016.
+\newblock URL \url{http://arxiv.org/abs/1609.02907}.
+
+\bibitem[Liang et~al.(2020)Liang, Liu, Wang, Li, and Li]{9256539}
+S.~Liang, C.~Liu, Y.~Wang, H.~Li, and X.~Li.
+\newblock Deepburning-gl: an automated framework for generating graph neural
+  network accelerators.
+\newblock In \emph{2020 IEEE/ACM International Conference On Computer Aided
+  Design (ICCAD)}, pages 1--9, 2020.
+
+\bibitem[Xu et~al.(2019)Xu, Hu, Leskovec, and Jegelka]{xu2019powerful}
+K.~Xu, W.~Hu, J.~Leskovec, and S.~Jegelka.
+\newblock How powerful are graph neural networks?, 2019.
+
+\bibitem[Yan et~al.(2020)Yan, Deng, Hu, Liang, Feng, Ye, Zhang, Fan, and
+  Xie]{DBLP:journals/corr/abs-2001-02514}
+M.~Yan, L.~Deng, X.~Hu, L.~Liang, Y.~Feng, X.~Ye, Z.~Zhang, D.~Fan, and Y.~Xie.
+\newblock Hygcn: {A} {GCN} accelerator with hybrid architecture.
+\newblock \emph{CoRR}, abs/2001.02514, 2020.
+\newblock URL \url{http://arxiv.org/abs/2001.02514}.
+
+\end{thebibliography}
