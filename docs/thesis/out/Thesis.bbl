@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -28,6 +28,15 @@ A.~Auten, M.~Tomei, and R.~Kumar.
 \newblock In \emph{2020 57th ACM/IEEE Design Automation Conference (DAC)},
   pages 1--6, 2020.
 \newblock \doi{10.1109/DAC18072.2020.9218751}.
+
+\bibitem[Bik et~al.(2022)Bik, Koanantakool, Shpeisman, Vasilache, Zheng, and
+  Kjolstad]{Bik_2022}
+A.~Bik, P.~Koanantakool, T.~Shpeisman, N.~Vasilache, B.~Zheng, and F.~Kjolstad.
+\newblock Compiler support for sparse tensor computations in {MLIR}.
+\newblock \emph{{ACM} Transactions on Architecture and Code Optimization},
+  19\penalty0 (4):\penalty0 1--25, sep 2022.
+\newblock \doi{10.1145/3544559}.
+\newblock URL \url{https://doi.org/10.1145%2F3544559}.
 
 \bibitem[He(2019)]{DBLP:journals/corr/abs-1909-00155}
 L.~He.
@@ -72,6 +81,14 @@ S.~Liang, C.~Liu, Y.~Wang, H.~Li, and X.~Li.
   network accelerators.
 \newblock In \emph{2020 IEEE/ACM International Conference On Computer Aided
   Design (ICCAD)}, pages 1--9, 2020.
+
+\bibitem[Sanchez-Lengeling et~al.(2021)Sanchez-Lengeling, Reif, Pearce, and
+  Wiltschko]{sanchez-lengeling2021a}
+B.~Sanchez-Lengeling, E.~Reif, A.~Pearce, and A.~B. Wiltschko.
+\newblock A gentle introduction to graph neural networks.
+\newblock \emph{Distill}, 2021.
+\newblock \doi{10.23915/distill.00033}.
+\newblock https://distill.pub/2021/gnn-intro.
 
 \bibitem[Xu et~al.(2019)Xu, Hu, Leskovec, and Jegelka]{xu2019powerful}
 K.~Xu, W.~Hu, J.~Leskovec, and S.~Jegelka.
