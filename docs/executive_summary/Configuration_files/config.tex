@@ -10,18 +10,16 @@
 }
 \raggedbottom 
 
-% Create color bluePoli (-> manuale grafica coordinata:  https://www.polimi.it/fileadmin/user_upload/il_Politecnico/grafica-coordinata/2015_05_11_46xy_manuale_grafica_coordinata.pdf)
-\definecolor{bluePoli}{cmyk}{0.4,0.1,0,0.4}
 
 % Custom theorem environments
 \declaretheoremstyle[
-  headfont=\color{bluePoli}\normalfont\bfseries,
+  headfont=\color{black}\normalfont\bfseries,
   bodyfont=\color{black}\normalfont\itshape,
 ]{colored}
 
-\captionsetup[figure]{labelfont={color=bluePoli}} % Set colour of the captions
-\captionsetup[table]{labelfont={color=bluePoli}} % Set colour of the captions
-\captionsetup[algorithm]{labelfont={color=bluePoli}} % Set colour of the captions
+\captionsetup[figure]{labelfont={color=black}} % Set colour of the captions
+\captionsetup[table]{labelfont={color=black}} % Set colour of the captions
+\captionsetup[algorithm]{labelfont={color=black}} % Set colour of the captions
 
 \theoremstyle{colored}
 \newtheorem{theorem}{Theorem}[section]
@@ -62,7 +60,6 @@
 			\vfill
 			\centering
 			\transparent{0.4}
-			\includegraphics[width=0.5\paperwidth]{raggiera_polimi.eps}%
 			\vfill
 }}}
 
@@ -71,14 +68,14 @@
 
 % Custom title commands
 \titleformat{\section}
-{\color{bluePoli}\normalfont\Large\bfseries}
-{\color{bluePoli}\thesection.}{1em}{}
+{\color{black}\normalfont\Large\bfseries}
+{\color{black}\thesection.}{1em}{}
 \titlespacing*{\section}
 {0pt}{2ex}{1ex}
 
 \titleformat{\subsection}
-{\color{bluePoli}\normalfont\large\bfseries}
-{\color{bluePoli}\thesubsection.}{1em}{}
+{\color{black}\normalfont\large\bfseries}
+{\color{black}\thesubsection.}{1em}{}
 \titlespacing*{\subsection}
 {0pt}{2ex}{1ex}
 
@@ -99,7 +96,6 @@
 % -> Create the header
 \chead[C]{
 \centering
-\begin{tcolorbox}[arc=0pt, boxrule=0pt, colback=bluePoli!60, width=\textwidth, colupper=white]
-    \textbf{Executive summary} \hfill \textbf{\author}  
-\end{tcolorbox}
+\textbf{ Executive summary} \hfill \textbf{\author}
+\centerline{\rule{1.0\textwidth}{0.4pt}}
 }
