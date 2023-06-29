@@ -1,4 +1,4 @@
-\begin{thebibliography}{14}
+\begin{thebibliography}{15}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -44,6 +44,12 @@ U.~Bondhugula.
   {GEMM}.
 \newblock \emph{CoRR}, abs/2003.00532, 2020.
 \newblock URL \url{https://arxiv.org/abs/2003.00532}.
+
+\bibitem[Böhm(2022)]{opt_cuda_matmul}
+S.~Böhm.
+\newblock How to optimize a cuda matmul kernel for cublas-like performance: a
+  worklog, 2022.
+\newblock URL \url{https://siboehm.com/articles/22/CUDA-MMM}.
 
 \bibitem[He(2019)]{DBLP:journals/corr/abs-1909-00155}
 L.~He.
