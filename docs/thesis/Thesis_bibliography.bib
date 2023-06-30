@@ -1,6 +1,7 @@
 %% BibTeX bibliography
 % Encoding: UTF-8
 
+%%% This paper presented the first accelerator architecture targeting GNNs
 @INPROCEEDINGS{9218751,
     author = {Auten, Adam and Tomei, Matthew and Kumar, Rakesh},
     booktitle = {2020 57th ACM/IEEE Design Automation Conference (DAC)},
@@ -12,6 +13,7 @@
     doi = {10.1109/DAC18072.2020.9218751}
 }
 
+%%% paper that introduced Graph Isomorphism Network (GIN)
 @misc{xu2019powerful,
     title = {How Powerful are Graph Neural Networks?},
     author = {Keyulu Xu and Weihua Hu and Jure Leskovec and Stefanie Jegelka},
@@ -21,6 +23,7 @@
     primaryClass = {cs.LG}
 }
 
+%%% paper that presents SODA toolchain and Bambu, used for this Master Thesis
 @ARTICLE{9786533,
     author = {Agostini, Nicolas Bohm and Curzel, Serena and Zhang, Jeff Jun and Limaye, Ankur and Tan, Cheng and Amatya, Vinay and Minutoli, Marco and Castellana, Vito Giovanni and Manzano, Joseph and Brooks, David and Wei, Gu-Yeon and Tumeo, Antonino},
     journal = {IEEE Micro},
@@ -32,6 +35,7 @@
     doi = {10.1109/MM.2022.3178580}
 }
 
+%%% paper that introduces DeepBurningGL, a framework that can easily generate application-specific GNN accelerators from the software-described models.
 @INPROCEEDINGS{9256539,
     author = {Liang, Shengwen and Liu, Cheng and Wang, Ying and Li, Huawei and Li, Xiaowei},
     booktitle = {2020 IEEE/ACM International Conference On Computer Aided Design (ICCAD)},
@@ -43,6 +47,7 @@
     doi = {}
 }
 
+%%% paper that presents GenGNN, a generic GNN acceleration framework using High-Level Synthesis (HLS)
 @article{DBLP:journals/corr/abs-2201-08475,
     author = {Stefan Abi{-}Karam and
  Yuqi He and
@@ -62,6 +67,7 @@
     bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%% paper that introduced GraphLily, a graph linear algebra overlay, to accelerate graph processing on HBM-equipped FPGAs.
 @INPROCEEDINGS{9643582,
     author = {Hu, Yuwei and Du, Yixiao and Ustun, Ecenur and Zhang, Zhiru},
     booktitle = {2021 IEEE/ACM International Conference On Computer Aided Design (ICCAD)},
@@ -73,6 +79,7 @@
     doi = {10.1109/ICCAD51958.2021.9643582}
 }
 
+%%% paper that introduced GRIP, a graph neural network accelera- tor architecture designed for low-latency inference.
 @article{DBLP:journals/corr/abs-2007-13828,
     author = {Kevin Kiningham and
  Christopher R{\'{e}} and
@@ -89,6 +96,7 @@
     bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%% paper that introduced Graph Convolutional Network (GCN)
 @article{DBLP:journals/corr/KipfW16,
     author = {Thomas N. Kipf and
  Max Welling},
@@ -104,6 +112,7 @@
     bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%% paper that introduces HyGCN, a GCN accelerator using hybrid architecture to efficiently perform GCNs
 @article{DBLP:journals/corr/abs-2001-02514,
     author = {Mingyu Yan and
  Lei Deng and
@@ -126,6 +135,7 @@
     bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%% paper that describes OGB, it explains what OGB is and what it can be used for
 @inproceedings{NEURIPS2020_fb60d411,
     author = {Hu, Weihua and Fey, Matthias and Zitnik, Marinka and Dong, Yuxiao and Ren, Hongyu and Liu, Bowen and Catasta, Michele and Leskovec, Jure},
     booktitle = {Advances in Neural Information Processing Systems},
@@ -138,6 +148,8 @@
     year = {2020}
 }
 
+%%% paper that introduces EnGN, a specialized accelerator architecture which aims to
+%%% enable high-throughput and energy-efficient processing of large-scale GNNs (it improved HyGCN)
 @article{DBLP:journals/corr/abs-1909-00155,
     author = {Lei He},
     title = {EnGN: {A} High-Throughput and Energy-Efficient Accelerator for Large
@@ -153,6 +165,7 @@
     bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%% paper that describes how SparseTensors have been implemented in MLIR, explaining the important notation
 @article{Bik_2022,
 	doi = {10.1145/3544559},
 	url = {https://doi.org/10.1145%2F3544559},
@@ -167,6 +180,7 @@
 	journal = {{ACM} Transactions on Architecture and Code Optimization}
 }
 
+%%% online paper that describe really well graph neural networks and how they work
 @article{sanchez-lengeling2021a,
   author = {Sanchez-Lengeling, Benjamin and Reif, Emily and Pearce, Adam and Wiltschko, Alexander B.},
   title = {A Gentle Introduction to Graph Neural Networks},
@@ -176,6 +190,7 @@
   doi = {10.23915/distill.00033}
 }
 
+%%% paper that describes how to improve the performance of a matmul for cpu using MLIR
 @article{DBLP:journals/corr/abs-2003-00532,
   author       = {Uday Bondhugula},
   title        = {High Performance Code Generation in {MLIR:} An Early Case Study with
@@ -191,10 +206,31 @@
   bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%% online paper that describes,  step-by-step, how to optimize a matmul kernel
 @online{opt_cuda_matmul,
     author = {Simon Böhm},
     title = {How to Optimize a CUDA Matmul Kernel for cuBLAS-like Performance: a Worklog},
     year = {2022},
     date = {29 June 2023},
     url = {https://siboehm.com/articles/22/CUDA-MMM}
+}
+
+%%% paper that summarise graph neural networks, explaining the different categories and theis uses
+@article{DBLP:journals/corr/abs-1901-00596,
+  author       = {Zonghan Wu and
+                  Shirui Pan and
+                  Fengwen Chen and
+                  Guodong Long and
+                  Chengqi Zhang and
+                  Philip S. Yu},
+  title        = {A Comprehensive Survey on Graph Neural Networks},
+  journal      = {CoRR},
+  volume       = {abs/1901.00596},
+  year         = {2019},
+  url          = {http://arxiv.org/abs/1901.00596},
+  eprinttype    = {arXiv},
+  eprint       = {1901.00596},
+  timestamp    = {Thu, 31 Jan 2019 13:52:49 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-1901-00596.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
