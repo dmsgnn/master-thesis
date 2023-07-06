@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{24}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -51,6 +51,22 @@ S.~Böhm.
   worklog, 2022.
 \newblock URL \url{https://siboehm.com/articles/22/CUDA-MMM}.
 
+\bibitem[Ferrandi et~al.(2021)Ferrandi, Castellana, Curzel, Fezzardi, Fiorito,
+  Lattuada, Minutoli, Pilato, and Tumeo]{9586110}
+F.~Ferrandi, V.~G. Castellana, S.~Curzel, P.~Fezzardi, M.~Fiorito, M.~Lattuada,
+  M.~Minutoli, C.~Pilato, and A.~Tumeo.
+\newblock Invited: Bambu: an open-source research framework for the high-level
+  synthesis of complex applications.
+\newblock In \emph{2021 58th ACM/IEEE Design Automation Conference (DAC)},
+  pages 1327--1330, 2021.
+\newblock \doi{10.1109/DAC18074.2021.9586110}.
+
+\bibitem[Fey and Lenssen(2019)]{DBLP:journals/corr/abs-1903-02428}
+M.~Fey and J.~E. Lenssen.
+\newblock Fast graph representation learning with pytorch geometric.
+\newblock \emph{CoRR}, abs/1903.02428, 2019.
+\newblock URL \url{http://arxiv.org/abs/1903.02428}.
+
 \bibitem[He(2019)]{DBLP:journals/corr/abs-1909-00155}
 L.~He.
 \newblock Engn: {A} high-throughput and energy-efficient accelerator for large
@@ -88,12 +104,34 @@ T.~N. Kipf and M.~Welling.
 \newblock \emph{CoRR}, abs/1609.02907, 2016.
 \newblock URL \url{http://arxiv.org/abs/1609.02907}.
 
+\bibitem[Lattner et~al.(2021)Lattner, Amini, Bondhugula, Cohen, Davis, Pienaar,
+  Riddle, Shpeisman, Vasilache, and Zinenko]{9370308}
+C.~Lattner, M.~Amini, U.~Bondhugula, A.~Cohen, A.~Davis, J.~Pienaar, R.~Riddle,
+  T.~Shpeisman, N.~Vasilache, and O.~Zinenko.
+\newblock Mlir: Scaling compiler infrastructure for domain specific
+  computation.
+\newblock In \emph{2021 IEEE/ACM International Symposium on Code Generation and
+  Optimization (CGO)}, pages 2--14, 2021.
+\newblock \doi{10.1109/CGO51591.2021.9370308}.
+
 \bibitem[Liang et~al.(2020)Liang, Liu, Wang, Li, and Li]{9256539}
 S.~Liang, C.~Liu, Y.~Wang, H.~Li, and X.~Li.
 \newblock Deepburning-gl: an automated framework for generating graph neural
   network accelerators.
 \newblock In \emph{2020 IEEE/ACM International Conference On Computer Aided
   Design (ICCAD)}, pages 1--9, 2020.
+
+\bibitem[Paszke et~al.(2019)Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
+  Killeen, Lin, Gimelshein, Antiga, Desmaison, K{\"{o}}pf, Yang, DeVito,
+  Raison, Tejani, Chilamkurthy, Steiner, Fang, Bai, and
+  Chintala]{DBLP:journals/corr/abs-1912-01703}
+A.~Paszke, S.~Gross, F.~Massa, A.~Lerer, J.~Bradbury, G.~Chanan, T.~Killeen,
+  Z.~Lin, N.~Gimelshein, L.~Antiga, A.~Desmaison, A.~K{\"{o}}pf, E.~Z. Yang,
+  Z.~DeVito, M.~Raison, A.~Tejani, S.~Chilamkurthy, B.~Steiner, L.~Fang,
+  J.~Bai, and S.~Chintala.
+\newblock Pytorch: An imperative style, high-performance deep learning library.
+\newblock \emph{CoRR}, abs/1912.01703, 2019.
+\newblock URL \url{http://arxiv.org/abs/1912.01703}.
 
 \bibitem[Sanchez-Lengeling et~al.(2021)Sanchez-Lengeling, Reif, Pearce, and
   Wiltschko]{sanchez-lengeling2021a}
@@ -102,6 +140,22 @@ B.~Sanchez-Lengeling, E.~Reif, A.~Pearce, and A.~B. Wiltschko.
 \newblock \emph{Distill}, 2021.
 \newblock \doi{10.23915/distill.00033}.
 \newblock https://distill.pub/2021/gnn-intro.
+
+\bibitem[team and other contributors(2020)]{ogb_gnn_models}
+O.~G.~B. team and other contributors.
+\newblock Gnn models from open graph benchmark, 2020.
+\newblock URL
+  \url{https://github.com/snap-stanford/ogb/tree/master/examples/graphproppred/mol}.
+
+\bibitem[Thomas N.~Kipf and other contributors(2017)]{pygcn}
+M.~W. Thomas N.~Kipf and other contributors.
+\newblock Gcn model in pytorch, 2017.
+\newblock URL \url{https://github.com/tkipf/pygcn}.
+
+\bibitem[Torch-MLIR~team and other contributors(2021)]{torch_mlir}
+n.~t. Torch-MLIR~team and other contributors.
+\newblock Torch-mlir: Mlir based compiler toolkit for pytorch programs, 2021.
+\newblock URL \url{https://github.com/llvm/torch-mlir}.
 
 \bibitem[Wu et~al.(2019)Wu, Pan, Chen, Long, Zhang, and
   Yu]{DBLP:journals/corr/abs-1901-00596}
@@ -120,5 +174,12 @@ M.~Yan, L.~Deng, X.~Hu, L.~Liang, Y.~Feng, X.~Ye, Z.~Zhang, D.~Fan, and Y.~Xie.
 \newblock Hygcn: {A} {GCN} accelerator with hybrid architecture.
 \newblock \emph{CoRR}, abs/2001.02514, 2020.
 \newblock URL \url{http://arxiv.org/abs/2001.02514}.
+
+\bibitem[Zhou et~al.(2018)Zhou, Cui, Zhang, Yang, Liu, and
+  Sun]{DBLP:journals/corr/abs-1812-08434}
+J.~Zhou, G.~Cui, Z.~Zhang, C.~Yang, Z.~Liu, and M.~Sun.
+\newblock Graph neural networks: {A} review of methods and applications.
+\newblock \emph{CoRR}, abs/1812.08434, 2018.
+\newblock URL \url{http://arxiv.org/abs/1812.08434}.
 
 \end{thebibliography}

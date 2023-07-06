@@ -5,45 +5,51 @@ The style file: abbrvnat.bst
 Database file #1: Thesis_bibliography.bib
 Warning--entry type for "opt_cuda_matmul" isn't style-file defined
 --line 210 of file Thesis_bibliography.bib
-You've used 16 entries,
+Warning--entry type for "torch_mlir" isn't style-file defined
+--line 336 of file Thesis_bibliography.bib
+Warning--entry type for "ogb_gnn_models" isn't style-file defined
+--line 345 of file Thesis_bibliography.bib
+Warning--entry type for "pygcn" isn't style-file defined
+--line 354 of file Thesis_bibliography.bib
+You've used 24 entries,
             2773 wiz_defined-function locations,
-            697 strings with 8561 characters,
-and the built_in function-call counts, 9056 in all, are:
-= -- 758
-> -- 734
-< -- 9
-+ -- 246
-- -- 230
-* -- 792
-:= -- 1451
-add.period$ -- 63
-call.type$ -- 16
-change.case$ -- 123
-chr.to.int$ -- 16
-cite$ -- 32
-duplicate$ -- 354
-empty$ -- 593
-format.name$ -- 248
-if$ -- 1867
+            741 strings with 10792 characters,
+and the built_in function-call counts, 14308 in all, are:
+= -- 1180
+> -- 1244
+< -- 15
++ -- 416
+- -- 392
+* -- 1258
+:= -- 2291
+add.period$ -- 92
+call.type$ -- 24
+change.case$ -- 201
+chr.to.int$ -- 24
+cite$ -- 48
+duplicate$ -- 522
+empty$ -- 887
+format.name$ -- 426
+if$ -- 2943
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 14
-newline$ -- 102
-num.names$ -- 66
-pop$ -- 233
+missing$ -- 19
+newline$ -- 147
+num.names$ -- 98
+pop$ -- 393
 preamble$ -- 1
-purify$ -- 107
+purify$ -- 177
 quote$ -- 0
-skip$ -- 318
+skip$ -- 505
 stack$ -- 0
-substring$ -- 147
-swap$ -- 50
-text.length$ -- 5
+substring$ -- 214
+swap$ -- 76
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 176
+type$ -- 264
 warning$ -- 0
-while$ -- 61
+while$ -- 89
 width$ -- 0
-write$ -- 242
-(There was 1 warning)
+write$ -- 353
+(There were 4 warnings)

@@ -184,9 +184,76 @@
 % CHAPTER ZERO - INTRODUCTION
 % --------------------------------------------------------------------------
 
-    \chapter*{Introduction}
+    \chapter{Introduction}
 
-    Introduction here
+    In recent years, deep learning has brought about a revolutionary transformation in various machine learning tasks,
+    spanning from image classification and video processing to speech recognition and natural language understanding.
+    Traditionally, these tasks have predominantly operated within the Euclidean space, where data is typically
+    represented.
+    Nevertheless, a growing number of applications now generate data from non-Euclidean domains,
+    presenting it in the form of complex graphs with intricate relationships and interdependencies among objects.
+    The inherent complexity of graph data has posed considerable challenges for existing machine learning algorithms.
+    Consequently, there has been a surge of studies focusing on extending deep learning techniques to accommodate
+    and leverage graph data.
+
+    Graph neural networks (GNNs) have been introduced in response to the growing demand for learning tasks involving
+    graph data, which encompasses extensive relational information among its elements.
+    These neural models effectively capture the interdependence among graph nodes by employing message passing mechanisms.
+
+    As Graph Neural Networks are increasingly employed, particularly in domains characterized by vast amounts of data,
+    such as social networks and chemistry, a need arises to optimize and accelerate their capabilities.
+    Inference in GNNs refers to the time the model takes to make predictions after training.
+    The duration of the inference process determines the speed at which queries are answered, and researchers strive to minimize this time span.
+
+    In applications of deep learning that prioritize low latency, FPGAs outperform other computing devices, such as CPUs and GPUs,
+    by providing superior performance.
+    FPGAs offer the advantage of being fine-tuned to strike the optimal balance between power efficiency and meeting performance requirements.
+
+    Due to this reason, researchers have been actively pursuing the development of new FPGA accelerators for Graph Neural Networks (GNNs) in recent times.
+
+    The conventional approach to hardware design involves a combination of manual coding and automated processing.
+    However, this method demands significant effort and relies heavily on the expertise of the designers, leading to varying quality of results.
+
+    To address these challenges, the objective of this thesis research study is to develop a comprehensive toolchain that, starting from PyTorch~\cite{DBLP:journals/corr/abs-1912-01703},
+    a cutting-edge high-level programming framework for creating neural network algorithms based on the Python programming language, enables the
+    automatic generation of a Graph Neural Networks (GNNs) FPGA accelerator with minimal effort required.
+
+    The suggested toolchain represents an enhancement of the SODA toolchain~\cite{9786533}.
+    It operates by transforming the PyTorch model, provided as input, into a multi-level intermediate representation
+    (MLIR)~\cite{9370308} utilizing Torch-MLIR~\cite{torch_mlir}, an MLIR based compiler toolkit for PyTorch programs.
+    This MLIR representation is then passed to the SODA framework to conduct hardware/software partitioning of the algorithm
+    specifications and architecture-independent optimizations.
+    Following this, the framework generates a low-level IR (LLVM IR) specifically tailored for the hardware generation engine,
+    PandA-Bambu~\cite{9586110}.
+
+    In pursuit of the thesis goal, various optimizations were adopted throughout the process.
+    Specifically, efforts were made to optimize specific computations in Graph Neural Networks during the experimental phase.
+    As these networks often deal with massive graph sizes, the computation time and memory requirements are substantial.
+    Consequently, a significant portion of the research focuses on optimizing the computation phase of Graph Neural Networks using
+    tailored SODA optimizations, particularly matrix multiplication.
+
+    Furthermore, limitations and challenges have been encountered along the way.
+    Another objective of this thesis is to analyze these limitations, ensuring they are clearly understood thoroughly.
+    This analysis aims to provide valuable insights for future research endeavors, enabling the development of solutions
+    to overcome these limitations and further enhance the proposed toolchain.
+
+    While the intended purpose of the toolchain is to be general, the experimental phase primarily focused on two specific
+    types of Graph Neural Networks: Graph Isomorphism Networks (GIN)~\cite{xu2019powerful} and Graph Convolutional Networks (GCN)~\cite{DBLP:journals/corr/KipfW16}.
+    These models were sourced from reliable GitHub implementations and were modified as necessary.
+
+    The GCN model~\cite{pygcn}, designed for node classification task and written in pure PyTorch, held particular importance for the
+    experimental phase as it served as the basis for the resulting accelerator.
+    On the other hand, the GIN model~\cite{ogb_gnn_models}, designed for graph classification task and written in PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428},
+    a library built upon PyTorch for easier development and training of Graph Neural Networks, did not progress through
+    the final step of the proposed toolchain.
+    This was due to some incompatibilities between PyTorch Geometric and Torch-MLIR, which are integral parts of this thesis research.
+    
+    \section{Contributions}
+
+
+    \section{Thesis structure}
+
+
 
 % --------------------------------------------------------------------------
 % CHAPTER ONE - BACKGROUND
