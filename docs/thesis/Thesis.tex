@@ -146,7 +146,7 @@
     \textbf{Keywords:} here, the keywords, of your thesis % Keywords
 
 % ABSTRACT IN ITALIAN
-    \chapter*{Abstract in lingua italiana}
+    \chapter*{Abstract in Lingua Italiana}
     Qui va l'Abstract in lingua italiana della tesi seguito dalla lista di parole chiave.
     \\
     \\
@@ -180,11 +180,12 @@
     \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
     \mainmatter % Begin numeric (1,2,3...) page numbering
 
-% --------------------------------------------------------------------------
-% CHAPTER ZERO - INTRODUCTION
-% --------------------------------------------------------------------------
+% ##########################################################################
+% CHAPTER ONE - INTRODUCTION
+% ##########################################################################
 
     \chapter{Introduction}
+    \label{ch:chapter_one}%
 
     In recent years, deep learning has brought about a revolutionary transformation in various machine learning tasks,
     spanning from image classification and video processing to speech recognition and natural language understanding.
@@ -255,26 +256,77 @@
 
 
 
-% --------------------------------------------------------------------------
-% CHAPTER ONE - BACKGROUND
-% --------------------------------------------------------------------------
+
+
+% ##########################################################################
+% CHAPTER TWO - BACKGROUND
+% ##########################################################################
 
 
     \chapter{Background}
-    \label{ch:chapter_one}%
+    \label{ch:chapter_two}%
 % The \label{...}% enables to remove the small indentation that is generated, always leave the % symbol.
 
-    Background here...
+    Chapter containing the background needed to understand the problem and its solution, mainly a summary
+    of Graph Neural Networks and SODA toolchain.
+
+% ##########################################################################
+% CHAPTER THREE - RELATED WORKS
+% ##########################################################################
 
 
-    \chapter{Conclusions and future developments}
+    \chapter{Related Works}
+    \label{ch:chapter_three}%
+
+    Analysis of related works, explaining how other GNN accelerators have been built, and some
+    limitations of their approach.
+
+% ##########################################################################
+% CHAPTER FOUR - PROBLEM FORMULATION
+% ##########################################################################
+
+
+    \chapter{Problem Formulation}
+    \label{ch:chapter_four}%
+
+    Problem formulated in a clear way, what we did and how, with open issues and thesis goals.
+
+% ##########################################################################
+% CHAPTER FIVE - TOOLCHAIN
+% ##########################################################################
+
+
+    \chapter{FPGA Toolchain for Graph Neural Network Acceleration}
+    \label{ch:chapter_five}%
+
+    Introduction of the way I faced the problem, with the motivation for the followed approach.
+    Explanation of the toolchain in a clear way.
+
+% ##########################################################################
+% CHAPTER SIX - EXPERIMENTAL RESULTS
+% ##########################################################################
+
+
+    \chapter{Experimental Results}
+    \label{ch:chapter_six}%
+
+    Chapter dedicated to the outcome of the results, what I have obtained and what limitations have been encountered.
+    Explaining the still open issues and research suggestions.
+
+
+
+% ##########################################################################
+% CHAPTER SEVEN - CONCLUSION
+% ##########################################################################
+
+    \chapter{Conclusions and Future Developments}
     \label{ch:conclusions}%
     Final chapter containing the main conclusions of my research
     and possible future developments.
 
-%-------------------------------------------------------------------------
+%##########################################################################
 %	BIBLIOGRAPHY
-%-------------------------------------------------------------------------
+%##########################################################################
 
     \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
     \bibliography{Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
@@ -287,15 +339,15 @@
     \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
     \appendix
 
-
-    \chapter{Appendix A}
-    If you need to include an appendix to support the research in your thesis, you can place it at the end of the manuscript.
-    An appendix contains supplementary material (figures, tables, data, codes, mathematical proofs, surveys, \dots)
-    which supplement the main results contained in the previous chapters.
-
-
-    \chapter{Appendix B}
-    It may be necessary to include another appendix to better organize the presentation of supplementary material.
+%
+%    \chapter{Appendix A}
+%    If you need to include an appendix to support the research in your thesis, you can place it at the end of the manuscript.
+%    An appendix contains supplementary material (figures, tables, data, codes, mathematical proofs, surveys, \dots)
+%    which supplement the main results contained in the previous chapters.
+%
+%
+%    \chapter{Appendix B}
+%    It may be necessary to include another appendix to better organize the presentation of supplementary material.
 
 % LIST OF FIGURES
     \listoffigures

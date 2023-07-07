@@ -1,19 +1,21 @@
 \babel@toc {english}{}
 \contentsline {chapter}{Abstract}{i}{chapter*.2}%
-\contentsline {chapter}{Abstract in lingua italiana}{iii}{chapter*.4}%
+\contentsline {chapter}{Abstract in Lingua Italiana}{iii}{chapter*.4}%
 \contentsline {chapter}{Contents\markboth {\MakeUppercase {Contents}}{\MakeUppercase {Contents}}}{v}{chapter*.6}%
 \vspace {2em}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Contributions}{3}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Thesis structure}{3}{section.1.2}%
 \contentsline {chapter}{\numberline {2}Background}{5}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Conclusions and future developments}{7}{chapter.3}%
+\contentsline {chapter}{\numberline {3}Related Works}{7}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Problem Formulation}{9}{chapter.4}%
+\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{11}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Experimental Results}{13}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{15}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{9}{chapter*.11}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{17}{chapter*.15}%
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Appendix A}{13}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Appendix B}{15}{appendix.B}%
-\contentsline {chapter}{List of Figures}{17}{appendix*.15}%
-\contentsline {chapter}{List of Tables}{19}{appendix*.17}%
-\contentsline {chapter}{List of Symbols}{21}{appendix*.19}%
-\contentsline {chapter}{Acknowledgements}{23}{appendix*.22}%
+\contentsline {chapter}{List of Figures}{21}{appendix*.17}%
+\contentsline {chapter}{List of Tables}{23}{appendix*.19}%
+\contentsline {chapter}{List of Symbols}{25}{appendix*.21}%
+\contentsline {chapter}{Acknowledgements}{27}{appendix*.24}%
