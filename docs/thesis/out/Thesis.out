@@ -5,13 +5,15 @@
 \BOOKMARK [1][-]{section.1.1}{Contributions}{chapter.1}% 5
 \BOOKMARK [1][-]{section.1.2}{Thesis structure}{chapter.1}% 6
 \BOOKMARK [0][-]{chapter.2}{Background}{}% 7
-\BOOKMARK [0][-]{chapter.3}{Related Works}{}% 8
-\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 9
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 10
-\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 11
-\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 12
-\BOOKMARK [0][-]{chapter*.15}{Bibliography}{}% 13
-\BOOKMARK [0][-]{appendix*.17}{List of Figures}{}% 14
-\BOOKMARK [0][-]{appendix*.19}{List of Tables}{}% 15
-\BOOKMARK [0][-]{appendix*.21}{List of Symbols}{}% 16
-\BOOKMARK [0][-]{appendix*.24}{Acknowledgements}{}% 17
+\BOOKMARK [1][-]{section.2.1}{Graph Neural Networks}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{SODA Toolchain}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 10
+\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 11
+\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 12
+\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 13
+\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 14
+\BOOKMARK [0][-]{chapter*.15}{Bibliography}{}% 15
+\BOOKMARK [0][-]{appendix*.17}{List of Figures}{}% 16
+\BOOKMARK [0][-]{appendix*.19}{List of Tables}{}% 17
+\BOOKMARK [0][-]{appendix*.21}{List of Symbols}{}% 18
+\BOOKMARK [0][-]{appendix*.24}{Acknowledgements}{}% 19

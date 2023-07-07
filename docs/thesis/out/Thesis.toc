@@ -7,7 +7,9 @@
 \contentsline {section}{\numberline {1.1}Contributions}{3}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Thesis structure}{3}{section.1.2}%
 \contentsline {chapter}{\numberline {2}Background}{5}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Related Works}{7}{chapter.3}%
+\contentsline {section}{\numberline {2.1}Graph Neural Networks}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}SODA Toolchain}{5}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Related Work}{7}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Problem Formulation}{9}{chapter.4}%
 \contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{11}{chapter.5}%
 \contentsline {chapter}{\numberline {6}Experimental Results}{13}{chapter.6}%
