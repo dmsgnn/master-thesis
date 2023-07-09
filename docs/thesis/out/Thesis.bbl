@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -50,6 +50,23 @@ S.~Böhm.
 \newblock How to optimize a cuda matmul kernel for cublas-like performance: a
   worklog, 2022.
 \newblock URL \url{https://siboehm.com/articles/22/CUDA-MMM}.
+
+\bibitem[Daigavane et~al.(2021)Daigavane, Ravindran, and
+  Aggarwal]{daigavane2021understanding}
+A.~Daigavane, B.~Ravindran, and G.~Aggarwal.
+\newblock Understanding convolutions on graphs.
+\newblock \emph{Distill}, 2021.
+\newblock \doi{10.23915/distill.00032}.
+\newblock https://distill.pub/2021/understanding-gnns.
+
+\bibitem[Duvenaud et~al.(2015)Duvenaud, Maclaurin, Aguilera{-}Iparraguirre,
+  G{\'{o}}mez{-}Bombarelli, Hirzel, Aspuru{-}Guzik, and
+  Adams]{DBLP:journals/corr/DuvenaudMAGHAA15}
+D.~Duvenaud, D.~Maclaurin, J.~Aguilera{-}Iparraguirre,
+  R.~G{\'{o}}mez{-}Bombarelli, T.~Hirzel, A.~Aspuru{-}Guzik, and R.~P. Adams.
+\newblock Convolutional networks on graphs for learning molecular fingerprints.
+\newblock \emph{CoRR}, abs/1509.09292, 2015.
+\newblock URL \url{http://arxiv.org/abs/1509.09292}.
 
 \bibitem[Ferrandi et~al.(2021)Ferrandi, Castellana, Curzel, Fezzardi, Fiorito,
   Lattuada, Minutoli, Pilato, and Tumeo]{9586110}
