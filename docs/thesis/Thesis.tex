@@ -348,7 +348,6 @@
     GCNs have demonstrated effectiveness in various applications, including node classification, link prediction, and graph classification.
 
     Given an undirected graph $\mathcal{G} = (V, E)$, where $V$ represents the set of nodes (vertices), and $E$ represents the set of edges, with an adjacency matrix $\tilde{A}=A+I_N$, where $I_N$ is the identity matrix, the layer-wise propagation rule in a GCN can be expressed as:
-
     \begin{equation}
         \label{eq:gcn_convolution}
             H^{(l+1)} = f(\tilde{D}^{-\tfrac{1}{2}}  \tilde{A}  \tilde{D}^{-\tfrac{1}{2}}  H^{(l)}  W^{(l)})
@@ -382,7 +381,6 @@
 
     The Readout function is then utilized to generate the overall representation of the graph, leveraging the individual vertex representations.
     By concatenating the results from all iterations of GINConv, the final graph representation is obtained as:
-
     \begin{equation}
         \label{eq:gin_readout}
         h_G = CONCAT \left( READOUT \left( \left\{ h_v^{(k)} | v \in G \right\} \right) | k = 0, 1, ..., K \right)
