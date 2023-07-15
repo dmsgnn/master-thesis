@@ -10,13 +10,15 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Graph Convolutional Network}{section.2.2}% 10
 \BOOKMARK [2][-]{subsection.2.2.2}{Graph Isomorphism Network}{section.2.2}% 11
 \BOOKMARK [1][-]{section.2.3}{SODA Toolchain}{chapter.2}% 12
-\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 13
-\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 14
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 15
-\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 16
-\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 17
-\BOOKMARK [0][-]{chapter*.18}{Bibliography}{}% 18
-\BOOKMARK [0][-]{appendix*.20}{List of Figures}{}% 19
-\BOOKMARK [0][-]{appendix*.22}{List of Tables}{}% 20
-\BOOKMARK [0][-]{appendix*.24}{List of Symbols}{}% 21
-\BOOKMARK [0][-]{appendix*.27}{Acknowledgements}{}% 22
+\BOOKMARK [2][-]{subsection.2.3.1}{SODA-OPT Frontend}{section.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.3.2}{SODA Synthesizer Frontend}{section.2.3}% 14
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 15
+\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 16
+\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 17
+\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 18
+\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 19
+\BOOKMARK [0][-]{chapter*.19}{Bibliography}{}% 20
+\BOOKMARK [0][-]{appendix*.21}{List of Figures}{}% 21
+\BOOKMARK [0][-]{appendix*.23}{List of Tables}{}% 22
+\BOOKMARK [0][-]{appendix*.25}{List of Symbols}{}% 23
+\BOOKMARK [0][-]{appendix*.28}{Acknowledgements}{}% 24

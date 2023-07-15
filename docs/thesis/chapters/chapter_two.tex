@@ -1,12 +1,30 @@
-Chapter containing the background needed to understand the problem and its solution, mainly a summary
-of Graph Neural Networks and SODA toolchain.
+This chapter provides essential background information to enhance understanding of the thesis content and objectives.
+It begins by introducing the graph data structure, which is crucial for comprehending Graph Neural Networks.
+Additionally, the chapter provides an introduction to Graph Neural Networks, outlining their capabilities and exploring various applications.
+Furthermore, it introduces two essential tools, SODA and Bambu, which are integral parts of the SODA Toolchain that served as the foundation for this research study.
 
 \section{Graphs}
 \label{sh:graphs}%
 
 \textit{Graphs} are a data structure representing a collection of objects, known as vertices or nodes, and a set of edges~\cite{DBLP:journals/corr/abs-1812-08434}.
-In a graph, the edges can be either directed or undirected, and they typically connect two vertices, which may or may not be distinct.
+In a graph, the edges can be either directed or undirected, as shown in Figure~\ref{fig:directed_vs_undirected}, and they typically connect two vertices, which may or may not be distinct.
 The vertices represent entities or elements, and the edges represent their relationships or connections.
+
+\begin{figure}[b]
+    \centering
+    \subfloat[Directed Graph\label{fig:directed_graph}]{
+        \includegraphics[width=0.2\textwidth]{Images/directed_graph}
+    }
+    %\quad
+    \hspace{0.15\textwidth}
+    \subfloat[Undirected Graph\label{fig:undirected_graph}]{
+        \captionsetup{width=.4\textwidth}
+        \includegraphics[width=0.2\textwidth]{Images/undirected_graph}
+    }
+    %\caption[Shorter caption]{This is a very long caption you don't want to appear in the List of Figures.}
+    \caption{Example of directed and undirected graphs}
+    \label{fig:directed_vs_undirected}
+\end{figure}
 
 Graphs serve as a versatile tool for describing diverse forms of data.
 Molecules, the fundamental units of matter, are composed of atoms and electrons arranged in three-dimensional space.
@@ -18,6 +36,7 @@ Representing this complex three-dimensional object as a graph offers a practical
 Social networks provide another domain where graphs find utility.
 They serve as valuable tools for examining patterns within the collective behavior of people, institutions, and organizations.
 By representing individuals as nodes and their relationships as edges, we can construct a graph that effectively captures groups of people and their interconnectedness.
+
 
 \section{Graph Neural Networks}
 \label{sh:graph_neural_networks}%
@@ -68,7 +87,7 @@ GCNs have demonstrated effectiveness in various applications, including node cla
 Given an undirected graph $\mathcal{G} = (V, E)$, where $V$ represents the set of nodes (vertices), and $E$ represents the set of edges, with an adjacency matrix $\tilde{A}=A+I_N$, where $I_N$ is the identity matrix, the layer-wise propagation rule in a GCN can be expressed as:
 \begin{equation}
     \label{eq:gcn_convolution}
-        H^{(l+1)} = f(\tilde{D}^{-\tfrac{1}{2}}  \tilde{A}  \tilde{D}^{-\tfrac{1}{2}}  H^{(l)}  W^{(l)})
+    H^{(l+1)} = f(\tilde{D}^{-\tfrac{1}{2}}  \tilde{A}  \tilde{D}^{-\tfrac{1}{2}}  H^{(l)}  W^{(l)})
 \end{equation}
 
 Where $H^{(l)} \in \mathbb{R}^{N \times D}$ is the input node features matrix, $W^{(l)}$ is a layer-specific learnable weight matrix, $\tilde{D}$ is the degree matrix defined as $\tilde{D}_{ii} = \sum_{j} \tilde{A}_{ij}$, and $f(\cdot)$ represents a non-linear activation function applied element-wise, such as $ReLU(\cdot) = max(0, \cdot)$.
@@ -106,4 +125,48 @@ By concatenating the results from all iterations of GINConv, the final graph rep
 
 Where $READOUT$ in~\ref{eq:gin_function} can be replaced with a sum operator in order to generalize the WL test~\cite{xu2019powerful}.
 
+
 \section{SODA Toolchain}
+\label{sh:soda}%
+
+SODA~\cite{9786533} is a software-defined accelerator synthesizer.
+It enables the creation of highly specialized accelerators from algorithms designed in high-level programming frameworks.
+The synthesizer comprises a compiler-based frontend that interfaces with high-level programming frameworks, applying advanced optimizations.
+It also includes a compiler-based backend responsible for generating Verilog code and interfacing with external tools to compile the final design, which can be applied to application-specific integrated circuits (ASICs) or field-programmable gate arrays (FPGAs).
+
+SODA's exceptional power lies in its ability to offer a fully automated end-to-end hardware compiler, eliminating the need for human intervention and any modifications to the input code.
+The SODA synthesizer framework comprises two main components: a compiler-based frontend and a compiler-based hardware generation engine.
+This framework seamlessly integrates with high-level Python frameworks by accepting their input descriptions, which are then translated by the frontend into a high-level intermediate representation (IR).
+Leveraging the multi-level intermediate representation (MLIR), the frontend facilitates hardware/software partitioning of algorithm specifications and performs architecture-independent optimizations.
+Following this, it generates a low-level IR (LLVM IR) that is utilized by the hardware generation engine, PandA-Bambu~\cite{9586110}.
+PandA-Bambu can accept LLVM IR as input, making it a cutting-edge open-source HLS tool.
+Throughout the entire SODA toolchain, compiler passes are employed to implement optimizations at all levels, greatly influencing the generated hardware designs' performance, area, and power characteristics.
+
+\subsection{SODA-OPT Frontend}
+\label{subsec:soda_frontend}%
+
+SODA-OPT, the high-level compiler frontend of the SODA synthesizer, performs search, outlining, optimization, dispatching, and acceleration pass on the input program.
+Its primary objective is to prepare the program for hardware synthesis, targeting either FPGAs or ASICs.
+To accomplish these tasks, SODA-OPT relies on and extends the MLIR framework.
+MLIR is a framework that facilitates the development of reusable, extensible, and modular compiler infrastructure by defining dialects.
+These dialects serve as self-contained intermediate representations (IRs) that adhere to the meta-IR syntax of MLIR.
+By utilizing dialects, code can be modeled at different levels of abstraction, allowing for specialized representations that aid in specific compiler optimizations.
+
+ Code regions selected for hardware acceleration undergo an optimization pipeline that progressively lowers them through various MLIR dialects until they are ultimately translated into an LLVM IR format tailored explicitly for hardware synthesis.
+On the other hand, the host module is lowered into an LLVM IR file containing runtime calls to control the generated custom accelerators.
+
+\subsection{SODA Synthesizer Frontend}
+\label{subsec:soda_backend}%
+
+Bambu, the SODA synthesizer backend, harnesses cutting-edge HLS techniques to produce accelerator designs using the low-level LLVM IR generated by the SODA frontend.
+Bambu boasts multiple frontends based on standard compilers such as GCC or CLANG.
+It constructs an internal IR to execute HLS steps and generates designs in HDL formats, such as Verilog or VHDL.
+In addition to synthesizable HDL, Bambu can automatically generate testbenches for verification purposes.
+Using Bambu, the SODA synthesizer can target both FPGAs and ASICs.
+
+Bambu is optimized to handle a broad range of C and C++ constructs while also being able to process LLVM IR through its internal Clang frontend.
+Through SODA-OPT, Bambu can be connected with MLIR code.
+The LLVM IR generated after SODA-OPT's high-level optimizations undergoes explicit restructuring for HLS, resulting in more efficient accelerators than direct translation from MLIR to LLVM IR.
+
+Bambu generates designs at the Register Transfer Level (RTL), adhering to the Finite State Machine with Datapath (FSMD) model.
+These generated accelerators can subsequently be integrated into larger system-level designs, with or without microcontrollers controlling the execution.
