@@ -1,0 +1,109 @@
+Chapter containing the background needed to understand the problem and its solution, mainly a summary
+of Graph Neural Networks and SODA toolchain.
+
+\section{Graphs}
+\label{sh:graphs}%
+
+\textit{Graphs} are a data structure representing a collection of objects, known as vertices or nodes, and a set of edges~\cite{DBLP:journals/corr/abs-1812-08434}.
+In a graph, the edges can be either directed or undirected, and they typically connect two vertices, which may or may not be distinct.
+The vertices represent entities or elements, and the edges represent their relationships or connections.
+
+Graphs serve as a versatile tool for describing diverse forms of data.
+Molecules, the fundamental units of matter, are composed of atoms and electrons arranged in three-dimensional space.
+In this intricate structure, all particles interact with each other.
+However, when a pair of atoms are stably positioned at a specific distance, we refer to their connection as a covalent bond.
+These bonds with distinct atomic distances can vary in nature, such as single or double bonds.
+Representing this complex three-dimensional object as a graph offers a practical and widely adopted abstraction, where atoms are nodes and covalent bonds act as edges~\cite{DBLP:journals/corr/DuvenaudMAGHAA15}.
+
+Social networks provide another domain where graphs find utility.
+They serve as valuable tools for examining patterns within the collective behavior of people, institutions, and organizations.
+By representing individuals as nodes and their relationships as edges, we can construct a graph that effectively captures groups of people and their interconnectedness.
+
+\section{Graph Neural Networks}
+\label{sh:graph_neural_networks}%
+
+Graph neural networks (GNNs) are deep learning techniques that operate on graph-structured data.
+Thanks to their impressive performance, GNNs have recently gained significant popularity as a widely adopted method for graph analysis.
+
+Graph Neural Networks (GNNs) are designed to process graph data and consist of multiple interconnected layers.
+Each GNN layer typically encompasses three main stages: feature extraction, aggregation, and updating, with an optional sampling stage.
+The feature extraction is employed to compress vertex features using processing functions like MLPs (Multi-Layer Perceptrons) and, together with the update stage, resembles traditional neural network inference, involving regular computational operations and memory access patterns.
+The aggregation stage traverses the graph topology to combine features from a vertex's neighboring vertices and can be accomplished using functions like sum, mean, or max.
+The update stage is utilized to apply non-linear transformations, including activation functions, GRU (Gated Recurrent Units), and MLPs, to the graph data.
+Finally, the optional sampling stage constructs a new graph through user-defined sampling operations.
+Performing these stages on large and sparse graphs can introduce dynamic computational data flow and numerous irregular memory access patterns.
+
+Graph Neural Networks are a group of neural networks which are designed to solve different tasks.
+Prediction tasks on graphs can generally be classified into three categories: graph-level, node-level, and edge-level predictions~\cite{sanchez-lengeling2021a}.
+
+In a graph-level task, the objective is to predict the property or characteristic of an entire graph.
+For instance, when considering a molecule represented as a graph, we might aim to predict attributes such as its likelihood of binding to a receptor associated with a specific disease.
+This assignment is comparable to image classification tasks, where the objective is to assign a label to an entire image.
+Similarly, in text analysis, sentiment analysis serves as a similar problem where the goal is to determine a complete sentence's overall mood or emotion in one go.
+
+Node-level tasks involve predicting the identity or function of individual nodes within a graph.
+One example of a node-level task is node classification in a social network.
+Given a social network graph where nodes represent individuals and edges represent relationships between them, the task is to predict the demographic attributes or characteristics (e.g., age, gender, occupation) of each node based on their connection patterns and features.
+Drawing an analogy to image processing, node-level prediction problems can be compared to image segmentation tasks, where the objective is to assign labels to each pixel in an image based on its role.
+Similarly, in text analysis, a comparable task would involve predicting the parts of speech for each word in a sentence, such as identifying whether a word is a noun, verb, adverb, and so on.
+
+
+The remaining prediction task in graphs pertains to edge prediction.
+One example of an edge-level task is link prediction in a social network.
+Given a graph representing a social network where, as before, in node-level tasks, nodes correspond to individuals and edges represent relationships between them, the edge-level task aims to predict missing or potential connections between nodes.
+This can involve predicting the likelihood of a future friendship or the probability of a collaboration between individuals based on their shared characteristics or mutual connections in the network.
+
+Different popular Graph Neural Network architectures have been proposed recently, some of which are more suitable for some tasks than others.
+A summary of two types of GNNs used in the experimental phase is provided in the following sections.
+
+\subsection{Graph Convolutional Network}
+\label{subsec:graph_convolutional_network}%
+
+A graph convolutional network (GCN)~\cite{DBLP:journals/corr/KipfW16, daigavane2021understanding} is a type of neural network architecture explicitly designed to operate on graph-structured data.
+GCNs aim to learn node representations by aggregating and combining information from neighboring nodes in the graph.
+The core idea behind GCNs is to perform convolution-like operations on the graph, where the convolutional filters are defined based on the graph's adjacency matrix or other graph-specific structures.
+This enables GCNs to capture and leverage the structural information encoded in the graph to make predictions or perform downstream tasks.
+GCNs have demonstrated effectiveness in various applications, including node classification, link prediction, and graph classification.
+
+Given an undirected graph $\mathcal{G} = (V, E)$, where $V$ represents the set of nodes (vertices), and $E$ represents the set of edges, with an adjacency matrix $\tilde{A}=A+I_N$, where $I_N$ is the identity matrix, the layer-wise propagation rule in a GCN can be expressed as:
+\begin{equation}
+    \label{eq:gcn_convolution}
+        H^{(l+1)} = f(\tilde{D}^{-\tfrac{1}{2}}  \tilde{A}  \tilde{D}^{-\tfrac{1}{2}}  H^{(l)}  W^{(l)})
+\end{equation}
+
+Where $H^{(l)} \in \mathbb{R}^{N \times D}$ is the input node features matrix, $W^{(l)}$ is a layer-specific learnable weight matrix, $\tilde{D}$ is the degree matrix defined as $\tilde{D}_{ii} = \sum_{j} \tilde{A}_{ij}$, and $f(\cdot)$ represents a non-linear activation function applied element-wise, such as $ReLU(\cdot) = max(0, \cdot)$.
+The equation above demonstrates the propagation of node features through graph convolution, where the adjacency matrix $\tilde{A}$ captures the connectivity information of the graph, $\tilde{D}^{-\tfrac{1}{2}}$ normalizes the adjacency matrix, and $H^{(l)}  W^{(l)}$ performs a linear transformation of node features.
+The resulting $H^{(l+1)}$ represents the updated node representations after the graph convolution operation.
+In practice, multiple graph convolutional layers can be stacked to capture increasingly complex relationships and refine the node representations further.
+
+\subsection{Graph Isomorphism Network}
+\label{subsec:graph_isomorphism_network}%
+
+A Graph Isomorphism Network (GIN)~\cite{xu2019powerful, daigavane2021understanding} is a type of neural network architecture designed to operate on graph-structured data by capturing graph isomorphism, which is the property of two graphs having the same structure, inspired by the Weisfeiler-Lehman (WL) graph isomorphism test~\cite{xu2019powerful}.
+GINs aim to learn node representations that are invariant under graph isomorphism, enabling them to generalize across different graphs with similar structures.
+
+The learned vertex features from GIN-Conv can be directly utilized for tasks such as node classification and link prediction. It is possible to perform this model as:
+\begin{equation}
+    \label{eq:gin_function}
+    h_v^{(k+1)} = MLP^{(k)} \left( \left( 1 + \epsilon^{(k)} \right) \cdot h_v^{(k)} + \sum_{u \in \mathcal{N}(v)} h_u^{(k)} \right)
+\end{equation}
+
+Where $h_v^{(k)}$ represents the initial node representation of node $v$, $\mathcal{N}(v)$ represents the neighborhood of node $v$, $\epsilon$ is a learnable
+parameter or a fixed scalar, $MLP( \cdot )$ represents a Multi Layer Perceptron and $h_v^{(k+1)}$ represents the updated node representations.
+
+In the neighborhood aggregation process of GINs, each node's representation is updated by considering its own representation and its neighbors' representations.
+The neighborhood aggregation is performed through the MLP operation, followed by non-linear activation.
+
+GINs are trained using graph-level objectives, such as graph classification or property prediction, and aim to learn invariant representations under graph isomorphism, allowing them to generalize well to unseen graphs with similar structures.
+However, even if the node embeddings acquired through GIN can be directly applied to tasks such as node classification and link prediction, in the case of graph classification tasks, it is necessary to use a Readout function that takes individual node embeddings as input and produces the embedding representation for the entire graph.
+
+The Readout function is then utilized to generate the overall representation of the graph, leveraging the individual vertex representations.
+By concatenating the results from all iterations of GINConv, the final graph representation is obtained as:
+\begin{equation}
+    \label{eq:gin_readout}
+    h_G = CONCAT \left( READOUT \left( \left\{ h_v^{(k)} | v \in G \right\} \right) | k = 0, 1, ..., K \right)
+\end{equation}
+
+Where $READOUT$ in~\ref{eq:gin_function} can be replaced with a sum operator in order to generalize the WL test~\cite{xu2019powerful}.
+
+\section{SODA Toolchain}
