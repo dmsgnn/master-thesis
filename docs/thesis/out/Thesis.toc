@@ -14,9 +14,11 @@
 \contentsline {subsection}{\numberline {2.2.2}Graph Isomorphism Network}{9}{subsection.2.2.2}%
 \contentsline {section}{\numberline {2.3}SODA Toolchain}{10}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}SODA-OPT Frontend}{10}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}SODA Synthesizer Frontend}{11}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.2}SODA Synthesizer Backend}{11}{subsection.2.3.2}%
 \contentsline {section}{\numberline {2.4}Conclusion}{11}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Related Work}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Chapter structure}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Software frameworks}{13}{section.3.2}%
 \contentsline {chapter}{\numberline {4}Problem Formulation}{15}{chapter.4}%
 \contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{17}{chapter.5}%
 \contentsline {chapter}{\numberline {6}Experimental Results}{19}{chapter.6}%

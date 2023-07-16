@@ -1,0 +1,38 @@
+Accelerating Graph Neural Networks (GNNs) has become a subject of intense interest within the research community, encompassing the exploration of ASIC and FPGA accelerators.
+In this chapter, a comprehensive examination is conducted on cutting-edge Graph Neural Networks FPGA accelerators and design flows based on High-Level Synthesis (HLS).
+As explained in Chapter 6, particular emphasis has been placed on optimizing matrix-matrix multiplication during this thesis research study.
+Consequently, this chapter also delves into the relevant literature concerning various approaches to Matmul optimization.
+
+\section{Chapter structure}
+\label{sh:related_work_structure}
+
+
+\section{Software frameworks}
+\label{sh:related_work_software_frameworks}
+
+The challenges posed by GNN processing have led to inefficiencies in traditional deep neural network (DNN) libraries and graph processing frameworks.
+This is primarily due to the alternating computational phases characteristic of GNNs.
+While DNN libraries excel in accelerating combination operations within vertices and edges, they need help with aggregation tasks.
+On the other hand, graph processing libraries effectively handle irregular memory accesses during graph traversal but assume simplistic operations at the vertices, which is not the case in GNNs. Recent research studies tried to bridge the gap by adapting the DNN libraries to overcome Graph Neural Network challenges.
+
+The two main software frameworks trying to accelerate Graph Neural Networks computation are PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428} and Deep Graph Library~\cite{DBLP:journals/corr/abs-1909-01315}.
+They both provide a lot of examples and code for multiple GNN architectures providing optimizations that could work for the acceleration of both training and inference.
+
+PyTorch Geometric is a PyTorch-based library specifically designed for deep learning on input data with irregular structures, including graphs, point clouds, and manifolds.
+In addition to offering comprehensive graph data structures and processing techniques, it incorporates many state-of-the-art methods from relational learning and 3D data processing domains.
+PyTorch Geometric achieves remarkable data throughput by introducing efficient handling of mini-batches containing input examples of varying sizes and efficiently handling sparsity through specialized GPU scatter and gather kernels, which operate on all edges and nodes concurrently, as opposed to relying on sparse matrix multiplication kernels.
+A key aspect of PyG involves defining a message-passing interface encompassing message and update functions for neighborhood aggregation and combination and multiple pooling operations.
+
+DGL is a recently developed library that seamlessly integrates with TensorFlow, PyTorch, or MXNet.
+It introduces three essential functions: message for aggregating edges, update and reduce for aggregating and combining at the nodes.
+DGL adopts a matrix multiplication approach to enhance performance and harnesses specialized kernels designed for GPUs or TPUs.
+Specifically, both sampled dense-dense and sparse matrix multiplications and options for node, edge, or feature parallelization are considered.
+DGL intelligently selects the optimal parallelization scheme using heuristics, considering various factors, including the input graph.
+It distills the computational patterns of GNNs into a set of generalized sparse tensor operations, which facilitate extensive parallelization.
+By prioritizing the graph as the central programming abstraction, DGL enables transparent optimizations.
+Furthermore, through a framework-neutral design philosophy, DGL allows users to effortlessly port and leverage existing components across multiple deep learning frameworks.
+
+The approach used by DGL outperformed PyTorch Geometric in training Graph Neural Networks, as stated in their paper~\cite{DBLP:journals/corr/abs-1909-01315}.
+However, both libraries target CPU and GPU architectures.
+Knowing the extreme computational power of FPGA, the field of hardware accelerators started gaining more and more interest, with the expectation of having GNN hardware accelerators capable of outperforming the performance of CPU-GPU targeting libraries.
+
