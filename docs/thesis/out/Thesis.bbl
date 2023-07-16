@@ -1,9 +1,17 @@
-\begin{thebibliography}{26}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abadal et~al.(2020)Abadal, Jain, Guirado, L{\'{o}}pez{-}Alonso, and
+  Alarc{\'{o}}n]{DBLP:journals/corr/abs-2010-00130}
+S.~Abadal, A.~Jain, R.~Guirado, J.~L{\'{o}}pez{-}Alonso, and E.~Alarc{\'{o}}n.
+\newblock Computing graph neural networks: {A} survey from algorithms to
+  accelerators.
+\newblock \emph{CoRR}, abs/2010.00130, 2020.
+\newblock URL \url{https://arxiv.org/abs/2010.00130}.
 
 \bibitem[Abi{-}Karam et~al.(2022)Abi{-}Karam, He, Sarkar, Sathidevi, Qiao, and
   Hao]{DBLP:journals/corr/abs-2201-08475}
@@ -84,6 +92,13 @@ M.~Fey and J.~E. Lenssen.
 \newblock \emph{CoRR}, abs/1903.02428, 2019.
 \newblock URL \url{http://arxiv.org/abs/1903.02428}.
 
+\bibitem[Hamilton et~al.(2017)Hamilton, Ying, and
+  Leskovec]{DBLP:journals/corr/HamiltonYL17}
+W.~L. Hamilton, R.~Ying, and J.~Leskovec.
+\newblock Inductive representation learning on large graphs.
+\newblock \emph{CoRR}, abs/1706.02216, 2017.
+\newblock URL \url{http://arxiv.org/abs/1706.02216}.
+
 \bibitem[He(2019)]{DBLP:journals/corr/abs-1909-00155}
 L.~He.
 \newblock Engn: {A} high-throughput and energy-efficient accelerator for large
@@ -130,6 +145,13 @@ C.~Lattner, M.~Amini, U.~Bondhugula, A.~Cohen, A.~Davis, J.~Pienaar, R.~Riddle,
 \newblock In \emph{2021 IEEE/ACM International Symposium on Code Generation and
   Optimization (CGO)}, pages 2--14, 2021.
 \newblock \doi{10.1109/CGO51591.2021.9370308}.
+
+\bibitem[Li et~al.(2018)Li, Han, and Wu]{DBLP:journals/corr/abs-1801-07606}
+Q.~Li, Z.~Han, and X.~Wu.
+\newblock Deeper insights into graph convolutional networks for semi-supervised
+  learning.
+\newblock \emph{CoRR}, abs/1801.07606, 2018.
+\newblock URL \url{http://arxiv.org/abs/1801.07606}.
 
 \bibitem[Liang et~al.(2020)Liang, Liu, Wang, Li, and Li]{9256539}
 S.~Liang, C.~Liu, Y.~Wang, H.~Li, and X.~Li.
@@ -191,6 +213,14 @@ M.~Yan, L.~Deng, X.~Hu, L.~Liang, Y.~Feng, X.~Ye, Z.~Zhang, D.~Fan, and Y.~Xie.
 \newblock Hygcn: {A} {GCN} accelerator with hybrid architecture.
 \newblock \emph{CoRR}, abs/2001.02514, 2020.
 \newblock URL \url{http://arxiv.org/abs/2001.02514}.
+
+\bibitem[Ying et~al.(2018)Ying, You, Morris, Ren, Hamilton, and
+  Leskovec]{DBLP:journals/corr/abs-1806-08804}
+R.~Ying, J.~You, C.~Morris, X.~Ren, W.~L. Hamilton, and J.~Leskovec.
+\newblock Hierarchical graph representation learning with differentiable
+  pooling.
+\newblock \emph{CoRR}, abs/1806.08804, 2018.
+\newblock URL \url{http://arxiv.org/abs/1806.08804}.
 
 \bibitem[Zhou et~al.(2018)Zhou, Cui, Zhang, Yang, Liu, and
   Sun]{DBLP:journals/corr/abs-1812-08434}

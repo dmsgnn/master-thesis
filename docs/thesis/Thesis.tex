@@ -294,8 +294,18 @@
         \centering
         \begin{tabular}{lll}
             \textbf{Notation} & \textbf{Description} \\\hline\\[-9px]
-            $\mathcal{G}$        & The input graph for the GNN  \\[2px]
+            $\mathcal{G} = (V, E)$        & The input graph for the GNN  \\[2px]
+            $V$ & Set of vertices of the graph \\[2px]
+            $E$ & Set of edges of the graph \\[2px]
+            $\mathcal{N}(v)$ & Set of neighbors of vertex $v$ \\[2px]
             $A \in \mathbb{R}^{N \times N}$        & Adjacency matrix of $\mathcal{G}$ ($N$ : number of nodes)  \\[2px]
+            $\tilde{D}$ & Degree matrix of the graph \\[2px]
+            $W^{(l)}$ & Weight matrix of the neural network ($l$ : layer) \\[2px]
+            $H^{(l)}$ & Input node features matrix ($l$ : layer) \\[2px]
+            $h_v$ & Node representation of node $v$ \\[2px]
+            $\epsilon$ & Learnable parameter or fixed scalar \\[2px]
+            $I$ & Identity matrix \\[2px]
+
         \end{tabular}
     \end{table}
 
