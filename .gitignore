@@ -2,3 +2,6 @@
 /gnn/dataset/
 /gnn/gin-batch1.pt
 /gnn/gin-script.pt
+docs/thesis/Thesis_old.tex
+docs/thesis/compilatex.sh
+docs/thesis/out_old
