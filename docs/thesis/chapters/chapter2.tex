@@ -4,7 +4,7 @@ Additionally, the chapter provides an introduction to Graph Neural Networks, out
 Furthermore, it introduces two essential tools, SODA and Bambu, which are integral parts of the SODA Toolchain that served as the foundation for this research study.
 
 \section{Graphs}
-\label{sh:graphs}%
+\label{sec:graphs}%
 
 \textit{Graphs} are a data structure representing a collection of objects, known as vertices or nodes, and a set of edges~\cite{DBLP:journals/corr/abs-1812-08434}.
 In a graph, the edges can be either directed or undirected, as shown in Figure~\ref{fig:directed_vs_undirected}, and they typically connect two vertices, which may or may not be distinct.
@@ -46,7 +46,7 @@ Especially the ways encountered during the research: adjacency matrix, COO and C
 %TODO: add an image with a graph and its representation in the 3 different format
 
 \section{Graph Neural Networks}
-\label{sh:graph_neural_networks}%
+\label{sec:graph_neural_networks}%
 
 %TODO: add an example image of a GNN
 
@@ -150,7 +150,7 @@ Where $READOUT$ in~\ref{eq:gin_function} can be replaced with a sum operator in 
 
 
 \section{SODA Toolchain}
-\label{sh:soda}%
+\label{sec:soda}%
 
 SODA~\cite{9786533} is a software-defined accelerator synthesizer.
 It enables the creation of highly specialized accelerators from algorithms designed in high-level programming frameworks.
@@ -195,7 +195,7 @@ Bambu generates designs at the Register Transfer Level (RTL), adhering to the Fi
 These generated accelerators can subsequently be integrated into larger system-level designs, with or without microcontrollers controlling the execution.
 
 \section{Conclusion}
-\label{sh:background_conclusion}
+\label{sec:background_conclusion}
 This chapter has presented the foundational concepts necessary for understanding the subsequent contents of this thesis.
 It provided a concise overview of the broad domain of Graphs and Graph Neural Networks, explicitly focusing on the architectures of Graph Convolutional Networks and Graph Isomorphism Networks.
 Additionally, the chapter introduced SODA and PandA-Bambu, which will be further investigated within the context of the proposed design flow for the creation of GNNs FPGA-based accelerators.

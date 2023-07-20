@@ -4,11 +4,22 @@ As explained in Chapter 6, particular emphasis has been placed on optimizing mat
 Consequently, this chapter also delves into the relevant literature concerning various approaches to Matmul optimization.
 
 \section{Chapter structure}
-\label{sh:related_work_structure}
+\label{sec:related_work_structure}
+This chapter contains several sections.
+Firstly, it presents the software frameworks utilized to accelerate Graph Neural Network computations.
+The following section provides an overview of state-of-the-art hardware accelerators, categorized based on their architecture types~\cite{DBLP:journals/corr/abs-2010-00130}.
 
+Subsequently, a section summarizes an accelerator implemented using High-Level Synthesis (HLS). This accelerator is separated from the hardware accelerators as it adopts HLS as the design flow proposed in this thesis.
 
-\section{Software frameworks}
-\label{sec:related_work_software_frameworks}
+Additionally, this chapter includes a summary of a solution that aimed to accelerate GNN using both software and hardware approaches.
+
+As mentioned earlier, optimizing the matrix-matrix multiplication operation was a significant aspect of this research.
+Thus, a dedicated section focuses on state-of-the-art optimizations for matrix-matrix multiplication, especially those related to technologies similar to the ones employed in this thesis.
+
+Finally, the chapter concludes with a comprehensive summary of the cutting-edge accelerators presented.
+
+\section{Software accelerators}
+\label{sec:related_work_software_accelerators}
 
 The challenges posed by GNN processing have led to inefficiencies in traditional deep neural network (DNN) libraries and graph processing frameworks.
 This is primarily due to the alternating computational phases characteristic of GNNs.
@@ -38,3 +49,42 @@ Knowing the extreme computational power of FPGA, the field of hardware accelerat
 
 \section{Hardware accelerators}
 \label{sec:hardware_accelerators}
+
+As discussed in Section~\ref{sec:related_work_software_accelerators}, software accelerators optimize the execution of GNNs in CPU-GPU platforms, commonly found in various computing systems, leading to substantial speed improvements in inference and training processes.
+
+However, the research field has raised questions about the feasibility of custom hardware accelerators in overcoming the challenges of GNN computing and achieving order-of-magnitude enhancements.
+Consequently, numerous hardware accelerators with different architecture types have emerged, aiming to address the intensive computational demands and alternating patterns required by GNNs.
+
+\subsection{Unified architecture accelerators}\label{subsec:unified-architecture-accelerators}
+
+A unified architecture refers to a design approach where the FPGA fabric is configured to be versatile and flexible, allowing it to handle various applications and tasks.
+Instead of having specialized and fixed hardware modules for specific functions, a unified architecture enables the FPGA to reconfigure its resources to dynamically adapt to different computation requirements.
+
+\cite{DBLP:journals/corr/abs-1908-10834} presents Autotuning-Workload-Balancing GCN (AWB-GCN) to accelerate GCN inference.
+This accelerator endorses a proactive adaptation to the structural sparsity inherent in GNNs. The authors support their design by analyzing the power-law distribution found in most graphs, positing that certain parts of the computation will exhibit density. In contrast, others will be extraordinarily sparse, leading to imbalances.
+
+In order to tackle this problem, the architecture devises a custom matrix multiplication engine that efficiently supports skipping zeros.
+In particular, three hardware-based autotuning techniques to address the imbalance have been suggested: dynamic distribution smoothing, remote switching, and row remapping.
+
+Specifically, AWB-GCN continuously monitors the sparse graph pattern, dynamically adjusts the workload distribution among a substantial number of processing elements, and reuses the optimal configuration upon convergence.
+Data from memory is directed through a task distributor and queue (TDQ) to a collection of processing elements (PEs) and accumulators.
+The TDQ has two designs tailored for scenarios with moderate or high sparsity.
+Given AWB-GCN's emphasis on GCNs featuring linear aggregation functions, the authors suggest prioritizing combination processing, as this typically reduces the number of features and subsequently minimizes the operations performed during aggregation.
+Additionally, AWB-GCN incorporates a fine-grained pipelining mechanism to effectively overlap the execution of combination and aggregation, even within the same layer.
+
+However, at the heart of the AWB-GCN architecture lies the management of load balancing at three levels of granularity: distribution smoothing to handle local utilization fluctuations among PEs, remote switching for minor crests, and row remapping for prominent crests.
+At the beginning of the processing, rows are evenly distributed among processing elements.
+Throughout each round of calculation, distribution smoothing equalizes the workloads among neighboring PEs.
+The architecture of AWB-GCN effectively monitors the runtime PE utilization by tracking the number of pending tasks in task queues.
+It continually offloads the work from more burdened PEs to their less occupied neighbors, up to 3-hop neighbors.
+
+Remote switching is implemented to tackle regional clustering, wherein the process facilitates partial or complete workload exchanges between underutilized and overloaded PEs.
+An auto-tuner dynamically determines the switch fraction at runtime, relying on the PE utilization observed in each round.
+The accelerator retains the switch strategies employed in the current round and iteratively optimizes them based on utilization information gathered in the subsequent round.
+As a result, after several rounds of auto-tuning, the switch strategy that best aligns with the sparse matrix structure is attained and is then utilized for the remaining rounds, leading to nearly perfect PE utilization.
+
+Lastly, the evil-row remapping technique redistributes the evil row to the most under-loaded PEs in troughs, allowing the neighboring PEs to assist.
+Row remapping is initiated based on demand after each round.
+The auto-tuner assesses the utilization gaps between the most overloaded and under-loaded PEs and decides if their gaps exceed remote switching capability.
+If so, row remapping is executed as a solution.
+

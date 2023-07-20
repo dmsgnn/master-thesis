@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{34}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -59,6 +59,11 @@ S.~Böhm.
   worklog, 2022.
 \newblock URL \url{https://siboehm.com/articles/22/CUDA-MMM}.
 
+\bibitem[Chen and Hao(2023)]{chen2023dgnnbooster}
+H.~Chen and C.~Hao.
+\newblock Dgnn-booster: A generic fpga accelerator framework for dynamic graph
+  neural network inference, 2023.
+
 \bibitem[Daigavane et~al.(2021)Daigavane, Ravindran, and
   Aggarwal]{daigavane2021understanding}
 A.~Daigavane, B.~Ravindran, and G.~Aggarwal.
@@ -95,7 +100,7 @@ M.~Fey and J.~E. Lenssen.
 \bibitem[Geng et~al.(2019)Geng, Li, Wang, Wu, Li, Tumeo, and
   Herbordt]{DBLP:journals/corr/abs-1908-10834}
 T.~Geng, A.~Li, T.~Wang, C.~Wu, Y.~Li, A.~Tumeo, and M.~C. Herbordt.
-\newblock {UWB-GCN:} hardware acceleration of graph-convolution-network through
+\newblock {AWB-GCN:} hardware acceleration of graph-convolution-network through
   runtime workload rebalancing.
 \newblock \emph{CoRR}, abs/1908.10834, 2019.
 \newblock URL \url{http://arxiv.org/abs/1908.10834}.
