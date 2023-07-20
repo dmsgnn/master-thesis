@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  16 JUL 2023 21:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  20 JUL 2023 09:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Thesis.tex
-(./Thesis.tex
+**thesis.tex
+(./thesis.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06> (./Configuration_Files/PoliMi3i_thesis.cls
 Document Class: Configuration_Files/PoliMi3i_thesis 2021/6/30 PoliMi3i thesis s
@@ -1018,8 +1018,8 @@ s
 \c@theorem=\count340
 \c@proposition=\count341
 \c@algsubstate=\count342
-) (out/Thesis.aux)
-\openout1 = `Thesis.aux'.
+) (out/thesis.aux)
+\openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
 LaTeX Font Info:    ... okay on input line 96.
@@ -1126,9 +1126,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 96.
 LaTeX Info: Redefining \pageref on input line 96.
 LaTeX Info: Redefining \nameref on input line 96.
- (out/Thesis.out) (out/Thesis.out)
+ (out/thesis.out) (out/thesis.out)
 \@outlinefile=\write4
-\openout4 = `Thesis.out'.
+\openout4 = `thesis.out'.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/pdflscape/pdflscape.sty
@@ -1152,7 +1152,7 @@ IONE_COL_NEGATIVO-eps-converted-to.pdf Images/02_ING_IND_INFORMAZIONE_COL_NEGAT
 IVO.eps>
 (epstopdf)             \includegraphics on input line 120.
 Package epstopdf Info: Output file is already uptodate.
-<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=119, 493.
+<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=123, 493.
 845pt x 227.85126pt>
 File: Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf Graphic 
 file (type pdf)
@@ -1207,15 +1207,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 150--154
 
 ] [4
 
-] (out/Thesis.toc [5
+] (out/thesis.toc [5
 
 ])
 \tf@toc=\write5
-\openout5 = `Thesis.toc'.
+\openout5 = `thesis.toc'.
 
  [6]
 Chapter 1.
-(./chapters/chapter_one.tex [1
+(./chapters/chapter1.tex [1
 
 
 
@@ -1224,13 +1224,13 @@ Chapter 1.
 
 ]
 Chapter 2.
-(./chapters/chapter_two.tex
-<Images/directed_graph.pdf, id=243, 82.3055pt x 82.96194pt>
+(./chapters/chapter2.tex
+<Images/directed_graph.pdf, id=248, 82.3055pt x 82.96194pt>
 File: Images/directed_graph.pdf Graphic file (type pdf)
 <use Images/directed_graph.pdf>
 Package pdftex.def Info: Images/directed_graph.pdf  used on input line 17.
 (pdftex.def)             Requested size: 91.04742pt x 91.77362pt.
-<Images/undirected_graph.pdf, id=244, 82.3055pt x 82.3055pt>
+<Images/undirected_graph.pdf, id=249, 82.3055pt x 82.3055pt>
 File: Images/undirected_graph.pdf Graphic file (type pdf)
 <use Images/undirected_graph.pdf>
 Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
@@ -1240,7 +1240,7 @@ Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
  <./Images/directed_graph.pdf> <./Images/undirected_graph.pdf>] [6] [7] [8] [9]
  [10] [11]) [12]
 Chapter 3.
-(./chapters/chapter_three.tex [13
+(./chapters/chapter3.tex [13
 
 
 ]) [14]
@@ -1264,7 +1264,7 @@ Chapter 6.
 
 ]
 Chapter 7.
-(out/Thesis.bbl [21
+(out/thesis.bbl [21
 
 ] [22
 
@@ -1294,9 +1294,9 @@ ez-Bombarelli,
 
 [23
 
-] [24] [25]) [26] (out/Thesis.lof)
+] [24] [25]) [26] (out/thesis.lof)
 \tf@lof=\write6
-\openout6 = `Thesis.lof'.
+\openout6 = `thesis.lof'.
 
  [27
 
@@ -1304,9 +1304,9 @@ ez-Bombarelli,
 
 ] [28
 
-] (out/Thesis.lot)
+] (out/thesis.lot)
 \tf@lot=\write7
-\openout7 = `Thesis.lot'.
+\openout7 = `thesis.lot'.
 
  [29
 
@@ -1328,17 +1328,17 @@ See the caption package documentation for explanation.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
-(out/Thesis.aux)
+(out/thesis.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
-Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: C469F7CE5D5F67A6A339F4E89C1D36B9;1698.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: BD3421050D371253F2D5E93E2C676752;1766.
  ) 
 Here is how much of TeX's memory you used:
- 25690 strings out of 480608
- 479051 string characters out of 5903630
- 903156 words of memory out of 5000000
- 40877 multiletter control sequences out of 15000+600000
+ 25702 strings out of 480608
+ 479310 string characters out of 5903630
+ 902156 words of memory out of 5000000
+ 40886 multiletter control sequences out of 15000+600000
  549219 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,14n,89p,1195b,586s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1358,10 +1358,10 @@ xlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texl
 ive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texliv
 e/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/
 2020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/Thesis.pdf (42 pages, 336303 bytes).
+Output written on out/thesis.pdf (42 pages, 338328 bytes).
 PDF statistics:
- 566 PDF objects out of 1000 (max. 8388607)
- 496 compressed objects within 5 object streams
- 128 named destinations out of 1000 (max. 500000)
- 258 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 576 PDF objects out of 1000 (max. 8388607)
+ 505 compressed objects within 6 object streams
+ 131 named destinations out of 1000 (max. 500000)
+ 266 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2020)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: out/Thesis.aux
+The top-level auxiliary file: out/thesis.aux
 The style file: abbrvnat.bst
 Database file #1: Thesis_bibliography.bib
 Warning--entry type for "opt_cuda_matmul" isn't style-file defined
@@ -11,45 +11,45 @@ Warning--entry type for "ogb_gnn_models" isn't style-file defined
 --line 345 of file Thesis_bibliography.bib
 Warning--entry type for "pygcn" isn't style-file defined
 --line 354 of file Thesis_bibliography.bib
-You've used 31 entries,
+You've used 33 entries,
             2773 wiz_defined-function locations,
-            783 strings with 12797 characters,
-and the built_in function-call counts, 18530 in all, are:
-= -- 1519
-> -- 1670
-< -- 15
-+ -- 558
-- -- 527
-* -- 1660
-:= -- 3005
-add.period$ -- 121
-call.type$ -- 31
-change.case$ -- 267
-chr.to.int$ -- 31
-cite$ -- 62
-duplicate$ -- 662
-empty$ -- 1104
-format.name$ -- 568
-if$ -- 3776
+            795 strings with 13363 characters,
+and the built_in function-call counts, 19749 in all, are:
+= -- 1622
+> -- 1766
+< -- 16
++ -- 590
+- -- 557
+* -- 1766
+:= -- 3194
+add.period$ -- 129
+call.type$ -- 33
+change.case$ -- 283
+chr.to.int$ -- 33
+cite$ -- 66
+duplicate$ -- 713
+empty$ -- 1186
+format.name$ -- 600
+if$ -- 4034
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 26
-newline$ -- 190
-num.names$ -- 126
-pop$ -- 505
+missing$ -- 28
+newline$ -- 202
+num.names$ -- 134
+pop$ -- 536
 preamble$ -- 1
-purify$ -- 236
+purify$ -- 250
 quote$ -- 0
-skip$ -- 640
+skip$ -- 685
 stack$ -- 0
-substring$ -- 228
-swap$ -- 83
-text.length$ -- 7
+substring$ -- 252
+swap$ -- 93
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 341
+type$ -- 363
 warning$ -- 0
-while$ -- 110
+while$ -- 118
 width$ -- 0
-write$ -- 459
+write$ -- 489
 (There were 4 warnings)

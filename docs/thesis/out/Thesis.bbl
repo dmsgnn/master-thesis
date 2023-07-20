@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{33}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -91,6 +91,14 @@ M.~Fey and J.~E. Lenssen.
 \newblock Fast graph representation learning with pytorch geometric.
 \newblock \emph{CoRR}, abs/1903.02428, 2019.
 \newblock URL \url{http://arxiv.org/abs/1903.02428}.
+
+\bibitem[Geng et~al.(2019)Geng, Li, Wang, Wu, Li, Tumeo, and
+  Herbordt]{DBLP:journals/corr/abs-1908-10834}
+T.~Geng, A.~Li, T.~Wang, C.~Wu, Y.~Li, A.~Tumeo, and M.~C. Herbordt.
+\newblock {UWB-GCN:} hardware acceleration of graph-convolution-network through
+  runtime workload rebalancing.
+\newblock \emph{CoRR}, abs/1908.10834, 2019.
+\newblock URL \url{http://arxiv.org/abs/1908.10834}.
 
 \bibitem[Hamilton et~al.(2017)Hamilton, Ying, and
   Leskovec]{DBLP:journals/corr/HamiltonYL17}
@@ -232,6 +240,14 @@ R.~Ying, J.~You, C.~Morris, X.~Ren, W.~L. Hamilton, and J.~Leskovec.
   pooling.
 \newblock \emph{CoRR}, abs/1806.08804, 2018.
 \newblock URL \url{http://arxiv.org/abs/1806.08804}.
+
+\bibitem[Zhang et~al.(2020)Zhang, Zeng, and Prasanna]{9153263}
+B.~Zhang, H.~Zeng, and V.~Prasanna.
+\newblock Hardware acceleration of large scale gcn inference.
+\newblock In \emph{2020 IEEE 31st International Conference on
+  Application-specific Systems, Architectures and Processors (ASAP)}, pages
+  61--68, 2020.
+\newblock \doi{10.1109/ASAP49362.2020.00019}.
 
 \bibitem[Zhou et~al.(2018)Zhou, Cui, Zhang, Yang, Liu, and
   Sun]{DBLP:journals/corr/abs-1812-08434}
