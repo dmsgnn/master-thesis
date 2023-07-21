@@ -21,14 +21,17 @@
 \contentsline {section}{\numberline {3.2}Software accelerators}{14}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Hardware accelerators}{15}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Unified architecture accelerators}{15}{subsection.3.3.1}%
-\contentsline {chapter}{\numberline {4}Problem Formulation}{19}{chapter.4}%
-\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{21}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Experimental Results}{23}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{25}{chapter.7}%
+\contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{17}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{18}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{21}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Problem Formulation}{23}{chapter.4}%
+\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{25}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Experimental Results}{27}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{29}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{27}{chapter*.19}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{31}{chapter*.19}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{31}{appendix*.21}%
-\contentsline {chapter}{List of Tables}{33}{appendix*.23}%
-\contentsline {chapter}{List of Symbols}{35}{appendix*.25}%
-\contentsline {chapter}{Acknowledgements}{37}{appendix*.28}%
+\contentsline {chapter}{List of Figures}{35}{appendix*.21}%
+\contentsline {chapter}{List of Tables}{37}{appendix*.23}%
+\contentsline {chapter}{List of Symbols}{39}{appendix*.25}%
+\contentsline {chapter}{Acknowledgements}{41}{appendix*.28}%

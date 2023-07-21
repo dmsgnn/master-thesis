@@ -19,12 +19,15 @@
 \BOOKMARK [1][-]{section.3.2}{Software accelerators}{chapter.3}% 19
 \BOOKMARK [1][-]{section.3.3}{Hardware accelerators}{chapter.3}% 20
 \BOOKMARK [2][-]{subsection.3.3.1}{Unified architecture accelerators}{section.3.3}% 21
-\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 22
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 23
-\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 24
-\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 25
-\BOOKMARK [0][-]{chapter*.19}{Bibliography}{}% 26
-\BOOKMARK [0][-]{appendix*.21}{List of Figures}{}% 27
-\BOOKMARK [0][-]{appendix*.23}{List of Tables}{}% 28
-\BOOKMARK [0][-]{appendix*.25}{List of Symbols}{}% 29
-\BOOKMARK [0][-]{appendix*.28}{Acknowledgements}{}% 30
+\BOOKMARK [2][-]{subsection.3.3.2}{GNN acceleration using Tiled architecture}{section.3.3}% 22
+\BOOKMARK [2][-]{subsection.3.3.3}{Hybrid architectures for GNN acceleration}{section.3.3}% 23
+\BOOKMARK [1][-]{section.3.4}{High-Level Synthesis based accelerators}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 25
+\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 26
+\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 27
+\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 28
+\BOOKMARK [0][-]{chapter*.19}{Bibliography}{}% 29
+\BOOKMARK [0][-]{appendix*.21}{List of Figures}{}% 30
+\BOOKMARK [0][-]{appendix*.23}{List of Tables}{}% 31
+\BOOKMARK [0][-]{appendix*.25}{List of Symbols}{}% 32
+\BOOKMARK [0][-]{appendix*.28}{Acknowledgements}{}% 33

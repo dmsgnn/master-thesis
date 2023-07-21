@@ -12,6 +12,7 @@ The following section provides an overview of state-of-the-art hardware accelera
 Subsequently, a section summarizes an accelerator implemented using High-Level Synthesis (HLS). This accelerator is separated from the hardware accelerators as it adopts HLS as the design flow proposed in this thesis.
 
 Additionally, this chapter includes a summary of a solution that aimed to accelerate GNN using both software and hardware approaches.
+A section is dedicated to a state-of-the-art graph processing accelerator, implemented using HBM-equipped FPGAs.
 
 As mentioned earlier, optimizing the matrix-matrix multiplication operation was a significant aspect of this research.
 Thus, a dedicated section focuses on state-of-the-art optimizations for matrix-matrix multiplication, especially those related to technologies similar to the ones employed in this thesis.
@@ -66,7 +67,7 @@ This accelerator endorses a proactive adaptation to the structural sparsity inhe
 In order to tackle this problem, the architecture devises a custom matrix multiplication engine that efficiently supports skipping zeros.
 In particular, three hardware-based autotuning techniques to address the imbalance have been suggested: dynamic distribution smoothing, remote switching, and row remapping.
 
-Specifically, AWB-GCN continuously monitors the sparse graph pattern, dynamically adjusts the workload distribution among a substantial number of processing elements, and reuses the optimal configuration upon convergence.
+Specifically, AWB-GCN continuously monitors the sparse graph pattern, dynamically adjusts the workload distribution among many processing elements, and reuses the optimal configuration upon convergence.
 Data from memory is directed through a task distributor and queue (TDQ) to a collection of processing elements (PEs) and accumulators.
 The TDQ has two designs tailored for scenarios with moderate or high sparsity.
 Given AWB-GCN's emphasis on GCNs featuring linear aggregation functions, the authors suggest prioritizing combination processing, as this typically reduces the number of features and subsequently minimizes the operations performed during aggregation.
@@ -106,3 +107,105 @@ Other optimized design decisions in EnGN involve the order of matrix multiplicat
 
 Moreover, EnGN employs a graph tiling strategy to accommodate large graphs, optimizing the utilization of hierarchical on-chip buffers through adaptive computation reordering and tile scheduling.
 These optimizations collectively enhance the overall performance of EnGN for large-scale GNN processing tasks.
+
+\subsection{GNN acceleration using Tiled architecture}
+\label{subsec:tiled-architectures}
+
+A tiled architecture refers to a design approach where the FPGA fabric is organized into a regular grid-like pattern of configurable tiles.
+Each tile typically consists of a set of logic cells, interconnect resources, and other functional units, and these tiles are repeated across the entire FPGA.
+
+In contrast to most other accelerators, this work~\cite{9218751} presents a modular architecture for convolutional GNNs incorporating dedicated hardware units to efficiently handle the irregular data movement essential for graph computation in GNNs, while simultaneously delivering the high compute throughput required by GNN models.
+The fundamental building block of the accelerator is a tile consisting of an aggregator module (AGG), a DNN accelerator module (DNA), a DNN queue (DNQ), and a graph PE (GPE), all interconnected via an on-chip router.
+
+The Graph Processing Element (GPE) handles graph traversal and sequencing computation steps dependent on the underlying graph structure.
+The DNA executes the DNN computation within the GNN model.
+The AGG performs feature aggregation coordinated by the GPE based on graph traversal.
+The DNQ buffers memory requests and intermediate results as they are passed to the DNA.
+
+This design allows for easy scalability by interconnecting multiple tiles with memory.
+Each tile's internal structure resembles HyGCN's~\cite{DBLP:journals/corr/abs-2010-00130}, with the DNA functioning as an array for dense multiplication, the AGG as an edge-controlled adder, the DNQ as an inter-engine buffer, and the GPE overseeing execution.
+
+The GNN accelerator program proposed by Auten \textit{et al.} represents a GNN model as a sequential set of layers.
+Each layer operates on a graph, applying a vertex program to generate an output graph.
+These layers are connected in sequence to form a complete GNN model.
+The initial layer takes the model input as its input graph, and subsequent layers utilize the output of the preceding layer.
+The last layer produces the final output graph.
+
+Unlike HyGCN, the accelerator introduced in~\cite{9218751} is less specialized but has a better potential for generalization to various Graph Neural Network models~\cite{DBLP:journals/corr/abs-2010-00130}.
+
+\subsection{Hybrid architectures for GNN acceleration}
+\label{subsec:hybrid-architectures}
+
+HyGCN~\cite{DBLP:journals/corr/abs-2001-02514} is a unique GCN accelerator due to its innovative hybrid architecture.
+This approach was inspired by the observation that GNNs exhibit two distinct execution patterns with contrasting requirements: the aggregation phase involves graph processing, displaying a dynamic and irregular execution pattern.
+On the other hand, the combination phase behaves more like conventional neural networks, exhibiting a static and regular execution pattern.
+As a result of this observation, HyGCN consists of dedicated engines for the aggregation and combination stages and a coordinating mechanism for pipelined execution of both functions.
+
+The Combination operation at each vertex functions like a neural network with a regular yet compute-intensive execution.
+HyGCN's architecture is based on the popular systolic array, but it incorporates multiple arrays instead of a single one to adapt to the two processing modes of the Aggregation Engine.
+In the combination engine, a set of systolic arrays is combined to form a systolic module, and these modules can be flexibly utilized in various ways, including independent and cooperative working modes.
+
+\begin{itemize}
+    \item In the independent working mode, the systolic modules operate autonomously, each handling the matrix-vector multiplication (MVM) operations of a small group of vertices.
+          This mode offers the benefit of reduced vertex latency since the Combination operations for this smaller group of vertices can be processed immediately once their aggregated features are ready without waiting for additional vertices.
+    \item In the cooperative working mode, a large group of vertices' aggregated features are gathered and combined.
+          The advantage of this mode is that weight parameters can be efficiently reused by all systolic arrays, reducing energy consumption.
+\end{itemize}
+
+The aggregation engine comprises a sampler, edge scheduler, and sparsity eliminator feeding a set of SIMD (single instruction multiple data) cores.
+There are two processing modes for SIMD cores to handle edges in parallel.
+
+The first mode is vertex-concentrated, where each SIMD core is assigned the workload of a single vertex.
+While this mode can produce aggregated features in a burst mode, the processing latency for a single vertex is prolonged, leading to workload imbalance and loss of parallelism.
+On the other hand, the vertex-disperse processing mode assigns the aggregation of elements in the vertex feature vector to all cores.
+This mode ensures that all cores are constantly busy without workload imbalance.
+Additionally, it enables immediate processing of each vertex in the subsequent Combination Engine while reducing the latency for a single vertex compared to processing multiple vertices together.
+To enhance the computation of aggregation, HyGCN uses the vertex-disperse processing mode.
+
+HyGCN utilizes a static graph partition method to optimize memory access to improve data reuse.
+The authors identified that the feature vectors of each vertex are typically large, making the exploitation of feature locality crucial.
+To address this, they grouped vertices within the same interval and processed the aggregation of their source neighbors interval by the interval.
+By following this approach, the feature accesses of all vertices in an interval were merged.
+This grouping allowed for overlapping neighbors within the considered interval, enabling the reuse of loaded feature data during feature aggregation.
+Moreover, when traversing all the neighbors of the interval, the intermediate aggregated results of the grouped vertices were stored in a buffer and could be reused during feature updates.
+
+Sparsity is efficiently handled at the aggregation engine through effective scheduling and the sparsity eliminator, which adapts dynamically to varying degrees of sparse multiplications using a window-based sliding and shrinking approach.
+In particular, the authors implemented this approach to enhance data reuse and minimize redundant accesses caused by sparse graph connections.
+The central idea was to slide the window downward until an edge appeared in the top row and then shrink its size by moving the bottom row upward until an edge was encountered.
+This method effectively eliminated sparsity and improved data access efficiency.
+
+To further optimize for varying workloads, HyGCN allows flexible grouping of SIMD cores in aggregation and PEs in combination based on the size of feature vectors.
+Additionally, careful attention is given to the design of the inter-engine coordinator to optimize memory accesses and enable fine-grained pipelining of execution, maximizing parallelism dynamically.
+
+While not an authentic hybrid architecture, GRIP~\cite{DBLP:journals/corr/abs-2007-13828} is an accelerator that shares similar techniques with HyGCN's implementation approach.
+It leverages GReTA~\cite{greta-recoml20} (Gather, Reduce, Transform, Activate), a graph processing abstraction specifically crafted for efficient execution on accelerators.
+It also offers the flexibility required to implement GNN inference and holds the potential to be adaptable to various types of Graph Neural Networks.
+
+GRIP is an accelerator designed to achieve low-latency inference.
+It addresses the challenges of accelerating GNNs, combining two distinct computation types: arithmetic-intensive vertex-centric operations and memory-intensive edge-centric operations.
+To tackle this, the accelerator divides GNN inference into fixed sets of edge- and vertex-centric execution phases, making them suitable for hardware implementation.
+Each unit is then specialized to handle the unique computational structure of each phase efficiently.
+
+GRIP utilizes a high-performance matrix multiply engine and a dedicated memory subsystem for vertex-centric phases for weights to enhance data reuse.
+In contrast, it employs multiple parallel prefetches and reduction engines for edge-centric phases to mitigate the irregularity in memory accesses.
+Additionally, GRIP supports several GNN optimizations, including a novel technique called vertex-tiling, which enhances the reuse of weight data.
+
+GRIP provides a customizable architecture with separated and custom units and accumulators for both edges (gather, reduce) and vertices (transform, activate) that allows for performing edge and node updates using user-defined functions.
+The control of GRIP is managed by a host system that issues commands for different operations and data transfers.
+The control unit dequeues these commands in order and asynchronously issues them to individual execution units or the memory controller.
+
+GRIP comprises three core execution units: the edge unit, the vertex unit, and the update unit.
+The edge unit performs the edge-accumulate phase, iterating over the edges of the nodeflow, executing gather, and accumulating the result into the edge accumulator using reduce.
+The vertex unit performs the vertex-accumulate phase, iterating over the output vertices corresponding to the accumulated edge values, executing the transform, and accumulating the result into the vertex accumulator.
+The update unit performs the vertex-update phase, reading the accumulated values for each vertex and passing them to the activated PE.
+The result is then written to the nodeflow buffer as an updated feature or to the edge or vertex accumulator, enabling efficient data flow between different GRIP programs when executed in sequence.
+
+As already said, GRIP allows users to customize the four PEs, which can be implemented in multiple ways based on their specific requirements.
+In the authors' implementation, a programmable ALU-based approach is used, splitting the edge update unit into lanes to execute vertices simultaneously.
+It adopts an input-stationary dataflow for the vertex update unit.
+The accelerator employs various optimizations, including pipelining and tiling adapted to the specific dataflows implemented, similar to other accelerators.
+
+\section{High-Level Synthesis based accelerators}
+\label{sec:hls-accelerators}
+
+

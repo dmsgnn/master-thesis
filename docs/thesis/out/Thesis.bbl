@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -136,11 +136,18 @@ Y.~Hu, Y.~Du, E.~Ustun, and Z.~Zhang.
   Design (ICCAD)}, pages 1--9, 2021.
 \newblock \doi{10.1109/ICCAD51958.2021.9643582}.
 
-\bibitem[Kiningham et~al.(2020)Kiningham, R{\'{e}}, and
+\bibitem[Kiningham et~al.(2020{\natexlab{a}})Kiningham, Levis, and
+  Re]{greta-recoml20}
+K.~Kiningham, P.~Levis, and C.~Re.
+\newblock {GReTA: Hardware Optimized Graph Processing for GNNs}.
+\newblock In \emph{{Proceedings of the Workshop on Resource-Constrained Machine
+  Learning (ReCoML 2020)}}, March 2020{\natexlab{a}}.
+
+\bibitem[Kiningham et~al.(2020{\natexlab{b}})Kiningham, R{\'{e}}, and
   Levis]{DBLP:journals/corr/abs-2007-13828}
 K.~Kiningham, C.~R{\'{e}}, and P.~A. Levis.
 \newblock {GRIP:} {A} graph neural network accelerator architecture.
-\newblock \emph{CoRR}, abs/2007.13828, 2020.
+\newblock \emph{CoRR}, abs/2007.13828, 2020{\natexlab{b}}.
 \newblock URL \url{https://arxiv.org/abs/2007.13828}.
 
 \bibitem[Kipf and Welling(2016)]{DBLP:journals/corr/KipfW16}
