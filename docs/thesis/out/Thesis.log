@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  20 JUL 2023 21:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  21 JUL 2023 11:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1243,30 +1243,31 @@ Chapter 3.
 (./chapters/chapter3.tex [13
 
 
-] [14] [15]) [16]
-Chapter 4.
-[17
-
-
-] [18
+] [14] [15] [16]) [17] [18
 
 ]
-Chapter 5.
+Chapter 4.
 [19
 
 ] [20
 
 ]
-Chapter 6.
+Chapter 5.
 [21
 
 ] [22
 
 ]
-Chapter 7.
-(out/thesis.bbl [23
+Chapter 6.
+[23
 
 ] [24
+
+]
+Chapter 7.
+(out/thesis.bbl [25
+
+] [26
 
 ]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
@@ -1292,34 +1293,34 @@ Underfull \hbox (badness 1466) in paragraph at lines 78--83
 ez-Bombarelli,
  []
 
-[25
+[27
 
-] [26] [27]) [28] (out/thesis.lof)
+] [28] [29]) [30] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [29
+ [31
 
 
 
-] [30
+] [32
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [31
-
-] [32
-
-]
-[33
+ [33
 
 ] [34
 
-] [35
+]
+[35
 
 ] [36
+
+] [37
+
+] [38
 
 ]
 
@@ -1335,8 +1336,8 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 8D18A87A1FB178A750D7796F8403745A;1855.
  ) 
 Here is how much of TeX's memory you used:
- 25712 strings out of 480608
- 479566 string characters out of 5903630
+ 25714 strings out of 480608
+ 479580 string characters out of 5903630
  903156 words of memory out of 5000000
  40892 multiletter control sequences out of 15000+600000
  549219 words of font info for 64 fonts, out of 8000000 for 9000
@@ -1358,10 +1359,10 @@ xlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texl
 ive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texliv
 e/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/
 2020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (44 pages, 344464 bytes).
+Output written on out/thesis.pdf (46 pages, 346864 bytes).
 PDF statistics:
- 595 PDF objects out of 1000 (max. 8388607)
- 522 compressed objects within 6 object streams
- 135 named destinations out of 1000 (max. 500000)
+ 604 PDF objects out of 1000 (max. 8388607)
+ 529 compressed objects within 6 object streams
+ 137 named destinations out of 1000 (max. 500000)
  274 words of extra memory for PDF output out of 10000 (max. 10000000)
 

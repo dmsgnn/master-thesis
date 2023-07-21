@@ -60,7 +60,7 @@ Consequently, numerous hardware accelerators with different architecture types h
 A unified architecture refers to a design approach where the FPGA fabric is configured to be versatile and flexible, allowing it to handle various applications and tasks.
 Instead of having specialized and fixed hardware modules for specific functions, a unified architecture enables the FPGA to reconfigure its resources to dynamically adapt to different computation requirements.
 
-\cite{DBLP:journals/corr/abs-1908-10834} presents Autotuning-Workload-Balancing GCN (AWB-GCN) to accelerate GCN inference.
+\cite{DBLP:journals/corr/abs-1908-10834} presents Autotuning-Workload-Balancing GCN (AWB-GCN) to accelerate Graph Convolutional Network inference.
 This accelerator endorses a proactive adaptation to the structural sparsity inherent in GNNs. The authors support their design by analyzing the power-law distribution found in most graphs, positing that certain parts of the computation will exhibit density. In contrast, others will be extraordinarily sparse, leading to imbalances.
 
 In order to tackle this problem, the architecture devises a custom matrix multiplication engine that efficiently supports skipping zeros.
@@ -88,3 +88,21 @@ Row remapping is initiated based on demand after each round.
 The auto-tuner assesses the utilization gaps between the most overloaded and under-loaded PEs and decides if their gaps exceed remote switching capability.
 If so, row remapping is executed as a solution.
 
+AWB-GCN proves to be a fascinating accelerator, though its generalizability beyond Graph Convolutional Network remains uncertain.
+On the other hand, EnGN represents another accelerator featuring a unified architecture, with the primary goal of being adaptable for various Graph Neural Network models.
+
+EnGN~\cite{DBLP:journals/corr/abs-1909-00155} is a specialized accelerator architecture that prioritizes high-throughput and energy-efficient processing of large-scale GNNs in which the Graph Neural Network is treated as a concatenated matrix multiplication of feature vectors, adjacency matrices, and weights, all efficiently scheduled in a single data flow.
+An array of clustered Processing Elements (PEs) is supplied with independent banks for features, edges, and weights, enabling computation of the combination function.
+
+EnGN accelerates the three fundamental stages of GNN propagation to handle sparsity efficiently, i.e., feature extraction, aggregate, and update, which encapsulates common computing patterns shared by typical GNNs.
+The authors introduce the ring-edge-reduce (RER) dataflow for the aggregation, in which each column of PEs is interconnected through a ring, and results are passed along and added based on the adjacency matrix.
+This process effectively addresses the poor locality of sparsely and randomly connected vertices and efficiently supports critical stages. EnGN dynamically reorders edges in each RER step to reduce redundant computations in sparsely connected nodes.
+
+Moreover, EnGN employs a graph tiling strategy to accommodate large graphs, optimizing the utilization of hierarchical on-chip buffers through adaptive computation reordering and tile scheduling.
+This approach enhances EnGN's capability to handle substantial graphs effectively.
+
+Since well-connected vertices frequently appear during computation, PE clusters have a degree-aware vertex cache that stores data for high-degree vertices.
+Other optimized design decisions in EnGN involve the order of matrix multiplications when the aggregation function is a sum, impacting the total number of operations.
+
+Moreover, EnGN employs a graph tiling strategy to accommodate large graphs, optimizing the utilization of hierarchical on-chip buffers through adaptive computation reordering and tile scheduling.
+These optimizations collectively enhance the overall performance of EnGN for large-scale GNN processing tasks.
