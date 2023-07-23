@@ -4,7 +4,7 @@ As explained in Chapter 6, particular emphasis has been placed on optimizing mat
 Consequently, this chapter also delves into the relevant literature concerning various approaches to Matmul optimization.
 
 \section{Chapter structure}
-\label{sec:related_work_structure}
+\label{sec:related_work_structure}%
 This chapter contains several sections.
 Firstly, it presents the software frameworks utilized to accelerate Graph Neural Network computations.
 The following section provides an overview of state-of-the-art hardware accelerators, categorized based on their architecture types~\cite{DBLP:journals/corr/abs-2010-00130}.
@@ -20,7 +20,7 @@ Thus, a dedicated section focuses on state-of-the-art optimizations for matrix-m
 Finally, the chapter concludes with a comprehensive summary of the cutting-edge accelerators presented.
 
 \section{Software accelerators}
-\label{sec:related_work_software_accelerators}
+\label{sec:related_work_software_accelerators}%
 
 The challenges posed by GNN processing have led to inefficiencies in traditional deep neural network (DNN) libraries and graph processing frameworks.
 This is primarily due to the alternating computational phases characteristic of GNNs.
@@ -49,14 +49,14 @@ However, both libraries target CPU and GPU architectures.
 Knowing the extreme computational power of FPGA, the field of hardware accelerators started gaining more and more interest, with the expectation of having GNN hardware accelerators capable of outperforming the performance of CPU-GPU targeting libraries.
 
 \section{Hardware accelerators}
-\label{sec:hardware_accelerators}
+\label{sec:hardware_accelerators}%
 
 As discussed in Section~\ref{sec:related_work_software_accelerators}, software accelerators optimize the execution of GNNs in CPU-GPU platforms, commonly found in various computing systems, leading to substantial speed improvements in inference and training processes.
 
 However, the research field has raised questions about the feasibility of custom hardware accelerators in overcoming the challenges of GNN computing and achieving order-of-magnitude enhancements.
 Consequently, numerous hardware accelerators with different architecture types have emerged, aiming to address the intensive computational demands and alternating patterns required by GNNs.
 
-\subsection{Unified architecture accelerators}\label{subsec:unified-architecture-accelerators}
+\subsection{Unified architecture accelerators}\label{subsec:unified-architecture-accelerators}%
 
 A unified architecture refers to a design approach where the FPGA fabric is configured to be versatile and flexible, allowing it to handle various applications and tasks.
 Instead of having specialized and fixed hardware modules for specific functions, a unified architecture enables the FPGA to reconfigure its resources to dynamically adapt to different computation requirements.
@@ -109,7 +109,7 @@ Moreover, EnGN employs a graph tiling strategy to accommodate large graphs, opti
 These optimizations collectively enhance the overall performance of EnGN for large-scale GNN processing tasks.
 
 \subsection{GNN acceleration using Tiled architecture}
-\label{subsec:tiled-architectures}
+\label{subsec:tiled-architectures}%
 
 A tiled architecture refers to a design approach where the FPGA fabric is organized into a regular grid-like pattern of configurable tiles.
 Each tile typically consists of a set of logic cells, interconnect resources, and other functional units, and these tiles are repeated across the entire FPGA.
@@ -134,7 +134,7 @@ The last layer produces the final output graph.
 Unlike HyGCN, the accelerator introduced in~\cite{9218751} is less specialized but has a better potential for generalization to various Graph Neural Network models~\cite{DBLP:journals/corr/abs-2010-00130}.
 
 \subsection{Hybrid architectures for GNN acceleration}
-\label{subsec:hybrid-architectures}
+\label{subsec:hybrid-architectures}%
 
 HyGCN~\cite{DBLP:journals/corr/abs-2001-02514} is a unique GCN accelerator due to its innovative hybrid architecture.
 This approach was inspired by the observation that GNNs exhibit two distinct execution patterns with contrasting requirements: the aggregation phase involves graph processing, displaying a dynamic and irregular execution pattern.
@@ -206,6 +206,68 @@ It adopts an input-stationary dataflow for the vertex update unit.
 The accelerator employs various optimizations, including pipelining and tiling adapted to the specific dataflows implemented, similar to other accelerators.
 
 \section{High-Level Synthesis based accelerators}
-\label{sec:hls-accelerators}
+\label{sec:hls-accelerators}%
+
+As previously highlighted, the main challenge of GNN hardware acceleration lies in simultaneously meeting the demand for novel GNN models and fast inference, as there exists a gap between the difficulty in developing efficient FPGA accelerators and the rapid pace of creating new GNN models.
+
+To address this challenge, in~\cite{DBLP:journals/corr/abs-2201-08475} GenGNN has been introduced, a GNN acceleration framework utilizing High-Level Synthesis (HLS), with two primary objectives.
+Firstly, to achieve ultra-fast GNN inference without needing graph pre-processing to meet real-time demands.
+Secondly, to support a wide range of GNN models with the flexibility to accommodate new models.
+The framework incorporates an optimized message-passing structure that applies to all models and is complemented by a diverse library of model-specific components.
+
+This framework capitalizes on the observation that each node in a GNN layer undergoes two key steps: message passing (MP) and node embedding (NE). The message passing step is further divided into gather and scatter phases, where gather involves feature aggregation, and scatter entails message transformation and forwarding.
+On the other hand, node embedding encompasses node transformation and update.
+
+To achieve this goal, GenGNN was designed using a message-passing style featuring two main processing elements (PEs): node embedding and message passing.
+The architecture includes three data storage buffers: one node embedding buffer and two message buffers, all of which have a $O(N)$ size, where $N$ represents the number of nodes allowed on-chip.
+The two message buffers are used alternately across layers, allowing for the reuse of resources and dataflow in multiple layers.
+The node embedding PE handles node transformation and update within a single layer, while the message passing PE performs the subsequent scatter operation.
+The advantage of this approach is that the receivers of the messages can instantly update their partially aggregated message in the message buffer, enabling the merging of scatter and gather phases.
+Since the aggregation function is permutation invariant and the aggregation order does not matter, such a merged fashion reduces the overall process latency and minimizes memory cost.
+
+The independence of node embedding (NE) and message passing (MP) steps across nodes and edges allows for significantly reduced processing latency by effectively pipelining these two steps.
+The authors referred to the most suitable approach for this task as streaming-based pipelining, which can be achieved using a streaming-based FIFO (first-in-first-out) memory queue.
+In this implementation that significantly reduces idle cycles and minimizes resource usage, NE and MP are pipelined flexibly using a node queue.
+Once a node completes its NE and is prepared for message passing, its embeddings are pushed into the queue.
+At the same time, the MP engine reads from the queue, fetching the node embeddings for message passing.
+
+GenGNN enhances its architecture's adaptability to different graph neural network models by offering various model-specific components.
+One particularly advantageous feature of GenGNN's streaming-based pipelining for node/edge processing is its suitability for models with virtual nodes.
+As defined by~\cite{DBLP:journals/corr/GilmerSRVD17}, a virtual node acts as an artificial node connected to all other nodes in the graph, creating a shortcut for message passing between node pairs.
+The authors stated that processing the virtual node can be entirely overlapped with the node embedding computation for other nodes, ensuring zero waste as long as it is handled early enough in the processing pipeline.
+
+Finally, another feature provided by GenGNN is the large graph extension.
+The authors implemented a prefetcher to accommodate large graphs that cannot be stored on-chip.
+This prefetcher retrieves consecutive nodes' degrees from DRAM and stores them in an on-chip FIFO buffer.
+As the message passing PE requires, it loads each subsequent node's degree, prompting the prefetcher to refill the buffer.
+This clever mechanism effectively conceals the latency associated with fetching from the off-chip degree table, ensuring that the message passing PE behaves similarly to handling small graphs.
+Moreover, the authors adopted packed data transfer by typecasting off-chip array pointers into the desired size pointer types, facilitating the transfer of more significant bits between DRAM and the system with every clock cycle.
+
+It can be observed that GenGNN's NE/MP pipeline shares a similar concept with the task scheduling approach of BoostGCN~\cite{9444065}.
+
+BoostGCN presents a framework tailored to enhance GCN inference on FPGA. The authors introduced a groundbreaking hardware-aware Partition-Centric Feature Aggregation (PCFA) scheme that capitalizes on 3-D partitioning alongside the vertex-centric computing paradigm.
+This innovation significantly boosts on-chip data reuse while minimizing the overall data communication volume with external memory.
+
+Furthermore, they devised a novel hardware architecture that enables seamless pipelined execution of the two distinct computation phases.
+They developed a low-overhead task scheduling strategy to tackle any potential pipeline stalls arising from these phases.
+
+The authors delivered a comprehensive GCN acceleration framework on FPGA, complete with meticulously optimized RTL (Register-Transfer Level) templates.
+This framework can generate hardware designs based on personalized configurations and is adaptable to diverse GCN models.
+BoostGCN's overall system architecture comprises external memory and FPGA components.
+Feature Aggregation Modules (FAMs) handle feature aggregation on the FPGA board, while Feature Update Modules (FUMs) manage feature updates.
+Intermediate results generated by FAMs are cached in the Internal Buffer, and the Memory Controller manages data transmissions between external memory and hardware modules.
+
+The authors propose a specific approach to optimize task scheduling and minimize pipeline stalls for FUM and FAM. This involves arranging intervals based on their vertex degrees and prioritizing intervals with more minor vertex degrees for execution first.
+Furthermore, they allocate a buffer in external memory to store aggregated feature vectors produced by FAMs in case FUM is not yet prepared to consume new aggregated feature vectors.
+Subsequently, FUM can retrieve the aggregated feature vectors from external memory when ready.
+
+As indicated in~\cite{DBLP:journals/corr/abs-2201-08475}, while the scheduling approaches of GenGNN and BoostGCN share some similarities, there are notable differences.
+Firstly, BoostGCN relies on sorting vertices by degrees on the CPU to establish an execution order, whereas GenGNN processes the nodes on-the-fly in FPGA in an adaptive manner.
+Secondly, BoostGCN employs a buffer in external memory, while GenGNN utilizes an on-chip FIFO to queue the nodes ready for message passing.
+
+Another notable framework in this section is DGNN-Booster~\cite{chen2023dgnnbooster}, an innovative Field-Programmable Gate Array (FPGA) accelerator framework designed for real-time inference of Dynamic Graph Neural Networks (DGNNs) using High-Level Synthesis (HLS).
+Unlike the other accelerators mentioned and outside the scope of this research, DGNN-Booster focuses on DGNNs, which are Graph Neural Networks tailored for dynamic graph structures and features.
+Hence, a detailed description is not provided here.
+However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on GenGNN at a lower level of parallelism.
 
 

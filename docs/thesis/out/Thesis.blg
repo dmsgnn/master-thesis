@@ -11,45 +11,45 @@ Warning--entry type for "ogb_gnn_models" isn't style-file defined
 --line 345 of file Thesis_bibliography.bib
 Warning--entry type for "pygcn" isn't style-file defined
 --line 354 of file Thesis_bibliography.bib
-You've used 35 entries,
+You've used 37 entries,
             2773 wiz_defined-function locations,
-            804 strings with 13710 characters,
-and the built_in function-call counts, 20546 in all, are:
-= -- 1685
-> -- 1817
-< -- 17
-+ -- 608
-- -- 572
-* -- 1828
-:= -- 3312
-add.period$ -- 134
-call.type$ -- 35
-change.case$ -- 294
-chr.to.int$ -- 34
-cite$ -- 70
-duplicate$ -- 752
-empty$ -- 1259
-format.name$ -- 619
-if$ -- 4203
+            816 strings with 14210 characters,
+and the built_in function-call counts, 21665 in all, are:
+= -- 1782
+> -- 1895
+< -- 18
++ -- 634
+- -- 596
+* -- 1922
+:= -- 3483
+add.period$ -- 142
+call.type$ -- 37
+change.case$ -- 308
+chr.to.int$ -- 36
+cite$ -- 74
+duplicate$ -- 803
+empty$ -- 1341
+format.name$ -- 645
+if$ -- 4443
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 29
-newline$ -- 211
-num.names$ -- 142
-pop$ -- 566
+missing$ -- 31
+newline$ -- 223
+num.names$ -- 150
+pop$ -- 593
 preamble$ -- 1
-purify$ -- 259
+purify$ -- 271
 quote$ -- 0
-skip$ -- 713
+skip$ -- 756
 stack$ -- 0
-substring$ -- 256
-swap$ -- 99
-text.length$ -- 8
+substring$ -- 280
+swap$ -- 109
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 385
+type$ -- 407
 warning$ -- 0
-while$ -- 124
+while$ -- 132
 width$ -- 0
-write$ -- 511
+write$ -- 541
 (There were 4 warnings)

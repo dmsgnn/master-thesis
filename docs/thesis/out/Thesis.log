@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  21 JUL 2023 17:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  23 JUL 2023 12:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1243,31 +1243,31 @@ Chapter 3.
 (./chapters/chapter3.tex [13
 
 
-] [14] [15] [16] [17] [18] [19] [20]) [21] [22
-
-]
+] [14] [15] [16] [17] [18] [19] [20] [21] [22]
+[23]) [24]
 Chapter 4.
-[23
-
-] [24
-
-]
-Chapter 5.
 [25
+
 
 ] [26
 
 ]
-Chapter 6.
+Chapter 5.
 [27
 
 ] [28
 
 ]
-Chapter 7.
-(out/thesis.bbl [29
+Chapter 6.
+[29
 
 ] [30
+
+]
+Chapter 7.
+(out/thesis.bbl [31
+
+] [32
 
 ]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
@@ -1293,34 +1293,34 @@ Underfull \hbox (badness 1466) in paragraph at lines 78--83
 ez-Bombarelli,
  []
 
-[31
+[33
 
-] [32] [33]) [34] (out/thesis.lof)
+] [34] [35]) [36] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [35
+ [37
 
 
 
-] [36
+] [38
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [37
-
-] [38
-
-]
-[39
+ [39
 
 ] [40
 
-] [41
+]
+[41
 
 ] [42
+
+] [43
+
+] [44
 
 ]
 
@@ -1336,10 +1336,10 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: B1AEE1FB5730FD28AD0D32FF492CA4F9;2131.
  ) 
 Here is how much of TeX's memory you used:
- 25737 strings out of 480608
- 479993 string characters out of 5903630
- 902156 words of memory out of 5000000
- 40906 multiletter control sequences out of 15000+600000
+ 25747 strings out of 480608
+ 480217 string characters out of 5903630
+ 903156 words of memory out of 5000000
+ 40912 multiletter control sequences out of 15000+600000
  549556 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,14n,89p,1195b,586s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1360,10 +1360,10 @@ live/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texli
 ve/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive
 /2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2
 020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (50 pages, 358597 bytes).
+Output written on out/thesis.pdf (52 pages, 367462 bytes).
 PDF statistics:
- 650 PDF objects out of 1000 (max. 8388607)
- 571 compressed objects within 6 object streams
- 145 named destinations out of 1000 (max. 500000)
+ 667 PDF objects out of 1000 (max. 8388607)
+ 586 compressed objects within 6 object streams
+ 149 named destinations out of 1000 (max. 500000)
  298 words of extra memory for PDF output out of 10000 (max. 10000000)
 
