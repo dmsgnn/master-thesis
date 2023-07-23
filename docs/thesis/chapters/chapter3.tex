@@ -325,6 +325,21 @@ Each module provides a set of APIs that facilitate data transfers between the ho
 Host-to-device and device-to-host data transfers occur only once before or after the iterations of the graph algorithm, ensuring their costs are amortized.
 Meanwhile, device-to-device data transfers facilitate the exchange of intermediate results during the iterations, minimizing the need for frequent data transfers to the host and back.
 
+\section{Matrix multiplication optimization}
+\label{sec:matmul-optimization}%
 
+Significant efforts have been dedicated to accelerating matrix multiplication, resulting in numerous libraries designed for various platforms.
+Prior to proceeding, it is essential to outline that Basic Linear Algebra Subprograms (BLAS) specify low-level routines for executing fundamental linear algebra operations, including matrix multiplication.
+OpenBLAS~\cite{openblas} is a prominent optimized BLAS library tailored for CPU usage.
+At the same time, cuBLAS~\cite{cublas} serves as a specialized library providing GPU-accelerated implementations of BLAS\@.
 
+Also, several FPGA-accelerated BLAS libraries exist, designed to exploit FPGA's parallelism and hardware capabilities for efficient matrix operations.
+One example is GraphLily, discussed in Section~\ref{sec:hbm-equipped-fpga-accelerators}, but other options exist.
+Various custom implementations are crafted to suit specific FPGA platforms and applications.
+
+However, in this Section, particular attention will be given to the optimization of matrix multiplication using MLIR.
+This focus arises because SODA, the framework introduced in Section~\ref{sec:soda}, which represents part of the core of this thesis, represents an extension of the MLIR framework.
+
+\subsection{Matrix multiplication optimization in MLIR}
+\label{subsec:matmul-opt-mlir}%
 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{41}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -153,6 +153,16 @@ J.~Kepner, P.~Aaltonen, D.~A. Bader, A.~Bulu{\c{c}}, F.~Franchetti, J.~R.
 \newblock \emph{CoRR}, abs/1606.05790, 2016.
 \newblock URL \url{http://arxiv.org/abs/1606.05790}.
 
+\bibitem[Keramatfar et~al.(2022)Keramatfar, Rafiee, and
+  Amirkhani]{KERAMATFAR2022100401}
+A.~Keramatfar, M.~Rafiee, and H.~Amirkhani.
+\newblock Graph neural networks: A bibliometrics overview.
+\newblock \emph{Machine Learning with Applications}, 10:\penalty0 100401, 2022.
+\newblock ISSN 2666-8270.
+\newblock \doi{https://doi.org/10.1016/j.mlwa.2022.100401}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S2666827022000780}.
+
 \bibitem[Kiningham et~al.(2020{\natexlab{a}})Kiningham, Levis, and
   Re]{greta-recoml20}
 K.~Kiningham, P.~Levis, and C.~Re.
@@ -196,6 +206,11 @@ S.~Liang, C.~Liu, Y.~Wang, H.~Li, and X.~Li.
   network accelerators.
 \newblock In \emph{2020 IEEE/ACM International Conference On Computer Aided
   Design (ICCAD)}, pages 1--9, 2020.
+
+\bibitem[NVIDIA()]{cublas}
+NVIDIA.
+\newblock cublas library.
+\newblock URL \url{https://developer.nvidia.com/cublas}.
 
 \bibitem[Paszke et~al.(2019)Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
   Killeen, Lin, Gimelshein, Antiga, Desmaison, K{\"{o}}pf, Yang, DeVito,
@@ -250,6 +265,11 @@ Z.~Wu, S.~Pan, F.~Chen, G.~Long, C.~Zhang, and P.~S. Yu.
 \newblock A comprehensive survey on graph neural networks.
 \newblock \emph{CoRR}, abs/1901.00596, 2019.
 \newblock URL \url{http://arxiv.org/abs/1901.00596}.
+
+\bibitem[Xianyi and other contributors()]{openblas}
+Z.~Xianyi and other contributors.
+\newblock Openblas library.
+\newblock URL \url{http://www.openblas.net}.
 
 \bibitem[Xu et~al.(2019)Xu, Hu, Leskovec, and Jegelka]{xu2019powerful}
 K.~Xu, W.~Hu, J.~Leskovec, and S.~Jegelka.

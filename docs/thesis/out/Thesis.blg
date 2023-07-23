@@ -11,45 +11,51 @@ Warning--entry type for "ogb_gnn_models" isn't style-file defined
 --line 345 of file Thesis_bibliography.bib
 Warning--entry type for "pygcn" isn't style-file defined
 --line 354 of file Thesis_bibliography.bib
-You've used 38 entries,
+Warning--entry type for "cublas" isn't style-file defined
+--line 629 of file Thesis_bibliography.bib
+Warning--entry type for "openblas" isn't style-file defined
+--line 637 of file Thesis_bibliography.bib
+Warning--empty year in cublas
+Warning--empty year in openblas
+You've used 41 entries,
             2773 wiz_defined-function locations,
-            822 strings with 14682 characters,
-and the built_in function-call counts, 22746 in all, are:
-= -- 1859
-> -- 2042
-< -- 18
-+ -- 683
-- -- 644
-* -- 2037
-:= -- 3671
-add.period$ -- 146
-call.type$ -- 38
-change.case$ -- 327
-chr.to.int$ -- 37
-cite$ -- 76
-duplicate$ -- 823
-empty$ -- 1372
-format.name$ -- 694
-if$ -- 4648
+            840 strings with 15136 characters,
+and the built_in function-call counts, 23923 in all, are:
+= -- 1965
+> -- 2103
+< -- 20
++ -- 704
+- -- 662
+* -- 2123
+:= -- 3852
+add.period$ -- 158
+call.type$ -- 41
+change.case$ -- 342
+chr.to.int$ -- 40
+cite$ -- 84
+duplicate$ -- 874
+empty$ -- 1475
+format.name$ -- 717
+if$ -- 4896
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 32
-newline$ -- 229
-num.names$ -- 154
-pop$ -- 628
+missing$ -- 33
+newline$ -- 247
+num.names$ -- 166
+pop$ -- 662
 preamble$ -- 1
-purify$ -- 289
+purify$ -- 301
 quote$ -- 0
-skip$ -- 785
+skip$ -- 831
 stack$ -- 0
-substring$ -- 282
-swap$ -- 110
+substring$ -- 306
+swap$ -- 113
 text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 418
-warning$ -- 0
-while$ -- 135
+type$ -- 451
+warning$ -- 2
+while$ -- 145
 width$ -- 0
-write$ -- 556
-(There were 4 warnings)
+write$ -- 597
+(There were 8 warnings)

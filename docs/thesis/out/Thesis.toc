@@ -26,14 +26,16 @@
 \contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{21}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{24}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{25}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Problem Formulation}{27}{chapter.4}%
-\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{29}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Experimental Results}{31}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{33}{chapter.7}%
+\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{26}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{27}{subsection.3.7.1}%
+\contentsline {chapter}{\numberline {4}Problem Formulation}{29}{chapter.4}%
+\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{31}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Experimental Results}{33}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{35}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{35}{chapter*.19}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{37}{chapter*.19}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{39}{appendix*.21}%
-\contentsline {chapter}{List of Tables}{41}{appendix*.23}%
-\contentsline {chapter}{List of Symbols}{43}{appendix*.25}%
-\contentsline {chapter}{Acknowledgements}{45}{appendix*.28}%
+\contentsline {chapter}{List of Figures}{43}{appendix*.21}%
+\contentsline {chapter}{List of Tables}{45}{appendix*.23}%
+\contentsline {chapter}{List of Symbols}{47}{appendix*.25}%
+\contentsline {chapter}{Acknowledgements}{49}{appendix*.28}%

@@ -24,12 +24,14 @@
 \BOOKMARK [1][-]{section.3.4}{High-Level Synthesis based accelerators}{chapter.3}% 24
 \BOOKMARK [1][-]{section.3.5}{Software-Hardware co-design accelerators}{chapter.3}% 25
 \BOOKMARK [1][-]{section.3.6}{Graph processing acceleration using HBM-equipped FPGAs}{chapter.3}% 26
-\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 27
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 28
-\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 29
-\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 30
-\BOOKMARK [0][-]{chapter*.19}{Bibliography}{}% 31
-\BOOKMARK [0][-]{appendix*.21}{List of Figures}{}% 32
-\BOOKMARK [0][-]{appendix*.23}{List of Tables}{}% 33
-\BOOKMARK [0][-]{appendix*.25}{List of Symbols}{}% 34
-\BOOKMARK [0][-]{appendix*.28}{Acknowledgements}{}% 35
+\BOOKMARK [1][-]{section.3.7}{Matrix multiplication optimization}{chapter.3}% 27
+\BOOKMARK [2][-]{subsection.3.7.1}{Matrix multiplication optimization in MLIR}{section.3.7}% 28
+\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 29
+\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 30
+\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 31
+\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 32
+\BOOKMARK [0][-]{chapter*.19}{Bibliography}{}% 33
+\BOOKMARK [0][-]{appendix*.21}{List of Figures}{}% 34
+\BOOKMARK [0][-]{appendix*.23}{List of Tables}{}% 35
+\BOOKMARK [0][-]{appendix*.25}{List of Symbols}{}% 36
+\BOOKMARK [0][-]{appendix*.28}{Acknowledgements}{}% 37
