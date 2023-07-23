@@ -270,4 +270,61 @@ Unlike the other accelerators mentioned and outside the scope of this research, 
 Hence, a detailed description is not provided here.
 However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on GenGNN at a lower level of parallelism.
 
+\section{Software-Hardware co-design accelerators}
+\label{sec:software-hardware-accelerators}%
+
+The work conducted by Zhang \textit{et al.}~\cite{9153263} introduces a combined software and hardware approach for accelerating Graph Convolutional Networks (GCNs).
+Their study was initiated with the recognition that hardware acceleration of Graph Convolutional Network (GCN) inference poses challenges stemming from the vast size of the input graph;
+the heterogeneous workload of GCN inference involving sparse and dense matrix operations and the irregular information propagation along the edges during computation
+
+The primary objective of this accelerator is to expedite GCN models, with a particular focus on accelerating the critical computational kernels: feature aggregation $AX$ and feature transformation $XW$.
+In these kernels, $A$ represents the adjacency matrix, $X$ denotes the feature matrix, and $W$ represents the weight matrix.
+
+The proposed algorithm-architecture co-optimization for accelerating large-scale Graph Convolutional Network (GCN) inference on FPGA involves several key steps.
+First, the authors implemented a data partitioning scheme for GCN inference to accommodate real-world datasets with huge dimensions for $A$ and $X$.
+This approach ensures that both the adjacency matrix and the feature matrix can fit on-chip while mapping the computational kernels onto the FPGA\@.
+
+Then, the graph undergoes a two-phase preprocessing algorithm involving sparsification and node reordering. 
+The sparsification phase eliminates edge connections of high-degree nodes by merging familiar neighbors to reduce the memory accesses that a graph with more edges can require during the aggregation stage.
+The node reordering phase effectively groups adjacent nodes to enhance on-chip data reuse.
+
+The pre-processed graph is then fed into a hardware accelerator implemented in an FPGA that efficiently pipelines GCN's two major computational kernels: aggregation and transformation.
+As outlined in~\cite{DBLP:journals/corr/abs-2010-00130}, the design distinguishes itself from other approaches in several ways.
+The aggregator module adopts a double-buffering technique to hide addition latency and leverages node- and feature-level parallelism.
+Moreover, the accelerator supports two modes of operation depending on the order of matrix multiplications, leading to different pipelining strategies.
+In order to accommodate these modes, the modules are interconnected from the aggregate module to the combination modules and vice versa.
+
+\section{Graph processing acceleration using HBM-equipped FPGAs}
+\label{sec:hbm-equipped-fpga-accelerators}%
+
+This section delves into the state-of-the-art accelerators for graph processing.
+Although not directly tailored for graph neural networks, graph processing is a fundamental aspect of GNN acceleration, particularly for models like Graph Convolutional Networks.
+As mentioned earlier in this Chapter, numerous accelerators have prioritized graph processing to enhance GNN performance.
+Also, a part of this research follows this approach, which will be extensively discussed in Chapter~\ref{ch:chapter_six}.
+
+GraphLily~\cite{9643582} is a graph linear algebra overlay designed to accelerate graph processing on FPGAs equipped with high-bandwidth memory (HBM).
+Given the low compute-to-memory access ratio and irregular data access pattern, memory access often limits graph processing.
+HBM's exceptional bandwidth, with multiple channels servicing memory requests concurrently, has the potential to enhance graph processing performance significantly.
+
+GraphLily supports a diverse set of graph algorithms using the GraphBLAS~\cite{DBLP:journals/corr/KepnerABBFGHKLM16} programming interface, which formulates graph algorithms as sparse linear algebra operations.
+GraphBLAS establishes a fundamental collection of matrix-based graph operations, enabling the implementation of a broad array of graph algorithms across various programming environments.
+
+The accelerator provides efficient, memory-optimized implementations for two widely-used GraphBLAS kernels: sparse-matrix dense-vector multiplication (SpMV) and sparse-matrix sparse-vector multiplication (SpMSpV).
+The SpMV accelerator is specifically designed to fully utilize the HBM bandwidth, facilitating efficient pull-based graph processing.
+To achieve this, the authors introduced a novel sparse matrix storage format that explicitly captures and encodes both intra-channel and inter-channel memory-level parallelism, effectively harnessing the parallel capabilities of the accelerator. Its design comprises multiple PE clusters, each connected to one HBM channel.
+
+The SpMSpV accelerator complements the SpMV accelerator, explicitly catering to push-based graph processing, which is particularly advantageous for highly sparse input vectors.
+Its architecture is different from the SpMV's one.
+It comprises a vector loader, a matrix loader, and an arbitrated crossbar.
+The vector loader is responsible for loading the non-zero elements of the sparse input vector from HBM. The matrix loader loads packets of the corresponding columns of the sparse matrix from DDR, decoding them into separate streams.
+Finally, the arbitrated crossbar dispatches these streams based on the row IDs to an array of PEs, each accessing independent banks of the output buffer.
+
+GraphLily incorporates a middleware that presents each accelerator as a module, effectively linking the GraphBLAS interface and the overlay.
+This modular approach enables users to construct graph algorithms by specifying the required modules and scheduling their execution order.
+Each module provides a set of APIs that facilitate data transfers between the host and the device and between different devices.
+Host-to-device and device-to-host data transfers occur only once before or after the iterations of the graph algorithm, ensuring their costs are amortized.
+Meanwhile, device-to-device data transfers facilitate the exchange of intermediate results during the iterations, minimizing the need for frequent data transfers to the host and back.
+
+
+
 

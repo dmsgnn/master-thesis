@@ -24,14 +24,16 @@
 \contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{17}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{18}{subsection.3.3.3}%
 \contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{21}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Problem Formulation}{25}{chapter.4}%
-\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{27}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Experimental Results}{29}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{31}{chapter.7}%
+\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{24}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{25}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Problem Formulation}{27}{chapter.4}%
+\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{29}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Experimental Results}{31}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{33}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{33}{chapter*.19}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{35}{chapter*.19}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{37}{appendix*.21}%
-\contentsline {chapter}{List of Tables}{39}{appendix*.23}%
-\contentsline {chapter}{List of Symbols}{41}{appendix*.25}%
-\contentsline {chapter}{Acknowledgements}{43}{appendix*.28}%
+\contentsline {chapter}{List of Figures}{39}{appendix*.21}%
+\contentsline {chapter}{List of Tables}{41}{appendix*.23}%
+\contentsline {chapter}{List of Symbols}{43}{appendix*.25}%
+\contentsline {chapter}{Acknowledgements}{45}{appendix*.28}%

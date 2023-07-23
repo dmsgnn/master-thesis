@@ -1,4 +1,4 @@
-\begin{thebibliography}{37}
+\begin{thebibliography}{38}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -142,6 +142,16 @@ Y.~Hu, Y.~Du, E.~Ustun, and Z.~Zhang.
 \newblock In \emph{2021 IEEE/ACM International Conference On Computer Aided
   Design (ICCAD)}, pages 1--9, 2021.
 \newblock \doi{10.1109/ICCAD51958.2021.9643582}.
+
+\bibitem[Kepner et~al.(2016)Kepner, Aaltonen, Bader, Bulu{\c{c}}, Franchetti,
+  Gilbert, Hutchison, Kumar, Lumsdaine, Meyerhenke, McMillan, Moreira, Owens,
+  Yang, Zalewski, and Mattson]{DBLP:journals/corr/KepnerABBFGHKLM16}
+J.~Kepner, P.~Aaltonen, D.~A. Bader, A.~Bulu{\c{c}}, F.~Franchetti, J.~R.
+  Gilbert, D.~Hutchison, M.~Kumar, A.~Lumsdaine, H.~Meyerhenke, S.~McMillan,
+  J.~E. Moreira, J.~D. Owens, C.~Yang, M.~Zalewski, and T.~G. Mattson.
+\newblock Mathematical foundations of the graphblas.
+\newblock \emph{CoRR}, abs/1606.05790, 2016.
+\newblock URL \url{http://arxiv.org/abs/1606.05790}.
 
 \bibitem[Kiningham et~al.(2020{\natexlab{a}})Kiningham, Levis, and
   Re]{greta-recoml20}
