@@ -343,3 +343,63 @@ This focus arises because SODA, the framework introduced in Section~\ref{sec:sod
 \subsection{Matrix multiplication optimization in MLIR}
 \label{subsec:matmul-opt-mlir}%
 
+The work presented in~\cite{DBLP:journals/corr/abs-2003-00532} aimed to reimagine the optimization approach of OpenBLAS in a compiler-oriented fashion using MLIR.
+MLIR, a novel intermediate representation, was explicitly designed to offer a unified, modular, and extensible infrastructure, facilitating the gradual lowering of dataflow compute graphs, potentially through loop nests, to high-performance target-specific code.
+
+The authors of this paper chose to base their example on the matrix-matrix multiplication (matmul) algorithm.
+This choice is because matrix-matrix multiplication is an excellent routine for demonstrating code optimization practices in tutorials and a crucial operation in various domains.
+Consequently, it is often the first task for which developers create an optimized implementation when working with a new architecture.
+
+The authors achieved a nearly 3x improvement in performance through their first optimization, which involved using the cache tiling strategy employed in OpenBLAS.
+This strategy carefully tiles the matrices to exploit reuse at different cache levels.
+The primary objective is to ensure that the vector FMA/add mul pipeline remains full, avoiding waiting for loads.
+
+The explicit copying or packing technique, where accessed data is first copied or packed into contiguous buffers and then indexed for computation, is commonly employed when dealing with code involving multidimensional arrays that exhibit reuse.
+By employing such copying techniques, the reduction or near elimination of conflict misses, TLB misses, and improved hardware prefetching performance can be achieved.
+This approach, in combination with tiling, allows for the exploitation of reuse in multiple directions when the data accessed fits in a higher level of the memory hierarchy.
+However, it also addresses the issue where data accessed for a tile is no longer contiguous in the original matrix/tensor.
+This leads to conflict misses, TLB misses, and more prefetch streams, potentially negating some of the gains even with high reuse.
+As a result, this approach yields a substantial performance improvement of nearly 1.5x.
+
+Another applied optimization involves the unroll-and-jam of the innermost two loops, followed by scalar replacement in MLIR post unroll-and-jam.
+This process converts reduced memref (the in-memory representation of a tensor in MLIR) locations into scalars (single-element memrefs) and hoists them, eliminating redundant loads and lifting invariant loads out of loops.
+This step significantly improved overall performance, resulting in an impressive 10x speedup.
+
+The final technique employed was vectorization.
+It consists in organizing data in vectors and processing multiple elements of these vectors in parallel, and it yielded a remarkable 4.5x improvement.
+Combining all the abovementioned techniques and carefully selecting the appropriate tiling parameters to optimize register and cache utilization, the overall performance achieved was only 10\% less than OpenBLAS.
+
+\section{Conclusion}
+\label{sec:relater-work-conclusion}
+
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{|p{8em} c|}
+    \hline
+%    \rowcolor{black!40}
+     & \textbf{description}  \\
+    \hline \hline
+    \textbf{Auten \textit{et al.}} & short description..  \\
+    \hline
+    \textbf{AWB-GCN} & short description..  \\
+    \hline
+    \textbf{BoostGCN} & short description..  \\
+    \hline
+    \textbf{EnGN} & short description..  \\
+    \hline
+    \textbf{GCoD} & short description..  \\
+    \hline
+    \textbf{GenGNN} & short description..  \\
+    \hline
+    \textbf{GRIP} & short description..  \\
+    \hline
+    \textbf{HyGCN} & short description..  \\
+    \hline
+    \textbf{Zhang \textit{et al.}} & short description..  \\
+    \hline
+    \end{tabular}
+    \\[10pt]
+    \caption{Summary of discussed Graph Neural Network accelerators}
+    \label{tab:accelerators-summary}
+\end{table}

@@ -28,14 +28,15 @@
 \contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{25}{section.3.6}%
 \contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{26}{section.3.7}%
 \contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{27}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Conclusion}{28}{section.3.8}%
 \contentsline {chapter}{\numberline {4}Problem Formulation}{29}{chapter.4}%
 \contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{31}{chapter.5}%
 \contentsline {chapter}{\numberline {6}Experimental Results}{33}{chapter.6}%
 \contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{35}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{37}{chapter*.19}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{37}{chapter*.20}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{43}{appendix*.21}%
-\contentsline {chapter}{List of Tables}{45}{appendix*.23}%
-\contentsline {chapter}{List of Symbols}{47}{appendix*.25}%
-\contentsline {chapter}{Acknowledgements}{49}{appendix*.28}%
+\contentsline {chapter}{List of Figures}{43}{appendix*.22}%
+\contentsline {chapter}{List of Tables}{45}{appendix*.24}%
+\contentsline {chapter}{List of Symbols}{47}{appendix*.26}%
+\contentsline {chapter}{Acknowledgements}{49}{appendix*.29}%

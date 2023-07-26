@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  23 JUL 2023 20:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  26 JUL 2023 21:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1152,7 +1152,7 @@ IONE_COL_NEGATIVO-eps-converted-to.pdf Images/02_ING_IND_INFORMAZIONE_COL_NEGAT
 IVO.eps>
 (epstopdf)             \includegraphics on input line 120.
 Package epstopdf Info: Output file is already uptodate.
-<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=155, 493.
+<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=159, 493.
 845pt x 227.85126pt>
 File: Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf Graphic 
 file (type pdf)
@@ -1225,12 +1225,12 @@ Chapter 1.
 ]
 Chapter 2.
 (./chapters/chapter2.tex
-<Images/directed_graph.pdf, id=288, 82.3055pt x 82.96194pt>
+<Images/directed_graph.pdf, id=293, 82.3055pt x 82.96194pt>
 File: Images/directed_graph.pdf Graphic file (type pdf)
 <use Images/directed_graph.pdf>
 Package pdftex.def Info: Images/directed_graph.pdf  used on input line 17.
 (pdftex.def)             Requested size: 91.04742pt x 91.77362pt.
-<Images/undirected_graph.pdf, id=289, 82.3055pt x 82.3055pt>
+<Images/undirected_graph.pdf, id=294, 82.3055pt x 82.3055pt>
 File: Images/undirected_graph.pdf Graphic file (type pdf)
 <use Images/undirected_graph.pdf>
 Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
@@ -1249,11 +1249,10 @@ Overfull \hbox (24.44208pt too wide) in paragraph at lines 297--297
 |[]\T1/cmr/bx/n/17.28 Graph pro-cess-ing ac-cel-er-a-tion us-ing HBM-equipped
  []
 
-[25] [26]) [27] [28
-
-]
+[25] [26] [27]) [28]
 Chapter 4.
 [29
+
 
 ] [30
 
@@ -1340,14 +1339,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 71C0B2D9BC61665A7A8FF388D01B8E51;2496.
+(rerunfilecheck)             Checksum: B2E7D68F0624F479512DC9C3A5AA1224;2553.
  ) 
 Here is how much of TeX's memory you used:
- 25785 strings out of 480608
- 481023 string characters out of 5903630
- 903156 words of memory out of 5000000
- 40936 multiletter control sequences out of 15000+600000
- 549556 words of font info for 65 fonts, out of 8000000 for 9000
+ 25798 strings out of 480608
+ 481263 string characters out of 5903630
+ 904156 words of memory out of 5000000
+ 40945 multiletter control sequences out of 15000+600000
+ 550255 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,14n,89p,1195b,586s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
@@ -1361,16 +1360,17 @@ al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
 texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
 exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
 live/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local
-/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/t
-exlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (58 pages, 379020 bytes).
+/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on out/thesis.pdf (58 pages, 386994 bytes).
 PDF statistics:
- 736 PDF objects out of 1000 (max. 8388607)
- 648 compressed objects within 7 object streams
- 163 named destinations out of 1000 (max. 500000)
- 330 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 749 PDF objects out of 1000 (max. 8388607)
+ 660 compressed objects within 7 object streams
+ 166 named destinations out of 1000 (max. 500000)
+ 338 words of extra memory for PDF output out of 10000 (max. 10000000)
 

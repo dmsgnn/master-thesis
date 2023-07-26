@@ -17,45 +17,45 @@ Warning--entry type for "openblas" isn't style-file defined
 --line 637 of file Thesis_bibliography.bib
 Warning--empty year in cublas
 Warning--empty year in openblas
-You've used 41 entries,
+You've used 42 entries,
             2773 wiz_defined-function locations,
-            840 strings with 15136 characters,
-and the built_in function-call counts, 23923 in all, are:
-= -- 1965
-> -- 2103
-< -- 20
-+ -- 704
-- -- 662
-* -- 2123
-:= -- 3852
-add.period$ -- 158
-call.type$ -- 41
-change.case$ -- 342
-chr.to.int$ -- 40
-cite$ -- 84
-duplicate$ -- 874
-empty$ -- 1475
-format.name$ -- 717
-if$ -- 4896
+            846 strings with 15429 characters,
+and the built_in function-call counts, 24649 in all, are:
+= -- 2029
+> -- 2151
+< -- 21
++ -- 720
+- -- 677
+* -- 2182
+:= -- 3955
+add.period$ -- 162
+call.type$ -- 42
+change.case$ -- 350
+chr.to.int$ -- 41
+cite$ -- 86
+duplicate$ -- 907
+empty$ -- 1529
+format.name$ -- 733
+if$ -- 5058
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 33
-newline$ -- 247
-num.names$ -- 166
-pop$ -- 662
+missing$ -- 34
+newline$ -- 253
+num.names$ -- 170
+pop$ -- 680
 preamble$ -- 1
-purify$ -- 301
+purify$ -- 308
 quote$ -- 0
-skip$ -- 831
+skip$ -- 861
 stack$ -- 0
-substring$ -- 306
-swap$ -- 113
-text.length$ -- 9
+substring$ -- 336
+swap$ -- 124
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 451
+type$ -- 462
 warning$ -- 2
-while$ -- 145
+while$ -- 150
 width$ -- 0
-write$ -- 597
+write$ -- 612
 (There were 8 warnings)
