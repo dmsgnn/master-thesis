@@ -294,6 +294,35 @@ The aggregator module adopts a double-buffering technique to hide addition laten
 Moreover, the accelerator supports two modes of operation depending on the order of matrix multiplications, leading to different pipelining strategies.
 In order to accommodate these modes, the modules are interconnected from the aggregate module to the combination modules and vice versa.
 
+GCoD~\cite{9773223} is another accelerator that follows the dedicated Algorithm and Accelerator Co-Design approach.
+It is a framework combining Graph Convolutional Network algorithm and accelerator design to improve GCNs' inference efficiency significantly.
+
+GCoD incorporates a split-and-conquer GCN training strategy at the algorithm level, dividing graphs into denser or sparser local neighborhoods without sacrificing model accuracy.
+This approach leads to adjacency matrices with mainly two levels of workload, enabling more effortless acceleration.
+
+GCoD's Split and Conquer Algorithm aims to tackle the high sparsity and irregularity in GCNs' adjacency matrices through subgraph classification, enforcing regularity at different granularities.
+Nodes with similar degrees are clustered into classes, and each class is further divided into subgraphs with similar edge counts.
+This approach fosters regular and efficient hardware acceleration, with each sub-accelerator processing one subgraph.
+
+Additionally, Group Partitioning manages uniformly grouped subgraphs of the same class, reducing boundary connections to enforce sparser patterns.
+This grouping strategy simplifies hardware designs and communication among sub-accelerators, further enhancing processing efficiency.
+
+The authors design a specialized two-pronged accelerator on the hardware level, with separate engines for processing denser and sparser workloads, maximizing overall utilization and acceleration efficiency.
+The GCoD accelerator is designed with two separate computing branches, each dedicated to processing the denser and sparser workloads resulting from the GCoD algorithm's adjacency matrices.
+
+The Denser Branch utilizes an array of parallel sub-accelerators to process the enforced regular dense subgraphs along the diagonal line of the adjacency matrices.
+This approach efficiently handles the more intense workload while maintaining workload balancing through proportional resource allocation among the sub-accelerators.
+
+Meanwhile, the Sparser Branch efficiently handles the remaining irregular but lightweight sparser workloads, mostly on-chip.
+This design minimizes frequent and large-volume data movements from the off-chip memory, improving overall processing efficiency.
+
+In each sub-accelerator within the branches, there are dedicated Buffers that enhance local reuse opportunities,
+a Sparse/Dense Matrix Multiplication Engine (SpMM) capable of handling both dense and sparse matrix multiplication,
+element-wise Activation Units for non-linear activation operations, and sampling Units for efficient node sampling scheduling.
+
+Similar to GraphLily, as discussed in Section~\ref{sec:hbm-equipped-fpga-accelerators}, GCoD also leverages High Bandwidth Memory (HBM).
+Specifically, each sub-accelerator communicates with an off-chip HBM through direct memory access to enhance access efficiency.
+
 \section{Graph processing acceleration using HBM-equipped FPGAs}
 \label{sec:hbm-equipped-fpga-accelerators}%
 

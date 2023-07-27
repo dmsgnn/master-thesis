@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  26 JUL 2023 21:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  27 JUL 2023 15:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1244,35 +1244,36 @@ Chapter 3.
 
 
 ] [14] [15] [16] [17] [18] [19] [20] [21] [22]
-[23] [24]
-Overfull \hbox (24.44208pt too wide) in paragraph at lines 297--297
+[23] [24] [25]
+Overfull \hbox (24.44208pt too wide) in paragraph at lines 326--326
 |[]\T1/cmr/bx/n/17.28 Graph pro-cess-ing ac-cel-er-a-tion us-ing HBM-equipped
  []
 
-[25] [26] [27]) [28]
-Chapter 4.
-[29
-
-
-] [30
+[26] [27] [28]) [29] [30
 
 ]
-Chapter 5.
+Chapter 4.
 [31
 
 ] [32
 
 ]
-Chapter 6.
+Chapter 5.
 [33
 
 ] [34
 
 ]
-Chapter 7.
-(out/thesis.bbl [35
+Chapter 6.
+[35
 
 ] [36
+
+]
+Chapter 7.
+(out/thesis.bbl [37
+
+] [38
 
 ]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
@@ -1298,35 +1299,35 @@ Underfull \hbox (badness 1466) in paragraph at lines 78--83
 ez-Bombarelli,
  []
 
-[37
+[39
 
-] [38] [39] [40]) [41] [42
+] [40] [41] [42]) [43] [44
 
 ] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [43
+ [45
 
 
-] [44
+] [46
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
 
-[45
-
-] [46
-
-] [47
+[47
 
 ] [48
 
 ] [49
 
 ] [50
+
+] [51
+
+] [52
 
 ]
 
@@ -1342,9 +1343,9 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: B2E7D68F0624F479512DC9C3A5AA1224;2553.
  ) 
 Here is how much of TeX's memory you used:
- 25798 strings out of 480608
- 481263 string characters out of 5903630
- 904156 words of memory out of 5000000
+ 25800 strings out of 480608
+ 481277 string characters out of 5903630
+ 903156 words of memory out of 5000000
  40945 multiletter control sequences out of 15000+600000
  550255 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1367,10 +1368,10 @@ ve/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
 /2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2
 020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/202
 0/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (58 pages, 386994 bytes).
+Output written on out/thesis.pdf (60 pages, 389750 bytes).
 PDF statistics:
- 749 PDF objects out of 1000 (max. 8388607)
- 660 compressed objects within 7 object streams
- 166 named destinations out of 1000 (max. 500000)
+ 759 PDF objects out of 1000 (max. 8388607)
+ 668 compressed objects within 7 object streams
+ 168 named destinations out of 1000 (max. 500000)
  338 words of extra memory for PDF output out of 10000 (max. 10000000)
 
