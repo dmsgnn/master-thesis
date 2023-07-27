@@ -401,32 +401,40 @@ Combining all the abovementioned techniques and carefully selecting the appropri
 \section{Conclusion}
 \label{sec:relater-work-conclusion}
 
+The analysis of the state of the art in previous sections yields several conclusions.
+Firstly, a quantitative comparison among accelerators is challenging due to the absence of a standard baseline system and a GNN benchmark suite encompassing a representative set of algorithms, datasets, and design objectives.
+To address this issue, initiatives like the Open Graph Benchmark (OGB)~\cite{NEURIPS2020_fb60d411}, which will be discussed in Chapter~\ref{ch:chapter_six} as it was also used for part of this thesis' experiments, aim to provide a representative set of graphs and GNNs for benchmarking purposes.
+
+Secondly, the one-size-fits-all approach does not apply to GNNs, and different applications will likely require distinct design approaches.
+It is evident that specific accelerators are more suitable and have been specifically designed to accelerate particular models.
+
+In conclusion of this chapter, Table~\ref{tab:accelerators-summary} summarizes the discussed accelerators, providing an overview of their most important features.
 
 \begin{table}[H]
 \centering
-    \begin{tabular}{|p{8em} c|}
-    \hline
+    \begin{tabular}{p{8em}  p{22em}}
+    %\hline
 %    \rowcolor{black!40}
-     & \textbf{description}  \\
-    \hline \hline
-    \textbf{Auten \textit{et al.}} & short description..  \\
+    \textbf{Name} & \textbf{Features}  \\
     \hline
-    \textbf{AWB-GCN} & short description..  \\
+    \textbf{Auten \textit{et al.}} & \parbox[t]{22em}{\tabitem Tiled architecture \par \tabitem Specialized hardware units\strut} \\
     \hline
-    \textbf{BoostGCN} & short description..  \\
+    \textbf{AWB-GCN} &  \parbox[t]{22em}{\tabitem Three hardware-based autotuning techniques \par \tabitem Adapting to varying GNN workloads\strut} \\
     \hline
-    \textbf{EnGN} & short description..  \\
+    \textbf{BoostGCN} & \parbox[t]{22em}{\tabitem Partition-Centric Feature Aggregation scheme \par \tabitem Centralized load balancing scheme\strut}  \\
     \hline
-    \textbf{GCoD} & short description..  \\
+    \textbf{EnGN} & \parbox[t]{22em}{\tabitem Unified architecture \par \tabitem Aggregation via Ring-Edge Reduction (RER)\strut}  \\
     \hline
-    \textbf{GenGNN} & short description..  \\
+    \textbf{GCoD} & \parbox[t]{22em}{\tabitem Algorithm and accelerator Co-Design \par \tabitem Dedicated two-pronged accelerator\strut}  \\
     \hline
-    \textbf{GRIP} & short description..  \\
+    \textbf{GenGNN} & \parbox[t]{22em}{\tabitem Using High-Level Synthesis (HLS) \par \tabitem Highly optimized message passing architecture\strut}  \\
     \hline
-    \textbf{HyGCN} & short description..  \\
+    \textbf{GRIP} & \parbox[t]{22em}{\tabitem Uses the GReTA abstraction \par \tabitem Vertex-tiling optimization\strut} \\
     \hline
-    \textbf{Zhang \textit{et al.}} & short description..  \\
+    \textbf{HyGCN} & \parbox[t]{22em}{\tabitem Hybrid architecture, aggregate/combine phases \par \tabitem Sparsity reduction via window sliding/shrinking\strut}  \\
     \hline
+    \textbf{Zhang \textit{et al.}} & \parbox[t]{22em}{\tabitem Software and hardware co-design \par \tabitem Double buffering, node and feature parallelism\strut}  \\
+    %\hline
     \end{tabular}
     \\[10pt]
     \caption{Summary of discussed Graph Neural Network accelerators}
