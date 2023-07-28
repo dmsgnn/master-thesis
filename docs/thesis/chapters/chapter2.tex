@@ -1,12 +1,12 @@
-This chapter provides essential background information to enhance understanding of the thesis content and objectives.
+This chapter provides essential background to understand of the thesis content and objectives.
 It begins by introducing the graph data structure, which is crucial for comprehending Graph Neural Networks.
 Additionally, the chapter provides an introduction to Graph Neural Networks, outlining their capabilities and exploring various applications.
-Furthermore, it introduces two essential tools, SODA and Bambu, which are integral parts of the SODA Toolchain that served as the foundation for this research study.
+Furthermore, it introduces two essential tools, SODA and Bambu, which are integral parts of the SODA Toolchain that served as the foundation for this research.
 
 \section{Graphs}
 \label{sec:graphs}%
 
-\textit{Graphs} are a data structure representing a collection of objects, known as vertices or nodes, and a set of edges~\cite{DBLP:journals/corr/abs-1812-08434}.
+\textit{Graphs} are data structures representing a collection of objects, known as vertices or nodes, and a set of edges connecting them~\cite{DBLP:journals/corr/abs-1812-08434}.
 In a graph, the edges can be either directed or undirected, as shown in Figure~\ref{fig:directed_vs_undirected}, and they typically connect two vertices, which may or may not be distinct.
 The vertices represent entities or elements, and the edges represent their relationships or connections.
 
@@ -27,21 +27,20 @@ The vertices represent entities or elements, and the edges represent their relat
 \end{figure}
 
 Graphs serve as a versatile tool for describing diverse forms of data.
-Molecules, the fundamental units of matter, are composed of atoms and electrons arranged in three-dimensional space.
+For example, molecules, the fundamental units of matter, are composed of atoms and electrons arranged in three-dimensional space.
 In this intricate structure, all particles interact with each other.
 However, when a pair of atoms are stably positioned at a specific distance, we refer to their connection as a covalent bond.
 These bonds with distinct atomic distances can vary in nature, such as single or double bonds.
 Representing this complex three-dimensional object as a graph offers a practical and widely adopted abstraction, where atoms are nodes and covalent bonds act as edges~\cite{DBLP:journals/corr/DuvenaudMAGHAA15}.
 
-Social networks provide another domain where graphs find utility.
-They serve as valuable tools for examining patterns within the collective behavior of people, institutions, and organizations.
+Social networks provide another domain where graphs are used: in fact, they serve as valuable tools for examining patterns within the collective behavior of people, institutions, and organizations.
 By representing individuals as nodes and their relationships as edges, we can construct a graph that effectively captures groups of people and their interconnectedness.
 
 \subsection{Graph Representation}
 \label{subsec:graph_representation}
 
 Here I am going to talk about how graphs can be represented.
-Especially the ways encountered during the research: adjacency matrix, COO and CSR.
+Especially the ways encountered during the research: adjacency matrix, COO and CSR\@.
 
 %TODO: add an image with a graph and its representation in the 3 different format
 
@@ -51,7 +50,18 @@ Especially the ways encountered during the research: adjacency matrix, COO and C
 %TODO: add an example image of a GNN
 
 Graph neural networks (GNNs) are deep learning techniques that operate on graph-structured data.
-Thanks to their impressive performance, GNNs have recently gained significant popularity as a widely adopted method for graph analysis.
+Thanks to their impressive performance, GNNs have recently gained significant popularity as a widely adopted method for graph analysis~\cite{KERAMATFAR2022100401}.
+Figure~\ref{fig:google_scholar} illustrates the steady growth in the number of publications related to Graph Neural Networks (GNNs) on Google Scholar from 2015 to 2022.
+The data were collected by querying papers containing the specific words "Graph Neural Network" in their whole content and aggregating them on a yearly basis.
+The increasing trend reflects the rising interest and research activity in the field of GNNs over the years.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/google_scholar}
+    %\caption[Shorter caption]{This is a very long caption you don't want to appear in the List of Figures.}
+    \caption{Number of GNN publications on Google Scholar per year}
+    \label{fig:google_scholar}
+\end{figure}
 
 Graph Neural Networks (GNNs) are designed to process graph data and consist of multiple interconnected layers.
 At its core, a GNN is an algorithm that exploits the connectivity within a graph to understand and represent the relationships between nodes.
@@ -69,7 +79,6 @@ Each Graph Neural Network typically encompasses three main stages: pre-processin
 \end{enumerate}
 Performing these stages on large and sparse graphs can introduce dynamic computational data flow and numerous irregular memory access patterns.
 
-Similar to other neural networks, the processing of a GNN is influenced by its architecture.
 GNNs, as previously said, are structured into layers, each representing an iteration in the update process described earlier.
 This layering allows information to propagate across nodes, enabling the influence of distant nodes.
 Consequently, the appropriate number of layers in a GNN will vary depending on the significance of relationships among distant nodes in a specific application.
@@ -79,7 +88,7 @@ Graph Neural Networks are a group of neural networks which are designed to solve
 Prediction tasks on graphs can generally be classified into three categories: graph-level, node-level, and edge-level predictions~\cite{sanchez-lengeling2021a}.
 
 In a graph-level task, the objective is to predict the property or characteristic of an entire graph.
-For instance, when considering a molecule represented as a graph, we might aim to predict attributes such as its likelihood of binding to a receptor associated with a specific disease.
+For instance, when considering a molecule represented as a graph, attributes might be aimed to be predicted such as its likelihood of binding to a receptor associated with a specific disease.
 This assignment is comparable to image classification tasks, where the objective is to assign a label to an entire image.
 Similarly, in text analysis, sentiment analysis serves as a similar problem where the goal is to determine a complete sentence's overall mood or emotion in one go.
 
@@ -96,7 +105,7 @@ Given a graph representing a social network where, as before, in node-level task
 This can involve predicting the likelihood of a future friendship or the probability of a collaboration between individuals based on their shared characteristics or mutual connections in the network.
 
 Different popular Graph Neural Network architectures have been proposed recently, some of which are more suitable for some tasks than others.
-A summary of two types of GNNs used in the experimental phase is provided in the following sections.
+A summary of two types of GNNs is provided in the following subsections.
 
 \subsection{Graph Convolutional Network}
 \label{subsec:graph_convolutional_network}%
@@ -116,7 +125,7 @@ Given an undirected graph $\mathcal{G} = (V, E)$, where $V$ represents the set o
 Where $H^{(l)} \in \mathbb{R}^{N \times D}$ is the input node features matrix, $W^{(l)}$ is a layer-specific learnable weight matrix, $\tilde{D}$ is the degree matrix defined as $\tilde{D}_{ii} = \sum_{j} \tilde{A}_{ij}$, and $f(\cdot)$ represents a non-linear activation function applied element-wise, such as $ReLU(\cdot) = max(0, \cdot)$.
 The equation above demonstrates the propagation of node features through graph convolution, where the adjacency matrix $\tilde{A}$ captures the connectivity information of the graph, $\tilde{D}^{-\tfrac{1}{2}}$ normalizes the adjacency matrix, and $H^{(l)}  W^{(l)}$ performs a linear transformation of node features.
 The resulting $H^{(l+1)}$ represents the updated node representations after the graph convolution operation.
-In practice, multiple graph convolutional layers can be stacked to capture increasingly complex relationships and refine the node representations further.
+In practice, multiple graph convolutional layers can be stacked to capture increasingly complex relationships and further refine the node representations.
 
 \subsection{Graph Isomorphism Network}
 \label{subsec:graph_isomorphism_network}%
@@ -124,7 +133,8 @@ In practice, multiple graph convolutional layers can be stacked to capture incre
 A Graph Isomorphism Network (GIN)~\cite{xu2019powerful, daigavane2021understanding} is a type of neural network architecture designed to operate on graph-structured data by capturing graph isomorphism, which is the property of two graphs having the same structure, inspired by the Weisfeiler-Lehman (WL) graph isomorphism test~\cite{xu2019powerful}.
 GINs aim to learn node representations that are invariant under graph isomorphism, enabling them to generalize across different graphs with similar structures.
 
-The learned vertex features from GIN-Conv can be directly utilized for tasks such as node classification and link prediction. It is possible to perform this model as:
+The learned vertex features from GIN-Conv can be directly utilized for tasks such as node classification and link prediction.
+The model is based on the following rule:
 \begin{equation}
     \label{eq:gin_function}
     h_v^{(k+1)} = MLP^{(k)} \left( \left( 1 + \epsilon^{(k)} \right) \cdot h_v^{(k)} + \sum_{u \in \mathcal{N}(v)} h_u^{(k)} \right)
@@ -158,7 +168,6 @@ The synthesizer comprises a compiler-based frontend that interfaces with high-le
 It also includes a compiler-based backend responsible for generating Verilog code and interfacing with external tools to compile the final design, which can be applied to application-specific integrated circuits (ASICs) or field-programmable gate arrays (FPGAs).
 
 SODA's exceptional power lies in its ability to offer a fully automated end-to-end hardware compiler, eliminating the need for human intervention and any modifications to the input code.
-The SODA synthesizer framework comprises two main components: a compiler-based frontend and a compiler-based hardware generation engine.
 This framework seamlessly integrates with high-level Python frameworks by accepting their input descriptions, which are then translated by the frontend into a high-level intermediate representation (IR).
 Leveraging the multi-level intermediate representation (MLIR), the frontend facilitates hardware/software partitioning of algorithm specifications and performs architecture-independent optimizations.
 Following this, it generates a low-level IR (LLVM IR) that is utilized by the hardware generation engine, PandA-Bambu~\cite{9586110}.
@@ -168,7 +177,7 @@ Throughout the entire SODA toolchain, compiler passes are employed to implement 
 \subsection{SODA-OPT Frontend}
 \label{subsec:soda_frontend}%
 
-SODA-OPT, the high-level compiler frontend of the SODA synthesizer, performs search, outlining, optimization, dispatching, and acceleration pass on the input program.
+SODA-OPT, the high-level compiler frontend of the SODA synthesizer, performs search, outlining, optimization, dispatching, and acceleration passes on the input program.
 Its primary objective is to prepare the program for hardware synthesis, targeting either FPGAs or ASICs.
 To accomplish these tasks, SODA-OPT relies on and extends the MLIR framework.
 MLIR is a framework that facilitates the development of reusable, extensible, and modular compiler infrastructure by defining dialects.
@@ -182,7 +191,7 @@ On the other hand, the host module is lowered into an LLVM IR file containing ru
 \label{subsec:soda_backend}%
 
 Bambu, the SODA synthesizer backend, harnesses cutting-edge HLS techniques to produce accelerator designs using the low-level LLVM IR generated by the SODA frontend.
-Bambu boasts multiple frontends based on standard compilers such as GCC or CLANG.
+Bambu supports multiple frontends based on standard compilers such as GCC or CLANG.
 It constructs an internal IR to execute HLS steps and generates designs in HDL formats, such as Verilog or VHDL.
 In addition to synthesizable HDL, Bambu can automatically generate testbenches for verification purposes.
 Using Bambu, the SODA synthesizer can target both FPGAs and ASICs.
@@ -191,14 +200,11 @@ Bambu is optimized to handle a broad range of C and C++ constructs while also be
 Through SODA-OPT, Bambu can be connected with MLIR code.
 The LLVM IR generated after SODA-OPT's high-level optimizations undergoes explicit restructuring for HLS, resulting in more efficient accelerators than direct translation from MLIR to LLVM IR.
 
-Bambu generates designs at the Register Transfer Level (RTL), adhering to the Finite State Machine with Datapath (FSMD) model.
-These generated accelerators can subsequently be integrated into larger system-level designs, with or without microcontrollers controlling the execution.
-
 \section{Conclusion}
 \label{sec:background_conclusion}%
 This chapter has presented the foundational concepts necessary for understanding the subsequent contents of this thesis.
 It provided a concise overview of the broad domain of Graphs and Graph Neural Networks, explicitly focusing on the architectures of Graph Convolutional Networks and Graph Isomorphism Networks.
 Additionally, the chapter introduced SODA and PandA-Bambu, which will be further investigated within the context of the proposed design flow for the creation of GNNs FPGA-based accelerators.
 
-The following chapter, however, is dedicated to an extensive analysis of scientific literature on hardware acceleration for Graph Neural Networks.
+The following chapter is dedicated to an analysis of scientific literature on hardware acceleration for Graph Neural Networks.
 This analysis primarily focuses on publications concerning FPGA-based implementations and design flows that leverage High-Level Synthesis techniques.
