@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -52,6 +52,13 @@ U.~Bondhugula.
   {GEMM}.
 \newblock \emph{CoRR}, abs/2003.00532, 2020.
 \newblock URL \url{https://arxiv.org/abs/2003.00532}.
+
+\bibitem[Bronstein et~al.(2016)Bronstein, Bruna, LeCun, Szlam, and
+  Vandergheynst]{DBLP:journals/corr/BronsteinBLSV16}
+M.~M. Bronstein, J.~Bruna, Y.~LeCun, A.~Szlam, and P.~Vandergheynst.
+\newblock Geometric deep learning: going beyond euclidean data.
+\newblock \emph{CoRR}, abs/1611.08097, 2016.
+\newblock URL \url{http://arxiv.org/abs/1611.08097}.
 
 \bibitem[Böhm(2022)]{opt_cuda_matmul}
 S.~Böhm.

@@ -1,5 +1,5 @@
 import math
-
+import time
 import torch
 
 from torch.nn.parameter import Parameter
@@ -29,7 +29,10 @@ class GraphConvolution(Module):
             self.bias.data.uniform_(-stdv, stdv)
 
     def forward(self, input: torch.Tensor, adj: torch.Tensor) -> torch.Tensor:
+        matmul_start = time.time()
         support = torch.mm(input, self.weight)
+        matmul_end = time.time()
+        print("torch.mm between matrices of sizes [" + str(len(input)) +"][" + str(len(input[0])) + "] and [" + str(len(self.weight)) + "][" + str(len(self.weight[0]))  + "] completed in " + str(matmul_end-matmul_start) + " s")
         output = torch.mm(adj, support)
         if self.bias is not None:
             return output + self.bias
