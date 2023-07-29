@@ -10,33 +10,36 @@
 \contentsline {section}{\numberline {2.1}Graphs}{5}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Graph Representation}{6}{subsection.2.1.1}%
 \contentsline {section}{\numberline {2.2}Graph Neural Networks}{8}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Graph Convolutional Network}{11}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Graph Isomorphism Network}{11}{subsection.2.2.2}%
-\contentsline {section}{\numberline {2.3}SODA Toolchain}{12}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}SODA-OPT Frontend}{13}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}SODA Synthesizer Backend}{14}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Conclusion}{14}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Related Work}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Chapter structure}{15}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Software accelerators}{16}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Hardware accelerators}{17}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Unified architecture accelerators}{17}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{19}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{20}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{23}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{26}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{28}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{29}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{30}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Conclusion}{31}{section.3.8}%
-\contentsline {chapter}{\numberline {4}Problem Formulation}{33}{chapter.4}%
-\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{35}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Experimental Results}{37}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{39}{chapter.7}%
+\contentsline {subsection}{\numberline {2.2.1}Multi-Layer Perceptron}{11}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Graph Convolutional Network}{11}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Graph Isomorphism Network}{12}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}MLIR}{13}{section.2.3}%
+\contentsline {section}{\numberline {2.4}High-Level Synthesis}{14}{section.2.4}%
+\contentsline {section}{\numberline {2.5}SODA Toolchain}{15}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}SODA-OPT Frontend}{15}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}SODA Synthesizer Backend}{16}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}Conclusion}{16}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Related Work}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Chapter structure}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Software accelerators}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Hardware accelerators}{19}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Unified architecture accelerators}{19}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{21}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{22}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{25}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{28}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{30}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{31}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{32}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Conclusion}{33}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Problem Formulation}{35}{chapter.4}%
+\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{37}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Experimental Results}{39}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{41}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{41}{chapter*.23}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{43}{chapter*.25}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{47}{appendix*.25}%
-\contentsline {chapter}{List of Tables}{49}{appendix*.27}%
-\contentsline {chapter}{List of Symbols}{51}{appendix*.29}%
-\contentsline {chapter}{Acknowledgements}{53}{appendix*.32}%
+\contentsline {chapter}{List of Figures}{49}{appendix*.27}%
+\contentsline {chapter}{List of Tables}{51}{appendix*.29}%
+\contentsline {chapter}{List of Symbols}{53}{appendix*.31}%
+\contentsline {chapter}{Acknowledgements}{55}{appendix*.34}%

@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{45}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -70,6 +70,13 @@ S.~Böhm.
 H.~Chen and C.~Hao.
 \newblock Dgnn-booster: A generic fpga accelerator framework for dynamic graph
   neural network inference, 2023.
+
+\bibitem[Coussy et~al.(2009)Coussy, Gajski, Meredith, and Takach]{5209958}
+P.~Coussy, D.~D. Gajski, M.~Meredith, and A.~Takach.
+\newblock An introduction to high-level synthesis.
+\newblock \emph{IEEE Design \& Test of Computers}, 26\penalty0 (4):\penalty0
+  8--17, 2009.
+\newblock \doi{10.1109/MDT.2009.69}.
 
 \bibitem[Daigavane et~al.(2021)Daigavane, Ravindran, and
   Aggarwal]{daigavane2021understanding}
@@ -265,6 +272,12 @@ M.~Wang, L.~Yu, D.~Zheng, Q.~Gan, Y.~Gai, Z.~Ye, M.~Li, J.~Zhou, Q.~Huang,
   graphs.
 \newblock \emph{CoRR}, abs/1909.01315, 2019.
 \newblock URL \url{http://arxiv.org/abs/1909.01315}.
+
+\bibitem[Weisfeiler and Leman(1968)]{weisfeiler1968reduction}
+B.~Weisfeiler and A.~Leman.
+\newblock The reduction of a graph to canonical form and the algebra which
+  appears therein.
+\newblock \emph{nti, Series}, 2\penalty0 (9):\penalty0 12--16, 1968.
 
 \bibitem[Wu et~al.(2019)Wu, Pan, Chen, Long, Zhang, and
   Yu]{DBLP:journals/corr/abs-1901-00596}

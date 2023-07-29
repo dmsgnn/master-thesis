@@ -125,7 +125,7 @@ The increasing trend reflects the rising interest and research activity in the f
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.7\textwidth]{Images/google_scholar}
+    \includegraphics[height=0.4\textwidth]{Images/google_scholar}
     %\caption[Shorter caption]{This is a very long caption you don't want to appear in the List of Figures.}
     \caption{Number of GNN publications on Google Scholar per year}
     \label{fig:google_scholar}
@@ -172,7 +172,24 @@ Consequently, the appropriate number of layers in a GNN will vary depending on t
 The commonly adopted range for the number of GNN layers is 1 to 5, as an excessive number of layers can introduce undesired problems such as feature over-smoothing, vanishing gradients, or over-fitting~\cite{DBLP:journals/corr/abs-1801-07606}.
 
 Different popular Graph Neural Network architectures have been proposed recently, some of which are more suitable for some tasks than others.
-A summary of two types of GNNs is provided in the following subsections.
+A summary of two types of GNNs is provided in the following subsections, preceded by an important definition.
+
+\subsection{Multi-Layer Perceptron}
+\label{subsec:mlp}%
+The central component of an Artificial Neural Network is referred to as the Multi-Layer Perceptron (MLP).
+As depicted in Figure~\ref{fig:mlp}, it comprises multiple interconnected layers, each containing processing elements (neurons) that perform weighted sums of inputs and biases.
+
+Input layers receives the input data, where each neuron represents a feature or attribute.
+Hidden layers are responsible for learning and extracting complex features from the input data.
+Output layers generate the final output of the network.
+Processing elements in each layer receive inputs from all nodes in the previous layer and send their outputs to all neurons in the subsequent layer.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/multi-layer-perceptron}
+    \caption{Example of a Multi-Layer Perceptron}
+    \label{fig:mlp}
+\end{figure}
 
 \subsection{Graph Convolutional Network}
 \label{subsec:graph_convolutional_network}%
@@ -197,7 +214,9 @@ In practice, multiple graph convolutional layers can be stacked to capture incre
 \subsection{Graph Isomorphism Network}
 \label{subsec:graph_isomorphism_network}%
 
-A Graph Isomorphism Network (GIN)~\cite{xu2019powerful, daigavane2021understanding} is a type of neural network architecture designed to operate on graph-structured data by capturing graph isomorphism, which is the property of two graphs having the same structure, inspired by the Weisfeiler-Lehman (WL) graph isomorphism test~\cite{xu2019powerful}.
+A Graph Isomorphism Network (GIN)~\cite{xu2019powerful, daigavane2021understanding} is a type of neural network architecture designed to operate on graph-structured data by capturing graph isomorphism, which is the property of two graphs having the same structure, inspired by the Weisfeiler-Lehman (WL) graph isomorphism test~\cite{weisfeiler1968reduction}.
+The WL test involves an iterative process where it (1) aggregates the labels of nodes and their neighborhoods, and (2) hashes the aggregated labels into unique new labels.
+The algorithm determines that two graphs are non-isomorphic if, during any iteration, the labels of the nodes between the two graphs differ.
 GINs aim to learn node representations that are invariant under graph isomorphism, enabling them to generalize across different graphs with similar structures.
 
 The learned vertex features from GIN-Conv can be directly utilized for tasks such as node classification and link prediction.
@@ -208,7 +227,7 @@ The model is based on the following rule:
 \end{equation}
 
 Where $h_v^{(k)}$ represents the initial node representation of node $v$, $\mathcal{N}(v)$ represents the neighborhood of node $v$, $\epsilon$ is a learnable
-parameter or a fixed scalar, $MLP( \cdot )$ represents a Multi Layer Perceptron and $h_v^{(k+1)}$ represents the updated node representations.
+parameter or a fixed scalar, $MLP( \cdot )$ represents a Multi-Layer Perceptron, defined in Subsection~\ref{subsec:mlp}, and $h_v^{(k+1)}$ represents the updated node representations.
 
 In the neighborhood aggregation process of GINs, each node's representation is updated by considering its own representation and its neighbors' representations.
 The neighborhood aggregation is performed through the MLP operation, followed by non-linear activation.
@@ -223,8 +242,41 @@ By concatenating the results from all iterations of GINConv, the final graph rep
     h_G = CONCAT \left( READOUT \left( \left\{ h_v^{(k)} | v \in G \right\} \right) | k = 0, 1, ..., K \right)
 \end{equation}
 
-Where $READOUT$ in~\ref{eq:gin_function} can be replaced with a sum operator in order to generalize the WL test~\cite{xu2019powerful}.
+Where $READOUT$ in~\ref{eq:gin_function} can be replaced with a sum operator in order to generalize the WL test.
 
+\section{MLIR}
+\label{sec:mlir}%
+MLIR~\cite{9370308} represents a novel approach for constructing reusable and extensible compiler infrastructure.
+Addressing software fragmentation and enabling compilation for heterogeneous hardware reduces the effort to build domain-specific compilers and seamlessly connect existing compilers.
+MLIR empowers the design and implementation of code generators, translators, and optimizers across various levels of abstraction, application domains, hardware targets, and execution environments.
+
+The MLIR project aims to address programming language design and implementation challenges.
+It achieves this by enabling cost-effective definition, introducing new abstraction levels, and built-in infrastructure to solve common compiler engineering issues.
+MLIR ensures extensibility through Dialects, which logically group Ops, attributes, and types under a unique namespace.
+Dialects do not introduce new semantics but act as a mechanism for group-related functionality, such as constant folding behavior, for all ops in the dialect.
+They organize the ecosystem of language- and domain-specific semantics while adhering to the principle of simplicity.
+Unknown Ops are treated with a conservative approach by compiler passes, and MLIR offers extensive support for describing the semantics of Ops to passes through traits and interfaces.
+
+\section{High-Level Synthesis}
+\label{sec:hls}%
+
+This thesis presents a toolchain leveraging High-Level Synthesis (HLS) to automatically translate algorithmic descriptions of applications into low-level RTL (register-transfer level) descriptions or digital circuits.
+HLS tools simplify hardware development's most complex and time-consuming aspect by allowing users to provide programs written in common programming languages like C/C++, eliminating the need for manual VHDL/Verilog coding.
+HLS significantly reduces design time and effort, making the final implementation's functionality independent of hardware design knowledge.
+
+The High-Level Synthesis process~\cite{5209958}, depicted in Figure~\ref{fig:hls}, begins with compiling the functional specification, transforming it into a formal representation, and applying various code optimizations.
+The allocation phase determines the type and quantity of hardware resources required to meet design constraints.
+In the scheduling phase, all operations within the specification model are scheduled into cycles.
+The operation's scheduling can vary based on the functional component to which it is mapped, resulting in either single-clock-cycle scheduling or multi-cycle scheduling.
+The binding algorithm optimizes the selection of storage units for variables carrying values across cycles and the assignment of functional units for each operation in the specification model.
+The next step is to generate an RTL model of the synthesized design, incorporating all the design decisions made.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.4\textwidth]{Images/hls}
+    \caption{High-level Synthesis (HLS) design steps~\cite{5209958}}
+    \label{fig:hls}
+\end{figure}
 
 \section{SODA Toolchain}
 \label{sec:soda}%

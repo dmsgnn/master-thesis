@@ -8,31 +8,34 @@
 \BOOKMARK [1][-]{section.2.1}{Graphs}{chapter.2}% 8
 \BOOKMARK [2][-]{subsection.2.1.1}{Graph Representation}{section.2.1}% 9
 \BOOKMARK [1][-]{section.2.2}{Graph Neural Networks}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.1}{Graph Convolutional Network}{section.2.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.2}{Graph Isomorphism Network}{section.2.2}% 12
-\BOOKMARK [1][-]{section.2.3}{SODA Toolchain}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.3.1}{SODA-OPT Frontend}{section.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.3.2}{SODA Synthesizer Backend}{section.2.3}% 15
-\BOOKMARK [1][-]{section.2.4}{Conclusion}{chapter.2}% 16
-\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 17
-\BOOKMARK [1][-]{section.3.1}{Chapter structure}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.2}{Software accelerators}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.3}{Hardware accelerators}{chapter.3}% 20
-\BOOKMARK [2][-]{subsection.3.3.1}{Unified architecture accelerators}{section.3.3}% 21
-\BOOKMARK [2][-]{subsection.3.3.2}{GNN acceleration using Tiled architecture}{section.3.3}% 22
-\BOOKMARK [2][-]{subsection.3.3.3}{Hybrid architectures for GNN acceleration}{section.3.3}% 23
-\BOOKMARK [1][-]{section.3.4}{High-Level Synthesis based accelerators}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.5}{Software-Hardware co-design accelerators}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.6}{Graph processing acceleration using HBM-equipped FPGAs}{chapter.3}% 26
-\BOOKMARK [1][-]{section.3.7}{Matrix multiplication optimization}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.7.1}{Matrix multiplication optimization in MLIR}{section.3.7}% 28
-\BOOKMARK [1][-]{section.3.8}{Conclusion}{chapter.3}% 29
-\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 30
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 31
-\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 32
-\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 33
-\BOOKMARK [0][-]{chapter*.23}{Bibliography}{}% 34
-\BOOKMARK [0][-]{appendix*.25}{List of Figures}{}% 35
-\BOOKMARK [0][-]{appendix*.27}{List of Tables}{}% 36
-\BOOKMARK [0][-]{appendix*.29}{List of Symbols}{}% 37
-\BOOKMARK [0][-]{appendix*.32}{Acknowledgements}{}% 38
+\BOOKMARK [2][-]{subsection.2.2.1}{Multi-Layer Perceptron}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.2}{Graph Convolutional Network}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.3}{Graph Isomorphism Network}{section.2.2}% 13
+\BOOKMARK [1][-]{section.2.3}{MLIR}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.4}{High-Level Synthesis}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.5}{SODA Toolchain}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.5.1}{SODA-OPT Frontend}{section.2.5}% 17
+\BOOKMARK [2][-]{subsection.2.5.2}{SODA Synthesizer Backend}{section.2.5}% 18
+\BOOKMARK [1][-]{section.2.6}{Conclusion}{chapter.2}% 19
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 20
+\BOOKMARK [1][-]{section.3.1}{Chapter structure}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.2}{Software accelerators}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.3}{Hardware accelerators}{chapter.3}% 23
+\BOOKMARK [2][-]{subsection.3.3.1}{Unified architecture accelerators}{section.3.3}% 24
+\BOOKMARK [2][-]{subsection.3.3.2}{GNN acceleration using Tiled architecture}{section.3.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.3}{Hybrid architectures for GNN acceleration}{section.3.3}% 26
+\BOOKMARK [1][-]{section.3.4}{High-Level Synthesis based accelerators}{chapter.3}% 27
+\BOOKMARK [1][-]{section.3.5}{Software-Hardware co-design accelerators}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.6}{Graph processing acceleration using HBM-equipped FPGAs}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.7}{Matrix multiplication optimization}{chapter.3}% 30
+\BOOKMARK [2][-]{subsection.3.7.1}{Matrix multiplication optimization in MLIR}{section.3.7}% 31
+\BOOKMARK [1][-]{section.3.8}{Conclusion}{chapter.3}% 32
+\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 33
+\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 34
+\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 35
+\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 36
+\BOOKMARK [0][-]{chapter*.25}{Bibliography}{}% 37
+\BOOKMARK [0][-]{appendix*.27}{List of Figures}{}% 38
+\BOOKMARK [0][-]{appendix*.29}{List of Tables}{}% 39
+\BOOKMARK [0][-]{appendix*.31}{List of Symbols}{}% 40
+\BOOKMARK [0][-]{appendix*.34}{Acknowledgements}{}% 41

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  29 JUL 2023 15:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  29 JUL 2023 17:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1152,7 +1152,7 @@ IONE_COL_NEGATIVO-eps-converted-to.pdf Images/02_ING_IND_INFORMAZIONE_COL_NEGAT
 IVO.eps>
 (epstopdf)             \includegraphics on input line 122.
 Package epstopdf Info: Output file is already uptodate.
-<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=159, 493.
+<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=171, 493.
 845pt x 227.85126pt>
 File: Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf Graphic 
 file (type pdf)
@@ -1225,12 +1225,12 @@ Chapter 1.
 ]
 Chapter 2.
 (./chapters/chapter2.tex
-<Images/directed_graph.pdf, id=285, 82.3055pt x 82.96194pt>
+<Images/directed_graph.pdf, id=300, 82.3055pt x 82.96194pt>
 File: Images/directed_graph.pdf Graphic file (type pdf)
 <use Images/directed_graph.pdf>
 Package pdftex.def Info: Images/directed_graph.pdf  used on input line 17.
 (pdftex.def)             Requested size: 90.32784pt x 91.04742pt.
-<Images/undirected_graph.pdf, id=286, 82.3055pt x 82.3055pt>
+<Images/undirected_graph.pdf, id=301, 82.3055pt x 82.3055pt>
 File: Images/undirected_graph.pdf Graphic file (type pdf)
 <use Images/undirected_graph.pdf>
 Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
@@ -1238,12 +1238,12 @@ Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
  [5
 
  <./Images/directed_graph.pdf> <./Images/undirected_graph.pdf>]
-<Images/graph_example.pdf, id=311, 82.3055pt x 82.96194pt>
+<Images/graph_example.pdf, id=327, 82.3055pt x 82.96194pt>
 File: Images/graph_example.pdf Graphic file (type pdf)
 <use Images/graph_example.pdf>
 Package pdftex.def Info: Images/graph_example.pdf  used on input line 58.
 (pdftex.def)             Requested size: 90.32784pt x 91.04742pt.
-<Images/adjacency_matrix.pdf, id=312, 53.92947pt x 59.10783pt>
+<Images/adjacency_matrix.pdf, id=328, 53.92947pt x 59.10783pt>
 File: Images/adjacency_matrix.pdf Graphic file (type pdf)
 <use Images/adjacency_matrix.pdf>
 Package pdftex.def Info: Images/adjacency_matrix.pdf  used on input line 63.
@@ -1254,58 +1254,71 @@ Underfull \hbox (badness 2142) in paragraph at lines 63--63
  []
 
 [6 <./Images/graph_example.pdf> <./Images/adjacency_matrix.pdf>]
-<Images/coo.pdf, id=339, 107.90613pt x 71.32848pt>
+<Images/coo.pdf, id=354, 107.90613pt x 71.32848pt>
 File: Images/coo.pdf Graphic file (type pdf)
 <use Images/coo.pdf>
 Package pdftex.def Info: Images/coo.pdf  used on input line 79.
 (pdftex.def)             Requested size: 137.73734pt x 91.04742pt.
-<Images/csr.pdf, id=340, 108.34477pt x 75.01826pt>
+<Images/csr.pdf, id=355, 108.34477pt x 75.01826pt>
 File: Images/csr.pdf Graphic file (type pdf)
 <use Images/csr.pdf>
 Package pdftex.def Info: Images/csr.pdf  used on input line 84.
 (pdftex.def)             Requested size: 131.49763pt x 91.04742pt.
  [7 <./Images/coo.pdf> <./Images/csr.pdf>]
-<Images/google_scholar.pdf, id=364, 370.5805pt x 228.65425pt>
+<Images/google_scholar.pdf, id=379, 370.5805pt x 228.65425pt>
 File: Images/google_scholar.pdf Graphic file (type pdf)
 <use Images/google_scholar.pdf>
 Package pdftex.def Info: Images/google_scholar.pdf  used on input line 128.
-(pdftex.def)             Requested size: 318.66948pt x 196.63182pt.
- [8] [9 <./Images/google_scholar.pdf>] [10] [11]
-[12] [13]) [14]
+(pdftex.def)             Requested size: 295.13597pt x 182.09486pt.
+ [8] [9 <./Images/google_scholar.pdf>] [10]
+<Images/multi-layer-perceptron.pdf, id=428, 222.64882pt x 121.62538pt>
+File: Images/multi-layer-perceptron.pdf Graphic file (type pdf)
+<use Images/multi-layer-perceptron.pdf>
+Package pdftex.def Info: Images/multi-layer-perceptron.pdf  used on input line 
+189.
+(pdftex.def)             Requested size: 250.01385pt x 136.57462pt.
+ [11 <./Images/multi-layer-perceptron.pdf>] [12] [13]
+<Images/hls.pdf, id=473, 213.70209pt x 232.814pt>
+File: Images/hls.pdf Graphic file (type pdf)
+<use Images/hls.pdf>
+Package pdftex.def Info: Images/hls.pdf  used on input line 276.
+(pdftex.def)             Requested size: 167.14671pt x 182.09486pt.
+ [14 <./Images/hls.pdf>] [15])
+[16]
 Chapter 3.
-(./chapters/chapter3.tex [15
+(./chapters/chapter3.tex [17
 
 
-] [16] [17] [18] [19] [20] [21] [22] [23] [24]
-[25] [26] [27]
+] [18] [19] [20] [21] [22] [23] [24] [25] [26]
+[27] [28] [29]
 Overfull \hbox (24.44208pt too wide) in paragraph at lines 326--326
 |[]\T1/cmr/bx/n/17.28 Graph pro-cess-ing ac-cel-er-a-tion us-ing HBM-equipped
  []
 
-[28] [29] [30]) [31] [32]
+[30] [31] [32]) [33] [34]
 Chapter 4.
-[33
-
-
-] [34
-
-]
-Chapter 5.
 [35
+
 
 ] [36
 
 ]
-Chapter 6.
+Chapter 5.
 [37
 
 ] [38
 
 ]
-Chapter 7.
-(out/thesis.bbl [39
+Chapter 6.
+[39
 
 ] [40
+
+]
+Chapter 7.
+(out/thesis.bbl [41
+
+] [42
 
 ]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
@@ -1313,53 +1326,53 @@ Underfull \hbox (badness 1072) in paragraph at lines 18--23
 -tion.  \T1/cmr/m/it/12 CoRR\T1/cmr/m/n/12 ,
  []
 
+[43
 
-Underfull \hbox (badness 6364) in paragraph at lines 76--81
+]
+Underfull \hbox (badness 6364) in paragraph at lines 83--88
 []\T1/cmr/m/n/12 A. Daiga-vane, B. Ravin-dran, and G. Ag-gar-wal.  Un-der-stand
 -ing con-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--81
+Underfull \hbox (badness 10000) in paragraph at lines 83--88
 \T1/cmr/m/n/12 vo-lu-tions on graphs.  \T1/cmr/m/it/12 Dis-till\T1/cmr/m/n/12 ,
  2021.  doi: $10 . 23915 / distill . 00032$.
  []
 
-[41
 
-]
-Underfull \hbox (badness 1466) in paragraph at lines 85--90
+Underfull \hbox (badness 1466) in paragraph at lines 92--97
 []\T1/cmr/m/n/12 D. Du-ve-naud, D. Maclau-rin, J. Aguilera-Iparraguirre, R. Góm
 ez-Bombarelli,
  []
 
-[42] [43] [44]) [45] [46
+[44] [45] [46]) [47] [48
 
 ] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [47
+ [49
 
 
-] [48
+] [50
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [49
+ [51
 
 ]
-[50
-
-] [51
-
-] [52
+[52
 
 ] [53
 
 ] [54
+
+] [55
+
+] [56
 
 ]
 
@@ -1372,13 +1385,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 315.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 315.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 315.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 1FCD5DBFBB7A7B3534204EA0D3F384C9;2553.
+(rerunfilecheck)             Checksum: ABE65CF6C6961C1C6609C0527478CE9A;2747.
  ) 
 Here is how much of TeX's memory you used:
- 25867 strings out of 480608
- 482789 string characters out of 5903630
- 903166 words of memory out of 5000000
- 40997 multiletter control sequences out of 15000+600000
+ 25909 strings out of 480608
+ 483613 string characters out of 5903630
+ 904166 words of memory out of 5000000
+ 41028 multiletter control sequences out of 15000+600000
  550255 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,14n,89p,1195b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1404,10 +1417,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/texlive/
 exmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/texmf
 -dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (62 pages, 444484 bytes).
+Output written on out/thesis.pdf (64 pages, 493505 bytes).
 PDF statistics:
- 842 PDF objects out of 1000 (max. 8388607)
- 738 compressed objects within 8 object streams
- 178 named destinations out of 1000 (max. 500000)
- 363 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 911 PDF objects out of 1000 (max. 8388607)
+ 796 compressed objects within 8 object streams
+ 187 named destinations out of 1000 (max. 500000)
+ 397 words of extra memory for PDF output out of 10000 (max. 10000000)
 
