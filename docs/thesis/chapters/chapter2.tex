@@ -13,13 +13,13 @@ The vertices represent entities or elements, and the edges represent their relat
 \begin{figure}[b]
     \centering
     \subfloat[Directed Graph\label{fig:directed_graph}]{
-        \includegraphics[width=0.2\textwidth]{Images/directed_graph}
+        \includegraphics[height=0.2\textwidth]{Images/directed_graph}
     }
     %\quad
     \hspace{0.15\textwidth}
     \subfloat[Undirected Graph\label{fig:undirected_graph}]{
         \captionsetup{width=.4\textwidth}
-        \includegraphics[width=0.2\textwidth]{Images/undirected_graph}
+        \includegraphics[height=0.2\textwidth]{Images/undirected_graph}
     }
     %\caption[Shorter caption]{This is a very long caption you don't want to appear in the List of Figures.}
     \caption{Example of directed and undirected graphs}
@@ -39,10 +39,78 @@ By representing individuals as nodes and their relationships as edges, we can co
 \subsection{Graph Representation}
 \label{subsec:graph_representation}
 
-Here I am going to talk about how graphs can be represented.
-Especially the ways encountered during the research: adjacency matrix, COO and CSR\@.
+Graphs are easy to visualize, but a more formal way is needed when implementing graph algorithms.
 
-%TODO: add an image with a graph and its representation in the 3 different format
+\textbf{Adjacency matrix} \newline
+The adjacency matrix of a graph is a fundamental representation that provides information about the relationships between nodes in the graph.
+It provides a compact and easily interpretable representation of the graph's edges and connections, which can be easily implemented in almost all programming languages using two-dimensional arrays.
+
+The adjacency matrix of a graph is a matrix of dimensions $N \times N$ where $N$ is the number of nodes in the graph.
+Each matrix cell is set to 1 if the two nodes are connected, i.e.\ if there is an edge starting from the node of the corresponding row to the one of the corresponding column, and zero otherwise.
+If the graph is undirected, each edge is bidirectional and so the matrix is symmetric.
+If in the graph there are no self-loops, then the main diagonal of the matrix will be with all zeros.
+Figure~\ref{fig:graph_adjacency} shows a directed graph and its adjacency matrix.
+
+\begin{figure}[t]
+    \centering
+    \subfloat[Graph\label{fig:graph_example}]{
+        \includegraphics[height=0.2\textwidth]{Images/graph_example}
+    }
+    %\quad
+    \hspace{0.15\textwidth}
+    \subfloat[Adjacency matrix\label{fig:adjacency_mat}]{
+        \includegraphics[height=0.2\textwidth]{Images/adjacency_matrix}
+    }
+    \caption{Example of a graph and its adjacency matrix}
+    \label{fig:graph_adjacency}
+\end{figure}
+
+The adjacency matrix consists only of ones and zeros.
+In real-world graph-related problems, the number of edges is usually much slower than the number of nodes, leading to an adjacency matrix with many zero elements.
+Such matrices with mostly zero elements are called sparse matrices.
+Their sparsity enables more efficient storage and manipulation, avoiding both the storage of zeros and the operations including zero elements, reducing the computational phase.
+
+There are two common representations for sparse matrices: the Coordinate List (COO) format and the Compressed Sparse Row (CSR) format, which are explained below.
+
+\begin{figure}[t]
+    \centering
+    \subfloat[COO format\label{fig:coo}]{
+        \includegraphics[height=0.2\textwidth]{Images/coo}
+    }
+    %\quad
+    \hspace{0.15\textwidth}
+    \subfloat[CSR format\label{fig:csr}]{
+        \includegraphics[height=0.2\textwidth]{Images/csr}
+    }
+    \caption{COO and CSR format of Adjacency matrix in Figure~\ref{fig:graph_adjacency}}
+    \label{fig:coo_csr}
+\end{figure}
+
+\textbf{Coordinate format} \newline
+In the COO format, a sparse matrix is represented as a list of [row, column, data] tuples, where each tuple corresponds to a non-zero element in the matrix.
+The [row, column] coordinates represent the position of the non-zero element, and the value is the actual numerical value of that element.
+Usually, it is preferred to store the entries first by row index and then by column index, to improve random access times.
+In Figure~\ref{fig:coo_csr} the COO format of the adjacency matrix represented in Figure~\ref{fig:graph_adjacency} is reported.
+For example, by considering the first element of the three arrays, it is possible to understand that the data one is placed in position [0, 1] of the adjacency matrix.
+
+The COO format is helpful for matrices with relatively few non-zero elements because it does not require any assumptions about the sparsity pattern and allows for efficient deletion and insertion of elements.
+However, it may not be the most efficient format for large and highly sparse matrices, as it may require more memory and may not support efficient row-wise or column-wise operations.
+In these cases, other formats, like the CSR one, are often preferred.
+
+\textbf{Compressed Sparse Row format} \newline
+In the CSR format, a sparse matrix is represented using three arrays: the values array, the row pointers array (indices), and the column indices array (index pointers).
+The data array contains the non-zero elements of the sparse matrix stored in row-major order, the array indices contains the column position of each data, while the index pointers
+contains an increasing number of how many non-zero elements there are in the matrix row by row.
+Given a matrix of size $m \times n$, with $NNZ$ being the number of non-zero elements, the arrays data and indices are of length $NNZ$, while the array index pointers is of length $m+1$.
+Figure~\ref{fig:csr} shows the CSR format of the adjacency matrix represented in Figure~\ref{fig:graph_adjacency} is reported.
+
+\textbf{Feature matrix} \newline
+Suppose to have a graph of a social network, where each node corresponds to a person and each edge to a friendship on the social media between the two nodes.
+If the aim is to predict the possible future friendship that could be established, maybe putting those people in the suggested friend list, having more information (features) about each node, such as the age or the gender, is helpful.
+
+A feature vector represents the features or attributes associated with a single entity.
+The feature matrix of a graph contains multiple feature vectors; it represents the features or attributes associated with each node.
+It is commonly denoted as $X$ and  each row corresponds to a node in the graph, and each column corresponds to a specific feature or attribute of that node.
 
 \section{Graph Neural Networks}
 \label{sec:graph_neural_networks}%
@@ -62,6 +130,25 @@ The increasing trend reflects the rising interest and research activity in the f
     \caption{Number of GNN publications on Google Scholar per year}
     \label{fig:google_scholar}
 \end{figure}
+
+Graph Neural Networks are a group of neural networks which are designed to solve different tasks.
+Prediction tasks on graphs can generally be classified into three categories: graph-level, node-level, and edge-level predictions~\cite{sanchez-lengeling2021a}.
+
+In a graph-level task, the objective is to predict the property or characteristic of an entire graph.
+For instance, when considering a molecule represented as a graph, attributes might be aimed to be predicted such as its likelihood of binding to a receptor associated with a specific disease.
+This assignment is comparable to image classification tasks, where the objective is to assign a label to an entire image.
+Similarly, in text analysis, sentiment analysis serves as a similar problem where the goal is to determine a complete sentence's overall mood or emotion in one go.
+
+Node-level tasks involve predicting the identity or function of individual nodes within a graph.
+One example of a node-level task is node classification in a social network.
+Given a social network graph where nodes represent individuals and edges represent relationships between them, the task is to predict the demographic attributes or characteristics (e.g., age, gender, occupation) of each node based on their connection patterns and features.
+Drawing an analogy to image processing, node-level prediction problems can be compared to image segmentation tasks, where the objective is to assign labels to each pixel in an image based on its role.
+Similarly, in text analysis, a comparable task would involve predicting the parts of speech for each word in a sentence, such as identifying whether a word is a noun, verb, adverb, and so on.
+
+The remaining prediction task in graphs pertains to edge prediction.
+One example of an edge-level task is link prediction in a social network.
+Given a graph representing a social network where, as before, in node-level tasks, nodes correspond to individuals and edges represent relationships between them, the edge-level task aims to predict missing or potential connections between nodes.
+This can involve predicting the likelihood of a future friendship or the probability of a collaboration between individuals based on their shared characteristics or mutual connections in the network.
 
 Graph Neural Networks (GNNs) are designed to process graph data and consist of multiple interconnected layers.
 At its core, a GNN is an algorithm that exploits the connectivity within a graph to understand and represent the relationships between nodes.
@@ -83,26 +170,6 @@ GNNs, as previously said, are structured into layers, each representing an itera
 This layering allows information to propagate across nodes, enabling the influence of distant nodes.
 Consequently, the appropriate number of layers in a GNN will vary depending on the significance of relationships among distant nodes in a specific application.
 The commonly adopted range for the number of GNN layers is 1 to 5, as an excessive number of layers can introduce undesired problems such as feature over-smoothing, vanishing gradients, or over-fitting~\cite{DBLP:journals/corr/abs-1801-07606}.
-
-Graph Neural Networks are a group of neural networks which are designed to solve different tasks.
-Prediction tasks on graphs can generally be classified into three categories: graph-level, node-level, and edge-level predictions~\cite{sanchez-lengeling2021a}.
-
-In a graph-level task, the objective is to predict the property or characteristic of an entire graph.
-For instance, when considering a molecule represented as a graph, attributes might be aimed to be predicted such as its likelihood of binding to a receptor associated with a specific disease.
-This assignment is comparable to image classification tasks, where the objective is to assign a label to an entire image.
-Similarly, in text analysis, sentiment analysis serves as a similar problem where the goal is to determine a complete sentence's overall mood or emotion in one go.
-
-Node-level tasks involve predicting the identity or function of individual nodes within a graph.
-One example of a node-level task is node classification in a social network.
-Given a social network graph where nodes represent individuals and edges represent relationships between them, the task is to predict the demographic attributes or characteristics (e.g., age, gender, occupation) of each node based on their connection patterns and features.
-Drawing an analogy to image processing, node-level prediction problems can be compared to image segmentation tasks, where the objective is to assign labels to each pixel in an image based on its role.
-Similarly, in text analysis, a comparable task would involve predicting the parts of speech for each word in a sentence, such as identifying whether a word is a noun, verb, adverb, and so on.
-
-
-The remaining prediction task in graphs pertains to edge prediction.
-One example of an edge-level task is link prediction in a social network.
-Given a graph representing a social network where, as before, in node-level tasks, nodes correspond to individuals and edges represent relationships between them, the edge-level task aims to predict missing or potential connections between nodes.
-This can involve predicting the likelihood of a future friendship or the probability of a collaboration between individuals based on their shared characteristics or mutual connections in the network.
 
 Different popular Graph Neural Network architectures have been proposed recently, some of which are more suitable for some tasks than others.
 A summary of two types of GNNs is provided in the following subsections.

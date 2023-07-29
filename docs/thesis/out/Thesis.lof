@@ -4,7 +4,13 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Example of directed and undirected graphs\relax }}{5}{figure.caption.9}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Directed Graph}}}{5}{subfigure.1.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Undirected Graph}}}{5}{subfigure.1.2}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Number of GNN publications on Google Scholar per year\relax }}{6}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Example of a graph and its adjacency matrix\relax }}{6}{figure.caption.10}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Graph}}}{6}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Adjacency matrix}}}{6}{subfigure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces COO and CSR format of Adjacency matrix in Figure~\ref {fig:graph_adjacency}\relax }}{7}{figure.caption.11}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {COO format}}}{7}{subfigure.3.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {CSR format}}}{7}{subfigure.3.2}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Number of GNN publications on Google Scholar per year\relax }}{9}{figure.caption.12}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

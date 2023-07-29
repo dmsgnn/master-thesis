@@ -11,9 +11,9 @@
 %% this array contains the increasing number of non zero elements in each row starting from zero
 %% first element is always 0, then first row has two non zero elements -> 0+2, second row has 2 non zero elments -> 0+2+2 etc..
     \matrix (R) [2d-arr, nodes={draw}] {
-    0 & 2 & 4 & 5 \\
+    0 & 2 & 4 & 5 & |[draw=none, text=white]| 0 \\
   };
-    \node[left=0.1 em of R] {Index pointers};
+    \node[left=0.1 em of R, align=right] {Index\\pointers};
 
     \matrix (C) [2d-arr, below=0.5em of R, nodes={draw}] {
     1 & 2 & 0 & 2 & 0  \\
