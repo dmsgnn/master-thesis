@@ -146,9 +146,9 @@ HyGCN's architecture is based on the popular systolic array, but it incorporates
 In the combination engine, a set of systolic arrays is combined to form a systolic module, and these modules can be flexibly utilized in various ways, including independent and cooperative working modes.
 
 \begin{itemize}
-    \item In the independent working mode, the systolic modules operate autonomously, each handling the matrix-vector multiplication (MVM) operations of a small group of vertices.
+    \item[-] In the independent working mode, the systolic modules operate autonomously, each handling the matrix-vector multiplication (MVM) operations of a small group of vertices.
           This mode offers the benefit of reduced vertex latency since the Combination operations for this smaller group of vertices can be processed immediately once their aggregated features are ready without waiting for additional vertices.
-    \item In the cooperative working mode, a large group of vertices' aggregated features are gathered and combined.
+    \item[-] In the cooperative working mode, a large group of vertices' aggregated features are gathered and combined.
           The advantage of this mode is that weight parameters can be efficiently reused by all systolic arrays, reducing energy consumption.
 \end{itemize}
 

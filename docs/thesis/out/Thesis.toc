@@ -33,13 +33,15 @@
 \contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{32}{subsection.3.7.1}%
 \contentsline {section}{\numberline {3.8}Conclusion}{33}{section.3.8}%
 \contentsline {chapter}{\numberline {4}Problem Formulation}{35}{chapter.4}%
-\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{37}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Experimental Results}{39}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{41}{chapter.7}%
+\contentsline {section}{\numberline {4.1}Graph Neural Network acceleration}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Motivation and objective}{36}{section.4.2}%
+\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{39}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Experimental Results}{41}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{43}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{43}{chapter*.25}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{45}{chapter*.25}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{49}{appendix*.27}%
-\contentsline {chapter}{List of Tables}{51}{appendix*.29}%
-\contentsline {chapter}{List of Symbols}{53}{appendix*.31}%
-\contentsline {chapter}{Acknowledgements}{55}{appendix*.34}%
+\contentsline {chapter}{List of Figures}{51}{appendix*.27}%
+\contentsline {chapter}{List of Tables}{53}{appendix*.29}%
+\contentsline {chapter}{List of Symbols}{55}{appendix*.31}%
+\contentsline {chapter}{Acknowledgements}{57}{appendix*.34}%

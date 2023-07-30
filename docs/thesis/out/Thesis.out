@@ -31,11 +31,13 @@
 \BOOKMARK [2][-]{subsection.3.7.1}{Matrix multiplication optimization in MLIR}{section.3.7}% 31
 \BOOKMARK [1][-]{section.3.8}{Conclusion}{chapter.3}% 32
 \BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 33
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 34
-\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 35
-\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 36
-\BOOKMARK [0][-]{chapter*.25}{Bibliography}{}% 37
-\BOOKMARK [0][-]{appendix*.27}{List of Figures}{}% 38
-\BOOKMARK [0][-]{appendix*.29}{List of Tables}{}% 39
-\BOOKMARK [0][-]{appendix*.31}{List of Symbols}{}% 40
-\BOOKMARK [0][-]{appendix*.34}{Acknowledgements}{}% 41
+\BOOKMARK [1][-]{section.4.1}{Graph Neural Network acceleration}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.2}{Motivation and objective}{chapter.4}% 35
+\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 36
+\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 37
+\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 38
+\BOOKMARK [0][-]{chapter*.25}{Bibliography}{}% 39
+\BOOKMARK [0][-]{appendix*.27}{List of Figures}{}% 40
+\BOOKMARK [0][-]{appendix*.29}{List of Tables}{}% 41
+\BOOKMARK [0][-]{appendix*.31}{List of Symbols}{}% 42
+\BOOKMARK [0][-]{appendix*.34}{Acknowledgements}{}% 43
