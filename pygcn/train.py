@@ -110,12 +110,18 @@ print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
 ### model_script = torch.jit.script(model)
 
+model.eval()
+inference_start = time.time()
+model(features, adj)
+inference_end = time.time()
+print("Inference time: " + str(inference_end-inference_start))
+
 # Testing
 testing_start = time.time()
 test()
 testing_end = time.time()
 print("Number of classified nodes: " + str(len(idx_test)))
-print("Testing time : {:.4f}s".format(testing_end - testing_start))
-print("Inference time per node: {:.4f} microseconds".format(((testing_end-testing_start)*pow(10, 6))/len(idx_test)))
+print("Testing time : {:.6f}s".format(testing_end - testing_start))
+print("Inference time per node: {:.4f} seconds".format((testing_end - testing_start) / len(idx_test)))
 
 
