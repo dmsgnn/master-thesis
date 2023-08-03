@@ -1,4 +1,4 @@
-\begin{thebibliography}{45}
+\begin{thebibliography}{46}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -251,6 +251,11 @@ O.~G.~B. team and other contributors.
 \newblock Gnn models from open graph benchmark, 2020.
 \newblock URL
   \url{https://github.com/snap-stanford/ogb/tree/master/examples/graphproppred/mol}.
+
+\bibitem[Team(2019)]{torchscript}
+P.~Team.
+\newblock Torchscript docs, 2019.
+\newblock URL \url{https://pytorch.org/docs/stable/jit.html}.
 
 \bibitem[Thomas N.~Kipf and other contributors(2017)]{pygcn}
 M.~W. Thomas N.~Kipf and other contributors.

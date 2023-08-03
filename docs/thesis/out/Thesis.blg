@@ -15,47 +15,49 @@ Warning--entry type for "cublas" isn't style-file defined
 --line 629 of file Thesis_bibliography.bib
 Warning--entry type for "openblas" isn't style-file defined
 --line 637 of file Thesis_bibliography.bib
+Warning--entry type for "torchscript" isn't style-file defined
+--line 696 of file Thesis_bibliography.bib
 Warning--empty year in cublas
 Warning--empty year in openblas
-You've used 45 entries,
+You've used 46 entries,
             2773 wiz_defined-function locations,
-            867 strings with 16032 characters,
-and the built_in function-call counts, 26151 in all, are:
-= -- 2161
-> -- 2259
-< -- 22
-+ -- 756
-- -- 710
-* -- 2318
-:= -- 4195
-add.period$ -- 173
-call.type$ -- 45
-change.case$ -- 370
-chr.to.int$ -- 44
-cite$ -- 92
-duplicate$ -- 968
-empty$ -- 1636
-format.name$ -- 771
-if$ -- 5366
+            871 strings with 16111 characters,
+and the built_in function-call counts, 26448 in all, are:
+= -- 2187
+> -- 2269
+< -- 23
++ -- 760
+- -- 713
+* -- 2333
+:= -- 4240
+add.period$ -- 176
+call.type$ -- 46
+change.case$ -- 374
+chr.to.int$ -- 45
+cite$ -- 94
+duplicate$ -- 983
+empty$ -- 1668
+format.name$ -- 775
+if$ -- 5430
 int.to.chr$ -- 2
 int.to.str$ -- 1
 missing$ -- 37
-newline$ -- 270
-num.names$ -- 182
-pop$ -- 712
+newline$ -- 275
+num.names$ -- 186
+pop$ -- 724
 preamble$ -- 1
-purify$ -- 325
+purify$ -- 328
 quote$ -- 0
-skip$ -- 911
+skip$ -- 925
 stack$ -- 0
-substring$ -- 373
-swap$ -- 127
+substring$ -- 375
+swap$ -- 128
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 495
+type$ -- 506
 warning$ -- 2
-while$ -- 162
+while$ -- 165
 width$ -- 0
-write$ -- 655
-(There were 8 warnings)
+write$ -- 667
+(There were 9 warnings)

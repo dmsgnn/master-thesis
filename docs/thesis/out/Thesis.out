@@ -34,10 +34,16 @@
 \BOOKMARK [1][-]{section.4.1}{Graph Neural Network acceleration}{chapter.4}% 34
 \BOOKMARK [1][-]{section.4.2}{Motivation and objective}{chapter.4}% 35
 \BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 36
-\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 37
-\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 38
-\BOOKMARK [0][-]{chapter*.25}{Bibliography}{}% 39
-\BOOKMARK [0][-]{appendix*.27}{List of Figures}{}% 40
-\BOOKMARK [0][-]{appendix*.29}{List of Tables}{}% 41
-\BOOKMARK [0][-]{appendix*.31}{List of Symbols}{}% 42
-\BOOKMARK [0][-]{appendix*.34}{Acknowledgements}{}% 43
+\BOOKMARK [1][-]{section.5.1}{PyTorch}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.2}{Torch-MLIR}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.3}{Synthesizer}{chapter.5}% 39
+\BOOKMARK [2][-]{subsection.5.3.1}{SODA-OPT}{section.5.3}% 40
+\BOOKMARK [2][-]{subsection.5.3.2}{PandA-Bambu}{section.5.3}% 41
+\BOOKMARK [1][-]{section.5.4}{Limitations}{chapter.5}% 42
+\BOOKMARK [0][-]{chapter.6}{Experimental Results}{}% 43
+\BOOKMARK [0][-]{chapter.7}{Conclusions and Future Developments}{}% 44
+\BOOKMARK [0][-]{chapter*.28}{Bibliography}{}% 45
+\BOOKMARK [0][-]{appendix*.30}{List of Figures}{}% 46
+\BOOKMARK [0][-]{appendix*.32}{List of Tables}{}% 47
+\BOOKMARK [0][-]{appendix*.34}{List of Symbols}{}% 48
+\BOOKMARK [0][-]{appendix*.37}{Acknowledgements}{}% 49

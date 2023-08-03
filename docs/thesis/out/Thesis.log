@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  30 JUL 2023 16:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  3 AUG 2023 15:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1152,7 +1152,7 @@ IONE_COL_NEGATIVO-eps-converted-to.pdf Images/02_ING_IND_INFORMAZIONE_COL_NEGAT
 IVO.eps>
 (epstopdf)             \includegraphics on input line 122.
 Package epstopdf Info: Output file is already uptodate.
-<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=179, 493.
+<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=203, 493.
 845pt x 227.85126pt>
 File: Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf Graphic 
 file (type pdf)
@@ -1225,12 +1225,12 @@ Chapter 1.
 ]
 Chapter 2.
 (./chapters/chapter2.tex
-<Images/directed_graph.pdf, id=310, 82.3055pt x 82.96194pt>
+<Images/directed_graph.pdf, id=341, 82.3055pt x 82.96194pt>
 File: Images/directed_graph.pdf Graphic file (type pdf)
 <use Images/directed_graph.pdf>
 Package pdftex.def Info: Images/directed_graph.pdf  used on input line 17.
 (pdftex.def)             Requested size: 90.32784pt x 91.04742pt.
-<Images/undirected_graph.pdf, id=311, 82.3055pt x 82.3055pt>
+<Images/undirected_graph.pdf, id=342, 82.3055pt x 82.3055pt>
 File: Images/undirected_graph.pdf Graphic file (type pdf)
 <use Images/undirected_graph.pdf>
 Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
@@ -1238,12 +1238,12 @@ Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
  [5
 
  <./Images/directed_graph.pdf> <./Images/undirected_graph.pdf>]
-<Images/graph_example.pdf, id=337, 82.3055pt x 82.96194pt>
+<Images/graph_example.pdf, id=367, 82.3055pt x 82.96194pt>
 File: Images/graph_example.pdf Graphic file (type pdf)
 <use Images/graph_example.pdf>
 Package pdftex.def Info: Images/graph_example.pdf  used on input line 58.
 (pdftex.def)             Requested size: 90.32784pt x 91.04742pt.
-<Images/adjacency_matrix.pdf, id=338, 53.92947pt x 59.10783pt>
+<Images/adjacency_matrix.pdf, id=368, 53.92947pt x 59.10783pt>
 File: Images/adjacency_matrix.pdf Graphic file (type pdf)
 <use Images/adjacency_matrix.pdf>
 Package pdftex.def Info: Images/adjacency_matrix.pdf  used on input line 63.
@@ -1254,31 +1254,31 @@ Underfull \hbox (badness 2142) in paragraph at lines 63--63
  []
 
 [6 <./Images/graph_example.pdf> <./Images/adjacency_matrix.pdf>]
-<Images/coo.pdf, id=364, 107.90613pt x 71.32848pt>
+<Images/coo.pdf, id=394, 107.90613pt x 71.32848pt>
 File: Images/coo.pdf Graphic file (type pdf)
 <use Images/coo.pdf>
 Package pdftex.def Info: Images/coo.pdf  used on input line 79.
 (pdftex.def)             Requested size: 137.73734pt x 91.04742pt.
-<Images/csr.pdf, id=365, 108.34477pt x 75.01826pt>
+<Images/csr.pdf, id=395, 108.34477pt x 75.01826pt>
 File: Images/csr.pdf Graphic file (type pdf)
 <use Images/csr.pdf>
 Package pdftex.def Info: Images/csr.pdf  used on input line 84.
 (pdftex.def)             Requested size: 131.49763pt x 91.04742pt.
  [7 <./Images/coo.pdf> <./Images/csr.pdf>]
-<Images/google_scholar.pdf, id=389, 370.5805pt x 228.65425pt>
+<Images/google_scholar.pdf, id=419, 370.5805pt x 228.65425pt>
 File: Images/google_scholar.pdf Graphic file (type pdf)
 <use Images/google_scholar.pdf>
 Package pdftex.def Info: Images/google_scholar.pdf  used on input line 128.
 (pdftex.def)             Requested size: 295.13597pt x 182.09486pt.
  [8] [9 <./Images/google_scholar.pdf>] [10]
-<Images/multi-layer-perceptron.pdf, id=438, 222.64882pt x 121.62538pt>
+<Images/multi-layer-perceptron.pdf, id=469, 222.64882pt x 121.62538pt>
 File: Images/multi-layer-perceptron.pdf Graphic file (type pdf)
 <use Images/multi-layer-perceptron.pdf>
 Package pdftex.def Info: Images/multi-layer-perceptron.pdf  used on input line 
 189.
 (pdftex.def)             Requested size: 250.01385pt x 136.57462pt.
  [11 <./Images/multi-layer-perceptron.pdf>] [12] [13]
-<Images/hls.pdf, id=483, 213.70209pt x 232.814pt>
+<Images/hls.pdf, id=513, 213.70209pt x 232.814pt>
 File: Images/hls.pdf Graphic file (type pdf)
 <use Images/hls.pdf>
 Package pdftex.def Info: Images/hls.pdf  used on input line 276.
@@ -1304,21 +1304,67 @@ Chapter 4.
 
 ]
 Chapter 5.
-(./chapters/chapter5.tex) [39
+(./chapters/chapter5.tex [39
 
-] [40
+]
+Package epstopdf Info: Source file: <Images/toolchain.eps>
+(epstopdf)                    date: 2023-07-31 21:51:57
+(epstopdf)                    size: 1355670 bytes
+(epstopdf)             Output file: <Images/toolchain-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-07-31 21:54:38
+(epstopdf)                    size: 30491 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/toolchain-eps-conve
+rted-to.pdf Images/toolchain.eps>
+(epstopdf)             \includegraphics on input line 24.
+Package epstopdf Info: Output file is already uptodate.
+<Images/toolchain-eps-converted-to.pdf, id=728, 185.69376pt x 222.8325pt>
+File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/toolchain-eps-converted-to.pdf>
+Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
+ine 24.
+(pdftex.def)             Requested size: 227.6426pt x 273.14923pt.
+ [40 <./Images/toolchain-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <Images/torch-mlir.eps>
+(epstopdf)                    date: 2023-08-01 23:54:49
+(epstopdf)                    size: 1386318 bytes
+(epstopdf)             Output file: <Images/torch-mlir-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-08-03 11:19:39
+(epstopdf)                    size: 39528 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/torch-mlir-eps-conv
+erted-to.pdf Images/torch-mlir.eps>
+(epstopdf)             \includegraphics on input line 62.
+Package epstopdf Info: Output file is already uptodate.
+<Images/torch-mlir-eps-converted-to.pdf, id=748, 199.74625pt x 201.75375pt>
+File: Images/torch-mlir-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/torch-mlir-eps-converted-to.pdf>
+Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input 
+line 62.
+(pdftex.def)             Requested size: 225.36012pt x 227.62206pt.
+
+[41 <./Images/torch-mlir-eps-converted-to.pdf>]
+<Images/soda_opt_flow.pdf, id=772, 597.23125pt x 845.1575pt>
+File: Images/soda_opt_flow.pdf Graphic file (type pdf)
+<use Images/soda_opt_flow.pdf>
+Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 78.
+(pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
+<Images/bambu_flow.pdf, id=773, 597.23125pt x 845.1575pt>
+File: Images/bambu_flow.pdf Graphic file (type pdf)
+<use Images/bambu_flow.pdf>
+Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 84.
+(pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
+ [42 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>]) [43] [44
 
 ]
 Chapter 6.
-[41
+[45
 
-] [42
+] [46
 
 ]
 Chapter 7.
-(out/thesis.bbl [43
+(out/thesis.bbl [47
 
-] [44
+] [48
 
 ]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
@@ -1326,7 +1372,7 @@ Underfull \hbox (badness 1072) in paragraph at lines 18--23
 -tion.  \T1/cmr/m/it/12 CoRR\T1/cmr/m/n/12 ,
  []
 
-[45
+[49
 
 ]
 Underfull \hbox (badness 6364) in paragraph at lines 83--88
@@ -1346,33 +1392,33 @@ Underfull \hbox (badness 1466) in paragraph at lines 92--97
 ez-Bombarelli,
  []
 
-[46] [47] [48]) [49] [50
+[50] [51] [52]) [53] [54
 
 ] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [51
+ [55
 
 
-] [52
+] [56
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [53
+ [57
 
 ]
-[54
+[58
 
-] [55
+] [59
 
-] [56
+] [60
 
-] [57
+] [61
 
-] [58
+] [62
 
 ]
 
@@ -1385,13 +1431,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 314.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 314.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 314.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: AA078F094E8E4D0E9C353149F22E505E;2898.
+(rerunfilecheck)             Checksum: 9E930BD9BC3EC53077EAEB6AB416C927;3252.
  ) 
 Here is how much of TeX's memory you used:
- 25935 strings out of 480608
- 483935 string characters out of 5903630
- 904166 words of memory out of 5000000
- 41034 multiletter control sequences out of 15000+600000
+ 26054 strings out of 480608
+ 486377 string characters out of 5903630
+ 903166 words of memory out of 5000000
+ 41117 multiletter control sequences out of 15000+600000
  549918 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,14n,89p,1195b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1416,10 +1462,10 @@ ve/2020/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/texlive
 texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/te
 xmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/texm
 f-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (66 pages, 498724 bytes).
+Output written on out/thesis.pdf (70 pages, 1624764 bytes).
 PDF statistics:
- 942 PDF objects out of 1000 (max. 8388607)
- 824 compressed objects within 9 object streams
- 202 named destinations out of 1000 (max. 500000)
- 413 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1144 PDF objects out of 1200 (max. 8388607)
+ 979 compressed objects within 10 object streams
+ 221 named destinations out of 1000 (max. 500000)
+ 481 words of extra memory for PDF output out of 10000 (max. 10000000)
 
