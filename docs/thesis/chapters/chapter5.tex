@@ -99,7 +99,7 @@ The output of SODA-OPT is an LLVM representation that serves as input to PandA-B
 \label{subsec:toolchain-panda_bambu}%
 
 PandA-Bambu represents the last phase of the synthesis.
-As represented in Figure~\ref{subsec:toolchain-panda_bambu}, it receives the LLVM representation as input, and after having applied some optional low-level optimizations, it performs the typical steps of HLS introduced in Section~\ref{sec:hls}.
+As represented in Figure~\ref{fig:bambu_flow}, it receives the LLVM representation as input, and after having applied some optional low-level optimizations, it performs the typical steps of HLS introduced in Section~\ref{sec:hls}.
 
 Then, after traversing through each stage of the proposed toolchain's process, the accelerator, i.e., the Bambu's output, represents the final output, tailored to target and maximize performance on cutting-edge FPGA architectures.
 
@@ -110,7 +110,7 @@ The most crucial advantage of tge proposed toolchain is that it allows obtaining
 
 During the research, much effort has been spent trying to add support for the PyTorch Geometric framework to the toolchain.
 Unfortunately, even if some improvements have been reached, as the implementation by the Torch-MLIR team of support of the constant of Tuple type upon the opening of an issue, some obstacles are still present.
-In particular, Torch-MLIR does not support \texttt{aten.scatter\_add} operation, which, at the actual state, cannot be lowered to MLIR.
+In particular, Torch-MLIR does not support \texttt{aten.scatter\_add} operation, which, at the actual state, cannot be lowered to MLIR\@.
 This operation is extensively used by PyTorch Geometric, leading to the incompatibility of the two elements.
 
 Another limitation is represented by the fact that Torch-MLIR does not support the sparse tensor type.
@@ -120,7 +120,7 @@ However, using the proper optimizations provided by the toolchain in combination
 Furthermore, despite the remarkable capabilities of SODA-OPT, it should be noted that it does not support the entire set of dialects utilized within the MLIR ecosystem, such as the Tensor dialect.
 Consequently, this limitation requires an additional step wherein the representation is lowered to remove unsupported dialects.
 In addition to the dialect limitation, SODA-OPT only supports a subset of MLIR passes.
-The reason behind this restriction lies in the rapid advancement and innovation within the domain of MLIR.
+The reason behind this restriction lies in the rapid advancement and innovation within the domain of MLIR\@.
 The dedicated research team leading the SODA framework always works to stay ahead of the latest advancements; nevertheless, it is challenging to keep up-to-date with constantly integrating new functionalities into the ever-evolving MLIR ecosystem.
 
 These limitations are not trivial but do not prevent the achievement of the acceleration objective and do not compromise the proposed solution's capability.
