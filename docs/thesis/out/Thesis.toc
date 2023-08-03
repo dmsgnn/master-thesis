@@ -15,39 +15,40 @@
 \contentsline {subsection}{\numberline {2.2.3}Graph Isomorphism Network}{12}{subsection.2.2.3}%
 \contentsline {section}{\numberline {2.3}MLIR}{13}{section.2.3}%
 \contentsline {section}{\numberline {2.4}High-Level Synthesis}{14}{section.2.4}%
-\contentsline {section}{\numberline {2.5}SODA Toolchain}{15}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}SODA-OPT Frontend}{15}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}SODA Synthesizer Backend}{16}{subsection.2.5.2}%
-\contentsline {section}{\numberline {2.6}Conclusion}{16}{section.2.6}%
-\contentsline {chapter}{\numberline {3}Related Work}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Chapter structure}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Software accelerators}{18}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Hardware accelerators}{19}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Unified architecture accelerators}{19}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{21}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{22}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{25}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{28}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{30}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{31}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{32}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Conclusion}{33}{section.3.8}%
-\contentsline {chapter}{\numberline {4}Problem Formulation}{35}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Graph Neural Network acceleration}{35}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Motivation and objective}{36}{section.4.2}%
-\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{39}{chapter.5}%
-\contentsline {section}{\numberline {5.1}PyTorch}{40}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Torch-MLIR}{41}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Synthesizer}{42}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}SODA-OPT}{42}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}PandA-Bambu}{42}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Limitations}{43}{section.5.4}%
-\contentsline {chapter}{\numberline {6}Experimental Results}{45}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{47}{chapter.7}%
+\contentsline {section}{\numberline {2.5}LLVM}{15}{section.2.5}%
+\contentsline {section}{\numberline {2.6}SODA Toolchain}{15}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}SODA-OPT Frontend}{16}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}SODA Synthesizer Backend}{16}{subsection.2.6.2}%
+\contentsline {section}{\numberline {2.7}Conclusion}{16}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Related Work}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Chapter structure}{19}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Software accelerators}{20}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Hardware accelerators}{21}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Unified architecture accelerators}{21}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{23}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{24}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{27}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{30}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{32}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{33}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{34}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Conclusion}{35}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Problem Formulation}{37}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Graph Neural Network acceleration}{37}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Motivation and objective}{38}{section.4.2}%
+\contentsline {chapter}{\numberline {5}FPGA Toolchain for Graph Neural Network Acceleration}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}PyTorch}{42}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Torch-MLIR}{43}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Synthesizer}{44}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}SODA-OPT}{44}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}PandA-Bambu}{44}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Limitations}{45}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Experimental Results}{47}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Developments}{49}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{49}{chapter*.28}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{51}{chapter*.28}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{55}{appendix*.30}%
-\contentsline {chapter}{List of Tables}{57}{appendix*.32}%
-\contentsline {chapter}{List of Symbols}{59}{appendix*.34}%
-\contentsline {chapter}{Acknowledgements}{61}{appendix*.37}%
+\contentsline {chapter}{List of Figures}{57}{appendix*.30}%
+\contentsline {chapter}{List of Tables}{59}{appendix*.32}%
+\contentsline {chapter}{List of Symbols}{61}{appendix*.34}%
+\contentsline {chapter}{Acknowledgements}{63}{appendix*.37}%

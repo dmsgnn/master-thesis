@@ -278,6 +278,18 @@ The next step is to generate an RTL model of the synthesized design, incorporati
     \label{fig:hls}
 \end{figure}
 
+\section{LLVM}
+\label{sec:llvm}%
+
+LLVM is a compiler framework that enables ongoing analysis and transformation of programs through a code representation independent of any specific language.
+
+Many HLS frameworks rely on it, thanks to its intermediate level of abstraction.
+It is also the case of the HLS tool used for this thesis, which takes an LLVM representation as input.
+
+The LLVM Intermediate Representation (IR), which resembles the assembly code, is a low-level code representation.
+LLVM uses a language-independent type system and utilizes an infinite set of virtual registers.
+All instructions follow the Static Single Assignment (SSA) form, meaning each virtual register appears in only one instruction, and each instruction takes one or two input operands while producing a single result.
+
 \section{SODA Toolchain}
 \label{sec:soda}%
 
