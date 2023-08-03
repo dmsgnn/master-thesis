@@ -7,6 +7,8 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.figure import figaspect
+import torch.utils.benchmark as benchmark
+import timeit
 
 
 def matmul_benchmark():
@@ -74,16 +76,24 @@ def matmul_benchmark():
         print('>>> Number of executions = {0}'.format(n))
         for i in range(num_runs):
             tot_time = 0
-            for j in range(0, n):
+            #for j in range(0, n):
                 # Perform measurement, use process_time() since it does not count sleeps
-                t = process_time()
-                c = torch.mm(a, b)
-                t = process_time() - t
+                # t = process_time()
+                # c = torch.mm(a, b)
+                #t = process_time() - t
+            t0 = benchmark.Timer(
+                stmt='torch.mm(a, b)',
+                setup='from torch import mm',
+                globals={'a': a, 'b': b},
+                num_threads=1)
 
-                tot_time += t
+            t = t0.timeit(n).times[0]
 
-            tot_times[idx].append(tot_time)
-            avg_times[idx].append(tot_time / num_executions[idx])
+            # tot_time += t
+
+            # tot_times[idx].append(tot_time)
+            # avg_times[idx].append(tot_time / num_executions[idx])
+            avg_times[idx].append(t)
 
         avg_runs_time.append(np.average(avg_times[idx]))
         min_runs_time.append(min(avg_times[idx]))
@@ -112,7 +122,8 @@ def matmul_benchmark():
            yerr=np.array([np.subtract(avg_runs_time, min_runs_time), np.subtract(max_runs_time, avg_runs_time)]),  #
            ecolor='red',
            capsize=5)
-    plt.show()
+    # plt.show()
+    plt.savefig('torch-mm.pdf')
 
 
 # For calling from command line
