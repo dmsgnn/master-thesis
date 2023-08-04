@@ -14,11 +14,17 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Example of a Multi-Layer Perceptron\relax }}{11}{figure.caption.13}%
 \contentsline {figure}{\numberline {2.6}{\ignorespaces High-level Synthesis (HLS) design steps~\cite {5209958}\relax }}{14}{figure.caption.17}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Overall architecture of SpMM engine in AWB-GCN~\cite {DBLP:journals/corr/abs-1908-10834}}}{21}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces EnGN hardware architecture~\cite {DBLP:journals/corr/abs-1909-00155}\relax }}{23}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Block diagram of a tile in the GNN accelerator proposed by Auten \textit {et al.}~\cite {9218751}\relax }}{24}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Architecture overview of HyGCN~\cite {DBLP:journals/corr/abs-2001-02514}\relax }}{26}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces High-level overview of GRIP~\cite {DBLP:journals/corr/abs-2007-13828}\relax }}{28}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces GenGNN overall architecture~\cite {DBLP:journals/corr/abs-2201-08475}\relax }}{29}{figure.caption.24}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Toolchain for Graph Neural Network Acceleration\relax }}{42}{figure.caption.22}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{43}{figure.caption.23}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{44}{figure.caption.24}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Toolchain for Graph Neural Network Acceleration\relax }}{42}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{43}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{44}{figure.caption.29}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Compiler frontend}}}{44}{subfigure.3.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {High-level synthesis backend}}}{44}{subfigure.3.2}%
 \addvspace {10\p@ }

@@ -22,17 +22,17 @@
 \contentsline {section}{\numberline {2.7}Conclusion}{16}{section.2.7}%
 \contentsline {chapter}{\numberline {3}Related Work}{19}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Chapter structure}{19}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Software accelerators}{20}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Software frameworks}{19}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Hardware accelerators}{21}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Unified architecture accelerators}{21}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{23}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{24}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{27}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{30}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Graph processing acceleration using HBM-equipped FPGAs}{32}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{33}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{34}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Conclusion}{35}{section.3.8}%
+\contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{24}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{25}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{28}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{31}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Graph processing acceleration}{33}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{35}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{35}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Conclusion}{36}{section.3.8}%
 \contentsline {chapter}{\numberline {4}Problem Formulation}{37}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Graph Neural Network acceleration}{37}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Motivation and objective}{38}{section.4.2}%
@@ -46,9 +46,9 @@
 \contentsline {chapter}{\numberline {6}Experimental Procedures and Results}{47}{chapter.6}%
 \contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{49}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{51}{chapter*.28}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{51}{chapter*.33}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{57}{appendix*.30}%
-\contentsline {chapter}{List of Tables}{59}{appendix*.32}%
-\contentsline {chapter}{List of Symbols}{61}{appendix*.34}%
-\contentsline {chapter}{Acknowledgements}{63}{appendix*.37}%
+\contentsline {chapter}{List of Figures}{57}{appendix*.35}%
+\contentsline {chapter}{List of Tables}{59}{appendix*.37}%
+\contentsline {chapter}{List of Symbols}{61}{appendix*.39}%
+\contentsline {chapter}{Acknowledgements}{63}{appendix*.42}%

@@ -1,71 +1,73 @@
-Accelerating Graph Neural Networks (GNNs) has become a subject of intense interest within the research community, encompassing the exploration of ASIC and FPGA accelerators.
-In this chapter, a comprehensive examination is conducted on cutting-edge Graph Neural Networks FPGA accelerators and design flows based on High-Level Synthesis (HLS).
-As explained in Chapter 6, particular emphasis has been placed on optimizing matrix-matrix multiplication during this thesis research study.
-Consequently, this chapter also delves into the relevant literature concerning various approaches to Matmul optimization.
+Accelerating Graph Neural Networks has become a subject of interest within the research community, exploring especially FPGA accelerators.
+In this chapter, a comprehensive examination is conducted on cutting-edge GNN FPGA accelerators and design flows based on High-Level Synthesis to implement them.
+Considering typical GNN operations, particular emphasis has been placed on optimizing matrix-matrix multiplication during this thesis research study.
+Consequently, this chapter also delves into the relevant literature concerning various approaches to optimization of matrix multiplication operations.
 
 \section{Chapter structure}
 \label{sec:related_work_structure}%
 This chapter contains several sections.
-Firstly, it presents the software frameworks utilized to accelerate Graph Neural Network computations.
+Firstly, it presents the software frameworks utilized to design Graph Neural Network computations.
 The following section provides an overview of state-of-the-art hardware accelerators, categorized based on their architecture types~\cite{DBLP:journals/corr/abs-2010-00130}.
-
-Subsequently, a section summarizes an accelerator implemented using High-Level Synthesis (HLS). This accelerator is separated from the hardware accelerators as it adopts HLS as the design flow proposed in this thesis.
-
 Additionally, this chapter includes a summary of a solution that aimed to accelerate GNN using both software and hardware approaches.
-A section is dedicated to a state-of-the-art graph processing accelerator, implemented using HBM-equipped FPGAs.
 
+Particular attention is given to an accelerator implemented using High-Level Synthesis, the same technique used by the design flow proposed in this thesis.
 As mentioned earlier, optimizing the matrix-matrix multiplication operation was a significant aspect of this research.
-Thus, a dedicated section focuses on state-of-the-art optimizations for matrix-matrix multiplication, especially those related to technologies similar to the ones employed in this thesis.
+Thus, a dedicated section focuses on state-of-the-art optimizations for matrix-matrix multiplication.
 
 Finally, the chapter concludes with a comprehensive summary of the cutting-edge accelerators presented.
 
-\section{Software accelerators}
-\label{sec:related_work_software_accelerators}%
+\section{Software frameworks}
+\label{sec:related_work_software_frameworks}%
 
 The challenges posed by GNN processing have led to inefficiencies in traditional deep neural network (DNN) libraries and graph processing frameworks.
 This is primarily due to the alternating computational phases characteristic of GNNs.
 While DNN libraries excel in accelerating combination operations within vertices and edges, they need help with aggregation tasks.
 On the other hand, graph processing libraries effectively handle irregular memory accesses during graph traversal but assume simplistic operations at the vertices, which is not the case in GNNs. Recent research studies tried to bridge the gap by adapting the DNN libraries to overcome Graph Neural Network challenges.
 
-The two main software frameworks trying to accelerate Graph Neural Networks computation are PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428} and Deep Graph Library~\cite{DBLP:journals/corr/abs-1909-01315}.
-They both provide a lot of examples and code for multiple GNN architectures providing optimizations that could work for the acceleration of both training and inference.
+The two main software frameworks trying to design and improve GNN computation are PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428} and Deep Graph Library~\cite{DBLP:journals/corr/abs-1909-01315}.
+They both provide many examples and code for multiple GNN architectures providing optimizations that could work for the performance improvement of both training and inference.
 
 PyTorch Geometric is a PyTorch-based library specifically designed for deep learning on input data with irregular structures, including graphs, point clouds, and manifolds.
-In addition to offering comprehensive graph data structures and processing techniques, it incorporates many state-of-the-art methods from relational learning and 3D data processing domains.
-PyTorch Geometric achieves remarkable data throughput by introducing efficient handling of mini-batches containing input examples of varying sizes and efficiently handling sparsity through specialized GPU scatter and gather kernels, which operate on all edges and nodes concurrently, as opposed to relying on sparse matrix multiplication kernels.
+In addition to offering comprehensive graph data structures and processing techniques, it incorporates many state-of-the-art methods from the relational learning and 3D data processing domains.
+PyTorch Geometric achieves impressive data throughput by utilizing sparse GPU acceleration, offering specialized CUDA kernels, and implementing efficient mini-batch handling for input examples of varying sizes.
 A key aspect of PyG involves defining a message-passing interface encompassing message and update functions for neighborhood aggregation and combination and multiple pooling operations.
 
 DGL is a recently developed library that seamlessly integrates with TensorFlow, PyTorch, or MXNet.
-It introduces three essential functions: message for aggregating edges, update and reduce for aggregating and combining at the nodes.
+It introduces three essential functions: \textit{message} for aggregating edges, \textit{update} and \textit{reduce} for aggregating and combining at the nodes.
 DGL adopts a matrix multiplication approach to enhance performance and harnesses specialized kernels designed for GPUs or TPUs.
-Specifically, both sampled dense-dense and sparse matrix multiplications and options for node, edge, or feature parallelization are considered.
-DGL intelligently selects the optimal parallelization scheme using heuristics, considering various factors, including the input graph.
+DGL intelligently selects the optimal parallelization scheme using heuristics, considering various factors, including the input graph characteristics.
 It distills the computational patterns of GNNs into a set of generalized sparse tensor operations, which facilitate extensive parallelization.
 By prioritizing the graph as the central programming abstraction, DGL enables transparent optimizations.
 Furthermore, through a framework-neutral design philosophy, DGL allows users to effortlessly port and leverage existing components across multiple deep learning frameworks.
 
 The approach used by DGL outperformed PyTorch Geometric in training Graph Neural Networks, as stated in their paper~\cite{DBLP:journals/corr/abs-1909-01315}.
 However, both libraries target CPU and GPU architectures.
-Knowing the extreme computational power of FPGA, the field of hardware accelerators started gaining more and more interest, with the expectation of having GNN hardware accelerators capable of outperforming the performance of CPU-GPU targeting libraries.
+Knowing the extreme computational power of FPGA, the field of hardware accelerators started gaining more and more interest, with the expectation of having GNN hardware accelerators capable of outperforming the performance of libraries targeting CPU/GPU.
 
 \section{Hardware accelerators}
 \label{sec:hardware_accelerators}%
 
-As discussed in Section~\ref{sec:related_work_software_accelerators}, software accelerators optimize the execution of GNNs in CPU-GPU platforms, commonly found in various computing systems, leading to substantial speed improvements in inference and training processes.
+As discussed in Section~\ref{sec:related_work_software_frameworks}, software frameworks optimize the execution of GNNs in CPU-GPU platforms, commonly found in various computing systems, leading to substantial speed improvements in inference and training processes.
 
-However, the research field has raised questions about the feasibility of custom hardware accelerators in overcoming the challenges of GNN computing and achieving order-of-magnitude enhancements.
+However, custom hardware accelerators could overcome the challenges of GNN computing and achieving order-of-magnitude enhancements.
 Consequently, numerous hardware accelerators with different architecture types have emerged, aiming to address the intensive computational demands and alternating patterns required by GNNs.
 
 \subsection{Unified architecture accelerators}\label{subsec:unified-architecture-accelerators}%
 
-A unified architecture refers to a design approach where the FPGA fabric is configured to be versatile and flexible, allowing it to handle various applications and tasks.
-Instead of having specialized and fixed hardware modules for specific functions, a unified architecture enables the FPGA to reconfigure its resources to dynamically adapt to different computation requirements.
+A unified architecture refers to a design approach where the FPGA, instead of having specialized hardware modules for specific functions, has more generic PEs in which different operations are scheduled.
 
-\cite{DBLP:journals/corr/abs-1908-10834} presents Autotuning-Workload-Balancing GCN (AWB-GCN) to accelerate Graph Convolutional Network inference.
-This accelerator endorses a proactive adaptation to the structural sparsity inherent in GNNs. The authors support their design by analyzing the power-law distribution found in most graphs, positing that certain parts of the computation will exhibit density. In contrast, others will be extraordinarily sparse, leading to imbalances.
+Autotuning-Workload-Balancing GCN (AWB-GCN), presented in \cite{DBLP:journals/corr/abs-1908-10834}, aims to accelerate Graph Convolutional Network inference.
+This accelerator actively adapts to the structural sparsity of GNNs. The authors support their design by analyzing the power-law distribution found in most graphs, positing that certain parts of the computation will exhibit density. In contrast, others will be extraordinarily sparse, leading to imbalances.
 
-In order to tackle this problem, the architecture devises a custom matrix multiplication engine that efficiently supports skipping zeros.
+In order to tackle this problem, the architecture, shown in Figure~\ref{fig:awb_gcn_architecture}, devises a custom matrix multiplication engine that efficiently supports skipping zeros.
 In particular, three hardware-based autotuning techniques to address the imbalance have been suggested: dynamic distribution smoothing, remote switching, and row remapping.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/AWB_GCN_SpMM_architecture}
+    \caption[Overall architecture of SpMM engine in AWB-GCN~\cite{DBLP:journals/corr/abs-1908-10834}]{Overall architecture of SpMM engine in AWB-GCN with three rebalancing techniques: distribution smoothing, remote switching (red bordered) and evil row remapping (purple bordered)~\cite{DBLP:journals/corr/abs-1908-10834}}
+    \label{fig:awb_gcn_architecture}
+\end{figure}
 
 Specifically, AWB-GCN continuously monitors the sparse graph pattern, dynamically adjusts the workload distribution among many processing elements, and reuses the optimal configuration upon convergence.
 Data from memory is directed through a task distributor and queue (TDQ) to a collection of processing elements (PEs) and accumulators.
@@ -90,17 +92,23 @@ The auto-tuner assesses the utilization gaps between the most overloaded and und
 If so, row remapping is executed as a solution.
 
 AWB-GCN proves to be a fascinating accelerator, though its generalizability beyond Graph Convolutional Network remains uncertain.
-On the other hand, EnGN represents another accelerator featuring a unified architecture, with the primary goal of being adaptable for various Graph Neural Network models.
+On the other hand, EnGN~\cite{DBLP:journals/corr/abs-1909-00155} represents another accelerator featuring a unified architecture, with the primary goal of being adaptable for various Graph Neural Network models.
 
-EnGN~\cite{DBLP:journals/corr/abs-1909-00155} is a specialized accelerator architecture that prioritizes high-throughput and energy-efficient processing of large-scale GNNs in which the Graph Neural Network is treated as a concatenated matrix multiplication of feature vectors, adjacency matrices, and weights, all efficiently scheduled in a single data flow.
+EnGN is a specialized accelerator architecture that prioritizes high-throughput and energy-efficient processing of large-scale GNNs in which the Graph Neural Network is treated as a concatenated matrix multiplication of feature vectors, adjacency matrices, and weights, all efficiently scheduled in a single data flow.
 An array of clustered Processing Elements (PEs) is supplied with independent banks for features, edges, and weights, enabling computation of the combination function.
+The hardware architecture of EnGN is shown in Figure~\ref{fig:engn_architecture}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/EnGN_architecture}
+    \caption{EnGN hardware architecture~\cite{DBLP:journals/corr/abs-1909-00155}}
+    \label{fig:engn_architecture}
+\end{figure}
 
 EnGN accelerates the three fundamental stages of GNN propagation to handle sparsity efficiently, i.e., feature extraction, aggregate, and update, which encapsulates common computing patterns shared by typical GNNs.
 The authors introduce the ring-edge-reduce (RER) dataflow for the aggregation, in which each column of PEs is interconnected through a ring, and results are passed along and added based on the adjacency matrix.
-This process effectively addresses the poor locality of sparsely and randomly connected vertices and efficiently supports critical stages. EnGN dynamically reorders edges in each RER step to reduce redundant computations in sparsely connected nodes.
-
-Moreover, EnGN employs a graph tiling strategy to accommodate large graphs, optimizing the utilization of hierarchical on-chip buffers through adaptive computation reordering and tile scheduling.
-This approach enhances EnGN's capability to handle substantial graphs effectively.
+This process effectively addresses the poor locality of sparsely and randomly connected vertices and efficiently supports critical stages.
+EnGN dynamically reorders edges in each RER step to reduce redundant computations in sparsely connected nodes.
 
 Since well-connected vertices frequently appear during computation, PE clusters have a degree-aware vertex cache that stores data for high-degree vertices.
 Other optimized design decisions in EnGN involve the order of matrix multiplications when the aggregation function is a sum, impacting the total number of operations.
@@ -115,23 +123,26 @@ A tiled architecture refers to a design approach where the FPGA fabric is organi
 Each tile typically consists of a set of logic cells, interconnect resources, and other functional units, and these tiles are repeated across the entire FPGA.
 
 In contrast to most other accelerators, this work~\cite{9218751} presents a modular architecture for convolutional GNNs incorporating dedicated hardware units to efficiently handle the irregular data movement essential for graph computation in GNNs, while simultaneously delivering the high compute throughput required by GNN models.
-The fundamental building block of the accelerator is a tile consisting of an aggregator module (AGG), a DNN accelerator module (DNA), a DNN queue (DNQ), and a graph PE (GPE), all interconnected via an on-chip router.
+The fundamental building block, as shown in the block diagram of Figure~\ref{fig:auten_tile_diagram} of the accelerator is a tile consisting of an aggregator module (AGG), a DNN accelerator module (DNA), a DNN queue (DNQ), and a graph PE (GPE), all interconnected via an on-chip router.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/auten_tile_diagram}
+    \caption{Block diagram of a tile in the GNN accelerator proposed by Auten \textit{et al.}~\cite{9218751}}
+    \label{fig:auten_tile_diagram}
+\end{figure}
 
 The Graph Processing Element (GPE) handles graph traversal and sequencing computation steps dependent on the underlying graph structure.
 The DNA executes the DNN computation within the GNN model.
 The AGG performs feature aggregation coordinated by the GPE based on graph traversal.
 The DNQ buffers memory requests and intermediate results as they are passed to the DNA.
-
 This design allows for easy scalability by interconnecting multiple tiles with memory.
-Each tile's internal structure resembles HyGCN's~\cite{DBLP:journals/corr/abs-2010-00130}, with the DNA functioning as an array for dense multiplication, the AGG as an edge-controlled adder, the DNQ as an inter-engine buffer, and the GPE overseeing execution.
 
-The GNN accelerator program proposed by Auten \textit{et al.} represents a GNN model as a sequential set of layers.
+The GNN accelerator program proposed by Auten \textit{et al.}~\cite{9218751} represents a GNN model as a sequential set of layers.
 Each layer operates on a graph, applying a vertex program to generate an output graph.
 These layers are connected in sequence to form a complete GNN model.
 The initial layer takes the model input as its input graph, and subsequent layers utilize the output of the preceding layer.
 The last layer produces the final output graph.
-
-Unlike HyGCN, the accelerator introduced in~\cite{9218751} is less specialized but has a better potential for generalization to various Graph Neural Network models~\cite{DBLP:journals/corr/abs-2010-00130}.
 
 \subsection{Hybrid architectures for GNN acceleration}
 \label{subsec:hybrid-architectures}%
@@ -141,7 +152,7 @@ This approach was inspired by the observation that GNNs exhibit two distinct exe
 On the other hand, the combination phase behaves more like conventional neural networks, exhibiting a static and regular execution pattern.
 As a result of this observation, HyGCN consists of dedicated engines for the aggregation and combination stages and a coordinating mechanism for pipelined execution of both functions.
 
-The Combination operation at each vertex functions like a neural network with a regular yet compute-intensive execution.
+The Combination operation at each vertex works like a neural network with a regular yet compute-intensive execution.
 HyGCN's architecture is based on the popular systolic array, but it incorporates multiple arrays instead of a single one to adapt to the two processing modes of the Aggregation Engine.
 In the combination engine, a set of systolic arrays is combined to form a systolic module, and these modules can be flexibly utilized in various ways, including independent and cooperative working modes.
 
@@ -152,8 +163,15 @@ In the combination engine, a set of systolic arrays is combined to form a systol
           The advantage of this mode is that weight parameters can be efficiently reused by all systolic arrays, reducing energy consumption.
 \end{itemize}
 
-The aggregation engine comprises a sampler, edge scheduler, and sparsity eliminator feeding a set of SIMD (single instruction multiple data) cores.
+The aggregation engine, represented in Figure~\ref{fig:hygcn_architecture}, comprises a sampler, edge scheduler, and sparsity eliminator feeding a set of SIMD (single instruction multiple data) cores.
 There are two processing modes for SIMD cores to handle edges in parallel.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/HyGCN_architecture}
+    \caption{Architecture overview of HyGCN~\cite{DBLP:journals/corr/abs-2001-02514}}
+    \label{fig:hygcn_architecture}
+\end{figure}
 
 The first mode is vertex-concentrated, where each SIMD core is assigned the workload of a single vertex.
 While this mode can produce aggregated features in a burst mode, the processing latency for a single vertex is prolonged, leading to workload imbalance and loss of parallelism.
@@ -177,6 +195,9 @@ This method effectively eliminated sparsity and improved data access efficiency.
 To further optimize for varying workloads, HyGCN allows flexible grouping of SIMD cores in aggregation and PEs in combination based on the size of feature vectors.
 Additionally, careful attention is given to the design of the inter-engine coordinator to optimize memory accesses and enable fine-grained pipelining of execution, maximizing parallelism dynamically.
 
+Each tile's internal structure of the accelerator proposed in~\cite{9218751} resembles HyGCN's, with the DNA functioning as an array for dense multiplication, the AGG as an edge-controlled adder, the DNQ as an inter-engine buffer, and the GPE overseeing execution.
+Unlike HyGCN, the accelerator introduced in~\cite{9218751} is less specialized but has a better potential for generalization to various Graph Neural Network models~\cite{DBLP:journals/corr/abs-2010-00130}.
+
 While not an authentic hybrid architecture, GRIP~\cite{DBLP:journals/corr/abs-2007-13828} is an accelerator that shares similar techniques with HyGCN's implementation approach.
 It leverages GReTA~\cite{greta-recoml20} (Gather, Reduce, Transform, Activate), a graph processing abstraction specifically crafted for efficient execution on accelerators.
 It also offers the flexibility required to implement GNN inference and holds the potential to be adaptable to various types of Graph Neural Networks.
@@ -190,9 +211,16 @@ GRIP utilizes a high-performance matrix multiply engine and a dedicated memory s
 In contrast, it employs multiple parallel prefetches and reduction engines for edge-centric phases to mitigate the irregularity in memory accesses.
 Additionally, GRIP supports several GNN optimizations, including a novel technique called vertex-tiling, which enhances the reuse of weight data.
 
-GRIP provides a customizable architecture with separated and custom units and accumulators for both edges (gather, reduce) and vertices (transform, activate) that allows for performing edge and node updates using user-defined functions.
+GRIP provides a customizable architecture, shown in Figure~\ref{fig:grip_architecture}, with separated and custom units and accumulators for both edges (gather, reduce) and vertices (transform, activate) that allows for performing edge and node updates using user-defined functions.
 The control of GRIP is managed by a host system that issues commands for different operations and data transfers.
 The control unit dequeues these commands in order and asynchronously issues them to individual execution units or the memory controller.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.26\textwidth]{Images/GRIP_architecture}
+    \caption{High-level overview of GRIP~\cite{DBLP:journals/corr/abs-2007-13828}}
+    \label{fig:grip_architecture}
+\end{figure}
 
 GRIP comprises three core execution units: the edge unit, the vertex unit, and the update unit.
 The edge unit performs the edge-accumulate phase, iterating over the edges of the nodeflow, executing gather, and accumulating the result into the edge accumulator using reduce.
@@ -210,7 +238,9 @@ The accelerator employs various optimizations, including pipelining and tiling a
 
 As previously highlighted, the main challenge of GNN hardware acceleration lies in simultaneously meeting the demand for novel GNN models and fast inference, as there exists a gap between the difficulty in developing efficient FPGA accelerators and the rapid pace of creating new GNN models.
 
-To address this challenge, in~\cite{DBLP:journals/corr/abs-2201-08475} GenGNN has been introduced, a GNN acceleration framework utilizing High-Level Synthesis (HLS), with two primary objectives.
+Unlike the designs presented in the previous Section, typically designed using low-level hardware description languages, explicitly specifying the hardware components and their interconnections, this Section discusses methods generated using HLS, which automatically synthesizes the high-level code into hardware, abstracting away low-level hardware details.
+
+To address this challenge, GenGNN has been introduced in~\cite{DBLP:journals/corr/abs-2201-08475}, a GNN acceleration framework utilizing High-Level Synthesis (HLS), with two primary objectives.
 Firstly, to achieve ultra-fast GNN inference without needing graph pre-processing to meet real-time demands.
 Secondly, to support a wide range of GNN models with the flexibility to accommodate new models.
 The framework incorporates an optimized message-passing structure that applies to all models and is complemented by a diverse library of model-specific components.
@@ -218,12 +248,19 @@ The framework incorporates an optimized message-passing structure that applies t
 This framework capitalizes on the observation that each node in a GNN layer undergoes two key steps: message passing (MP) and node embedding (NE). The message passing step is further divided into gather and scatter phases, where gather involves feature aggregation, and scatter entails message transformation and forwarding.
 On the other hand, node embedding encompasses node transformation and update.
 
-To achieve this goal, GenGNN was designed using a message-passing style featuring two main processing elements (PEs): node embedding and message passing.
-The architecture includes three data storage buffers: one node embedding buffer and two message buffers, all of which have a $O(N)$ size, where $N$ represents the number of nodes allowed on-chip.
+To accelerate MP and NE steps, GenGNN was designed using a message-passing style featuring two main processing elements (PEs): node embedding and message passing.
+As shown in Figure~\ref{fig:gengnn_architecture}, the architecture includes three data storage buffers: one node embedding buffer and two message buffers, all of which have a $O(N)$ size, where $N$ represents the number of nodes allowed on-chip.
 The two message buffers are used alternately across layers, allowing for the reuse of resources and dataflow in multiple layers.
 The node embedding PE handles node transformation and update within a single layer, while the message passing PE performs the subsequent scatter operation.
 The advantage of this approach is that the receivers of the messages can instantly update their partially aggregated message in the message buffer, enabling the merging of scatter and gather phases.
 Since the aggregation function is permutation invariant and the aggregation order does not matter, such a merged fashion reduces the overall process latency and minimizes memory cost.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.22\textwidth]{Images/GenGNN_architecture}
+    \caption{GenGNN overall architecture~\cite{DBLP:journals/corr/abs-2201-08475}}
+    \label{fig:gengnn_architecture}
+\end{figure}
 
 The independence of node embedding (NE) and message passing (MP) steps across nodes and edges allows for significantly reduced processing latency by effectively pipelining these two steps.
 The authors referred to the most suitable approach for this task as streaming-based pipelining, which can be achieved using a streaming-based FIFO (first-in-first-out) memory queue.
@@ -267,17 +304,19 @@ Secondly, BoostGCN employs a buffer in external memory, while GenGNN utilizes an
 
 Another notable framework in this section is DGNN-Booster~\cite{chen2023dgnnbooster}, an innovative Field-Programmable Gate Array (FPGA) accelerator framework designed for real-time inference of Dynamic Graph Neural Networks (DGNNs) using High-Level Synthesis (HLS).
 Unlike the other accelerators mentioned and outside the scope of this research, DGNN-Booster focuses on DGNNs, which are Graph Neural Networks tailored for dynamic graph structures and features.
-Hence, a detailed description is not provided here.
 However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on GenGNN at a lower level of parallelism.
 
 \section{Software-Hardware co-design accelerators}
 \label{sec:software-hardware-accelerators}%
 
-The work conducted by Zhang \textit{et al.}~\cite{9153263} introduces a combined software and hardware approach for accelerating Graph Convolutional Networks (GCNs).
-Their study was initiated with the recognition that hardware acceleration of Graph Convolutional Network (GCN) inference poses challenges stemming from the vast size of the input graph;
-the heterogeneous workload of GCN inference involving sparse and dense matrix operations and the irregular information propagation along the edges during computation
+Hardware-software co-design accelerators exploit hardware and software strengths to achieve high performance.
+This approach uses software algorithms and hardware optimization to achieve even better performance instead of just one of the two techniques.
 
-The primary objective of this accelerator is to expedite GCN models, with a particular focus on accelerating the critical computational kernels: feature aggregation $AX$ and feature transformation $XW$.
+The work conducted by Zhang \textit{et al.}~\cite{9153263} introduces a combined software and hardware approach for accelerating Graph Convolutional Networks (GCNs).
+Their study was initiated with the recognition that hardware acceleration of Graph Convolutional Network (GCN) inference poses challenges stemming from the vast size of the input graph,
+the heterogeneous workload of GCN inference involving sparse and dense matrix operations, and the irregular information propagation along the edges during computation
+
+The primary objective of this accelerator is to accelerate GCN models, with a particular focus on the critical computational kernels: feature aggregation $AX$ and feature transformation $XW$.
 In these kernels, $A$ represents the adjacency matrix, $X$ denotes the feature matrix, and $W$ represents the weight matrix.
 
 The proposed algorithm-architecture co-optimization for accelerating large-scale Graph Convolutional Network (GCN) inference on FPGA involves several key steps.
@@ -320,16 +359,12 @@ In each sub-accelerator within the branches, there are dedicated Buffers that en
 a Sparse/Dense Matrix Multiplication Engine (SpMM) capable of handling both dense and sparse matrix multiplication,
 element-wise Activation Units for non-linear activation operations, and sampling Units for efficient node sampling scheduling.
 
-Similar to GraphLily, as discussed in Section~\ref{sec:hbm-equipped-fpga-accelerators}, GCoD also leverages High Bandwidth Memory (HBM).
-Specifically, each sub-accelerator communicates with an off-chip HBM through direct memory access to enhance access efficiency.
-
-\section{Graph processing acceleration using HBM-equipped FPGAs}
+\section{Graph processing acceleration}
 \label{sec:hbm-equipped-fpga-accelerators}%
 
 This section delves into the state-of-the-art accelerators for graph processing.
 Although not directly tailored for graph neural networks, graph processing is a fundamental aspect of GNN acceleration, particularly for models like Graph Convolutional Networks.
 As mentioned earlier in this Chapter, numerous accelerators have prioritized graph processing to enhance GNN performance.
-Also, a part of this research follows this approach, which will be extensively discussed in Chapter~\ref{ch:chapter_six}.
 
 GraphLily~\cite{9643582} is a graph linear algebra overlay designed to accelerate graph processing on FPGAs equipped with high-bandwidth memory (HBM).
 Given the low compute-to-memory access ratio and irregular data access pattern, memory access often limits graph processing.
@@ -343,7 +378,7 @@ The SpMV accelerator is specifically designed to fully utilize the HBM bandwidth
 To achieve this, the authors introduced a novel sparse matrix storage format that explicitly captures and encodes both intra-channel and inter-channel memory-level parallelism, effectively harnessing the parallel capabilities of the accelerator. Its design comprises multiple PE clusters, each connected to one HBM channel.
 
 The SpMSpV accelerator complements the SpMV accelerator, explicitly catering to push-based graph processing, which is particularly advantageous for highly sparse input vectors.
-Its architecture is different from the SpMV's one.
+Its architecture is different from the SpMV one.
 It comprises a vector loader, a matrix loader, and an arbitrated crossbar.
 The vector loader is responsible for loading the non-zero elements of the sparse input vector from HBM. The matrix loader loads packets of the corresponding columns of the sparse matrix from DDR, decoding them into separate streams.
 Finally, the arbitrated crossbar dispatches these streams based on the row IDs to an array of PEs, each accessing independent banks of the output buffer.
@@ -362,11 +397,10 @@ Prior to proceeding, it is essential to outline that Basic Linear Algebra Subpro
 OpenBLAS~\cite{openblas} is a prominent optimized BLAS library tailored for CPU usage.
 At the same time, cuBLAS~\cite{cublas} serves as a specialized library providing GPU-accelerated implementations of BLAS\@.
 
-Also, several FPGA-accelerated BLAS libraries exist, designed to exploit FPGA's parallelism and hardware capabilities for efficient matrix operations.
-One example is GraphLily, discussed in Section~\ref{sec:hbm-equipped-fpga-accelerators}, but other options exist.
+Also, one example of FPGA-accelerated BLAS library is GraphLily, discussed in Section~\ref{sec:hbm-equipped-fpga-accelerators}, designed to exploit FPGA's parallelism and hardware capabilities for efficient matrix operations.
 Various custom implementations are crafted to suit specific FPGA platforms and applications.
 
-However, in this Section, particular attention will be given to the optimization of matrix multiplication using MLIR.
+In this Section, particular attention will be given to the optimization of matrix multiplication using MLIR.
 This focus arises because SODA, the framework introduced in Section~\ref{sec:soda}, which represents part of the core of this thesis, represents an extension of the MLIR framework.
 
 \subsection{Matrix multiplication optimization in MLIR}
@@ -379,7 +413,7 @@ The authors of this paper chose to base their example on the matrix-matrix multi
 This choice is because matrix-matrix multiplication is an excellent routine for demonstrating code optimization practices in tutorials and a crucial operation in various domains.
 Consequently, it is often the first task for which developers create an optimized implementation when working with a new architecture.
 
-The authors achieved a nearly 3x improvement in performance through their first optimization, which involved using the cache tiling strategy employed in OpenBLAS.
+The authors used an Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz processor for all experimentation and achieved a nearly 3x improvement in performance through their first optimization, which involved using the cache tiling strategy employed in OpenBLAS\@.
 This strategy carefully tiles the matrices to exploit reuse at different cache levels.
 The primary objective is to ensure that the vector FMA/add mul pipeline remains full, avoiding waiting for loads.
 
@@ -403,40 +437,9 @@ Combining all the abovementioned techniques and carefully selecting the appropri
 
 The analysis of the state of the art in previous sections yields several conclusions.
 Firstly, a quantitative comparison among accelerators is challenging due to the absence of a standard baseline system and a GNN benchmark suite encompassing a representative set of algorithms, datasets, and design objectives.
-To address this issue, initiatives like the Open Graph Benchmark (OGB)~\cite{NEURIPS2020_fb60d411}, which will be discussed in Chapter~\ref{ch:chapter_six} as it was also used for part of this thesis' experiments, aim to provide a representative set of graphs and GNNs for benchmarking purposes.
+To address this issue, initiatives like the Open Graph Benchmark (OGB)~\cite{NEURIPS2020_fb60d411}, which will be discussed in Chapter~\ref{ch:chapter_six}, aim to provide a representative set of graphs and GNNs for benchmarking purposes.
 
 Secondly, the one-size-fits-all approach does not apply to GNNs, and different applications will likely require distinct design approaches.
 It is evident that specific accelerators are more suitable and have been specifically designed to accelerate particular models.
 
-In conclusion of this chapter, Table~\ref{tab:accelerators-summary} summarizes the discussed accelerators, providing an overview of their most important features.
 
-\begin{table}[H]
-\centering
-    \begin{tabular}{p{8em}  p{22em}}
-    %\hline
-%    \rowcolor{black!40}
-    \textbf{Name} & \textbf{Features}  \\
-    \hline
-    \textbf{Auten \textit{et al.}} & \parbox[t]{22em}{\tabitem Tiled architecture \par \tabitem Specialized hardware units\strut} \\
-    \hline
-    \textbf{AWB-GCN} &  \parbox[t]{22em}{\tabitem Three hardware-based autotuning techniques \par \tabitem Adapting to varying GNN workloads\strut} \\
-    \hline
-    \textbf{BoostGCN} & \parbox[t]{22em}{\tabitem Partition-Centric Feature Aggregation scheme \par \tabitem Centralized load balancing scheme\strut}  \\
-    \hline
-    \textbf{EnGN} & \parbox[t]{22em}{\tabitem Unified architecture \par \tabitem Aggregation via Ring-Edge Reduction (RER)\strut}  \\
-    \hline
-    \textbf{GCoD} & \parbox[t]{22em}{\tabitem Algorithm and accelerator Co-Design \par \tabitem Dedicated two-pronged accelerator\strut}  \\
-    \hline
-    \textbf{GenGNN} & \parbox[t]{22em}{\tabitem Using High-Level Synthesis (HLS) \par \tabitem Highly optimized message passing architecture\strut}  \\
-    \hline
-    \textbf{GRIP} & \parbox[t]{22em}{\tabitem Uses the GReTA abstraction \par \tabitem Vertex-tiling optimization\strut} \\
-    \hline
-    \textbf{HyGCN} & \parbox[t]{22em}{\tabitem Hybrid architecture, aggregate/combine phases \par \tabitem Sparsity reduction via window sliding/shrinking\strut}  \\
-    \hline
-    \textbf{Zhang \textit{et al.}} & \parbox[t]{22em}{\tabitem Software and hardware co-design \par \tabitem Double buffering, node and feature parallelism\strut}  \\
-    %\hline
-    \end{tabular}
-    \\[10pt]
-    \caption{Summary of discussed Graph Neural Network accelerators}
-    \label{tab:accelerators-summary}
-\end{table}

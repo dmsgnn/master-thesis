@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  3 AUG 2023 15:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  4 AUG 2023 21:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1290,13 +1290,59 @@ Package pdftex.def Info: Images/hls.pdf  used on input line 276.
 Chapter 3.
 (./chapters/chapter3.tex [19
 
-] [20] [21] [22] [23] [24] [25] [26] [27] [28]
-[29] [30] [31]
-Overfull \hbox (24.44208pt too wide) in paragraph at lines 326--326
-|[]\T1/cmr/bx/n/17.28 Graph pro-cess-ing ac-cel-er-a-tion us-ing HBM-equipped
+] [20]
+<Images/AWB_GCN_SpMM_architecture.pdf, id=589, 524.99556pt x 160.95924pt>
+File: Images/AWB_GCN_SpMM_architecture.pdf Graphic file (type pdf)
+<use Images/AWB_GCN_SpMM_architecture.pdf>
+Package pdftex.def Info: Images/AWB_GCN_SpMM_architecture.pdf  used on input li
+ne 67.
+(pdftex.def)             Requested size: 445.47128pt x 136.57462pt.
+ [21 <./Images/AWB_GCN_SpMM_architecture.pdf>] [22]
+Overfull \hbox (1.36804pt too wide) in paragraph at lines 97--100
+[]\T1/cmr/m/n/12 EnGN is a spe-cial-ized ac-cel-er-a-tor ar-chi-tec-ture that p
+ri-or-i-tizes high-throughput and energy-
  []
 
-[32] [33] [34]) [35] [36]
+<Images/EnGN_architecture.pdf, id=617, 266.04375pt x 122.10248pt>
+File: Images/EnGN_architecture.pdf Graphic file (type pdf)
+<use Images/EnGN_architecture.pdf>
+Package pdftex.def Info: Images/EnGN_architecture.pdf  used on input line 103.
+(pdftex.def)             Requested size: 297.59348pt x 136.57462pt.
+[23 <./Images/EnGN_architecture.pdf>]
+<Images/auten_tile_diagram.pdf, id=677, 168.4748pt x 100.41534pt>
+File: Images/auten_tile_diagram.pdf Graphic file (type pdf)
+<use Images/auten_tile_diagram.pdf>
+Package pdftex.def Info: Images/auten_tile_diagram.pdf  used on input line 130.
+
+(pdftex.def)             Requested size: 229.16122pt x 136.57462pt.
+ [24 <./Images/auten_tile_diagram.pdf>]
+<Images/HyGCN_architecture.pdf, id=724, 241.61919pt x 128.20116pt>
+File: Images/HyGCN_architecture.pdf Graphic file (type pdf)
+<use Images/HyGCN_architecture.pdf>
+Package pdftex.def Info: Images/HyGCN_architecture.pdf  used on input line 171.
+
+(pdftex.def)             Requested size: 257.42392pt x 136.57462pt.
+
+[25] [26 <./Images/HyGCN_architecture.pdf>]
+<Images/GRIP_architecture.pdf, id=835, 523.42401pt x 140.46577pt>
+File: Images/GRIP_architecture.pdf Graphic file (type pdf)
+<use Images/GRIP_architecture.pdf>
+Package pdftex.def Info: Images/GRIP_architecture.pdf  used on input line 220.
+(pdftex.def)             Requested size: 441.06287pt x 118.36096pt.
+ [27] [28 <./Images/GRIP_architecture.pdf>]
+<Images/GenGNN_architecture.pdf, id=888, 489.7415pt x 118.81389pt>
+File: Images/GenGNN_architecture.pdf Graphic file (type pdf)
+<use Images/GenGNN_architecture.pdf>
+Package pdftex.def Info: Images/GenGNN_architecture.pdf  used on input line 260
+.
+(pdftex.def)             Requested size: 412.82977pt x 100.15425pt.
+ [29 <./Images/GenGNN_architecture.pdf>] [30]
+Overfull \hbox (8.82872pt too wide) in paragraph at lines 312--314
+[]\T1/cmr/m/n/12 Hardware-software co-design ac-cel-er-a-tors ex-ploit hard-war
+e and soft-ware strengths to achieve
+ []
+
+[31] [32] [33] [34] [35]) [36]
 Chapter 4.
 (./chapters/chapter4.tex [37
 
@@ -1318,7 +1364,7 @@ Package epstopdf Info: Source file: <Images/toolchain.eps>
 rted-to.pdf Images/toolchain.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain-eps-converted-to.pdf, id=742, 185.69376pt x 222.8325pt>
+<Images/toolchain-eps-converted-to.pdf, id=1130, 185.69376pt x 222.8325pt>
 File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain-eps-converted-to.pdf>
 Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
@@ -1335,7 +1381,7 @@ Package epstopdf Info: Source file: <Images/torch-mlir.eps>
 erted-to.pdf Images/torch-mlir.eps>
 (epstopdf)             \includegraphics on input line 62.
 Package epstopdf Info: Output file is already uptodate.
-<Images/torch-mlir-eps-converted-to.pdf, id=762, 199.74625pt x 201.75375pt>
+<Images/torch-mlir-eps-converted-to.pdf, id=1150, 199.74625pt x 201.75375pt>
 File: Images/torch-mlir-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/torch-mlir-eps-converted-to.pdf>
 Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input 
@@ -1343,12 +1389,12 @@ line 62.
 (pdftex.def)             Requested size: 225.36012pt x 227.62206pt.
 
 [43 <./Images/torch-mlir-eps-converted-to.pdf>]
-<Images/soda_opt_flow.pdf, id=785, 597.23125pt x 845.1575pt>
+<Images/soda_opt_flow.pdf, id=1174, 597.23125pt x 845.1575pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
 Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 78.
 (pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
-<Images/bambu_flow.pdf, id=786, 597.23125pt x 845.1575pt>
+<Images/bambu_flow.pdf, id=1175, 597.23125pt x 845.1575pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
 Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 84.
@@ -1432,41 +1478,59 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 311.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 311.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 311.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 428619E424464814D664D31BB8AB617B;3317.
+(rerunfilecheck)             Checksum: 7DEC61E9BE1576A0BA09898DFBB21BC8;3290.
  ) 
 Here is how much of TeX's memory you used:
- 26068 strings out of 480608
- 486578 string characters out of 5903630
+ 26123 strings out of 480608
+ 488352 string characters out of 5903630
  903166 words of memory out of 5000000
- 41122 multiletter control sequences out of 15000+600000
- 549918 words of font info for 65 fonts, out of 8000000 for 9000
+ 41167 multiletter control sequences out of 15000+600000
+ 549219 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,14n,89p,1195b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
-e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/te
-xmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (72 pages, 1626443 bytes).
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7
+.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/libertine/LinLibert
+ineT.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/libertine/LinLi
+bertineTB.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
+local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
+l/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
+texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/te
+xlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/loca
+l/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/
+texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/te
+xlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texl
+ive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texliv
+e/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/
+2020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2020/texmf
+-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/texmf-dist/fo
+nts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
+e1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/
+helvetic/uhvro8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palati
+no/uplb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palatino/uplr
+8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/
+texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2020/texmf-
+dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on out/thesis.pdf (72 pages, 4431839 bytes).
 PDF statistics:
- 1158 PDF objects out of 1200 (max. 8388607)
- 991 compressed objects within 10 object streams
- 224 named destinations out of 1000 (max. 500000)
- 489 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1576 PDF objects out of 1728 (max. 8388607)
+ 1287 compressed objects within 13 object streams
+ 229 named destinations out of 1000 (max. 500000)
+ 519 words of extra memory for PDF output out of 10000 (max. 10000000)
 
