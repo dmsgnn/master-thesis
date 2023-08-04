@@ -81,11 +81,12 @@ def matmul_benchmark():
                 # t = process_time()
                 # c = torch.mm(a, b)
                 #t = process_time() - t
+            num_threads = torch.get_num_threads()
             t0 = benchmark.Timer(
                 stmt='torch.mm(a, b)',
                 setup='from torch import mm',
                 globals={'a': a, 'b': b},
-                num_threads=1)
+                num_threads=num_threads)
 
             t = t0.timeit(n).times[0]
 
