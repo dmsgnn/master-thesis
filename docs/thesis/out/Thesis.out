@@ -25,26 +25,27 @@
 \BOOKMARK [2][-]{subsection.3.3.1}{Unified architecture accelerators}{section.3.3}% 25
 \BOOKMARK [2][-]{subsection.3.3.2}{GNN acceleration using Tiled architecture}{section.3.3}% 26
 \BOOKMARK [2][-]{subsection.3.3.3}{Hybrid architectures for GNN acceleration}{section.3.3}% 27
-\BOOKMARK [1][-]{section.3.4}{High-Level Synthesis based accelerators}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.5}{Software-Hardware co-design accelerators}{chapter.3}% 29
-\BOOKMARK [1][-]{section.3.6}{Graph processing acceleration}{chapter.3}% 30
-\BOOKMARK [1][-]{section.3.7}{Matrix multiplication optimization}{chapter.3}% 31
-\BOOKMARK [2][-]{subsection.3.7.1}{Matrix multiplication optimization in MLIR}{section.3.7}% 32
-\BOOKMARK [1][-]{section.3.8}{Conclusion}{chapter.3}% 33
-\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 34
-\BOOKMARK [1][-]{section.4.1}{Graph Neural Network acceleration}{chapter.4}% 35
-\BOOKMARK [1][-]{section.4.2}{Motivation and objective}{chapter.4}% 36
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 37
-\BOOKMARK [1][-]{section.5.1}{PyTorch}{chapter.5}% 38
-\BOOKMARK [1][-]{section.5.2}{Torch-MLIR}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.3}{Synthesizer}{chapter.5}% 40
-\BOOKMARK [2][-]{subsection.5.3.1}{SODA-OPT}{section.5.3}% 41
-\BOOKMARK [2][-]{subsection.5.3.2}{PandA-Bambu}{section.5.3}% 42
-\BOOKMARK [1][-]{section.5.4}{Limitations}{chapter.5}% 43
-\BOOKMARK [0][-]{chapter.6}{Experimental Procedures and Results}{}% 44
-\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 45
-\BOOKMARK [0][-]{chapter*.33}{Bibliography}{}% 46
-\BOOKMARK [0][-]{appendix*.35}{List of Figures}{}% 47
-\BOOKMARK [0][-]{appendix*.37}{List of Tables}{}% 48
-\BOOKMARK [0][-]{appendix*.39}{List of Symbols}{}% 49
-\BOOKMARK [0][-]{appendix*.42}{Acknowledgements}{}% 50
+\BOOKMARK [2][-]{subsection.3.3.4}{Discussion}{section.3.3}% 28
+\BOOKMARK [1][-]{section.3.4}{High-Level Synthesis based accelerators}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.5}{Software-Hardware co-design accelerators}{chapter.3}% 30
+\BOOKMARK [1][-]{section.3.6}{Graph processing acceleration}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.7}{Matrix multiplication optimization}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.7.1}{Matrix multiplication optimization in MLIR}{section.3.7}% 33
+\BOOKMARK [1][-]{section.3.8}{Conclusion}{chapter.3}% 34
+\BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 35
+\BOOKMARK [1][-]{section.4.1}{Graph Neural Network acceleration}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.2}{Motivation and objective}{chapter.4}% 37
+\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 38
+\BOOKMARK [1][-]{section.5.1}{PyTorch}{chapter.5}% 39
+\BOOKMARK [1][-]{section.5.2}{Torch-MLIR}{chapter.5}% 40
+\BOOKMARK [1][-]{section.5.3}{Synthesizer}{chapter.5}% 41
+\BOOKMARK [2][-]{subsection.5.3.1}{SODA-OPT}{section.5.3}% 42
+\BOOKMARK [2][-]{subsection.5.3.2}{PandA-Bambu}{section.5.3}% 43
+\BOOKMARK [1][-]{section.5.4}{Limitations}{chapter.5}% 44
+\BOOKMARK [0][-]{chapter.6}{Experimental Procedures and Results}{}% 45
+\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 46
+\BOOKMARK [0][-]{chapter*.33}{Bibliography}{}% 47
+\BOOKMARK [0][-]{appendix*.35}{List of Figures}{}% 48
+\BOOKMARK [0][-]{appendix*.37}{List of Tables}{}% 49
+\BOOKMARK [0][-]{appendix*.39}{List of Symbols}{}% 50
+\BOOKMARK [0][-]{appendix*.42}{Acknowledgements}{}% 51

@@ -64,7 +64,7 @@ In particular, three hardware-based autotuning techniques to address the imbalan
 
 \begin{figure}[t]
     \centering
-    \includegraphics[height=0.3\textwidth]{Images/AWB_GCN_SpMM_architecture}
+    \includegraphics[height=0.28\textwidth]{Images/AWB_GCN_SpMM_architecture}
     \caption[Overall architecture of SpMM engine in AWB-GCN~\cite{DBLP:journals/corr/abs-1908-10834}]{Overall architecture of SpMM engine in AWB-GCN with three rebalancing techniques: distribution smoothing, remote switching (red bordered) and evil row remapping (purple bordered)~\cite{DBLP:journals/corr/abs-1908-10834}}
     \label{fig:awb_gcn_architecture}
 \end{figure}
@@ -232,6 +232,18 @@ As already said, GRIP allows users to customize the four PEs, which can be imple
 In the authors' implementation, a programmable ALU-based approach is used, splitting the edge update unit into lanes to execute vertices simultaneously.
 It adopts an input-stationary dataflow for the vertex update unit.
 The accelerator employs various optimizations, including pipelining and tiling adapted to the specific dataflows implemented, similar to other accelerators.
+
+\subsection{Discussion}
+\label{subsec:hw-accelerators-discussion}%
+
+This Section presented a variety of GNN hardware accelerators, but despite many alternatives, there is still the need to face some open challenges.
+In particular, most of the presented solutions target only specific models of GNNs, and it is unclear how to generalize them.
+
+Hardware accelerators face the challenge of striking the appropriate balance between performance and generalization, considering the multitude of graph types and GNN variants.
+Moreover, the wide variety of problems, each with varying graph and feature vector sizes, increases the complexity of the acceleration task.
+
+Given that the field of GNN accelerators is constantly evolving, researchers are actively investigating innovative architectural and algorithmic solutions.
+This thesis aims to introduce a novel GNN accelerators design technique that can be tailored to specific requirements, offering the potential to outperform existing solutions in terms of speed, power efficiency, and resource utilization.
 
 \section{High-Level Synthesis based accelerators}
 \label{sec:hls-accelerators}%
