@@ -3,15 +3,15 @@ This chapter aims to formulate the problem rigorously, explaining the thesis's o
 \section{Graph Neural Network acceleration}
 \label{sec:gnn_acceleration}%
 
-Graph neural network acceleration refers to designing and implementing hardware or software techniques to speed up the computation and inference of GNNs.
-A GNN accelerator aims to optimize the execution of GNN computations, which involve iterative message-passing between nodes in a graph to update their representations based on neighboring nodes' features.
-The goal is to minimize the computational complexity and memory access patterns, reducing the overall processing time and memory footprint.
+Graph neural network acceleration refers to designing and implementing hardware accelerators and co-processors to speed up the training or inference of GNNs.
+A GNN accelerator aims at optimizing the execution of GNN computations, which involve iterative message-passing between nodes in a graph to update their representations based on neighboring nodes' features.
+Hardware acceleration aims to improve the performance, efficiency, and capabilities of computing systems by offloading specific tasks or computations to specialized hardware components.
 
-In particular, this thesis focuses on hardware acceleration of GNNs inference time, in which specialized hardware is designed to efficiently perform the computation-intensive operations involved in GNNs, such as matrix multiplications, aggregations, and non-linear activation functions.
-A small example explains the potential impact of this thesis's objective on many people's everyday lives and how big companies can benefit from it.
-Considering a recommendation system, in which the goal is to predict what items a user might be interested in based on their past interactions and preferences.
-An example is Netflix suggesting what to watch next to users based on their previously watched movies and ratings.
+In particular, this thesis focuses on improving GNNs inference time, by designing specialized hardware to efficiently perform the computation-intensive operations involved in GNNs, such as matrix multiplications, aggregations, and non-linear activation functions.
 
+A small example explains the potential impact of this thesis's objective.
+Let us consider a recommendation system, in which the goal is to predict what items a user might be interested in based on their past interactions and preferences.
+An example is Netflix suggesting what to watch next based on previously watched movies and ratings.
 This problem can be represented as a graph, where users and movies (items) are nodes and interactions between users and movies are edges.
 A GNN is an optimal choice for modeling recommendation systems, as it can effectively capture relationships and interactions between users and items.
 However, as the number of users and items increases, the computational complexity of GNNs can become a significant bottleneck.
@@ -27,16 +27,15 @@ Ultimately, the GNN accelerator enhances the efficiency and scalability of the r
 As mentioned in Chapter~\ref{ch:chapter_three}, different state-of-the-art accelerators exist and use different approaches to improve GNNs' performance.
 Even if various alternatives are available, as anticipated in Section~\ref{sec:relater-work-conclusion}, almost all GNN acceleration research has implicitly focused on either developing highly efficient schemes tailored for specific GNN models or aiming for generality and flexibility to accommodate various types of GNNs with less efficiency.
 
-The primary challenge in GNN acceleration lies in creating a framework that optimizes performance and efficiency while retaining the necessary flexibility to adapt to diverse graph sizes, characteristics, and GNN algorithms.
-The motivation of this thesis is a direct consequence of the just mentioned key challenge and state of the art limitations.
+The primary challenge driving the research in this thesis lies in creating a framework that optimizes performance and efficiency while retaining the necessary flexibility to adapt to diverse graph sizes, characteristics, and GNN algorithms.
 
 The main research questions that led to this thesis can be summarised as follow:
 \begin{enumerate}
     \item How is it possible to design hardware accelerators that exploit the unique characteristics of GNN computation?
     \item How is it possible to synthesize accelerators, starting from high-level programming languages, without being a hardware design expert?
-    \item What are the most bottlenecks of GNNs that can slow down their inference time?
+    \item What are the bottlenecks of GNNs that can slow down their inference time?
     \item What are the most effective low-level optimizations for GNNs that can improve their efficiency without sacrificing model accuracy?
-    \item How does the proposed GNN hardware accelerator compare to existing software solutions?
+    %\item How does the proposed GNN hardware accelerator compare to existing software solutions?
     \item Can the proposed toolchain be generalized to different GNN models and datasets while ensuring high performance?
 \end{enumerate}
 

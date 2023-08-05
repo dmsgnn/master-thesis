@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  5 AUG 2023 10:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  5 AUG 2023 11:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1365,7 +1365,7 @@ Package epstopdf Info: Source file: <Images/toolchain.eps>
 rted-to.pdf Images/toolchain.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain-eps-converted-to.pdf, id=1143, 185.69376pt x 222.8325pt>
+<Images/toolchain-eps-converted-to.pdf, id=1142, 185.69376pt x 222.8325pt>
 File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain-eps-converted-to.pdf>
 Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
@@ -1382,7 +1382,7 @@ Package epstopdf Info: Source file: <Images/torch-mlir.eps>
 erted-to.pdf Images/torch-mlir.eps>
 (epstopdf)             \includegraphics on input line 62.
 Package epstopdf Info: Output file is already uptodate.
-<Images/torch-mlir-eps-converted-to.pdf, id=1163, 199.74625pt x 201.75375pt>
+<Images/torch-mlir-eps-converted-to.pdf, id=1162, 199.74625pt x 201.75375pt>
 File: Images/torch-mlir-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/torch-mlir-eps-converted-to.pdf>
 Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input 
@@ -1390,12 +1390,12 @@ line 62.
 (pdftex.def)             Requested size: 225.36012pt x 227.62206pt.
 
 [45 <./Images/torch-mlir-eps-converted-to.pdf>]
-<Images/soda_opt_flow.pdf, id=1187, 597.23125pt x 845.1575pt>
+<Images/soda_opt_flow.pdf, id=1186, 597.23125pt x 845.1575pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
 Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 78.
 (pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
-<Images/bambu_flow.pdf, id=1188, 597.23125pt x 845.1575pt>
+<Images/bambu_flow.pdf, id=1187, 597.23125pt x 845.1575pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
 Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 84.
@@ -1482,8 +1482,8 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: F975AF6F47AF22EF6C44D5183EC9D297;3354.
  ) 
 Here is how much of TeX's memory you used:
- 26129 strings out of 480608
- 488475 string characters out of 5903630
+ 26128 strings out of 480608
+ 488468 string characters out of 5903630
  903166 words of memory out of 5000000
  41170 multiletter control sequences out of 15000+600000
  549219 words of font info for 64 fonts, out of 8000000 for 9000
@@ -1528,10 +1528,10 @@ sr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/
 texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/20
 20/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on out/thesis.pdf (74 pages, 4433205 bytes).
+Output written on out/thesis.pdf (74 pages, 4432964 bytes).
 PDF statistics:
- 1591 PDF objects out of 1728 (max. 8388607)
- 1300 compressed objects within 13 object streams
- 232 named destinations out of 1000 (max. 500000)
+ 1590 PDF objects out of 1728 (max. 8388607)
+ 1299 compressed objects within 13 object streams
+ 231 named destinations out of 1000 (max. 500000)
  527 words of extra memory for PDF output out of 10000 (max. 10000000)
 
