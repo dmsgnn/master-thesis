@@ -2,10 +2,10 @@ The main contribution of this thesis is represented by the design of a toolchain
 
 This chapter explains in detail how the toolchain has been designed and how it can be used to build GNN accelerators to enhance inference performance.
 
-As anticipated in previous Chapters, the core component of the toolchain is the synthesizer, upon which the research team responsible for supervising this thesis has dedicated significant efforts over the past years.
-Given the remarkable success of SODA-OPT and PandA-Bambu, the primary objective of this thesis is to leverage these tools to bridge GNN models written in high-level frameworks, such as PyTorch, to FPGA architectures.
+The core component of the toolchain is the synthesizer, enclosing SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110}, upon which the research team responsible for supervising this thesis has dedicated significant efforts over the past years.
+The primary objective of this thesis is to enhance SODA-OPT and Bambu to bridge GNN models written in high-level frameworks, such as PyTorch, to FPGA architectures.
 
-Figure~\ref{fig:toolchain} illustrates the entire design flow, providing a clear roadmap for understanding the steps involved in the GNN acceleration process.
+Figure~\ref{fig:toolchain} illustrates the entire design flow, with the steps involved in the GNN acceleration process.
 In particular, firstly, the GNN model is implemented in PyTorch, one of the most popular and powerful frameworks for Neural Network implementations.
 Subsequently, the model is passed as input to Torch-MLIR, a crucial middle step that enables the generation of the MLIR representation.
 This intermediate representation serves as input for the synthesizer, where, once the frontend optimization is complete, the refined version proceeds to the backend, where the actual GNN accelerator is effectively produced, ready to enhance inference performance on FPGA architectures.
@@ -34,7 +34,6 @@ PyTorch~\cite{DBLP:journals/corr/abs-1912-01703} is an open-source deep learning
 The first step of the toolchain is to design and implement the Graph Neural Network model in PyTorch.
 Doing so involves defining the GNN model architecture and writing the necessary forward pass to compute node and graph-level representations.
 Once having defined the model, the next step is training the GNN using standard PyTorch techniques, such as defining a loss function, setting up an optimizer, and performing backpropagation to optimize the model parameters.
-Upon completing this phase, it is possible to proceed to the next toolchain phase.
 
 \section{Torch-MLIR}
 \label{sec:toolchain-torch_mlir}%
@@ -89,7 +88,7 @@ The following Subsections provide insight into what is happening internally to t
 \subsection{SODA-OPT}
 \label{subsec:toolchain-soda_opt}%
 
-SODA-OPT, as shown in Figure~\ref{fig:soda-opt_flow}, receives as input the MLIR representation of the model, which must have been modified by adding \texttt{soda.launch \{} and \texttt{soda.terminator \}} at the beginning and end of the piece of code that will be accelerated.
+SODA-OPT, as shown in Figure~\ref{fig:soda-opt_flow}, receives as input the MLIR representation of the model, which must be modified by adding \texttt{soda.launch} and \texttt{soda.terminator} at the beginning and end of the piece of code that will be accelerated.
 
 This step is primarily responsible for applying optimizations that can be exploited in the next step.
 In particular, a subset of MLIR passes can be used to do so.
@@ -106,10 +105,10 @@ Then, after traversing through each stage of the proposed toolchain's process, t
 \section{Limitations}
 \label{sec:toolchain-limitations}%
 
-The most crucial advantage of tge proposed toolchain is that it allows obtaining an accelerator without any knowledge of hardware design and implementation, starting directly from the PyTorch high-level framework.
+The most crucial advantage of the proposed toolchain is that it allows obtaining an accelerator without any knowledge of hardware design and implementation, starting directly from the PyTorch high-level framework.
 
 During the research, much effort has been spent trying to add support for the PyTorch Geometric framework to the toolchain.
-Unfortunately, even if some improvements have been reached, as the implementation by the Torch-MLIR team of support of the constant of Tuple type upon the opening of an issue, some obstacles are still present.
+Unfortunately, even if some improvements have been reached, as the implementation of support of the constant of Tuple type, some obstacles are still present.
 In particular, Torch-MLIR does not support \texttt{aten.scatter\_add} operation, which, at the actual state, cannot be lowered to MLIR\@.
 This operation is extensively used by PyTorch Geometric, leading to the incompatibility of the two elements.
 
@@ -121,6 +120,5 @@ Furthermore, despite the remarkable capabilities of SODA-OPT, it should be noted
 Consequently, this limitation requires an additional step wherein the representation is lowered to remove unsupported dialects.
 In addition to the dialect limitation, SODA-OPT only supports a subset of MLIR passes.
 The reason behind this restriction lies in the rapid advancement and innovation within the domain of MLIR\@.
-The dedicated research team leading the SODA framework always works to stay ahead of the latest advancements; nevertheless, it is challenging to keep up-to-date with constantly integrating new functionalities into the ever-evolving MLIR ecosystem.
 
 These limitations are not trivial but do not prevent the achievement of the acceleration objective and do not compromise the proposed solution's capability.

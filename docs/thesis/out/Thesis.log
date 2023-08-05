@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  5 AUG 2023 11:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  5 AUG 2023 11:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1365,7 +1365,7 @@ Package epstopdf Info: Source file: <Images/toolchain.eps>
 rted-to.pdf Images/toolchain.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain-eps-converted-to.pdf, id=1142, 185.69376pt x 222.8325pt>
+<Images/toolchain-eps-converted-to.pdf, id=1144, 185.69376pt x 222.8325pt>
 File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain-eps-converted-to.pdf>
 Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
@@ -1373,32 +1373,32 @@ ine 24.
 (pdftex.def)             Requested size: 227.6426pt x 273.14923pt.
  [44 <./Images/toolchain-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Images/torch-mlir.eps>
-(epstopdf)                    date: 2023-08-01 23:54:49
-(epstopdf)                    size: 1386318 bytes
+(epstopdf)                    date: 2023-08-05 11:26:26
+(epstopdf)                    size: 1383598 bytes
 (epstopdf)             Output file: <Images/torch-mlir-eps-converted-to.pdf>
-(epstopdf)                    date: 2023-08-03 11:19:39
-(epstopdf)                    size: 39528 bytes
+(epstopdf)                    date: 2023-08-05 11:26:36
+(epstopdf)                    size: 36372 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/torch-mlir-eps-conv
 erted-to.pdf Images/torch-mlir.eps>
-(epstopdf)             \includegraphics on input line 62.
+(epstopdf)             \includegraphics on input line 61.
 Package epstopdf Info: Output file is already uptodate.
-<Images/torch-mlir-eps-converted-to.pdf, id=1162, 199.74625pt x 201.75375pt>
+<Images/torch-mlir-eps-converted-to.pdf, id=1164, 199.74625pt x 201.75375pt>
 File: Images/torch-mlir-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/torch-mlir-eps-converted-to.pdf>
 Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input 
-line 62.
+line 61.
 (pdftex.def)             Requested size: 225.36012pt x 227.62206pt.
 
 [45 <./Images/torch-mlir-eps-converted-to.pdf>]
-<Images/soda_opt_flow.pdf, id=1186, 597.23125pt x 845.1575pt>
+<Images/soda_opt_flow.pdf, id=1188, 597.23125pt x 845.1575pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
-Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 78.
+Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 77.
 (pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
-<Images/bambu_flow.pdf, id=1187, 597.23125pt x 845.1575pt>
+<Images/bambu_flow.pdf, id=1189, 597.23125pt x 845.1575pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
-Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 84.
+Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 83.
 (pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
  [46 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>]) [47] [48
 
@@ -1528,10 +1528,10 @@ sr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/
 texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/20
 20/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on out/thesis.pdf (74 pages, 4432964 bytes).
+Output written on out/thesis.pdf (74 pages, 4429319 bytes).
 PDF statistics:
- 1590 PDF objects out of 1728 (max. 8388607)
- 1299 compressed objects within 13 object streams
+ 1593 PDF objects out of 1728 (max. 8388607)
+ 1301 compressed objects within 14 object streams
  231 named destinations out of 1000 (max. 500000)
  527 words of extra memory for PDF output out of 10000 (max. 10000000)
 
