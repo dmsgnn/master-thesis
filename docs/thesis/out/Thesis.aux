@@ -28,6 +28,7 @@
 \@writefile{toc}{\contentsline {chapter}{Abstract in Lingua Italiana}{iii}{chapter*.4}\protected@file@percent }
 \transparent@use{.4}
 \@writefile{toc}{\contentsline {chapter}{Contents\markboth {\MakeUppercase  {Contents}}{\MakeUppercase  {Contents}}}{v}{chapter*.6}\protected@file@percent }
+\transparent@use{.4}
 \citation{DBLP:journals/corr/BronsteinBLSV16}
 \@writefile{toc}{\vspace  {2em}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}\protected@file@percent }
@@ -281,58 +282,78 @@
 \newlabel{ch:chapter_five}{{5}{43}{FPGA Toolchain for Graph Neural Network Acceleration}{chapter.5}{}}
 \newlabel{ch:chapter_five@cref}{{[chapter][5][]5}{[1][43][]43}}
 \citation{DBLP:journals/corr/abs-1912-01703}
-\citation{torch_mlir}
+\citation{NEURIPS2020_fb60d411,ogb_gnn_models}
+\citation{DBLP:journals/corr/abs-1903-02428}
+\citation{DBLP:journals/corr/KipfW16,pygcn}
+\citation{DBLP:journals/corr/abs-1912-01703}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Toolchain for Graph Neural Network Acceleration\relax }}{44}{figure.caption.27}\protected@file@percent }
 \newlabel{fig:toolchain}{{5.1}{44}{FPGA Toolchain for Graph Neural Network Acceleration\relax }{figure.caption.27}{}}
 \newlabel{fig:toolchain@cref}{{[figure][1][5]5.1}{[1][44][]44}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}PyTorch}{44}{section.5.1}\protected@file@percent }
 \newlabel{sec:toolchain-pytorch}{{5.1}{44}{PyTorch}{section.5.1}{}}
 \newlabel{sec:toolchain-pytorch@cref}{{[section][1][5]5.1}{[1][44][]44}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}GNN models}{45}{subsection.5.1.1}\protected@file@percent }
+\newlabel{subsec:gnn_models}{{5.1.1}{45}{GNN models}{subsection.5.1.1}{}}
+\newlabel{subsec:gnn_models@cref}{{[subsection][1][5,1]5.1.1}{[1][44][]45}}
+\newlabel{lst:gcn-class}{{5.1.1}{45}{}{lstlisting.5.-1}{}}
+\newlabel{lst:gcn-class@cref}{{[subsection][1][5,1]5.1.1}{[1][45][]45}}
+\newlabel{lst:gcn-layer-forward}{{5.1.1}{45}{}{lstlisting.5.-2}{}}
+\newlabel{lst:gcn-layer-forward@cref}{{[subsection][1][5,1]5.1.1}{[1][45][]45}}
+\citation{torch_mlir}
 \citation{torchscript}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{45}{figure.caption.28}\protected@file@percent }
-\newlabel{fig:torch-mlir}{{5.2}{45}{Torch-MLIR flow\relax }{figure.caption.28}{}}
-\newlabel{fig:torch-mlir@cref}{{[figure][2][5]5.2}{[1][45][]45}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Torch-MLIR}{45}{section.5.2}\protected@file@percent }
-\newlabel{sec:toolchain-torch_mlir}{{5.2}{45}{Torch-MLIR}{section.5.2}{}}
-\newlabel{sec:toolchain-torch_mlir@cref}{{[section][2][5]5.2}{[1][44][]45}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Datasets}{46}{subsection.5.1.2}\protected@file@percent }
+\newlabel{subsec:gnn_datasets}{{5.1.2}{46}{Datasets}{subsection.5.1.2}{}}
+\newlabel{subsec:gnn_datasets@cref}{{[subsection][2][5,1]5.1.2}{[1][45][]46}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Torch-MLIR}{46}{section.5.2}\protected@file@percent }
+\newlabel{sec:toolchain-torch_mlir}{{5.2}{46}{Torch-MLIR}{section.5.2}{}}
+\newlabel{sec:toolchain-torch_mlir@cref}{{[section][2][5]5.2}{[1][46][]46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}From PyTorch to TorchScript}{46}{subsection.5.2.1}\protected@file@percent }
+\newlabel{subsec:pytorch-to-torchscript}{{5.2.1}{46}{From PyTorch to TorchScript}{subsection.5.2.1}{}}
+\newlabel{subsec:pytorch-to-torchscript@cref}{{[subsection][1][5,2]5.2.1}{[1][46][]46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Torch-MLIR Compilation}{46}{subsection.5.2.2}\protected@file@percent }
+\newlabel{subsec:torch-mlir-compilation}{{5.2.2}{46}{Torch-MLIR Compilation}{subsection.5.2.2}{}}
+\newlabel{subsec:torch-mlir-compilation@cref}{{[subsection][2][5,2]5.2.2}{[1][46][]46}}
 \citation{9786533}
 \citation{9786533}
-\newlabel{fig:soda-opt_flow}{{5.3a}{46}{Subfigure 5 5.3a}{subfigure.5.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{47}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:torch-mlir}{{5.2}{47}{Torch-MLIR flow\relax }{figure.caption.28}{}}
+\newlabel{fig:torch-mlir@cref}{{[figure][2][5]5.2}{[1][46][]47}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Synthesizer}{47}{section.5.3}\protected@file@percent }
+\newlabel{sec:toolchain-synthesizer}{{5.3}{47}{Synthesizer}{section.5.3}{}}
+\newlabel{sec:toolchain-synthesizer@cref}{{[section][3][5]5.3}{[1][47][]47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}SODA-OPT}{47}{subsection.5.3.1}\protected@file@percent }
+\newlabel{subsec:toolchain-soda_opt}{{5.3.1}{47}{SODA-OPT}{subsection.5.3.1}{}}
+\newlabel{subsec:toolchain-soda_opt@cref}{{[subsection][1][5,3]5.3.1}{[1][47][]47}}
+\newlabel{fig:soda-opt_flow}{{5.3a}{48}{Subfigure 5 5.3a}{subfigure.5.3.1}{}}
 \newlabel{sub@fig:soda-opt_flow}{{(a)}{a}{Subfigure 5 5.3a\relax }{subfigure.5.3.1}{}}
-\newlabel{fig:soda-opt_flow@cref}{{[subfigure][1][5,3]5.3a}{[1][46][]46}}
-\newlabel{fig:bambu_flow}{{5.3b}{46}{Subfigure 5 5.3b}{subfigure.5.3.2}{}}
+\newlabel{fig:soda-opt_flow@cref}{{[subfigure][1][5,3]5.3a}{[1][47][]48}}
+\newlabel{fig:bambu_flow}{{5.3b}{48}{Subfigure 5 5.3b}{subfigure.5.3.2}{}}
 \newlabel{sub@fig:bambu_flow}{{(b)}{b}{Subfigure 5 5.3b\relax }{subfigure.5.3.2}{}}
-\newlabel{fig:bambu_flow@cref}{{[subfigure][2][5,3]5.3b}{[1][46][]46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite  {9786533}\relax }}{46}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:synthesizer_flow}{{5.3}{46}{Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }{figure.caption.29}{}}
-\newlabel{fig:synthesizer_flow@cref}{{[figure][3][5]5.3}{[1][46][]46}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Compiler frontend}}}{46}{subfigure.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {High-level synthesis backend}}}{46}{subfigure.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Synthesizer}{46}{section.5.3}\protected@file@percent }
-\newlabel{sec:toolchain-synthesizer}{{5.3}{46}{Synthesizer}{section.5.3}{}}
-\newlabel{sec:toolchain-synthesizer@cref}{{[section][3][5]5.3}{[1][45][]46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}SODA-OPT}{46}{subsection.5.3.1}\protected@file@percent }
-\newlabel{subsec:toolchain-soda_opt}{{5.3.1}{46}{SODA-OPT}{subsection.5.3.1}{}}
-\newlabel{subsec:toolchain-soda_opt@cref}{{[subsection][1][5,3]5.3.1}{[1][46][]46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}PandA-Bambu}{46}{subsection.5.3.2}\protected@file@percent }
-\newlabel{subsec:toolchain-panda_bambu}{{5.3.2}{46}{PandA-Bambu}{subsection.5.3.2}{}}
-\newlabel{subsec:toolchain-panda_bambu@cref}{{[subsection][2][5,3]5.3.2}{[1][46][]46}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Limitations}{47}{section.5.4}\protected@file@percent }
-\newlabel{sec:toolchain-limitations}{{5.4}{47}{Limitations}{section.5.4}{}}
-\newlabel{sec:toolchain-limitations@cref}{{[section][4][5]5.4}{[1][47][]47}}
+\newlabel{fig:bambu_flow@cref}{{[subfigure][2][5,3]5.3b}{[1][47][]48}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite  {9786533}\relax }}{48}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:synthesizer_flow}{{5.3}{48}{Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }{figure.caption.29}{}}
+\newlabel{fig:synthesizer_flow@cref}{{[figure][3][5]5.3}{[1][47][]48}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Compiler frontend}}}{48}{subfigure.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {High-level synthesis backend}}}{48}{subfigure.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}PandA-Bambu}{48}{subsection.5.3.2}\protected@file@percent }
+\newlabel{subsec:toolchain-panda_bambu}{{5.3.2}{48}{PandA-Bambu}{subsection.5.3.2}{}}
+\newlabel{subsec:toolchain-panda_bambu@cref}{{[subsection][2][5,3]5.3.2}{[1][47][]48}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Limitations}{48}{section.5.4}\protected@file@percent }
+\newlabel{sec:toolchain-limitations}{{5.4}{48}{Limitations}{section.5.4}{}}
+\newlabel{sec:toolchain-limitations@cref}{{[section][4][5]5.4}{[1][48][]48}}
 \transparent@use{.4}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Experimental Procedures and Results}{49}{chapter.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Experimental Procedures and Results}{51}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:chapter_six}{{6}{49}{Experimental Procedures and Results}{chapter.6}{}}
-\newlabel{ch:chapter_six@cref}{{[chapter][6][]6}{[1][49][]49}}
+\newlabel{ch:chapter_six}{{6}{51}{Experimental Procedures and Results}{chapter.6}{}}
+\newlabel{ch:chapter_six@cref}{{[chapter][6][]6}{[1][51][]51}}
 \transparent@use{.4}
 \bibdata{Thesis_bibliography}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{51}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{53}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:conclusions}{{7}{51}{Conclusion and Future Developments}{chapter.7}{}}
-\newlabel{ch:conclusions@cref}{{[chapter][7][]7}{[1][51][]51}}
+\newlabel{ch:conclusions}{{7}{53}{Conclusion and Future Developments}{chapter.7}{}}
+\newlabel{ch:conclusions@cref}{{[chapter][7][]7}{[1][53][]53}}
 \@writefile{toc}{\vspace  {2em}}
 \transparent@use{.4}
 \bibcite{DBLP:journals/corr/abs-2010-00130}{{1}{2020}{{Abadal et~al.}}{{Abadal, Jain, Guirado, L{\'{o}}pez{-}Alonso, and Alarc{\'{o}}n}}}
@@ -345,7 +366,7 @@
 \bibcite{opt_cuda_matmul}{{8}{2022}{{Böhm}}{{}}}
 \bibcite{chen2023dgnnbooster}{{9}{2023}{{Chen and Hao}}{{}}}
 \bibcite{5209958}{{10}{2009}{{Coussy et~al.}}{{Coussy, Gajski, Meredith, and Takach}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography\markboth {\MakeUppercase  {Bibliography}}{\MakeUppercase  {Bibliography}}}{53}{chapter*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliography\markboth {\MakeUppercase  {Bibliography}}{\MakeUppercase  {Bibliography}}}{55}{chapter*.33}\protected@file@percent }
 \bibcite{daigavane2021understanding}{{11}{2021}{{Daigavane et~al.}}{{Daigavane, Ravindran, and Aggarwal}}}
 \bibcite{DBLP:journals/corr/DuvenaudMAGHAA15}{{12}{2015}{{Duvenaud et~al.}}{{Duvenaud, Maclaurin, Aguilera{-}Iparraguirre, G{\'{o}}mez{-}Bombarelli, Hirzel, Aspuru{-}Guzik, and Adams}}}
 \bibcite{9586110}{{13}{2021}{{Ferrandi et~al.}}{{Ferrandi, Castellana, Curzel, Fezzardi, Fiorito, Lattuada, Minutoli, Pilato, and Tumeo}}}
@@ -392,13 +413,13 @@
 \citation{DBLP:journals/corr/abs-2201-08475}
 \citation{9786533}
 \@writefile{toc}{\vspace  {2em}}
-\@writefile{toc}{\contentsline {chapter}{List of Figures}{59}{appendix*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{List of Figures}{61}{appendix*.35}\protected@file@percent }
 \transparent@use{.4}
-\@writefile{toc}{\contentsline {chapter}{List of Tables}{61}{appendix*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{List of Tables}{63}{appendix*.37}\protected@file@percent }
 \transparent@use{.4}
-\@writefile{toc}{\contentsline {chapter}{List of Symbols}{63}{appendix*.39}\protected@file@percent }
-\newlabel{tab:symbols_table}{{\caption@xref {tab:symbols_table}{ on input line 302}}{63}{List of Symbols}{table.caption.40}{}}
-\newlabel{tab:symbols_table@cref}{{[chapter][7][]7}{[1][63][]63}}
+\@writefile{toc}{\contentsline {chapter}{List of Symbols}{65}{appendix*.39}\protected@file@percent }
+\newlabel{tab:symbols_table}{{\caption@xref {tab:symbols_table}{ on input line 303}}{65}{List of Symbols}{table.caption.40}{}}
+\newlabel{tab:symbols_table@cref}{{[chapter][7][]7}{[1][65][]65}}
 \transparent@use{.4}
-\@writefile{toc}{\contentsline {chapter}{Acknowledgements}{65}{appendix*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Acknowledgements}{67}{appendix*.42}\protected@file@percent }
 \transparent@use{.4}

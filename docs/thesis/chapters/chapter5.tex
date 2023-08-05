@@ -35,18 +35,66 @@ The first step of the toolchain is to design and implement the Graph Neural Netw
 Doing so involves defining the GNN model architecture and writing the necessary forward pass to compute node and graph-level representations.
 Once having defined the model, the next step is training the GNN using standard PyTorch techniques, such as defining a loss function, setting up an optimizer, and performing backpropagation to optimize the model parameters.
 
+\subsection{GNN models}
+\label{subsec:gnn_models}%
+
+Two main models have been used for this thesis: the Graph Isomorphism Network from OGB~\cite{NEURIPS2020_fb60d411, ogb_gnn_models}, written using PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428}, and the Graph Convolutional Network~\cite{DBLP:journals/corr/KipfW16, pygcn}, written using PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
+
+Most research and experiments have been conducted using the GCN model.
+The GCN class, reported below, is characterized by two Graph Convolutional layers.
+
+\begin{lstlisting}[language=Python,label={lst:gcn-class}]
+import torch.nn as nn
+import torch.nn.functional as F
+from pygcn.layers import GraphConvolution
+
+class GCN(nn.Module):
+    def __init__(self, nfeat, nhid, nclass, dropout):
+        super(GCN, self).__init__()
+
+        self.gc1 = GraphConvolution(nfeat, nhid)
+        self.gc1 = GraphConvolution(nhid, nclass)
+        self.dropout = dropout
+
+    def forward(self, x, adj):
+        x = F.relu(self.gc1(x, adj))
+        x = F.dropout(x, self.dropout, training=self.training)
+        x = self.gc2(x, adj)
+        return F.log_softmax(x, dim=1)
+\end{lstlisting}
+
+The forward function of each layer, reported below, is mainly characterized by two matrix multiplications.
+
+\begin{lstlisting}[language=Python,label={lst:gcn-layer-forward}]
+
+    def forward(self, input, adj):
+        support = torch.mm(input, self.weight)
+        output = torch.spmm(adj, support)
+        if self.bias is not None:
+            return output + self.bias
+        else:
+            return output
+\end{lstlisting}
+
+\subsection{Datasets}
+\label{subsec:gnn_datasets}%
+
+OGB provides different datasets that can be used with their models.
+The one used for this thesis is called \textit{ogbg-molhiv}, a molecular property prediction dataset.
+In each graph representing a molecule, nodes correspond to atoms, and edges represent chemical bonds.
+The input node features consist of nine dimensions, encompassing information like atomic number, formal charge, and whether the atom is part of a ring.
+The binary classification task consists in achieving precise predictions of target molecular properties, for example, determining whether a molecule inhibits HIV replication or not.
+
+The dataset used for the GCN model is the \textit{Cora} one.
+This dataset contains 2708 scientific publications, categorized into one of the seven classes considered.
+The citation network contains 5429 links.
+Each publication in the dataset is represented by a binary-valued word vector, indicating the absence or presence of the corresponding word from a dictionary of 1433 unique words.
+The task is a multiclass classification, in which, given a paper, the objective is to classify it into one of the seven classes correctly.
+
 \section{Torch-MLIR}
 \label{sec:toolchain-torch_mlir}%
 
 Torch-MLIR~\cite{torch_mlir} offers compiler support for transitioning from the PyTorch ecosystem to the MLIR ecosystem.
-
-Once having designed, implemented, and trained the GNN model in PyTorch, it is possible to use the \texttt{torch\_mlir.compile} API to obtain the MLIR representation of the model.
-This API takes three parameters as input, respectively:
-\begin{enumerate}
-    \item The Graph Neural Network model
-    \item An input example of the model, the one that would be given for inference purposes
-    \item The desired output type among the possible choices
-\end{enumerate}
 
 The steps Torch-MLIR follows to go from PyTorch to MLIR are shown in Figure~\ref{fig:torch-mlir}.
 In particular, the flow followed in this thesis has been highlighted with blue arrows.
@@ -62,6 +110,20 @@ The TorchScript representation is then converted to MLIR using the built-in conv
     \caption{Torch-MLIR flow}
     \label{fig:torch-mlir}
 \end{figure}
+
+\subsection{From PyTorch to TorchScript}
+\label{subsec:pytorch-to-torchscript}%
+
+\subsection{Torch-MLIR Compilation}
+\label{subsec:torch-mlir-compilation}%
+
+Once having designed, implemented, and trained the GNN model in PyTorch, it is possible to use the \texttt{torch\_mlir.compile} API to obtain the MLIR representation of the model.
+This API takes three parameters as input, respectively:
+\begin{enumerate}
+    \item The Graph Neural Network model
+    \item An input example of the model, the one that would be given for inference purposes
+    \item The desired output type among the possible choices
+\end{enumerate}
 
 \section{Synthesizer}
 \label{sec:toolchain-synthesizer}%
