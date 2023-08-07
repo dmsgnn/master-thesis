@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import figaspect
 import torch.utils.benchmark as benchmark
 import timeit
+import scipy.sparse as sparse
+import scipy.stats as stats
 
 
 def matmul_benchmark():
@@ -71,17 +73,17 @@ def matmul_benchmark():
     avg_runs_time = []
     min_runs_time = []
     max_runs_time = []
+    num_threads = torch.get_num_threads()
 
     for idx, n in enumerate(num_executions):
         print('>>> Number of executions = {0}'.format(n))
         for i in range(num_runs):
             tot_time = 0
-            #for j in range(0, n):
-                # Perform measurement, use process_time() since it does not count sleeps
-                # t = process_time()
-                # c = torch.mm(a, b)
-                #t = process_time() - t
-            num_threads = torch.get_num_threads()
+            # for j in range(0, n):
+            # Perform measurement, use process_time() since it does not count sleeps
+            # t = process_time()
+            # c = torch.mm(a, b)
+            # t = process_time() - t
             t0 = benchmark.Timer(
                 stmt='torch.mm(a, b)',
                 setup='from torch import mm',
@@ -125,6 +127,75 @@ def matmul_benchmark():
            capsize=5)
     # plt.show()
     plt.savefig('torch-mm.pdf')
+
+    # Torch mul comparison
+
+    m = sparse.random(a_rows, a_cols, density=0.1).toarray().astype(float32)
+    m = torch.Tensor(m)
+    p = sparse.random(b_rows, b_cols, density=0.1).toarray().astype(float32)
+    p = torch.Tensor(p)
+
+    m_coo = m.to_sparse_coo()
+    p_coo = p.to_sparse_coo()
+
+    torch_mm_dense = []
+    torch_mm_coo = []
+    torch_spmm_dense = []
+    torch_spmm_coo = []
+
+    t0 = benchmark.Timer(
+        stmt='torch.mm(m, p)',
+        setup='from torch import mm',
+        globals={'m': m, 'p': p},
+        num_threads=num_threads)
+
+    torch_mm_dense.append(t0.timeit(2000000).times[0])
+
+    t0 = benchmark.Timer(
+        stmt='torch.mm(m_coo, p_coo)',
+        setup='from torch import mm',
+        globals={'m_coo': m_coo, 'p_coo': p_coo},
+        num_threads=num_threads)
+
+    torch_mm_coo.append(t0.timeit(2000000).times[0])
+
+    t0 = benchmark.Timer(
+        stmt='torch.spmm(m, p)',
+        setup='from torch import spmm',
+        globals={'m': m, 'p': p},
+        num_threads=num_threads)
+
+    torch_spmm_dense.append(t0.timeit(2000000).times[0])
+
+    t0 = benchmark.Timer(
+        stmt='torch.spmm(m_coo, p_coo)',
+        setup='from torch import spmm',
+        globals={'m_coo': m_coo, 'p_coo': p_coo},
+        num_threads=num_threads)
+
+    torch_spmm_coo.append(t0.timeit(2000000).times[0])
+
+    print("dense mm {0}".format(torch_mm_dense))
+    print("coo mm {0}".format(torch_mm_coo))
+    print("dense spmm {0}".format(torch_spmm_dense))
+    print("coo spmm {0}".format(torch_spmm_coo))
+
+    w, h = figaspect(1 / 2)
+    fig, ax = plt.subplots(figsize=(w, h))
+    plt.xlabel('Operation type')
+    plt.ylabel('average time (2mln executions)')
+    plt.title("torch matmul comparison")
+
+    ax.bar(x=['torch.mm dense', 'torch.mm coo', 'torch.spmm dense', 'torch.spmm coo'],  # positions to put the bar to
+           height=[torch_mm_dense[0], torch_mm_coo[0], torch_spmm_dense[0], torch_spmm_coo[0]],  # height of each bar
+           width=0.5,  # width of the bar
+           edgecolor='black',  # edgecolor of the bar
+           color='green',  # fill color of the bar
+           # yerr=np.array([np.subtract(avg_runs_time, min_runs_time), np.subtract(max_runs_time, avg_runs_time)]),
+           ecolor='blue',
+           capsize=5)
+    # plt.show()
+    plt.savefig('torch-mm-comparison.pdf')
 
 
 # For calling from command line

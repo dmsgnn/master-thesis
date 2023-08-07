@@ -67,13 +67,13 @@ The forward function of each layer, reported below, is mainly characterized by t
 
 \begin{lstlisting}[language=Python,label={lst:gcn-layer-forward}]
 
-    def forward(self, input, adj):
-        support = torch.mm(input, self.weight)
-        output = torch.spmm(adj, support)
-        if self.bias is not None:
-            return output + self.bias
-        else:
-            return output
+def forward(self, input, adj):
+    support = torch.mm(input, self.weight)
+    output = torch.spmm(adj, support)
+    if self.bias is not None:
+        return output + self.bias
+    else:
+        return output
 \end{lstlisting}
 
 \subsection{Datasets}
@@ -114,16 +114,101 @@ The TorchScript representation is then converted to MLIR using the built-in conv
 \subsection{From PyTorch to TorchScript}
 \label{subsec:pytorch-to-torchscript}%
 
+Since Torch-MLIR implicitly uses the TorchScript representation to go from PyTorch to MLIR, the first part of the research consisted of a deep analysis of the Graph Neural Network models to make them compatible with TorchScript.
+
+This task required more effort for the GIN model due to its use of PyTorch Geometric than the GCN model, which only uses pure PyTorch.
+In particular, the required adaptations, that have been used for both models, have been made general aiming to make them versatile for various applications.
+They are documented below, with a small example for each of them:
+
+\begin{itemize}
+    \item[-] The GNN layer class, if created as a subclass of the Message Passing class, must be marked as Jittable whenever it is used.
+\begin{lstlisting}[language=Python,label={lst:jittable}]
+self.convs.append(GINConv(emb_dim).jittable())
+\end{lstlisting}
+    \item[-] The propagate function, if used, need its parameters to be explicitly annotated using one of the two available options: through the definition of a dictionary or through a comment.
+\begin{lstlisting}[language=Python,label={lst:propagate-annotation}]
+propagate_type = {'x': Tensor, 'edge_attr': Tensor}
+\end{lstlisting}
+    \item[-] It can happen that TorchScript is not able to recognize the correct type of variables.
+    In this case, it is necessary to use an assertion to explicitly declare that the variable is an instance of the correct type.
+\begin{lstlisting}[language=Python,label={lst:isinstance-assertion}]
+assert isinstance(edge_embedding, Tensor)
+\end{lstlisting}
+    \item[-] A common approach to speed up the training and inference steps is to use batched data.
+    Unfortunately, TorchScript does not support forward functions that take as input a batch.
+    For this reason, the forward function must receive Tensors as input, thus the batch must be split into its component.
+\begin{lstlisting}[language=Python,label={lst:splitted-forward}]
+def forward(self, x, edge_index, edge_attr):
+\end{lstlisting}
+    \item[-] The parameters of the forward function must be explicitly annotated with their type.
+    If not declared, it is assumed to be of type Tensor.
+\begin{lstlisting}[language=Python,label={lst:forward-annotation}]
+def forward(self, x: Tensor, edge_index: Tensor,
+            edge_attr: Tensor) -> Tensor:
+\end{lstlisting}
+    \item[-] TorchScript always expects an integer literal for the index, this is because indexing is only supported with integer literals.
+    For this reason, cycles that do not use integer literals must be changed into enumeration.
+\begin{lstlisting}[language=Python,label={lst:enumeration}]
+for idx, layer in enumerate(self.convs):
+\end{lstlisting}
+\end{itemize}
+
 \subsection{Torch-MLIR Compilation}
 \label{subsec:torch-mlir-compilation}%
 
-Once having designed, implemented, and trained the GNN model in PyTorch, it is possible to use the \texttt{torch\_mlir.compile} API to obtain the MLIR representation of the model.
-This API takes three parameters as input, respectively:
-\begin{enumerate}
-    \item The Graph Neural Network model
-    \item An input example of the model, the one that would be given for inference purposes
-    \item The desired output type among the possible choices
-\end{enumerate}
+Once having designed, implemented, made compatible with TorchScript, and trained the GNN model in PyTorch, it is possible to use the \lstinline{torch_mlir.compile} API to obtain the MLIR representation of the model.
+In particular, this API takes three parameters as input: the GNN model, an input example of the model and the desired output type.
+The Graph Neural Network model must have been already trained, being ready for inference.
+The second parameter, the input example of the model, is an arbitrary input similar to the one that would be given for inference purposes.
+It is required because, by default, the implicit Jit function called by Torch-MLIR to script the model and obtain a script module, involves compiling the forward method and recursively compiling any methods, submodules, and functions called within the forward method. This results in a JIT IR which is converted to the torch dialect which is almost in a 1:1 correspondence.
+The torch dialect is then lowered into one of the three available output dialects: linalg, tosa, mhlo.
+The purpose of the last parameter is to choose which of these three dialects has to be used for the output MLIR.
+
+An additional parameter that can be used is related to the tracing.
+There are two ways in which it is possible to obtain a TorchScript representation: \lstinline{torch.jit.script} and \lstinline{torch.jit.tracing}.
+The compile API of Torch-MLIR uses the first one by default.
+Instead, if the option use tracing is set to True, JIT tracing is used.
+The behavior of the two functions is slightly different.
+Tracing only captures functions and modules that lack data dependencies and untracked external dependencies.
+It records operations performed when the specified function is executed on the given tensors.
+As a result, the resulting ScriptModule consistently executes the same traced graph for any input.
+In conclusion, tracing can be a valid option in some cases, such as when there is no need to record any control-flow like if-statements or loops, but the scripting is preferred, and it is guaranteed to work in a more wide set of cases.
+A call example of the compile Python API of Torch-MLIR is reported below.
+\begin{lstlisting}[language=Python,label={lst:torch_mlir-compile}]
+module = torch_mlir.compile(gnn_model, (x, features, adj),
+                            output_type="linalg-on-tensors")
+\end{lstlisting}
+
+Once having obtained the compiled module, the expected behavior is to use one of the backends provided by torch-MLIR to make the inference.
+This is not the flow followed in this thesis, because, as represented in the accelerator design flow, in Figure~\ref{fig:toolchain}, it is needed to export the Linalg representation for the next phase.
+This can be done by simply saving the model to an MLIR file, as shown below.
+\begin{lstlisting}[language=Python,label={lst:torch_mlir-export}]
+with open("gnn_model.mlir", "w", encoding="utf-8") as outf:
+    outf.write(str(module))
+\end{lstlisting}
+
+Only the GCN model implemented in PyTorch reached this phase of the toolchain.
+During the research, much effort has been spent in trying to add support for the PyTorch Geometric framework to the toolchain.
+Even if some innovation has been brought in this regard, there are still open points to work on.
+For this reason, at the actual state, the proposed design flow only supports PyTorch as a high-level framework
+It must be noted that no documentation existed and no previous works have ever used Torch-MLIR with GNN models.
+All the examples and the work done by the Torch-MLIR community are related to Deep Neural Network models.
+
+This thesis could represent the first work that explored the use of Torch-MLIR with GNN models.
+Unfortunately, even if some innovation has been brought, such as the implementation of support of the constant of Tuple type, some more work is still required.
+In particular, Torch-MLIR does not support the \lstinline{aten.scatter_add} operation, which, at the actual state, cannot be lowered to MLIR\@.
+This operation is extensively used by PyTorch Geometric, leading to the incompatibility of the two elements.
+The next step to add support for PyTorch Geometric to the proposed toolchain would be the implementation to Torch-MLIR of the lowering of the scatter add operation.
+
+Another point discovered during this thesis is the fact that Torch-MLIR does not support the sparse tensor type. 
+Each sparse tensor implemented in PyTorch, with the relative sparse operations, is lowered to MLIR to a dense tensor, losing all its representation's advantages.
+A promising way to avoid this is Taco [??].
+The MLIR team started creating what is called MLIR-PyTACO, an end-to-end use case for the sparse tensor compiler, which can be used to lower sparse Tensor to MLIR.
+It is important to clarify that, as introduced in~\cite{Bik_2022}, sparse tensors are supported by MLIR, with a dedicated sparse tensor dialect that uses intuitive annotations for different sparse tensor representations, such as CSR and COO.
+What is not supported yet is the lowering through Torch-MLIR\@.
+However, MLIR-PyTACO is still premature and in testing phase, but interesting features could be brought by its advancement.
+
+Even losing the sparse tensor representation, using the proper optimizations provided by the toolchain in combination with the higher computational performance of FPGAs, still make it possible to accelerate the GNN operations, as will be stated in the next Chapter.
 
 \section{Synthesizer}
 \label{sec:toolchain-synthesizer}%
@@ -150,11 +235,60 @@ The following Subsections provide insight into what is happening internally to t
 \subsection{SODA-OPT}
 \label{subsec:toolchain-soda_opt}%
 
-SODA-OPT, as shown in Figure~\ref{fig:soda-opt_flow}, receives as input the MLIR representation of the model, which must be modified by adding \texttt{soda.launch} and \texttt{soda.terminator} at the beginning and end of the piece of code that will be accelerated.
-
+SODA-OPT, as shown in Figure~\ref{fig:soda-opt_flow}, receives as input the MLIR representation of the model.
 This step is primarily responsible for applying optimizations that can be exploited in the next step.
 In particular, a subset of MLIR passes can be used to do so.
 The output of SODA-OPT is an LLVM representation that serves as input to PandA-Bambu HLS\@.
+
+Despite the remarkable capabilities of SODA-OPT, it should be noted that it does not support the entire set of dialects utilized within the MLIR ecosystem, such as the ml\_program or the Tensor dialect.
+Consequently, an additional step is required wherein the representation obtained from Torch-MLIR is lowered to remove unsupported dialects.
+In particular, once having successfully exported the MLIR representation using the \lstinline{torch_mlir.compile} API, the mlir-opt passes shown below have been used to remove the unsupported dialects by lowering them to supported ones, such as the memref.
+
+\begin{lstlisting}[language=bash,label={lst:mlir-opt-remove}]
+mlir-opt --canonicalize -convert-tensor-to-linalg \
+	     --empty-tensor-to-alloc-tensor --eliminate-empty-tensors \
+	     -linalg-bufferize -arith-bufferize -tensor-bufferize -func-bufferize \
+	     -finalizing-bufferize -buffer-deallocation --buffer-results-to-out-params \
+	     --canonicalize -cse new_model.mlir
+\end{lstlisting}
+
+The next step consists in outlining the part of MLIR code to accelerate.
+In general, the aim is to accelerate the whole function.
+To do so, it is enough to modify the MLIR file by adding the \lstinline{soda.launch} and \lstinline{soda.terminator} flags at the beginning and end of the function, thus after the start of the forward and before the return statement.
+
+SODA-OPT provides various passes that can be used to apply optimization to the outlined code.
+In particular, it provides a subset of MLIR passes plus a set of passes tailored for soda optimizations.
+The SODA-OPT passes are continuously evolving, trying to keep up with rapid advancement and innovation within the domain of MLIR\@.
+
+An essential part of this research has been the analysis of the GNN model, the understanding of its bottlenecks, and the consequent identification of the optimization having the biggest impact on performance, without increasing too much the area of the accelerator.
+
+The first part of this analysis has been conducted on PyTorch.
+Profiling the inference function of the GCN model, the result showed that, in general, nearly 60\% of the time required to make a prediction was used for the matrix multiplication operation.
+For this reason, an important part of this thesis is represented by research on how to accelerate matrix multiplication using SODA-OPT passes to then accelerate the GCN inference.
+
+This analysis has been conducted using a subset of the Cora dataset, and the first pass used transforms the linalg to affine dialect, resulting in three nested affine loops shown below.
+
+\begin{lstlisting}[label={lst:affine-mul}]
+affine.for %arg3 = 0 to 15 {
+affine.for %arg4 = 0 to 16 {
+  affine.for %arg5 = 0 to 15 {
+    %0 = affine.load %arg0[%arg3, %arg5] : memref<15x15xf32>
+    %1 = affine.load %arg1[%arg5, %arg4] : memref<15x16xf32>
+    %2 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+    %3 = arith.mulf %0, %1 : f32
+    %4 = arith.addf %2, %3 : f32
+    affine.store %4, %arg2[%arg3, %arg4] : memref<15x16xf32>
+  }
+}
+}
+\end{lstlisting}
+
+The result of this research showed that the most impressive improvement in terms of performance is given by the loop unrolling technique.
+This optimization perfectly allows to exploit the extreme parallelism available on FPGAs.
+The right choice is not to continuously unroll until having no more loops in the code.
+The solution is to pick the right trade-off between performance reduction and the area of the matrix multiplication accelerator.
+
+%TODO: --mettere qualche nozione in più del flow di soda-opt, ad esempio come fa a prendere outline del kernel, la generazione dell'xml etc..-
 
 \subsection{PandA-Bambu}
 \label{subsec:toolchain-panda_bambu}%

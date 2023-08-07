@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{47}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -45,6 +45,12 @@ A.~Bik, P.~Koanantakool, T.~Shpeisman, N.~Vasilache, B.~Zheng, and F.~Kjolstad.
   19\penalty0 (4):\penalty0 1--25, sep 2022.
 \newblock \doi{10.1145/3544559}.
 \newblock URL \url{https://doi.org/10.1145%2F3544559}.
+
+\bibitem[Bixia~Zheng and other Torch-MLIR~contributors(2022)]{mlir-pytaco}
+A.~B. Bixia~Zheng and other Torch-MLIR~contributors.
+\newblock Mlir-pytaco: An end-to-end use case for the sparse tensor compiler,
+  2022.
+\newblock URL \url{https://mlir.llvm.org/OpenMeetings/2022-02-10-PyTACO.pdf}.
 
 \bibitem[Bondhugula(2020)]{DBLP:journals/corr/abs-2003-00532}
 U.~Bondhugula.

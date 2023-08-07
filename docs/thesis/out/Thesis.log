@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  5 AUG 2023 15:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  7 AUG 2023 22:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1421,31 +1421,51 @@ Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input
 line 109.
 (pdftex.def)             Requested size: 225.36012pt x 227.62206pt.
 
-[46]
-<Images/soda_opt_flow.pdf, id=1242, 597.23125pt x 845.1575pt>
+[46] [47 <./Images/torch-mlir-eps-converted-to.pdf>] [48] [49]
+<Images/soda_opt_flow.pdf, id=1286, 597.23125pt x 845.1575pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
-Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 139.
+Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 224.
 (pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
-<Images/bambu_flow.pdf, id=1243, 597.23125pt x 845.1575pt>
+<Images/bambu_flow.pdf, id=1287, 597.23125pt x 845.1575pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
-Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 145.
+Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 230.
 (pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
- [47 <./Images/torch-mlir-eps-converted-to.pdf>] [48 <./Images/soda_opt_flow.pd
-f> <./Images/bambu_flow.pdf>]) [49] [50
+ [50 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>]
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+Overfull \hbox (45.18802pt too wide) in paragraph at lines 249--250
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (129.7681pt too wide) in paragraph at lines 250--251
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (165.0098pt too wide) in paragraph at lines 251--252
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[51] [52]) [53] [54
 
 ]
 Chapter 6.
-(./chapters/chapter6.tex) [51
+(./chapters/chapter6.tex) [55
 
-] [52
+] [56
 
 ]
 Chapter 7.
-(./chapters/chapter7.tex) (out/thesis.bbl [53
+(./chapters/chapter7.tex) (out/thesis.bbl [57
 
-] [54
+] [58
 
 ]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
@@ -1453,53 +1473,53 @@ Underfull \hbox (badness 1072) in paragraph at lines 18--23
 -tion.  \T1/cmr/m/it/12 CoRR\T1/cmr/m/n/12 ,
  []
 
-[55
+[59
 
 ]
-Underfull \hbox (badness 6364) in paragraph at lines 83--88
+Underfull \hbox (badness 6364) in paragraph at lines 89--94
 []\T1/cmr/m/n/12 A. Daiga-vane, B. Ravin-dran, and G. Ag-gar-wal.  Un-der-stand
 -ing con-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--88
+Underfull \hbox (badness 10000) in paragraph at lines 89--94
 \T1/cmr/m/n/12 vo-lu-tions on graphs.  \T1/cmr/m/it/12 Dis-till\T1/cmr/m/n/12 ,
  2021.  doi: $10 . 23915 / distill . 00032$.
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 92--97
+Underfull \hbox (badness 1466) in paragraph at lines 98--103
 []\T1/cmr/m/n/12 D. Du-ve-naud, D. Maclau-rin, J. Aguilera-Iparraguirre, R. Góm
 ez-Bombarelli,
  []
 
-[56] [57] [58]) [59] [60
+[60] [61] [62]) [63] [64
 
 ] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [61
+ [65
 
 
-] [62
+] [66
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [63
+ [67
 
 ]
-[64
+[68
 
-] [65
+] [69
 
-] [66
+] [70
 
-] [67
+] [71
 
-] [68
+] [72
 
 ]
 
@@ -1515,56 +1535,57 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 60561452355D9C684118A55549DC5561;3637.
  ) 
 Here is how much of TeX's memory you used:
- 27953 strings out of 480608
- 512303 string characters out of 5903630
- 1051239 words of memory out of 5000000
- 42944 multiletter control sequences out of 15000+600000
- 549219 words of font info for 64 fonts, out of 8000000 for 9000
+ 28168 strings out of 480608
+ 515285 string characters out of 5903630
+ 1054931 words of memory out of 5000000
+ 43114 multiletter control sequences out of 15000+600000
+ 549556 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,14n,89p,1195b,1300s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,14n,95p,1195b,1836s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.pf
-b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7
-.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/libertine/LinLibert
-ineT.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/libertine/LinLi
-bertineTB.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmbx7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
-pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.
-pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
-b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
-al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
-texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/loca
-l/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/
-texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texl
-ive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texliv
-e/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/
-2020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2020/texmf
--dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/texmf-dist/fo
-nts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
-e1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/
-helvetic/uhvro8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palati
-no/uplb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palatino/uplr
-8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/
-texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2020/texmf-
-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on out/thesis.pdf (78 pages, 4437330 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.pfb
+></usr/local/texlive/2020/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/libertine/LinLiberti
+neT.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/libertine/LinLib
+ertineTB.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmbx7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7
+.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.p
+fb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.p
+fb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loca
+l/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
+/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local
+/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2020/texmf-
+dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/texmf-dist/fon
+ts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
+1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/h
+elvetic/uhvro8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palatin
+o/uplb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palatino/uplr8
+a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></us
+r/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2020/texmf-d
+ist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on out/thesis.pdf (82 pages, 4450457 bytes).
 PDF statistics:
- 1669 PDF objects out of 1728 (max. 8388607)
- 1373 compressed objects within 14 object streams
- 266 named destinations out of 1000 (max. 500000)
+ 1737 PDF objects out of 2073 (max. 8388607)
+ 1436 compressed objects within 15 object streams
+ 306 named destinations out of 1000 (max. 500000)
  559 words of extra memory for PDF output out of 10000 (max. 10000000)
 

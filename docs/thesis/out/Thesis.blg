@@ -17,47 +17,57 @@ Warning--entry type for "openblas" isn't style-file defined
 --line 637 of file Thesis_bibliography.bib
 Warning--entry type for "torchscript" isn't style-file defined
 --line 696 of file Thesis_bibliography.bib
+Warning--entry type for "mlir-pytaco" isn't style-file defined
+--line 704 of file Thesis_bibliography.bib
+Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
+while executing---line 1347 of file abbrvnat.bst
+Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
+while executing---line 1347 of file abbrvnat.bst
+Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
+while executing---line 1429 of file abbrvnat.bst
+Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
+while executing---line 1429 of file abbrvnat.bst
 Warning--empty year in cublas
 Warning--empty year in openblas
-You've used 46 entries,
+You've used 47 entries,
             2773 wiz_defined-function locations,
-            871 strings with 16111 characters,
-and the built_in function-call counts, 26448 in all, are:
-= -- 2187
-> -- 2269
-< -- 23
-+ -- 760
-- -- 713
-* -- 2333
-:= -- 4240
-add.period$ -- 176
-call.type$ -- 46
-change.case$ -- 374
-chr.to.int$ -- 45
-cite$ -- 94
-duplicate$ -- 983
-empty$ -- 1668
-format.name$ -- 775
-if$ -- 5430
+            875 strings with 16300 characters,
+and the built_in function-call counts, 26810 in all, are:
+= -- 2219
+> -- 2290
+< -- 24
++ -- 767
+- -- 719
+* -- 2356
+:= -- 4294
+add.period$ -- 179
+call.type$ -- 47
+change.case$ -- 379
+chr.to.int$ -- 46
+cite$ -- 96
+duplicate$ -- 998
+empty$ -- 1700
+format.name$ -- 784
+if$ -- 5508
 int.to.chr$ -- 2
 int.to.str$ -- 1
 missing$ -- 37
-newline$ -- 275
-num.names$ -- 186
-pop$ -- 724
+newline$ -- 280
+num.names$ -- 190
+pop$ -- 737
 preamble$ -- 1
-purify$ -- 328
+purify$ -- 332
 quote$ -- 0
-skip$ -- 925
+skip$ -- 942
 stack$ -- 0
-substring$ -- 375
-swap$ -- 128
+substring$ -- 377
+swap$ -- 129
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 506
+type$ -- 517
 warning$ -- 2
-while$ -- 165
+while$ -- 168
 width$ -- 0
-write$ -- 667
-(There were 9 warnings)
+write$ -- 679
+(There were 4 error messages)
