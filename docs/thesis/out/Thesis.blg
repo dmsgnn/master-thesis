@@ -19,55 +19,65 @@ Warning--entry type for "torchscript" isn't style-file defined
 --line 696 of file Thesis_bibliography.bib
 Warning--entry type for "mlir-pytaco" isn't style-file defined
 --line 704 of file Thesis_bibliography.bib
+Warning--entry type for "taco" isn't style-file defined
+--line 712 of file Thesis_bibliography.bib
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
 while executing---line 1347 of file abbrvnat.bst
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
+while executing---line 1347 of file abbrvnat.bst
+Name 1 in "Members of Prof. Fredrik Kjolstad's research group at Stanford University, members of the COMMIT research group (led by Prof. Saman Amarasinghe) at MIT CSAIL, and other contributors" has a comma at the end for entry taco
+while executing---line 1347 of file abbrvnat.bst
+Name 1 in "Members of Prof. Fredrik Kjolstad's research group at Stanford University, members of the COMMIT research group (led by Prof. Saman Amarasinghe) at MIT CSAIL, and other contributors" has a comma at the end for entry taco
 while executing---line 1347 of file abbrvnat.bst
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
 while executing---line 1429 of file abbrvnat.bst
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
+while executing---line 1429 of file abbrvnat.bst
+Name 1 in "Members of Prof. Fredrik Kjolstad's research group at Stanford University, members of the COMMIT research group (led by Prof. Saman Amarasinghe) at MIT CSAIL, and other contributors" has a comma at the end for entry taco
+while executing---line 1429 of file abbrvnat.bst
+Name 1 in "Members of Prof. Fredrik Kjolstad's research group at Stanford University, members of the COMMIT research group (led by Prof. Saman Amarasinghe) at MIT CSAIL, and other contributors" has a comma at the end for entry taco
 while executing---line 1429 of file abbrvnat.bst
 Warning--empty year in cublas
 Warning--empty year in openblas
-You've used 47 entries,
+You've used 48 entries,
             2773 wiz_defined-function locations,
-            875 strings with 16300 characters,
-and the built_in function-call counts, 26810 in all, are:
-= -- 2219
-> -- 2290
-< -- 24
-+ -- 767
-- -- 719
-* -- 2356
-:= -- 4294
-add.period$ -- 179
-call.type$ -- 47
-change.case$ -- 379
-chr.to.int$ -- 46
-cite$ -- 96
-duplicate$ -- 998
-empty$ -- 1700
-format.name$ -- 784
-if$ -- 5508
+            879 strings with 16544 characters,
+and the built_in function-call counts, 27172 in all, are:
+= -- 2251
+> -- 2311
+< -- 25
++ -- 774
+- -- 725
+* -- 2379
+:= -- 4348
+add.period$ -- 182
+call.type$ -- 48
+change.case$ -- 384
+chr.to.int$ -- 47
+cite$ -- 98
+duplicate$ -- 1013
+empty$ -- 1732
+format.name$ -- 793
+if$ -- 5586
 int.to.chr$ -- 2
 int.to.str$ -- 1
 missing$ -- 37
-newline$ -- 280
-num.names$ -- 190
-pop$ -- 737
+newline$ -- 285
+num.names$ -- 194
+pop$ -- 750
 preamble$ -- 1
-purify$ -- 332
+purify$ -- 336
 quote$ -- 0
-skip$ -- 942
+skip$ -- 959
 stack$ -- 0
-substring$ -- 377
-swap$ -- 129
+substring$ -- 379
+swap$ -- 130
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 517
+type$ -- 528
 warning$ -- 2
-while$ -- 168
+while$ -- 171
 width$ -- 0
-write$ -- 679
-(There were 4 error messages)
+write$ -- 691
+(There were 8 error messages)
