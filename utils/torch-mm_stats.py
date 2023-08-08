@@ -113,9 +113,9 @@ def matmul_benchmark():
 
     w, h = figaspect(1 / 2)
     fig, ax = plt.subplots(figsize=(w, h))
-    plt.xlabel('Total execution time in seconds')
-    plt.ylabel('torch.mm average execution time')
-    plt.title("torch.mm benchmark")
+    plt.xlabel('Number of executions')
+    plt.ylabel('Average execution time')
+    plt.title("Pytorch mm execution time")
 
     ax.bar(x=num_executions,  # positions to put the bar to
            height=avg_runs_time,  # height of each bar
@@ -182,17 +182,17 @@ def matmul_benchmark():
 
     w, h = figaspect(1 / 2)
     fig, ax = plt.subplots(figsize=(w, h))
-    plt.xlabel('Operation type')
-    plt.ylabel('average time (2mln executions)')
-    plt.title("torch matmul comparison")
+    plt.xlabel('Function and matrix representation')
+    plt.ylabel('Average execution time')
+    plt.title("PyTorch matmul functions comparison")
 
-    ax.bar(x=['torch.mm dense', 'torch.mm coo', 'torch.spmm dense', 'torch.spmm coo'],  # positions to put the bar to
+    ax.bar(x=['dense mm', 'COO mm', 'dense spmm', 'COO spmm'],  # positions to put the bar to
            height=[torch_mm_dense[0], torch_mm_coo[0], torch_spmm_dense[0], torch_spmm_coo[0]],  # height of each bar
-           width=0.5,  # width of the bar
+           width=0.25,  # width of the bar
            edgecolor='black',  # edgecolor of the bar
-           color='green',  # fill color of the bar
+           color='orange',  # fill color of the bar
            # yerr=np.array([np.subtract(avg_runs_time, min_runs_time), np.subtract(max_runs_time, avg_runs_time)]),
-           ecolor='blue',
+           ecolor='red',
            capsize=5)
     # plt.show()
     plt.savefig('torch-mm-comparison.pdf')
