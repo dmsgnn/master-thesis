@@ -128,7 +128,10 @@ def matmul_benchmark():
     # plt.show()
     plt.savefig('torch-mm.pdf')
 
+
+def matmul_comparison():
     # Torch mul comparison
+    num_threads = torch.get_num_threads()
 
     m = sparse.random(a_rows, a_cols, density=0.1).toarray().astype(float32)
     m = torch.Tensor(m)

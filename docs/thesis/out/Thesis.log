@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  8 AUG 2023 22:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  9 AUG 2023 21:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1294,33 +1294,34 @@ File: Images/csr.pdf Graphic file (type pdf)
 Package pdftex.def Info: Images/csr.pdf  used on input line 84.
 (pdftex.def)             Requested size: 131.49763pt x 91.04742pt.
  [7 <./Images/coo.pdf> <./Images/csr.pdf>]
-<Images/google_scholar.pdf, id=462, 370.5805pt x 228.65425pt>
-File: Images/google_scholar.pdf Graphic file (type pdf)
-<use Images/google_scholar.pdf>
-Package pdftex.def Info: Images/google_scholar.pdf  used on input line 128.
-(pdftex.def)             Requested size: 295.13597pt x 182.09486pt.
- [8] [9 <./Images/google_scholar.pdf>] [10]
-<Images/multi-layer-perceptron.pdf, id=513, 222.64882pt x 121.62538pt>
+<Images/google_scholar_green.pdf, id=462, 693.792pt x 346.89601pt>
+File: Images/google_scholar_green.pdf Graphic file (type pdf)
+<use Images/google_scholar_green.pdf>
+Package pdftex.def Info: Images/google_scholar_green.pdf  used on input line 12
+8.
+(pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
+ [8] [9 <./Images/google_scholar_green.pdf>]
+[10]
+<Images/multi-layer-perceptron.pdf, id=532, 222.64882pt x 121.62538pt>
 File: Images/multi-layer-perceptron.pdf Graphic file (type pdf)
 <use Images/multi-layer-perceptron.pdf>
 Package pdftex.def Info: Images/multi-layer-perceptron.pdf  used on input line 
 189.
 (pdftex.def)             Requested size: 250.01385pt x 136.57462pt.
  [11 <./Images/multi-layer-perceptron.pdf>] [12] [13]
-<Images/hls.pdf, id=556, 213.70209pt x 232.814pt>
+<Images/hls.pdf, id=575, 213.70209pt x 232.814pt>
 File: Images/hls.pdf Graphic file (type pdf)
 <use Images/hls.pdf>
 Package pdftex.def Info: Images/hls.pdf  used on input line 276.
 (pdftex.def)             Requested size: 167.14671pt x 182.09486pt.
- [14 <./Images/hls.pdf>] [15]
-[16]) [17] [18
+ [14 <./Images/hls.pdf>] [15] [16]) [17] [18
 
 ]
 Chapter 3.
 (./chapters/chapter3.tex [19
 
 ] [20]
-<Images/AWB_GCN_SpMM_architecture.pdf, id=627, 524.99556pt x 160.95924pt>
+<Images/AWB_GCN_SpMM_architecture.pdf, id=646, 524.99556pt x 160.95924pt>
 File: Images/AWB_GCN_SpMM_architecture.pdf Graphic file (type pdf)
 <use Images/AWB_GCN_SpMM_architecture.pdf>
 Package pdftex.def Info: Images/AWB_GCN_SpMM_architecture.pdf  used on input li
@@ -1332,20 +1333,20 @@ Overfull \hbox (1.36804pt too wide) in paragraph at lines 97--100
 ri-or-i-tizes high-throughput and energy-
  []
 
-<Images/EnGN_architecture.pdf, id=656, 266.04375pt x 122.10248pt>
+<Images/EnGN_architecture.pdf, id=675, 266.04375pt x 122.10248pt>
 File: Images/EnGN_architecture.pdf Graphic file (type pdf)
 <use Images/EnGN_architecture.pdf>
 Package pdftex.def Info: Images/EnGN_architecture.pdf  used on input line 103.
 (pdftex.def)             Requested size: 297.59348pt x 136.57462pt.
 [23 <./Images/EnGN_architecture.pdf>]
-<Images/auten_tile_diagram.pdf, id=715, 168.4748pt x 100.41534pt>
+<Images/auten_tile_diagram.pdf, id=740, 168.4748pt x 100.41534pt>
 File: Images/auten_tile_diagram.pdf Graphic file (type pdf)
 <use Images/auten_tile_diagram.pdf>
 Package pdftex.def Info: Images/auten_tile_diagram.pdf  used on input line 130.
 
 (pdftex.def)             Requested size: 229.16122pt x 136.57462pt.
  [24 <./Images/auten_tile_diagram.pdf>]
-<Images/HyGCN_architecture.pdf, id=763, 241.61919pt x 128.20116pt>
+<Images/HyGCN_architecture.pdf, id=788, 241.61919pt x 128.20116pt>
 File: Images/HyGCN_architecture.pdf Graphic file (type pdf)
 <use Images/HyGCN_architecture.pdf>
 Package pdftex.def Info: Images/HyGCN_architecture.pdf  used on input line 171.
@@ -1353,13 +1354,13 @@ Package pdftex.def Info: Images/HyGCN_architecture.pdf  used on input line 171.
 (pdftex.def)             Requested size: 257.42392pt x 136.57462pt.
 
 [25] [26 <./Images/HyGCN_architecture.pdf>]
-<Images/GRIP_architecture.pdf, id=873, 523.42401pt x 140.46577pt>
+<Images/GRIP_architecture.pdf, id=898, 523.42401pt x 140.46577pt>
 File: Images/GRIP_architecture.pdf Graphic file (type pdf)
 <use Images/GRIP_architecture.pdf>
 Package pdftex.def Info: Images/GRIP_architecture.pdf  used on input line 220.
 (pdftex.def)             Requested size: 441.06287pt x 118.36096pt.
  [27] [28 <./Images/GRIP_architecture.pdf>]
-<Images/GenGNN_architecture.pdf, id=926, 489.7415pt x 118.81389pt>
+<Images/GenGNN_architecture.pdf, id=951, 489.7415pt x 118.81389pt>
 File: Images/GenGNN_architecture.pdf Graphic file (type pdf)
 <use Images/GenGNN_architecture.pdf>
 Package pdftex.def Info: Images/GenGNN_architecture.pdf  used on input line 272
@@ -1394,7 +1395,7 @@ Package epstopdf Info: Source file: <Images/toolchain.eps>
 rted-to.pdf Images/toolchain.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain-eps-converted-to.pdf, id=1178, 185.69376pt x 222.8325pt>
+<Images/toolchain-eps-converted-to.pdf, id=1202, 185.69376pt x 222.8325pt>
 File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain-eps-converted-to.pdf>
 Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
@@ -1414,7 +1415,7 @@ Package epstopdf Info: Source file: <Images/torch-mlir.eps>
 erted-to.pdf Images/torch-mlir.eps>
 (epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
-<Images/torch-mlir-eps-converted-to.pdf, id=1239, 199.74625pt x 201.75375pt>
+<Images/torch-mlir-eps-converted-to.pdf, id=1264, 199.74625pt x 201.75375pt>
 File: Images/torch-mlir-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/torch-mlir-eps-converted-to.pdf>
 Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input 
@@ -1422,12 +1423,12 @@ line 108.
 (pdftex.def)             Requested size: 225.36012pt x 227.62206pt.
 
 [46] [47 <./Images/torch-mlir-eps-converted-to.pdf>] [48] [49]
-<Images/soda_opt_flow.pdf, id=1297, 597.23125pt x 845.1575pt>
+<Images/soda_opt_flow.pdf, id=1321, 597.23125pt x 845.1575pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
 Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 223.
 (pdftex.def)             Requested size: 160.8445pt x 227.62206pt.
-<Images/bambu_flow.pdf, id=1298, 597.23125pt x 845.1575pt>
+<Images/bambu_flow.pdf, id=1322, 597.23125pt x 845.1575pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
 Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 229.
@@ -1530,8 +1531,8 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  28190 strings out of 480608
- 515554 string characters out of 5903630
- 1133529 words of memory out of 5000000
+ 515596 string characters out of 5903630
+ 1133528 words of memory out of 5000000
  43125 multiletter control sequences out of 15000+600000
  550298 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1577,10 +1578,10 @@ ocal/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texl
 ive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on out/thesis.pdf (84 pages, 4504584 bytes).
+Output written on out/thesis.pdf (84 pages, 4513192 bytes).
 PDF statistics:
- 1767 PDF objects out of 2073 (max. 8388607)
- 1462 compressed objects within 15 object streams
+ 1792 PDF objects out of 2073 (max. 8388607)
+ 1454 compressed objects within 15 object streams
  313 named destinations out of 1000 (max. 500000)
  567 words of extra memory for PDF output out of 10000 (max. 10000000)
 
