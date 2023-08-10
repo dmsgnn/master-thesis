@@ -131,10 +131,10 @@ def matmul_benchmark():
 def matmul_comparison():
     # Torch mul comparison
     num_threads = torch.get_num_threads()
-    a_rows = 15
-    a_cols = 15
-    b_rows = 15
-    b_cols = 16
+    a_rows = 20
+    a_cols = 20
+    b_rows = 20
+    b_cols = 20
 
     m = sparse.random(a_rows, a_cols, density=0.1).toarray().astype(float32)
     m = torch.Tensor(m)
@@ -144,18 +144,22 @@ def matmul_comparison():
     m_coo = m.to_sparse_coo()
     p_coo = p.to_sparse_coo()
 
-    torch_mm_dense = []
-    torch_mm_coo = []
-    torch_spmm_dense = []
-    torch_spmm_coo = []
-
+    print(">> torch.mm")
     t0 = benchmark.Timer(
         stmt='torch.mm(m, p)',
         setup='from torch import mm',
         globals={'m': m, 'p': p},
         num_threads=num_threads)
 
-    torch_mm_dense.append(t0.timeit(2000000).times[0])
+    print("A, B: dense = {0}".format(t0.timeit(10000000).times[0]))
+
+    t0 = benchmark.Timer(
+        stmt='torch.mm(m_coo, p)',
+        setup='from torch import mm',
+        globals={'m_coo': m_coo, 'p': p},
+        num_threads=num_threads)
+
+    print("A: COO, B: dense = {0}".format(t0.timeit(10000000).times[0]))
 
     t0 = benchmark.Timer(
         stmt='torch.mm(m_coo, p_coo)',
@@ -163,7 +167,9 @@ def matmul_comparison():
         globals={'m_coo': m_coo, 'p_coo': p_coo},
         num_threads=num_threads)
 
-    torch_mm_coo.append(t0.timeit(2000000).times[0])
+    print("A, B: COO = {0}".format(t0.timeit(10000000).times[0]))
+
+    print(">> torch.spmm")
 
     t0 = benchmark.Timer(
         stmt='torch.spmm(m, p)',
@@ -171,7 +177,15 @@ def matmul_comparison():
         globals={'m': m, 'p': p},
         num_threads=num_threads)
 
-    torch_spmm_dense.append(t0.timeit(2000000).times[0])
+    print("A, B: dense = {0}".format(t0.timeit(10000000).times[0]))
+
+    t0 = benchmark.Timer(
+        stmt='torch.spmm(m_coo, p)',
+        setup='from torch import spmm',
+        globals={'m_coo': m_coo, 'p': p},
+        num_threads=num_threads)
+
+    print("A: COO, B: dense = {0}".format(t0.timeit(10000000).times[0]))
 
     t0 = benchmark.Timer(
         stmt='torch.spmm(m_coo, p_coo)',
@@ -179,31 +193,27 @@ def matmul_comparison():
         globals={'m_coo': m_coo, 'p_coo': p_coo},
         num_threads=num_threads)
 
-    torch_spmm_coo.append(t0.timeit(2000000).times[0])
+    print("A, B: COO = {0}".format(t0.timeit(10000000).times[0]))
 
-    print("dense mm {0}".format(torch_mm_dense))
-    print("coo mm {0}".format(torch_mm_coo))
-    print("dense spmm {0}".format(torch_spmm_dense))
-    print("coo spmm {0}".format(torch_spmm_coo))
 
-    w, h = figaspect(1 / 2)
-    fig, ax = plt.subplots(figsize=(w, h))
-    plt.xlabel('Function and matrix representation')
-    plt.ylabel('Average execution time')
-    plt.title("PyTorch matmul functions comparison")
-
-    ax.bar(x=['dense mm', 'COO mm', 'dense spmm', 'COO spmm'],  # positions to put the bar to
-           height=[torch_mm_dense[0], torch_mm_coo[0], torch_spmm_dense[0], torch_spmm_coo[0]],  # height of each bar
-           width=0.25,  # width of the bar
-           edgecolor='black',  # edgecolor of the bar
-           color='orange',  # fill color of the bar
-           # yerr=np.array([np.subtract(avg_runs_time, min_runs_time), np.subtract(max_runs_time, avg_runs_time)]),
-           ecolor='red',
-           capsize=5)
-    # plt.show()
-    plt.savefig('torch-mm-comparison.pdf')
+    # w, h = figaspect(1 / 2)
+    # fig, ax = plt.subplots(figsize=(w, h))
+    # plt.xlabel('Function and matrix representation')
+    # plt.ylabel('Average execution time')
+    # plt.title("PyTorch matmul functions comparison")
+    #
+    # ax.bar(x=['dense mm', 'COO mm', 'dense spmm', 'COO spmm'],  # positions to put the bar to
+    #        height=[torch_mm_dense[0], torch_mm_coo[0], torch_spmm_dense[0], torch_spmm_coo[0]],  # height of each bar
+    #        width=0.25,  # width of the bar
+    #        edgecolor='black',  # edgecolor of the bar
+    #        color='orange',  # fill color of the bar
+    #        # yerr=np.array([np.subtract(avg_runs_time, min_runs_time), np.subtract(max_runs_time, avg_runs_time)]),
+    #        ecolor='red',
+    #        capsize=5)
+    # plt.savefig('torch-mm-comparison.pdf')
 
 
 # For calling from command line
 if __name__ == '__main__':
-    matmul_benchmark()
+    # matmul_benchmark()
+    matmul_comparison()

@@ -23,9 +23,11 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Toolchain for Graph Neural Network Acceleration\relax }}{44}{figure.caption.27}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{47}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{46}{figure.caption.28}%
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{50}{figure.caption.29}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Compiler frontend}}}{50}{subfigure.3.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {High-level synthesis backend}}}{50}{subfigure.3.2}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Row-by-column matrix multiplication example\relax }}{57}{figure.caption.32}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Benchmark of \textit {torch.mm} PyTorch function\relax }}{59}{figure.caption.35}%
 \addvspace {10\p@ }

@@ -41,39 +41,8 @@ Once having defined the model, the next step is training the GNN using standard 
 Two main models have been used for this thesis: the Graph Isomorphism Network from OGB~\cite{NEURIPS2020_fb60d411, ogb_gnn_models}, written using PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428}, and the Graph Convolutional Network~\cite{DBLP:journals/corr/KipfW16, pygcn}, written using PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
 
 Most research and experiments have been conducted using the GCN model.
-The GCN class, reported below, is characterized by two Graph Convolutional layers.
+The GCN class is characterized by two Graph Convolutional layers, and the forward function of each layer is mainly characterized by two matrix multiplications.
 
-\begin{lstlisting}[language=Python,label={lst:gcn-class}, numbers=left, xleftmargin=1em, caption=Class of GCN model]
-import torch.nn as nn
-import torch.nn.functional as F
-from pygcn.layers import GraphConvolution
-
-class GCN(nn.Module):
-    def __init__(self, nfeat, nhid, nclass, dropout):
-        super(GCN, self).__init__()
-
-        self.gc1 = GraphConvolution(nfeat, nhid)
-        self.gc1 = GraphConvolution(nhid, nclass)
-        self.dropout = dropout
-
-    def forward(self, x, adj):
-        x = F.relu(self.gc1(x, adj))
-        x = F.dropout(x, self.dropout, training=self.training)
-        x = self.gc2(x, adj)
-        return F.log_softmax(x, dim=1)
-\end{lstlisting}
-
-The forward function of each layer, reported below, is mainly characterized by two matrix multiplications.
-
-\begin{lstlisting}[language=Python,label={lst:gcn-layer-forward}, numbers=left, xleftmargin=1em, caption=Forward function of GCN layer]
-    def forward(self, input, adj):
-        support = torch.mm(input, self.weight)
-        output = torch.spmm(adj, support)
-        if self.bias is not None:
-            return output + self.bias
-        else:
-            return output
-\end{lstlisting}
 
 \subsection{Datasets}
 \label{subsec:gnn_datasets}%
@@ -219,13 +188,13 @@ The following Subsections provide insight into what is happening internally to t
 \begin{figure}[t]
     \centering
     \subfloat[Compiler frontend\label{fig:soda-opt_flow}]{
-        \includegraphics[height=0.5\textwidth]{Images/soda_opt_flow}
+        \includegraphics[height=0.6\textwidth]{Images/soda_opt_flow}
     }
     %\quad
     \hspace{0.03\textwidth}
     \subfloat[High-level synthesis backend\label{fig:bambu_flow}]{
         \captionsetup{width=.4\textwidth}
-        \includegraphics[height=0.5\textwidth]{Images/bambu_flow}
+        \includegraphics[height=0.6\textwidth]{Images/bambu_flow}
     }
     \caption{Synthesizer: SODA-OPT and PandA-Bambu overview~\cite{9786533}}
     \label{fig:synthesizer_flow}
@@ -241,18 +210,7 @@ The output of SODA-OPT is an LLVM representation that serves as input to PandA-B
 
 Despite the remarkable capabilities of SODA-OPT, it should be noted that it does not support the entire set of dialects utilized within the MLIR ecosystem, such as the ml\_program or the Tensor dialect.
 Consequently, an additional step is required wherein the representation obtained from Torch-MLIR is lowered to remove unsupported dialects.
-In particular, once having successfully exported the MLIR representation using the \lstinline{torch_mlir.compile} API, the mlir-opt passes shown below have been used to remove the unsupported dialects by lowering them to supported ones, such as the memref.
-
-\begin{lstlisting}[language=bash,label={lst:mlir-opt-remove}]
-mlir-opt --canonicalize -convert-tensor-to-linalg \
-         --empty-tensor-to-alloc-tensor \
-         --eliminate-empty-tensors \
-         -linalg-bufferize -arith-bufferize \
-         -tensor-bufferize -func-bufferize \
-         -finalizing-bufferize -buffer-deallocation \
-         --buffer-results-to-out-params \
-         --canonicalize -cse new_model.mlir
-\end{lstlisting}
+In particular, once having successfully exported the MLIR representation using the \lstinline{torch_mlir.compile} API, a set of mlir-opt passes have been used to remove the unsupported dialects by lowering them to supported ones, such as the memref.
 
 The next step consists in outlining the part of MLIR code to accelerate.
 In general, the aim is to accelerate the whole function.
@@ -268,20 +226,20 @@ The first part of this analysis has been conducted on PyTorch.
 Profiling the inference function of the GCN model, the result showed that, in general, nearly 60\% of the time required to make a prediction was used for the matrix multiplication operation.
 For this reason, an important part of this thesis is represented by research on how to accelerate matrix multiplication using SODA-OPT passes to then accelerate the GCN inference.
 
-This analysis has been conducted using a subset of the Cora dataset, and the first pass used transforms the linalg to affine dialect, resulting in three nested affine loops shown below.
+This analysis has been conducted using a subset of the Cora dataset, and the first pass used transforms the linalg to affine dialect, resulting in three nested affine loops shown in Listing~\ref{lst:affine-mul}.
 
 \begin{lstlisting}[label={lst:affine-mul}, caption=Matrix multiplication in MLIR affine dialect]
 affine.for %arg3 = 0 to 15 {
-affine.for %arg4 = 0 to 16 {
-  affine.for %arg5 = 0 to 15 {
+  affine.for %arg4 = 0 to 16 {
+    affine.for %arg5 = 0 to 15 {
     %0 = affine.load %arg0[%arg3, %arg5] : memref<15x15xf32>
     %1 = affine.load %arg1[%arg5, %arg4] : memref<15x16xf32>
     %2 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
     %3 = arith.mulf %0, %1 : f32
     %4 = arith.addf %2, %3 : f32
     affine.store %4, %arg2[%arg3, %arg4] : memref<15x16xf32>
+    }
   }
-}
 }
 \end{lstlisting}
 
