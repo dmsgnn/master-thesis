@@ -62,8 +62,7 @@ def matmul_benchmark():
     b = torch.Tensor(b)
 
     ## number of torch.mm execution
-    ## num_executions = [500000, 1000000, 1500000, 2000000, 2500000, 3000000, 3500000, 4000000]
-    num_executions = [500000, 750000, 1000000, 1250000, 1500000, 1750000, 2000000, 2250000, 2500000]
+    num_executions = [2000000, 4000000, 6000000, 8000000, 10000000]
     ## number of runs for each number of execution
     num_runs = 5
     ## num of avg times per run per execution
@@ -115,11 +114,11 @@ def matmul_benchmark():
     fig, ax = plt.subplots(figsize=(w, h))
     plt.xlabel('Number of executions')
     plt.ylabel('Average execution time')
-    plt.title("Pytorch mm execution time")
+    plt.title("PyTorch matmul execution time")
 
     ax.bar(x=num_executions,  # positions to put the bar to
            height=avg_runs_time,  # height of each bar
-           width=0.6 * 100000,  # width of the bar
+           width=1000000,  # width of the bar
            edgecolor='black',  # edgecolor of the bar
            color='orange',  # fill color of the bar
            yerr=np.array([np.subtract(avg_runs_time, min_runs_time), np.subtract(max_runs_time, avg_runs_time)]),  #
@@ -132,6 +131,10 @@ def matmul_benchmark():
 def matmul_comparison():
     # Torch mul comparison
     num_threads = torch.get_num_threads()
+    a_rows = 15
+    a_cols = 15
+    b_rows = 15
+    b_cols = 16
 
     m = sparse.random(a_rows, a_cols, density=0.1).toarray().astype(float32)
     m = torch.Tensor(m)
