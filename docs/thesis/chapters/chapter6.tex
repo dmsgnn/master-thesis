@@ -141,10 +141,13 @@ In a general matrix multiplication, shown in the following, each element of the 
 \end{equation}
 
 Then, the number of cycles needed can be calculated using Equation~\ref{eq:number-cycles}.
+The first part of the Equation computes the number of cycles for the mul and add operations, while the second half computes the number of cycles needed to load and store data.
+The number of cycles of the second half are computed by adding one cycle for each $ch$ operands read, and one cycle for each $ch$ operand written, with $ch$ equal to the number of memory channels.
+From Listing~\ref{lst:affine-mul}, can be seen that there are three load and one store, for a total of four.
 
 \begin{equation}
     \label{eq:number-cycles}
-    cycles = (m*p) *( n*cycles_{mul} + (n-1)*cycles_{add})
+    cycles = (m \cdot p) \cdot ( n\cdot cycles_{mul} + (n-1) \cdot cycles_{add}) + 4 \cdot \frac{n \cdot p \cdot m}{ch}
 \end{equation}
 
 \subsection{PyTorch matrix multiplication benchmark}
@@ -192,6 +195,7 @@ All the times have been computed by averaging ten millions executions, the two m
 It is clear that sparse matrix multiplication, both with dense and sparse matrix representations, does not increase performance on CPU architecture.
 The advantage of using dense matrix multiplication on CPU becomes more and more evident increasing the size of the input matrices.
 
-\subsection{Memory channels comparison}
-\label{subsec:memory-channels-comparison}%
+\subsection{Optimization comparison}
+\label{subsec:optimization-comparison}%
+
 

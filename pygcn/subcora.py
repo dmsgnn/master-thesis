@@ -27,7 +27,11 @@ def main():
 
     idx = 0
     for line in cora:
-        new_cora.write(line)
+        new_cora.write(line.split()[0] + '\t')
+        for i in range(0, int(dim)):
+            new_cora.write(line.split()[i+1] + '\t')
+        new_cora.write(line.split()[len(line.split())-1])
+        new_cora.write('\n')
         nodes.append(line.split()[0])
         idx += 1
         if idx == int(dim):

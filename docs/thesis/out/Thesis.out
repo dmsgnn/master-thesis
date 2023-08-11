@@ -50,7 +50,7 @@
 \BOOKMARK [1][-]{section.6.1}{Model analysis and profiling}{chapter.6}% 50
 \BOOKMARK [1][-]{section.6.2}{Matrix multiplication acceleration}{chapter.6}% 51
 \BOOKMARK [2][-]{subsection.6.2.1}{PyTorch matrix multiplication benchmark}{section.6.2}% 52
-\BOOKMARK [2][-]{subsection.6.2.2}{Memory channels comparison}{section.6.2}% 53
+\BOOKMARK [2][-]{subsection.6.2.2}{Optimization comparison}{section.6.2}% 53
 \BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 54
 \BOOKMARK [0][-]{chapter*.39}{Bibliography}{}% 55
 \BOOKMARK [0][-]{appendix*.41}{List of Figures}{}% 56
