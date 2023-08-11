@@ -43,9 +43,9 @@ def matmul_benchmark():
               'version {0},'.format(versioninfo),
               'machine {0}'.format(machine))
 
-    a_rows = 150
-    a_cols = 150
-    b_rows = 150
+    a_rows = 15
+    a_cols = 15
+    b_rows = 15
     b_cols = 16
 
     # Choose precision here (standard is float64, NOT float32!)
@@ -62,7 +62,7 @@ def matmul_benchmark():
     b = torch.Tensor(b)
 
     ## number of torch.mm execution
-    num_executions = [10000000]
+    num_executions = [2000000, 4000000, 6000000, 8000000, 10000000]
     ## number of runs for each number of execution
     num_runs = 5
     ## num of avg times per run per execution
@@ -125,7 +125,7 @@ def matmul_benchmark():
            ecolor='red',
            capsize=5)
     # plt.show()
-    #plt.savefig('torch-mm.pdf')
+    plt.savefig('torch-mm.pdf')
 
 
 def matmul_comparison():
