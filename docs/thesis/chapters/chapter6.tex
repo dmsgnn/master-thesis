@@ -163,8 +163,27 @@ In particular, the plot shows five measurements computed as the average of five 
 Additionally, this average has been computed five times, and the red bar shows the range between the minimum and the maximum execution time of these repetitions.
 
 As expected, given the high amount of executions, the five average execution times are similar between them, and the red range bar decreases as the number of executions increases.
-In conclusion, the time needed by a dense matrix multiplication between two matrices of the given size is equal to 1.608$\mu s$.
+In conclusion, the time needed by a dense matrix multiplication between two matrices of the given size can be considered equal to 1.608$\mu s$.
 The Python timing of the accelerated functions for each experiment has been computed using an average of ten millions executions.
+
+Since the GCN model uses both dense and sparse matrix multiplication functions, Table~\ref{tab:torch-matmul-comparison} shows the times needed by both functions according to different representations of the two input matrices A and B\@.
+All the times have been computed as the average of ten millions executions, the two matrices are both of size $20 \times 20$ and randomly generated; they are both composed by float32 elements and COO matrices have a sparsity of 90\%.
+
+\begin{table}[t]
+\centering
+    \begin{tabular}{|p{6em} c c c |}
+    \hline
+    \textbf{Function} & \textbf{Dense$\times$Dense} & \textbf{COO$\times$Dense} & \textbf{COO$\times$COO} \T\B \\
+    \hline \hline
+    \textbf{torch.mm} & 1.840$\mu s$  & 3.299$\mu s$ & 16.855$\mu s$ \T\B\\
+    \hline
+    \textbf{torch.spmm} & 1.875$\mu s$  & 3.234$\mu s$ & 15.215$\mu s$ \T\B\\
+    \hline
+    \end{tabular}
+    \\[10pt]
+    \caption{Comparison between dense and sparse PyTorch matmul functions}
+    \label{tab:torch-matmul-comparison}
+\end{table}
 
 \begin{figure}[t]
     \centering
@@ -173,29 +192,49 @@ The Python timing of the accelerated functions for each experiment has been comp
     \label{fig:torch-mm_benchmark}
 \end{figure}
 
-Since the GCN model uses both dense and sparse matrix multiplication functions, Table~\ref{tab:torch-matmul-comparison} shows the times needed by both functions according to different representations of the two input matrices A and B\@.
-All the times have been computed by averaging ten millions executions, the two matrices are both of size $20 \times 20$ and randomly generated; they are both composed by float32 elements and COO matrices have a sparsity of 90\%.
-
-\begin{table}[t]
-\centering
-    \begin{tabular}{|p{6em} c c c |}
-    \hline
-    \textbf{Name} & \textbf{A, B: dense} & \textbf{A: COO, B: dense} & \textbf{A, B: COO} \T\B \\
-    \hline \hline
-    \textbf{torch.mm} & 1,840$\mu s$  & 3,299$\mu s$ & 16,855$\mu s$ \T\B\\
-    \hline
-    \textbf{torch.spmm} & 1,875$\mu s$  & 3,234$\mu s$ & 15,215$\mu s$ \T\B\\
-    \hline
-    \end{tabular}
-    \\[10pt]
-    \caption{Comparison between dense and sparse PyTorch matmul functions}
-    \label{tab:torch-matmul-comparison}
-\end{table}
-
 It is clear that sparse matrix multiplication, both with dense and sparse matrix representations, does not increase performance on CPU architecture.
-The advantage of using dense matrix multiplication on CPU becomes more and more evident increasing the size of the input matrices.
+The disadvantage of using sparse matrix multiplication on CPU becomes more and more evident as the size of the input matrices increases.
 
 \subsection{Optimization comparison}
 \label{subsec:optimization-comparison}%
 
+Before applying any SODA-OPT or PandA-Bambu optimization, it is necessary to understand the difference between PyTorch matrix multiplication operation and the baseline accelerator.
+Table~\ref{tab:pytorch-accelerator-comparison} and Figure~\ref{fig:pytorch-accelerator-comparison} show the result of this analysis.
+The PyTorch times have been recorded by averaging five measurements each of ten millions executions.
+The baseline accelerator is much faster than PyTorch when matrices are relatively small.
+The difference of performance decreases as the size of the input matrices increase until reaching a point in which the accelerator becomes slower than PyTorch solution.
 
+This behaviour can be attributed to the fact that PyTorch times have been recorded using all the eight available threads on the machine.
+So, the \lstinline{torch.mm} function exploits more parallelism with respect to the accelerator.
+For this reason, the optimizations discussed in Section~\ref{subsec:toolchain-soda_opt} and in Section~\ref{subsec:toolchain-panda_bambu} and evaluated in the following makes the accelerator able to exploit more parallelism.
+
+\begin{table}[t]
+\centering
+    \begin{tabular}{|p{9em} c c c c  |}
+    \hline
+    \textbf{Input sizes} & \textbf{Torch.mm (s)} & \textbf{Runtime (s)} & \textbf{Cycles} & \textbf{Speedup} \T\B \\
+    \hline \hline
+    \textbf{15$\times$15, 15$\times$16} & 1.608E-06  & 96.492E-09 & 25,697 & 16.664 \T\B\\
+    \hline
+    \textbf{30$\times$30, 30$\times$16} & 1.733E-06  & 351.182E-09 & 101,792 & 4.934 \T\B\\
+    \hline
+    \textbf{60$\times$60, 60$\times$16} & 2.480E-06  & 1.466E-06 & 405,182 & 1.691 \T\B\\
+    \hline
+    \textbf{90$\times$90, 90$\times$16} & 4.554E-06  & 3.150E-06 & 910,172 & 1.445 \T\B\\
+    \hline
+    \textbf{120$\times$120, 120$\times$16} & 4.792E-06  & 00.000E-06 & 00,000 & 16.664 \T\B\\
+    \hline
+    \textbf{150$\times$150, 150$\times$16} & 5.161E-06  & 9.074E-06 & 2,524,952 & 0.568 \T\B\\
+    \hline
+    \end{tabular}
+    \\[10pt]
+    \caption{Comparison between dense and sparse PyTorch matmul functions}
+    \label{tab:pytorch-accelerator-comparison}
+\end{table}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.4\textwidth]{Images/matmul_comparison}
+    \caption{Performance comparison between PyTorch matmul function and accelerator}
+    \label{fig:pytorch-accelerator-comparison}
+\end{figure}

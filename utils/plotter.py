@@ -53,7 +53,7 @@ def matmul_comparison():
                s=36,
                label="Accelerator")
     ax.legend(loc="lower right")
-    path = "./matmul_comparison.pdf"
+    path = "../docs/thesis/Images/matmul_comparison.pdf"
     plt.savefig(path)
     print("Plot saved in {0}".format(path))
 

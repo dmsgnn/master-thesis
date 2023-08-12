@@ -5,6 +5,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Excerpt of GCN model inference profiling result\relax }}{55}{table.caption.31}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Excerpt of GCN model inference profiling result\relax }}{55}{table.caption.32}%
 \contentsline {table}{\numberline {6.2}{\ignorespaces Comparison between dense and sparse PyTorch matmul functions\relax }}{59}{table.caption.36}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Comparison between dense and sparse PyTorch matmul functions\relax }}{60}{table.caption.38}%
 \addvspace {10\p@ }

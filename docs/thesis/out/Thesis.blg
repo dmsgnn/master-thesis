@@ -16,11 +16,11 @@ Warning--entry type for "cublas" isn't style-file defined
 Warning--entry type for "openblas" isn't style-file defined
 --line 637 of file Thesis_bibliography.bib
 Warning--entry type for "torchscript" isn't style-file defined
---line 696 of file Thesis_bibliography.bib
+--line 697 of file Thesis_bibliography.bib
 Warning--entry type for "mlir-pytaco" isn't style-file defined
---line 704 of file Thesis_bibliography.bib
+--line 706 of file Thesis_bibliography.bib
 Warning--entry type for "taco" isn't style-file defined
---line 712 of file Thesis_bibliography.bib
+--line 715 of file Thesis_bibliography.bib
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
 while executing---line 1347 of file abbrvnat.bst
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco

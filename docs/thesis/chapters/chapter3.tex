@@ -339,8 +339,15 @@ Then, the graph undergoes a two-phase preprocessing algorithm involving sparsifi
 The sparsification phase eliminates edge connections of high-degree nodes by merging familiar neighbors to reduce the memory accesses that a graph with more edges can require during the aggregation stage.
 The node reordering phase effectively groups adjacent nodes to enhance on-chip data reuse.
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.26\textwidth]{Images/zhang_architecture}
+    \caption{Hardware architecture with two execution modes proposed by Zhang \textit{et al.}~\cite{9153263}}
+    \label{fig:zhang_architecture}
+\end{figure}
+
 The pre-processed graph is then fed into a hardware accelerator implemented in an FPGA that efficiently pipelines GCN's two major computational kernels: aggregation and transformation.
-As outlined in~\cite{DBLP:journals/corr/abs-2010-00130}, the design distinguishes itself from other approaches in several ways.
+As outlined in~\cite{DBLP:journals/corr/abs-2010-00130}, the design, shown in Figure~\ref{fig:zhang_architecture}, distinguishes itself from other approaches in several ways.
 The aggregator module adopts a double-buffering technique to hide addition latency and leverages node- and feature-level parallelism.
 Moreover, the accelerator supports two modes of operation depending on the order of matrix multiplications, leading to different pipelining strategies.
 In order to accommodate these modes, the modules are interconnected from the aggregate module to the combination modules and vice versa.
