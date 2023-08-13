@@ -18,10 +18,10 @@ such as social networks and chemistry.
 In particular, inference in GNNs refers to the time the model takes to make predictions after training.
 The duration of the inference process determines the speed at which queries are answered, and researchers strive to minimize this time span.
 
-In applications of deep learning that prioritize low latency, Field-programmable Gate Arrays (FPGAs) outperform other computing devices, such as CPUs and GPUs.
+In applications of deep learning that prioritize low latency, Field-programmable Gate Arrays (FPGAs) outperform other computing devices, such as Central Processing Units (CPUs) and Graphics Processing Units (GPUs).
 FPGAs offer the advantage of being fine-tuned to the application to strike the optimal balance between power efficiency and meeting performance requirements.
 
-Due to this reason, researchers have been actively pursuing the development of new FPGA accelerators for Graph Neural Networks (GNNs) in recent times.
+Due to this reason, researchers have been actively pursuing the development of new FPGA accelerators for Graph Neural Networks in recent times.
 
 The conventional approach to hardware design involves a combination of manual coding and automated processing.
 In particular, first the functional units are implemented in a programming language such as C/C++, then they are transformed into a Hardware Description Language (HDL) using commercial High-Level Synthesis (HLS) tools.
@@ -30,7 +30,7 @@ However, this method demands significant effort and relies heavily on the expert
 
 To address the challenge of accelerating GNNs on FPGAs without having extensive knowledge in hardware design, the objective of this thesis is to develop a comprehensive toolchain that, starting from PyTorch~\cite{DBLP:journals/corr/abs-1912-01703},
 a cutting-edge high-level programming framework for creating neural network algorithms based on the Python programming language, enables the
-automatic generation of a Graph Neural Networks (GNNs) FPGA accelerator with minimal effort required.
+automatic generation of a Graph Neural Networks FPGA accelerator with minimal effort required.
 
 The suggested toolchain represents an enhancement of the SODA toolchain~\cite{9786533}.
 It operates by transforming the PyTorch model, provided as input, into a multi-level intermediate representation

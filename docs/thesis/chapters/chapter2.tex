@@ -117,9 +117,9 @@ It is commonly denoted as $X$ and  each row corresponds to a node in the graph, 
 
 %TODO: add an example image of a GNN
 
-Graph neural networks (GNNs) are deep learning techniques that operate on graph-structured data.
+Graph neural networks are deep learning techniques that operate on graph-structured data.
 Thanks to their impressive performance, GNNs have recently gained significant popularity as a widely adopted method for graph analysis~\cite{KERAMATFAR2022100401}.
-Figure~\ref{fig:google_scholar} illustrates the steady growth in the number of publications related to Graph Neural Networks (GNNs) on Google Scholar from 2015 to 2022.
+Figure~\ref{fig:google_scholar} illustrates the steady growth in the number of publications related to Graph Neural Networks on Google Scholar from 2015 to 2022.
 The data were collected by querying papers containing the specific words "Graph Neural Network" in their whole content and aggregating them on a yearly basis.
 The increasing trend reflects the rising interest and research activity in the field of GNNs over the years.
 
@@ -150,7 +150,7 @@ One example of an edge-level task is link prediction in a social network.
 Given a graph representing a social network where, as before, in node-level tasks, nodes correspond to individuals and edges represent relationships between them, the edge-level task aims to predict missing or potential connections between nodes.
 This can involve predicting the likelihood of a future friendship or the probability of a collaboration between individuals based on their shared characteristics or mutual connections in the network.
 
-Graph Neural Networks (GNNs) are designed to process graph data and consist of multiple interconnected layers.
+Graph Neural Networks are designed to process graph data and consist of multiple interconnected layers.
 At its core, a GNN is an algorithm that exploits the connectivity within a graph to understand and represent the relationships between nodes.
 By relying on the graph's structure, the GNN iteratively processes input edge, vertex, and graph feature vectors, which encode known attributes and transforms them into output feature vectors that capture the desired predictions.
 Each Graph Neural Network typically encompasses three main stages: pre-processing, iterative updates and decoding or readout~\cite{DBLP:journals/corr/abs-2010-00130}.
@@ -194,7 +194,7 @@ Processing elements in each layer receive inputs from all nodes in the previous 
 \subsection{Graph Convolutional Network}
 \label{subsec:graph_convolutional_network}%
 
-A graph convolutional network (GCN)~\cite{DBLP:journals/corr/KipfW16, daigavane2021understanding} is a type of neural network architecture explicitly designed to operate on graph-structured data.
+A Graph Convolutional Network (GCN)~\cite{DBLP:journals/corr/KipfW16, daigavane2021understanding} is a type of neural network architecture explicitly designed to operate on graph-structured data.
 GCNs aim to learn node representations by aggregating and combining information from neighboring nodes in the graph.
 The core idea behind GCNs is to perform convolution-like operations on the graph, where the convolutional filters are defined based on the graph's adjacency matrix or other graph-specific structures.
 This enables GCNs to capture and leverage the structural information encoded in the graph to make predictions or perform downstream tasks.
@@ -260,7 +260,7 @@ Unknown Ops are treated with a conservative approach by compiler passes, and MLI
 \section{High-Level Synthesis}
 \label{sec:hls}%
 
-This thesis presents a toolchain leveraging High-Level Synthesis (HLS) to automatically translate algorithmic descriptions of applications into low-level RTL (register-transfer level) descriptions or digital circuits.
+This thesis presents a toolchain leveraging High-Level Synthesis to automatically translate algorithmic descriptions of applications into low-level RTL (register-transfer level) descriptions or digital circuits.
 HLS tools simplify hardware development's most complex and time-consuming aspect by allowing users to provide programs written in common programming languages like C/C++, eliminating the need for manual VHDL/Verilog coding.
 HLS significantly reduces design time and effort, making the final implementation's functionality independent of hardware design knowledge.
 
@@ -274,7 +274,7 @@ The next step is to generate an RTL model of the synthesized design, incorporati
 \begin{figure}[t]
     \centering
     \includegraphics[height=0.4\textwidth]{Images/hls}
-    \caption{High-level Synthesis (HLS) design steps~\cite{5209958}}
+    \caption{High-level Synthesis design steps~\cite{5209958}}
     \label{fig:hls}
 \end{figure}
 
@@ -296,12 +296,12 @@ All instructions follow the Static Single Assignment (SSA) form, meaning each vi
 SODA~\cite{9786533} is a software-defined accelerator synthesizer.
 It enables the creation of highly specialized accelerators from algorithms designed in high-level programming frameworks.
 The synthesizer comprises a compiler-based frontend that interfaces with high-level programming frameworks, applying advanced optimizations.
-It also includes a compiler-based backend responsible for generating Verilog code and interfacing with external tools to compile the final design, which can be applied to application-specific integrated circuits (ASICs) or field-programmable gate arrays (FPGAs).
+It also includes a compiler-based backend responsible for generating Verilog code and interfacing with external tools to compile the final design, which can be applied to application-specific integrated circuits (ASICs) or Field-Programmable Gate Arrays.
 
 SODA's exceptional power lies in its ability to offer a fully automated end-to-end hardware compiler, eliminating the need for human intervention and any modifications to the input code.
-This framework seamlessly integrates with high-level Python frameworks by accepting their input descriptions, which are then translated by the frontend into a high-level intermediate representation (IR).
-Leveraging the multi-level intermediate representation (MLIR), the frontend facilitates hardware/software partitioning of algorithm specifications and performs architecture-independent optimizations.
-Following this, it generates a low-level IR (LLVM IR) that is utilized by the hardware generation engine, PandA-Bambu~\cite{9586110}.
+This framework seamlessly integrates with high-level Python frameworks by accepting their input descriptions, which are then translated by the frontend into a high-level intermediate representation.
+Leveraging the multi-level intermediate representation, the frontend facilitates hardware/software partitioning of algorithm specifications and performs architecture-independent optimizations.
+Following this, it generates a low-level IR that is utilized by the hardware generation engine, PandA-Bambu~\cite{9586110}.
 PandA-Bambu can accept LLVM IR as input, making it a cutting-edge open-source HLS tool.
 Throughout the entire SODA toolchain, compiler passes are employed to implement optimizations at all levels, greatly influencing the generated hardware designs' performance, area, and power characteristics.
 

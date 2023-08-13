@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  12 AUG 2023 17:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  13 AUG 2023 21:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1429,16 +1429,16 @@ line 77.
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 [46 <./Images/torch-mlir-eps-converted-to.pdf>] [47] [48]
-<Images/soda_opt_flow.pdf, id=957, 597.23125pt x 845.1575pt>
+<Images/soda_opt_flow.pdf, id=957, 391.44041pt x 701.256pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
 Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 192.
-(pdftex.def)             Requested size: 193.02252pt x 273.14923pt.
-<Images/bambu_flow.pdf, id=958, 597.23125pt x 845.1575pt>
+(pdftex.def)             Requested size: 152.47pt x 273.14923pt.
+<Images/bambu_flow.pdf, id=958, 402.51875pt x 786.14798pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
 Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 198.
-(pdftex.def)             Requested size: 193.02252pt x 273.14923pt.
+(pdftex.def)             Requested size: 139.85796pt x 273.14923pt.
  [49] [50 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>] [51] [52]) [5
 3] [54
 
@@ -1454,21 +1454,21 @@ Overfull \hbox (6.53311pt too wide) in paragraph at lines 19--19
 ] [56]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 86.
-<Images/row-by-col-mult-example.pdf, id=1150, 164.67923pt x 62.07993pt>
+<Images/row-by-col-mult-example.pdf, id=1067, 164.67923pt x 62.07993pt>
 File: Images/row-by-col-mult-example.pdf Graphic file (type pdf)
 <use Images/row-by-col-mult-example.pdf>
 Package pdftex.def Info: Images/row-by-col-mult-example.pdf  used on input line
  107.
 (pdftex.def)             Requested size: 289.84386pt x 109.26108pt.
  [57 <./Images/row-by-col-mult-example.pdf>] [58]
-<Images/torch-mm_benchmark.pdf, id=1205, 693.792pt x 346.89601pt>
+<Images/torch-mm_benchmark.pdf, id=1122, 693.792pt x 346.89601pt>
 File: Images/torch-mm_benchmark.pdf Graphic file (type pdf)
 <use Images/torch-mm_benchmark.pdf>
 Package pdftex.def Info: Images/torch-mm_benchmark.pdf  used on input line 190.
 
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
  [59 <./Images/torch-mm_benchmark.pdf>]
-<Images/matmul_comparison.pdf, id=1254, 693.792pt x 346.89601pt>
+<Images/matmul_comparison.pdf, id=1172, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison.pdf Graphic file (type pdf)
 <use Images/matmul_comparison.pdf>
 Package pdftex.def Info: Images/matmul_comparison.pdf  used on input line 237.
@@ -1589,10 +1589,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (90 pages, 3610019 bytes).
+Output written on out/thesis.pdf (90 pages, 3176613 bytes).
 PDF statistics:
- 1615 PDF objects out of 1728 (max. 8388607)
- 1301 compressed objects within 14 object streams
+ 1532 PDF objects out of 1728 (max. 8388607)
+ 1245 compressed objects within 13 object streams
  341 named destinations out of 1000 (max. 500000)
  627 words of extra memory for PDF output out of 10000 (max. 10000000)
 

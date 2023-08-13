@@ -252,7 +252,7 @@ As previously highlighted, the main challenge of GNN hardware acceleration lies 
 
 Unlike the designs presented in the previous Section, typically designed using low-level hardware description languages, explicitly specifying the hardware components and their interconnections, this Section discusses methods generated using HLS, which automatically synthesizes the high-level code into hardware, abstracting away low-level hardware details.
 
-To address this challenge, GenGNN has been introduced in~\cite{DBLP:journals/corr/abs-2201-08475}, a GNN acceleration framework utilizing High-Level Synthesis (HLS), with two primary objectives.
+To address this challenge, GenGNN has been introduced in~\cite{DBLP:journals/corr/abs-2201-08475}, a GNN acceleration framework utilizing High-Level Synthesis, with two primary objectives.
 Firstly, to achieve ultra-fast GNN inference without needing graph pre-processing to meet real-time demands.
 Secondly, to support a wide range of GNN models with the flexibility to accommodate new models.
 The framework incorporates an optimized message-passing structure that applies to all models and is complemented by a diverse library of model-specific components.
@@ -314,7 +314,7 @@ As indicated in~\cite{DBLP:journals/corr/abs-2201-08475}, while the scheduling a
 Firstly, BoostGCN relies on sorting vertices by degrees on the CPU to establish an execution order, whereas GenGNN processes the nodes on-the-fly in FPGA in an adaptive manner.
 Secondly, BoostGCN employs a buffer in external memory, while GenGNN utilizes an on-chip FIFO to queue the nodes ready for message passing.
 
-Another notable framework in this section is DGNN-Booster~\cite{chen2023dgnnbooster}, an innovative Field-Programmable Gate Array (FPGA) accelerator framework designed for real-time inference of Dynamic Graph Neural Networks (DGNNs) using High-Level Synthesis (HLS).
+Another notable framework in this section is DGNN-Booster~\cite{chen2023dgnnbooster}, an innovative Field-Programmable Gate Array accelerator framework designed for real-time inference of Dynamic Graph Neural Networks (DGNNs) using High-Level Synthesis.
 Unlike the other accelerators mentioned and outside the scope of this research, DGNN-Booster focuses on DGNNs, which are Graph Neural Networks tailored for dynamic graph structures and features.
 However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on GenGNN at a lower level of parallelism.
 
@@ -324,14 +324,14 @@ However, it is worth mentioning that DGNN-Booster implements GNNs using a messag
 Hardware-software co-design accelerators exploit hardware and software strengths to achieve high performance.
 This approach uses software algorithms and hardware optimization to achieve even better performance instead of just one of the two techniques.
 
-The work conducted by Zhang \textit{et al.}~\cite{9153263} introduces a combined software and hardware approach for accelerating Graph Convolutional Networks (GCNs).
-Their study was initiated with the recognition that hardware acceleration of Graph Convolutional Network (GCN) inference poses challenges stemming from the vast size of the input graph,
+The work conducted by Zhang \textit{et al.}~\cite{9153263} introduces a combined software and hardware approach for accelerating Graph Convolutional Networks.
+Their study was initiated with the recognition that hardware acceleration of Graph Convolutional Network inference poses challenges stemming from the vast size of the input graph,
 the heterogeneous workload of GCN inference involving sparse and dense matrix operations, and the irregular information propagation along the edges during computation
 
 The primary objective of this accelerator is to accelerate GCN models, with a particular focus on the critical computational kernels: feature aggregation $AX$ and feature transformation $XW$.
 In these kernels, $A$ represents the adjacency matrix, $X$ denotes the feature matrix, and $W$ represents the weight matrix.
 
-The proposed algorithm-architecture co-optimization for accelerating large-scale Graph Convolutional Network (GCN) inference on FPGA involves several key steps.
+The proposed algorithm-architecture co-optimization for accelerating large-scale Graph Convolutional Network inference on FPGA involves several key steps.
 First, the authors implemented a data partitioning scheme for GCN inference to accommodate real-world datasets with huge dimensions for $A$ and $X$.
 This approach ensures that both the adjacency matrix and the feature matrix can fit on-chip while mapping the computational kernels onto the FPGA\@.
 
