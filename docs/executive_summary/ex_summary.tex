@@ -1,13 +1,3 @@
-% A LaTeX template for EXECUTIVE SUMMARY of the MSc Thesis submissions to 
-% Politecnico di Milano (PoliMi) - School of Industrial and Information Engineering
-%
-% P. F. Antonietti, S. Bonetti, A. Gruttadauria, G. Mescolini, A. Zingaro
-% e-mail: template-tesi-ingind@polimi.it
-%
-% Last Revision: October 2021
-%
-% Copyright 2021 Politecnico di Milano, Italy. Inc. All rights reserved.
-
 \documentclass[11pt,a4paper,twocolumn]{article}
 
 %------------------------------------------------------------------------------
@@ -16,6 +6,7 @@
 % PACKAGES FOR TITLES
 \usepackage{titlesec}
 \usepackage{color}
+\usepackage{amsfonts}
 
 % PACKAGES FOR LANGUAGE AND FONT
 \usepackage[utf8]{inputenc}
@@ -44,6 +35,7 @@
 % PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{listings}
 
 % PACKAGES FOR REFERENCES & BIBLIOGRAPHY
 \usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref} % Adds clickable links at references
@@ -85,22 +77,18 @@
 %	ADD YOUR DEFINITIONS AND COMMANDS (be careful of existing commands)
 %----------------------------------------------------------------------------
 
-
-% Do not change Configuration_files/config.tex file unless you really know what you are doing. 
-% This file ends the configuration procedures (e.g. customizing commands, definition of new commands)
 \input{Configuration_files/config}
 
-% Insert here the info that will be displayed into your Title page 
-% -> title of your work
-\renewcommand{\title}{Graph Neural Network Acceleration with SODA Framework}
+% -> title of the thesis
+\renewcommand{\title}{An FPGA Toolchain for Graph Neural Network Acceleration using High-Level Synthesis}
 % -> author name and surname
 \renewcommand{\author}{Giovanni Demasi}
 % -> MSc course
 \newcommand{\course}{Computer Science and Engineering}
 % -> advisor name and surname
 \newcommand{\advisor}{Prof. Fabrizio Ferrandi}
-% IF AND ONLY IF you need to modify the co-supervisors you also have to modify the file Configuration_files/title_page.tex (ONLY where it is marked)
-\newcommand{\firstcoadvisor}{Serena Curzel} % insert if any otherwise comment
+% co-supervisors
+\newcommand{\firstcoadvisor}{Serena Curzel, Michele Fiorito} % insert if any otherwise comment
 %\newcommand{\secondcoadvisor}{Name Surname} % insert if any otherwise comment
 % -> academic year
 \newcommand{\YEAR}{2022-2023}
@@ -113,195 +101,199 @@
 %-----------------------------------------------------------------------------
 % TITLE PAGE
 %-----------------------------------------------------------------------------
-% Do not change Configuration_files/TitlePage.tex (Modify it IF AND ONLY IF you need to add or delete the Co-advisors)
-% This file creates the Title Page of the document
 \input{Configuration_files/title_page}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%     THESIS MAIN TEXT     %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     SUMMARY MAIN TEXT     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %-----------------------------------------------------------------------------
 % INTRODUCTION
 %-----------------------------------------------------------------------------
 \section{Introduction}
-\label{sec:introduction}
+\label{sec:introduction}%
 
-This document is intended to be both an example of the Polimi \LaTeX{} template for the Executive Summary
-of your thesis, as well as a short introduction to its use.
+Over the past few years, deep learning has significantly revolutionized various machine learning tasks,
+spanning from image classification and video processing to speech recognition and natural language understanding.
 
-The Executive Summary is required only
-if the thesis has been assigned to a reviewer (\textit{controrelatore})
-for an independent evaluation of its quality, scientific/technical relevance and original contribution.
+A growing number of applications now generate data in the form of complex graphs with intricate relationships and interdependencies among objects.
+The inherent complexity of graph data has posed considerable challenges for existing machine learning algorithms.
+Consequently, there has been a surge of studies focusing on extending deep learning techniques to accommodate
+and leverage graph data.
 
-\section{Guidelines}
-\label{sec:guidelines}
+Graph neural networks (GNNs) have been introduced in response to the growing demand for learning tasks involving
+graph data, which encompasses extensive relational information among its elements.
+These neural models effectively capture the interdependence among graph nodes by employing message passing mechanisms.
 
-The Executive Summary is a critical overview of your thesis
-with a focus on the main achievements that have emerged from your research.
+Optimizing and accelerating the capabilities of Graph Neural Networks is necessary due to their increasingly popularity, particularly in domains characterized by vast amounts of data,
+such as social networks and chemistry.
+In particular, inference in GNNs refers to the time the model takes to make predictions after training.
+The duration of the inference process determines the speed at which queries are answered, and researchers strive to minimize this time span.
 
-The Executive Summary should be organized in sections/paragraphs
-in order to better highlight the major points of your work.
-The length should range from four to six pages depending on the length of the thesis manuscript.
-Keep the Executive Summary concise enough to be effective but long enough to allow it to be complete.
-It should be written after completing the thesis manuscript as a stand-alone independent document
-of sufficient clarity and detail to ensure that the reader can figure out the overall objectives,
-the methodology employed and the results/impact of your research.
+In applications of deep learning that prioritize low latency, Field-programmable Gate Arrays (FPGAs) outperform other computing devices, such as CPUs and GPUs.
+FPGAs offer the advantage of being fine-tuned to the application to strike the optimal balance between power efficiency and meeting performance requirements.
+However, the conventional approach to hardware design demands significant effort and relies heavily on the expertise of the designers, leading to varying quality of results.
 
-In writing the Executive Summary, keep in mind that it is not an abstract, it is not a preface,
-and it is not a random collection of highlights.
-With a few exceptions, do not simply cut and paste whole sections or paragraphs of the thesis manuscript
-into a disorganized and cluttered Executive Summary.
-You should reorganize information to be informative as well as concise.
+To address the challenge of accelerating GNNs on FPGAs without having extensive knowledge in hardware design, the objective of this thesis is to develop a comprehensive toolchain that, starting from PyTorch~\cite{DBLP:journals/corr/abs-1912-01703},
+a cutting-edge high-level programming framework for creating neural network algorithms based on the Python programming language, enables the
+automatic generation of a GNNs FPGA accelerator with minimal effort required.
 
-The Executive Summary could contain a few important equations related to your work.
-It could also include the most relevant figures and tables taken or elaborated from the thesis manuscript.
-
-You should also include in the Executive Summary the very essential bibliography of your study.
-The number of selected references should range from three to five depending on the type of work.
-
-The Executive Summary should contain a final section reporting the main conclusions drawn from your research.
-
-\section{Sections and subsections}
-\label{sec:sec_and_subsec}
-It is convenient to organize the Executive Summary of your thesis into sections and subsections. 
-If necessary, subsubsections, paragraphs and subparagraphs can be also used. 
-A new section or subsection can be included  with the commands
-\begin{verbatim}
-\section{Title of the section}
-\end{verbatim}
-\begin{verbatim}
-\subsection{Title of the subsection}
-\end{verbatim}
-It is recommended to give a label to each section by using the command
-\begin{verbatim}
-\label{sec:section_name}%
-\end{verbatim}
-where the argument is just a text string that you'll use to reference that part
-as follows: \textit{Section~\ref{sec:sec_and_subsec} contains \sc{SECTIONS AND SUBSECTIONS}  \dots}.\\
+TODO: Add half column about results and contributions
 
 %-----------------------------------------------------------------------------
-% EQUATIONS AND FIGURES
+% BACKGROUND
 %-----------------------------------------------------------------------------
-\section{Equations, Figures, Tables and Algorithms}
-\label{sec:equations_and_figures}
-All Figures, Tables and Algorithms have to be properly referred in the text.
-Equations have to be numbered only if they are referred in the text.
-\subsection{Equations}
-\label{sec_equations}
-A few important equations related to your work might be reported in the Executive Summary. For example, the Maxwell's equations read:
-\begin{subequations}
-    \label{eq:maxwell}
-    \begin{align}[left=\empheqlbrace]
-    \nabla\cdot \bm{D} & = \rho, \label{eq:maxwell1} \\
-    \nabla \times \bm{E} +  \frac{\partial \bm{B}}{\partial t} & = \bm{0}, \label{eq:maxwell2} \\
-    \nabla\cdot \bm{B} & = 0, \label{eq:maxwell3} \\
-    \nabla \times \bm{H} - \frac{\partial \bm{D}}{\partial t} &= \bm{J}. \label{eq:maxwell4}
-    \end{align}
-\end{subequations}
 
-Equation~\eqref{eq:maxwell} is automatically labeled by \texttt{cleveref},
-as well as Equation~\eqref{eq:maxwell1} and Equation~\eqref{eq:maxwell3}.
-Thanks to the \verb|cleveref| package, there is no need to use \verb|\eqref|.
+\section{Background}
+\label{sec:background}%
 
-\subsection{Figures}
-\label{sec:figures}
-To include Figures in your text you can use \texttt{TikZ} for high-quality hand-made figures \cite{tikz},
-or just include them with the command
-\begin{verbatim}
-\includegraphics[options]{filename.xxx}
-\end{verbatim}
-where xxx is the format (\verb|.png|, \verb|.jpg|, \verb|.eps|, \dots).
-An example is shown in Figure~\ref{fig:quadtree}.
-\begin{figure}[H]
+\textit{Graphs} are data structures representing a collection of objects, known as vertices or nodes, and a set of edges connecting them.
+In a graph, the edges can be either directed or undirected, and they typically connect two vertices, which may or may not be distinct.
+The vertices represent entities or elements, and the edges represent their relationships or connections.
+
+Graphs are easy to visualize, but a more formal way is needed when implementing graph algorithms.
+The adjacency matrix of a graph provides information about the relationships between nodes in the graph.
+It is a matrix of dimensions $N \times N$ where $N$ is the number of nodes in the graph. Each matrix cell is set to 1 if the two nodes are connected, zero otherwise.
+A feature vector represents the features or attributes associated with a single entity.
+
+Graph neural networks (GNNs) are deep learning techniques that operate on graph-structured data.
+Thanks to their impressive performance, GNNs have recently gained significant popularity as a widely adopted method for graph analysis.
+
+Graph Neural Networks are a group of neural networks which are designed to solve different tasks.
+Prediction tasks on graphs can generally be classified into three categories: graph-level, node-level, and edge-level predictions.
+In a graph-level task, the objective is to predict the property or characteristic of an entire graph.
+Node-level tasks involve predicting the identity or function of individual nodes within a graph.
+The remaining prediction task in graphs pertains to edge prediction.
+
+At its core, a GNN is an algorithm that exploits the connectivity within a graph to understand and represent the relationships between nodes.
+GNNs consist of multiple interconnected layers and, by relying on the graph's structure, they iteratively processes input edge, vertex, and graph feature vectors, which encode known attributes and transforms them into output feature vectors that capture the desired predictions.
+
+Different popular GNN architectures have been proposed recently, some of which are more suitable for some tasks than others.
+The main model used for this thesis is the \textit{Graph Convolutional Network} (GCN)~\cite{DBLP:journals/corr/KipfW16}.
+
+\subsection{Graph Convolutional Network}
+\label{subsec:background}%
+
+The core idea behind GCNs is to perform convolution-like operations on the graph, where the convolutional filters are defined based on the graph's adjacency matrix or other graph-specific structures.
+
+Given an undirected graph $\mathcal{G} = (V, E)$, where $V$ represents the set of nodes (vertices), and $E$ represents the set of edges, with an adjacency matrix $\tilde{A}=A+I_N$, where $I_N$ is the identity matrix, the layer-wise propagation rule in a GCN can be expressed as:
+\begin{equation}
+    \label{eq:gcn_convolution}
+    H^{(l+1)} = f \left( \tilde{D}^{-\tfrac{1}{2}}  \tilde{A}  \tilde{D}^{-\tfrac{1}{2}}  H^{(l)}  W^{(l)} \right)
+\end{equation}
+
+Where $H^{(l)} \in \mathbb{R} ^{N \times D}$ is the input node features matrix, $W^{(l)}$ is a layer-specific learnable weight matrix, $\tilde{D}$ is the degree matrix defined as $\tilde{D}_{ii} = \sum_{j} \tilde{A}_{ij}$, and $f(\cdot)$ represents a non-linear activation function applied element-wise, such as $ReLU(\cdot) = max(0, \cdot)$.
+The Equation~\ref{eq:gcn_convolution} demonstrates the propagation of node features through graph convolution, where the adjacency matrix $\tilde{A}$ captures the connectivity information of the graph, $\tilde{D}^{-\tfrac{1}{2}}$ normalizes the adjacency matrix, and $H^{(l)}  W^{(l)}$ performs a linear transformation of node features.
+The resulting $H^{(l+1)}$ represents the updated node representations after the graph convolution operation.
+
+%-----------------------------------------------------------------------------
+% PROBLEM FORMULATION
+%-----------------------------------------------------------------------------
+\newpage
+\section{Problem Formulation}
+\label{sec:problem-formulation}%
+
+Graph neural network acceleration refers to designing and implementing hardware accelerators and co-processors to speed up the training or inference of GNNs.
+A GNN accelerator aims at optimizing the execution of GNN computations, which involve iterative message-passing between nodes in a graph to update their representations based on neighboring nodes' features.
+Hardware acceleration aims to improve the performance, efficiency, and capabilities of computing systems by offloading specific tasks or computations to specialized hardware components.
+
+In particular, this thesis focuses on improving GNNs inference time, by designing specialized hardware to efficiently perform the computation-intensive operations involved in GNNs, such as matrix multiplications, aggregations, and non-linear activation functions.
+
+To explain the potential impact of this thesis's objective, let us consider a recommendation system, in which the goal is to predict what items a user might be interested in based on their past interactions and preferences.
+This problem can be represented as a graph, where users items are nodes and interactions between users and items are edges.
+A GNN is an optimal choice for modeling recommendation systems, as it can effectively capture relationships and interactions between users and items.
+However, as the number of users and items increases, the computational complexity of GNNs can become a significant bottleneck.
+One way to address the bottleneck issue is by using a specialized GNN accelerator, which enhances the efficiency and scalability of the recommendation system, resulting in quick and precise recommendations to users.
+
+%-----------------------------------------------------------------------------
+% TOOLCHAIN
+%-----------------------------------------------------------------------------
+
+\section{Toolchain}
+\label{sec:toolchain}%
+
+The main contribution of this thesis is represented by the design of a toolchain for Graph Neural Network acceleration on FPGA leveraging High-Level Synthesis (HLS).
+Figure~\ref{fig:toolchain} illustrates the entire design flow, with the steps involved in the GNN acceleration process.
+
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.3\textwidth]{logo_polimi_scritta.eps}
-    \caption{Caption of the Figure.}
-    \label{fig:quadtree}
+    \includegraphics[height=0.36\textwidth]{Images/toolchain}
+    \caption{FPGA Toolchain for Graph Neural Network Acceleration}
+    \label{fig:toolchain}
 \end{figure}
 
-\subsection{Tables}
-\label{subsec:tables}
+\subsection{PyTorch}
+\label{subsec:pytorch-toolchain}%
 
-Within the environments \texttt{table} and  \texttt{tabular} you can create very fancy tables like the one shown in Table~\ref{table:example}.
-\begin{table}[H]
-    \caption*{\textbf{Example of Table}}
-    \centering 
-    \begin{tabular}{|p{3em} c c c |}
-    \hline
-    \rowcolor{lightgray}
-     & \textbf{column1} & \textbf{column2} & \textbf{column3} \T\B \\
-    \hline \hline
-    \textbf{row1} & 1 & 2 & 3 \T\B \\
-    \textbf{row2} & $\alpha$ & $\beta$ & $\gamma$ \T\B\\
-    \textbf{row3} & alpha & beta & gamma \B\\
-    \hline
-    \end{tabular}
-    \\[10pt]
-    \caption{Caption of the Table.}
-    \label{table:example}
-\end{table}
+The first step of the toolchain is to design and implement the Graph Neural Network model in PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
 
-\subsection{Algorithms}
-\label{subsec:algorithms}
+The main model used for this thesis is the Graph Convolutional Network~\ref{DBLP:journals/corr/KipfW16} performing node classification on the \textit{Cora} dataset.
 
-Pseudo-algorithms can be written in \LaTeX{} with the \texttt{algorithm} and \texttt{algorithmic} packages.
-One example follows.
-\begin{algorithm}[H]
-\label{alg:example}
-\caption{Name of the Algorithm}
-\label{alg:var}
-\label{protocol1}
-\begin{algorithmic}[1]
-\STATE Initial instructions
-\FOR{$for-condition$}
-\STATE{Some instructions}
-\IF{$if-condition$}
-\STATE{Some other instructions}
-\ENDIF
-\ENDFOR
-\WHILE{$while-condition$}
-\STATE{Some further instructions}
-\ENDWHILE
-\STATE Final instructions
-\end{algorithmic}
-\end{algorithm} 
+\subsection{Torch-MLIR}
+\label{subsec:torch-mlir-toolchain}%
 
-\section{Some further useful recommendations}
+Torch-MLIR~\cite{torch_mlir} offers compiler support for transitioning from the PyTorch ecosystem to the MLIR ecosystem.
 
-Theorems and Propositions have to be formatted as follows:
-\begin{theorem}
-\label{a_theorem}
-Write here your theorem. 
-\end{theorem}
-\textit{Proof.} If useful you can report here the proof.
-\vspace{0.3cm} % Insert vertical space
+For this thesis, TorchScript represented the starting point of the flow that Torch-MLIR follows to go from PyTorch to MLIR\@.
+TorchScript offers a way to generate serializable and optimizable models directly from PyTorch code.
+The TorchScript representation is then converted to MLIR using the built-in conversion of Torch-MLIR.
+The result MLIR can use different dialects, but the one used for this thesis is the Linalg dialect, which serves as input for the next phase of the toolchain.
 
-How to write propositions:
-\begin{proposition}
-Write here your proposition.
-\end{proposition}
-\vspace{0.3cm} % Insert vertical space
+Since Torch-MLIR implicitly uses the TorchScript representation to go from PyTorch to MLIR, the first part of the research consisted of a deep analysis of the Graph Neural Network models to make them compatible with TorchScript.
+Some of the used adaptations include making jittable the GNN class, annotate the parameters of the propagate function, using some types assertion and annotate the type of the forward function.
 
-How to insert itemized lists:
-\begin{itemize}
-    \item first item;
-    \item second item.
-\end{itemize}
-How to insert numbered lists:
-\begin{enumerate}
-    \item first item;
-    \item second item.
-\end{enumerate}
+Once having designed, implemented, made compatible with TorchScript, and trained the GNN model in PyTorch, it is possible to use the \lstinline{torch_mlir.compile} API to obtain the MLIR representation of the model.
+In particular, this API takes three parameters as input: the GNN model, an input example of the model and the desired output type.
+The Graph Neural Network model must have been already trained, being ready for inference.
+The second parameter, the input example of the model, is an arbitrary input similar to the one that would be given for inference purposes.
+It is required because, by default, the implicit Jit function called by Torch-MLIR to script the model and obtain a script module, involves compiling the forward method and recursively compiling any methods, submodules, and functions called within the forward method. This results in a JIT IR which is converted to the torch dialect which is almost in a 1:1 correspondence.
+The torch dialect is then lowered into one of the three available output dialects: linalg, tosa, mhlo.
+The purpose of the last parameter is to choose which of these three dialects has to be used for the output MLIR\@.
+
+\subsection{Synthesizer}
+\label{subsec:synthesizer-toolchain}%
+
+The synthesizer represents the final step of the toolchain, which optimizes and synthesizes the MLIR representation, targeting FPGA\@.
+This step includes SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110}.
+
+\subsubsection*{SODA-OPT}
+
+SODA-OPT receives as input the MLIR representation of the model.
+This step is primarily responsible for applying optimizations that can be exploited in the next step.
+The output of SODA-OPT is an LLVM representation that serves as input to PandA-Bambu HLS\@.
+
+Once having successfully exported the MLIR representation using the \lstinline{torch_mlir.compile} API, a set of mlir-opt passes have been used to remove the unsupported dialects by lowering them to supported ones,
+
+The next step consists in outlining the part of MLIR code to accelerate by adding the \lstinline{soda.launch} and \lstinline{soda.terminator} flags at the beginning and end of the piece of code.
+
+SODA-OPT provides various passes that can be used to apply optimization to the outlined code.
+In particular, it provides a subset of MLIR passes plus a set of passes tailored for soda optimizations.
+
+Profiling the inference function of the GCN model, the result showed that, in general, nearly 60\% of the time required to make a prediction was used for the matrix multiplication operation.
+The result of this research showed that the most impressive improvement in terms of performance is given by the loop unrolling technique, which perfectly allows to exploit the extreme parallelism available on FPGAs.
+
+SODA-OPT, after having identified the key code regions, having outlined them into separate MLIR modules, and having applied the transformation passes to the MLIR input, optimizes the portion of code selected for hardware acceleration with a progressive lowering through different MLIR dialects.
+As a final result, the input code is translated into an LLVM intermediate representation intentionally restructured for hardware synthesis.
+
+\subsubsection*{PandA-Bambu}
+
+PandA-Bambu represents the last phase of the synthesis.
+It receives the LLVM representation as input, and after having applied some optional low-level optimizations, it performs the typical steps of HLS, including allocation, scheduling and binding.
+
+PandA-Bambu allows the specification of different optimizations and settings that can have a big impact on accelerator performance.
+The most evaluated optimization is the number of memory channels.
+
+A comparative analysis has been performed between different number of memory channels, including the minimum, 2 channels, and the maximum, 32 channels.
+
+The LLVM intermediate representation taken as input from PandA-Bambu is received by the Clang compiler frontend which builds an internal IR to perform the HLS steps.
+After having applied the specified optimizations, the generated design in an HDL is given as output.
 
 %-----------------------------------------------------------------------------
-% HOW TO CITE BIBLIOGRAPHY
+% EXPERIMENTAL RESULTS
 %-----------------------------------------------------------------------------
-\section{Bibliography}
-\label{sec:bibliography}
-The Executive Summary should contain the very essential bibliography of your study.
-It is suggested to use the BibTeX package \cite{bibtex} and save the bibliographic references
-in the file  \verb|bibliography.bib|.
+
+\section{Experimental Results}
+\label{sec:experimental-results}%
 
 %-----------------------------------------------------------------------------
 % CONCLUSION
@@ -310,15 +302,9 @@ in the file  \verb|bibliography.bib|.
 A final section containing the main conclusions of your research/study have to be inserted here.
 
 %---------------------------------------------------------------------------
-%  ACKNOWLEDGEMENTS 
-%---------------------------------------------------------------------------
-\section{Acknowledgements}
-Here you might want to acknowledge someone.
-
-%---------------------------------------------------------------------------
 %  BIBLIOGRAPHY
 %---------------------------------------------------------------------------
-% Remember to insert here only the essential bibliography of your work
-\bibliography{bibliography.bib} % automatically inserted and ordered with this command 
+% essential bibliography
+\bibliography{bibliography.bib}
 
 \end{document}

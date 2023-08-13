@@ -130,7 +130,7 @@ The Graph Neural Network model must have been already trained, being ready for i
 The second parameter, the input example of the model, is an arbitrary input similar to the one that would be given for inference purposes.
 It is required because, by default, the implicit Jit function called by Torch-MLIR to script the model and obtain a script module, involves compiling the forward method and recursively compiling any methods, submodules, and functions called within the forward method. This results in a JIT IR which is converted to the torch dialect which is almost in a 1:1 correspondence.
 The torch dialect is then lowered into one of the three available output dialects: linalg, tosa, mhlo.
-The purpose of the last parameter is to choose which of these three dialects has to be used for the output MLIR.
+The purpose of the last parameter is to choose which of these three dialects has to be used for the output MLIR\@.
 
 An additional parameter that can be used is related to the tracing.
 There are two ways in which it is possible to obtain a TorchScript representation: \lstinline{torch.jit.script} and \lstinline{torch.jit.tracing}.
