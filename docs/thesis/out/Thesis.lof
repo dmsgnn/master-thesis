@@ -12,7 +12,7 @@
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {CSR format}}}{7}{subfigure.3.2}%
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Number of GNN publications on Google Scholar per year\relax }}{9}{figure.caption.12}%
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Example of a Multi-Layer Perceptron\relax }}{11}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces High-level Synthesis (HLS) design steps~\cite {5209958}\relax }}{14}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces High-level Synthesis design steps~\cite {5209958}\relax }}{14}{figure.caption.17}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Overall architecture of SpMM engine in AWB-GCN~\cite {DBLP:journals/corr/abs-1908-10834}}}{21}{figure.caption.19}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces EnGN hardware architecture~\cite {DBLP:journals/corr/abs-1909-00155}\relax }}{23}{figure.caption.20}%
