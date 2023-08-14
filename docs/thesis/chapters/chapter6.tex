@@ -238,3 +238,89 @@ For this reason, the optimizations discussed in Section~\ref{subsec:toolchain-so
     \caption{Performance comparison between PyTorch matmul function and accelerator}
     \label{fig:pytorch-accelerator-comparison}
 \end{figure}
+
+To verify the effectiveness of the proposed optimizations, different comparative analysis have been performed.
+SODA-OPT offers the possibility to make different types of unrolling, among which the full unroll which completely unroll the innermost loop, and the partial unroll up to an arbitrary factor.
+Listing~\ref{lst:affine-mul-unroll3} shows the effect of a partial unrolling, with unrolling factor equal to 3, to the matrix multiplication introduces in Listing~\ref{lst:affine-mul}.
+
+\begin{lstlisting}[label={lst:affine-mul-unroll3}, caption=Unrolled matrix multiplication in affine dialect with unrolling factor 3]
+affine.for %arg3 = 0 to 15 {
+  affine.for %arg4 = 0 to 16 {
+    affine.for %arg5 = 0 to 15 step 3 {
+      %0 = affine.load %arg0[%arg3, %arg5] : memref<15x15xf32>
+      %1 = affine.load %arg1[%arg5, %arg4] : memref<15x16xf32>
+      %2 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %3 = arith.mulf %0, %1 : f32
+      %4 = arith.addf %2, %3 : f32
+      affine.store %4, %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %5 = affine.apply affine_map<(d0) -> (d0 + 1)>(%arg5)
+      %6 = affine.load %arg0[%arg3, %5] : memref<15x15xf32>
+      %7 = affine.load %arg1[%5, %arg4] : memref<15x16xf32>
+      %8 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %9 = arith.mulf %6, %7 : f32
+      %10 = arith.addf %8, %9 : f32
+      affine.store %10, %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %11 = affine.apply affine_map<(d0) -> (d0 + 2)>(%arg5)
+      %12 = affine.load %arg0[%arg3, %11] : memref<15x15xf32>
+      %13 = affine.load %arg1[%11, %arg4] : memref<15x16xf32>
+      %14 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %15 = arith.mulf %12, %13 : f32
+      %16 = arith.addf %14, %15 : f32
+      affine.store %16, %arg2[%arg3, %arg4] : memref<15x16xf32>
+    }
+  }
+}
+\end{lstlisting}
+
+PandA-Bambu introduces several optimization options, one of which involves expanding the number of memory channels in use.
+By default, the system employs two channels and utilizes \lstinline{ALL_BRAM} as the memory allocation policy, directing all objects to be stored in BRAMs.
+However, there's an alternative approach explored in this thesis, which entails employing a greater number of memory channels while utilizing external memory, approach that appears to be in line with the coalescent accesses performed on CUDA.
+To achieve this, the \lstinline{NO_BRAM} memory allocation policy must be selected, leading to all objects being stored in external memory.
+
+This choice offers both advantages and disadvantages, resulting in a trade-off.
+Loop unrolling enhances parallelization, thereby reducing computational time.
+However, especially when utilizing more than two memory channels, it increases the number of parallel processing elements, leading to a larger area footprint.
+Additionally, external memory allows for up to 32 memory channels, enabling the simultaneous loading of 32 variables.
+Nonetheless, accessing data from external memory requires more load cycles compared to accessing internal memory.
+
+The conducted analyses aim to highlight the differences among these various configurations, identifying the optimal balance between reducing cycles and containing area utilization.
+
+Figure~\ref{fig:matmul-optimization-comparison} show two matrix multiplication analyzes performed using different sizes of the input matrices.
+Figure~\ref{fig:matmul-optimization-comparison15} show results of a multiplication between two matrices of size $15\times15$ and $15\times16$, while Figure~\ref{fig:matmul-optimization-comparison30} shows results of a multiplication between two matrices of size $30\times30$ and $30\times15$.
+In both figures, on the abscissa there is the unrolling factor used and on the ordinate the resulting number of cycles.
+The baseline computation does not use unrolling, instead when there are two factors it means that the first one can be considered as a full unroll of the innermost cycle, while the second one is the unrolling factor applied to the original second innermost cycle.
+
+In both cases, when the parallelization is not high, thus the unrolling factor is small, using two channels is the best option since a minor number of cycles is required to perform the computation.
+Using 16 channels seems to be similar to use 32 channels, but when parallelization is high the former option uses fewer cycles.
+
+The most important result is given by the unrolling factor in which the number of cycles needed by the accelerator using 32 memory channels is fewer than the number of cycles needed by the accelerator using 2 memory channels.
+In the first case, in Figure~\ref{fig:matmul-optimization-comparison15}, this objective is achieved with two unrolling factors of 15 and 8, while in the second case is achieved with unrolling factors of 30 and 8.
+
+These two results, since the unrolling factors are not equals, could appear unrelated.
+Using 15 and 8 as unrolling factors means having $15 \cdot 8 = 120$ parallel loop iterations.
+Instead, using 30 and 8 as unrolling factors means having $30 \cdot 8 = 240$ parallel loop iterations.
+
+The total amount of possible parallel loop iterations in a matrix multiplication between two matrices of sizes $15\times15$ and $15\times16$ is equal to $15 \cdot 16 \cdot 15 = 3,600$.
+Meanwhile, the total amount of possible parallel loop iterations in a matrix multiplication between two matrices of sizes $30\times30$ and $30\times16$ is $30 \cdot 16 \cdot 30 = 14,400$.
+
+Even if the two number of parallel loop iterations representing the changing point of the trade-off, 120 and 240, are different, they are related by the following Equation:
+\begin{equation}
+    \label{eq:factor-relation}
+        2 \cdot \sqrt {M \cdot N \cdot R} = i \cdot j \cdot k
+\end{equation}
+
+where $M$, $N$ and $R$ are the sizes of the three nested loops, as defined in Algorithm~\ref{alg:var}, and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 0 \iff i=M \land k \neq 0 \iff j=N$.
+
+\begin{figure}[t]
+    \centering
+    \subfloat[Input matrices $15\times15$, $15\times16$\label{fig:matmul-optimization-comparison15}]{
+        \includegraphics[height=0.4\textwidth]{Images/matmul_comparison15}
+    }
+    %\quad
+    \hspace{0.15\textwidth}
+    \subfloat[Input matrices $30\times30$, $30\times16$\label{fig:matmul-optimization-comparison30}]{
+        \includegraphics[height=0.4\textwidth]{Images/matmul_comparison30}
+    }
+    \caption{Matrix multiplication optimization comparison}
+    \label{fig:matmul-optimization-comparison}
+\end{figure}

@@ -32,4 +32,7 @@
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Row-by-column matrix multiplication example\relax }}{57}{figure.caption.33}%
 \contentsline {figure}{\numberline {6.2}{\ignorespaces Benchmark of \textit {torch.mm} PyTorch function\relax }}{59}{figure.caption.37}%
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Performance comparison between PyTorch matmul function and accelerator\relax }}{60}{figure.caption.39}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Matrix multiplication optimization comparison\relax }}{63}{figure.caption.41}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Input matrices $15\times 15$, $15\times 16$}}}{63}{subfigure.4.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Input matrices $30\times 30$, $30\times 16$}}}{63}{subfigure.4.2}%
 \addvspace {10\p@ }

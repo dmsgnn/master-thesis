@@ -1,14 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.figure import figaspect
+import matplotlib.colors as mcolors
 
 
 def pytorch_matmul_bench():
     ## number of torch.mm execution
     num_executions = [2000000, 4000000, 6000000, 8000000, 10000000]
     avg_runs_time = [1.57818189e-06, 1.59592361e-06, 1.60637588e-06, 1.60990077e-06, 1.60849089e-06]
-    min_runs_time = [1.567656495499989e-06, 1.5850839912500021e-06, 1.6016767878333364e-06, 1.6008430469999979e-06, 1.6032683794000036e-06]
-    max_runs_time = [1.5947923964999973e-06, 1.602999230249992e-06, 1.614738101499995e-06, 1.6179144736250066e-06, 1.6148078792000091e-06]
+    min_runs_time = [1.567656495499989e-06, 1.5850839912500021e-06, 1.6016767878333364e-06, 1.6008430469999979e-06,
+                     1.6032683794000036e-06]
+    max_runs_time = [1.5947923964999973e-06, 1.602999230249992e-06, 1.614738101499995e-06, 1.6179144736250066e-06,
+                     1.6148078792000091e-06]
 
     w, h = figaspect(1 / 2)
     fig, ax = plt.subplots(figsize=(w, h))
@@ -58,8 +61,80 @@ def matmul_comparison():
     print("Plot saved in {0}".format(path))
 
 
-def matmul_optimization():
-    print("opt")
+def matmul_optimization15():
+    cycles_2channels = [25697, 21152, 19457, 22637, 12377, 6257, 3317, 2297]
+    cycles_16channels = [29297, 25007, 21857, 24767, 12767, 6527, 3527, 2027]
+    cycles_32channels = [29297, 25007, 21857, 24767, 12767, 6407, 3287, 1787]
+    unroll_factors = ["baseline", "2", "4", "8", "15", "15+2", "15+4", "15+8"]
+
+    w, h = figaspect(1 / 2)
+    fig, ax = plt.subplots(figsize=(w, h))
+    plt.xlabel('Unrolling factor')
+    plt.ylabel('Execution cycles')
+    plt.title("Matmul optimization comparison")
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(3, 3))
+    ax.scatter(x=unroll_factors,
+               y=cycles_2channels,
+               marker='^',
+               c='green',
+               s=36,
+               label="2ch")
+    ax.scatter(x=unroll_factors,
+               y=cycles_16channels,
+               marker='o',
+               c='orange',
+               s=36,
+               label="16ch")
+    ax.scatter(x=unroll_factors,
+               y=cycles_32channels,
+               marker='+',
+               c='tab:blue',
+               s=36,
+               label="32ch")
+    ax.legend(loc="upper right")
+    path_thesis = "../docs/thesis/Images/matmul_comparison15.pdf"
+    path_executive = "../docs/executive_summary/Images/matmul_comparison15.pdf"
+    plt.savefig(path_thesis)
+    plt.savefig(path_executive)
+    print("Plot saved in {0} and {1}".format(path_thesis, path_executive))
+
+
+def matmul_optimization30():
+    cycles_2channels = [101792, 46562, 23522, 12242, 8402]
+    cycles_16channels = [116192, 47672, 24872, 13472, 7772]
+    cycles_32channels = [116192, 47132, 23852, 12452, 6752]
+    unroll_factors = ["baseline", "30", "30+2", "30+4", "30+8"]
+
+    w, h = figaspect(1 / 2)
+    fig, ax = plt.subplots(figsize=(w, h))
+    plt.xlabel('Unrolling factor')
+    plt.ylabel('Execution cycles')
+    plt.title("Matmul optimization comparison")
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(3, 3))
+    ax.scatter(x=unroll_factors,
+               y=cycles_2channels,
+               marker='^',
+               c='green',
+               s=36,
+               label="2ch")
+    ax.scatter(x=unroll_factors,
+               y=cycles_16channels,
+               marker='o',
+               c='orange',
+               s=36,
+               label="16ch")
+    ax.scatter(x=unroll_factors,
+               y=cycles_32channels,
+               marker='+',
+               c='tab:blue',
+               s=36,
+               label="32ch")
+    ax.legend(loc="upper right")
+    path_thesis = "../docs/thesis/Images/matmul_comparison30.pdf"
+    path_executive = "../docs/executive_summary/Images/matmul_comparison30.pdf"
+    plt.savefig(path_thesis)
+    plt.savefig(path_executive)
+    print("Plot saved in {0} and {1}".format(path_thesis, path_executive))
 
 
 def gcn_optimization():
@@ -70,11 +145,12 @@ if __name__ == '__main__':
     print("Which plot do you want to save?")
     print("   1. pytorch matmul benchmark")
     print("   2. matmul comparison")
-    print("   3. matmul optimization")
-    print("   4. GCN optimization")
+    print("   3. matmul optimization [15][15]X[15][16]")
+    print("   4. matmul optimization [30][30]X[30][16]")
+    print("   5. GCN optimization")
 
     choice = '0'
-    choices = {pytorch_matmul_bench: '1', matmul_comparison: '2', matmul_optimization: '3', gcn_optimization: '4'}
+    choices = {pytorch_matmul_bench: '1', matmul_comparison: '2', matmul_optimization15: '3', matmul_optimization30: '4', gcn_optimization: '5'}
 
     while choice not in choices.values():
         choice = input()

@@ -53,13 +53,13 @@
 \contentsline {section}{\numberline {6.2}Matrix multiplication acceleration}{57}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}PyTorch matrix multiplication benchmark}{58}{subsection.6.2.1}%
 \contentsline {subsection}{\numberline {6.2.2}Optimization comparison}{59}{subsection.6.2.2}%
-\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{61}{chapter.7}%
+\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{65}{chapter.7}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{63}{chapter*.42}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{67}{chapter*.44}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{69}{appendix*.44}%
-\contentsline {chapter}{List of Tables}{71}{appendix*.46}%
-\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{73}{appendix*.48}%
-\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{75}{appendix*.50}%
-\contentsline {chapter}{List of Symbols}{77}{appendix*.52}%
-\contentsline {chapter}{Acknowledgements}{79}{appendix*.55}%
+\contentsline {chapter}{List of Figures}{73}{appendix*.46}%
+\contentsline {chapter}{List of Tables}{75}{appendix*.48}%
+\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{77}{appendix*.50}%
+\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{79}{appendix*.52}%
+\contentsline {chapter}{List of Symbols}{81}{appendix*.54}%
+\contentsline {chapter}{Acknowledgements}{83}{appendix*.57}%
