@@ -112,9 +112,11 @@ The multiplication is possible only in the case the number of column of the firs
 Figure~\ref{fig:row-by-col-mul-example} highlight how an element of the output matrix is computed, using a row of the first matrix and a column of the second one.
 The number of operations needed to compute a new matrix is an important parameter to try to accelerate such operation.
 A calculus of this number preceded each experiments, to compute an approximation of the number of cycles needed by the accelerator.
-In a general matrix multiplication, shown in the following, each element of the new matrix can be computed accordingly to Equation~\ref{eq:matmul-element}.
+In a general matrix multiplication, shown in Equation~\ref{eq:matmul}, each element of the new matrix can be computed accordingly to Equation~\ref{eq:matmul-element}.
 
-\[ \begin{bmatrix}
+\begin{equation}
+        \label{eq:matmul}
+    \begin{bmatrix}
      a_{11} & a_{12} & \cdots & a_{1n}\\
      a_{21} & a_{22} & \cdots & a_{2n}\\
      \vdots & \vdots & \ddots & \vdots\\
@@ -133,7 +135,8 @@ In a general matrix multiplication, shown in the following, each element of the 
      c_{21} & c_{22} & \cdots & c_{2p}\\
      \vdots & \vdots & \ddots & \vdots\\
      c_{m1} & c_{m2} & \cdots & c_{mp}
- \end{bmatrix} \]
+ \end{bmatrix}
+\end{equation}
 
 \begin{equation}
     \label{eq:matmul-element}
@@ -141,14 +144,19 @@ In a general matrix multiplication, shown in the following, each element of the 
 \end{equation}
 
 Then, the number of cycles needed can be calculated using Equation~\ref{eq:number-cycles}.
-The first part of the Equation computes the number of cycles for the mul and add operations, while the second half computes the number of cycles needed to load and store data.
-The number of cycles of the second half are computed by adding one cycle for each $ch$ operands read, and one cycle for each $ch$ operand written, with $ch$ equal to the number of memory channels.
-From Listing~\ref{lst:affine-mul}, can be seen that there are three load and one store, for a total of four.
+The notation used refers to Equation~\ref{eq:matmul}, but it can be referred to Algorithm~\ref{alg:var} by considering $n = M \land m=R \land p=N$
+The first part of the Equation computes the total number of iterations, while the second half computes the number of cycles needed to perform multiplications and additions, and to load and store data.
+The number of cycles needed to load and store data are computed by adding one cycle for each $ch$ operands read, and one cycle for each $ch$ operand written, with $ch$ equal to the number of memory channels.
+From Listing~\ref{lst:affine-mul}, it can be seen that there are three load and one store, for a total of four memory operations.
 
 \begin{equation}
     \label{eq:number-cycles}
-    cycles = (m \cdot p) \cdot ( n\cdot cycles_{mul} + (n-1) \cdot cycles_{add}) + 4 \cdot \frac{n \cdot p \cdot m}{ch}
+    cycles = \left(  n \cdot m \cdot p \right) \cdot \left(  cycles_{mul} + cycles_{add} + \frac{4}{ch} \right)
 \end{equation}
+
+Let us consider two matrices, the first of size $15\times15$ and the second of size $15\times16$.
+The FPGA model used for the experimental phase uses three cycles for addition and two cycles for multiplication.
+By applying the Equation~\ref{eq:number-cycles}, the expected number of cycles for computing such matrix multiplication, using two memory channels is 25,200.
 
 \subsection{PyTorch matrix multiplication benchmark}
 \label{subsec:pytorch-matmul-bench}%
@@ -204,15 +212,11 @@ The PyTorch times have been recorded by averaging five measurements each of ten 
 The baseline accelerator is much faster than PyTorch when matrices are relatively small.
 The difference of performance decreases as the size of the input matrices increase until reaching a point in which the accelerator becomes slower than PyTorch solution.
 
-This behaviour can be attributed to the fact that PyTorch times have been recorded using all the eight available threads on the machine.
-So, the \lstinline{torch.mm} function exploits more parallelism with respect to the accelerator.
-For this reason, the optimizations discussed in Section~\ref{subsec:toolchain-soda_opt} and in Section~\ref{subsec:toolchain-panda_bambu} and evaluated in the following makes the accelerator able to exploit more parallelism.
-
 \begin{table}[t]
 \centering
     \begin{tabular}{|p{9em} c c c c  |}
     \hline
-    \textbf{Input sizes} & \textbf{Torch.mm (s)} & \textbf{Runtime (s)} & \textbf{Cycles} & \textbf{Speedup} \T\B \\
+    \textbf{Input sizes} & \textbf{Torch.mm (s)} & \textbf{Runtime (s)} & \textbf{Cycles} & \textbf{SpeedUp} \T\B \\
     \hline \hline
     \textbf{15$\times$15, 15$\times$16} & 1.608E-06  & 96.492E-09 & 25,697 & 16.664 \T\B\\
     \hline
@@ -238,10 +242,6 @@ For this reason, the optimizations discussed in Section~\ref{subsec:toolchain-so
     \caption{Performance comparison between PyTorch matmul function and accelerator}
     \label{fig:pytorch-accelerator-comparison}
 \end{figure}
-
-To verify the effectiveness of the proposed optimizations, different comparative analysis have been performed.
-SODA-OPT offers the possibility to make different types of unrolling, among which the full unroll which completely unroll the innermost loop, and the partial unroll up to an arbitrary factor.
-Listing~\ref{lst:affine-mul-unroll3} shows the effect of a partial unrolling, with unrolling factor equal to 3, to the matrix multiplication introduces in Listing~\ref{lst:affine-mul}.
 
 \begin{lstlisting}[label={lst:affine-mul-unroll3}, caption=Unrolled matrix multiplication in affine dialect with unrolling factor 3]
 affine.for %arg3 = 0 to 15 {
@@ -272,6 +272,14 @@ affine.for %arg3 = 0 to 15 {
 }
 \end{lstlisting}
 
+This behaviour can be attributed to the fact that PyTorch times have been recorded using all the eight available threads on the machine.
+So, the \lstinline{torch.mm} function exploits more parallelism with respect to the accelerator.
+For this reason, the optimizations discussed in Section~\ref{subsec:toolchain-soda_opt} and in Section~\ref{subsec:toolchain-panda_bambu} and evaluated in the following makes the accelerator able to exploit more parallelism.
+
+To verify the effectiveness of the proposed optimizations, different comparative analysis have been performed.
+SODA-OPT offers the possibility to make different types of unrolling, among which the full unroll which completely unroll the innermost loop, and the partial unroll up to an arbitrary factor.
+Listing~\ref{lst:affine-mul-unroll3} shows the effect of a partial unrolling, with unrolling factor equal to 3, to the matrix multiplication introduced in Listing~\ref{lst:affine-mul}.
+
 PandA-Bambu introduces several optimization options, one of which involves expanding the number of memory channels in use.
 By default, the system employs two channels and utilizes \lstinline{ALL_BRAM} as the memory allocation policy, directing all objects to be stored in BRAMs.
 However, there's an alternative approach explored in this thesis, which entails employing a greater number of memory channels while utilizing external memory, approach that appears to be in line with the coalescent accesses performed on CUDA.
@@ -284,6 +292,20 @@ Additionally, external memory allows for up to 32 memory channels, enabling the 
 Nonetheless, accessing data from external memory requires more load cycles compared to accessing internal memory.
 
 The conducted analyses aim to highlight the differences among these various configurations, identifying the optimal balance between reducing cycles and containing area utilization.
+
+\begin{figure}[t]
+    \centering
+    \subfloat[Input matrices $15\times15$, $15\times16$\label{fig:matmul-optimization-comparison15}]{
+        \includegraphics[height=0.4\textwidth]{Images/matmul_comparison15}
+    }
+    %\quad
+    \hspace{0.15\textwidth}
+    \subfloat[Input matrices $30\times30$, $30\times16$\label{fig:matmul-optimization-comparison30}]{
+        \includegraphics[height=0.4\textwidth]{Images/matmul_comparison30}
+    }
+    \caption{Matrix multiplication optimization comparison}
+    \label{fig:matmul-optimization-comparison}
+\end{figure}
 
 Figure~\ref{fig:matmul-optimization-comparison} show two matrix multiplication analyzes performed using different sizes of the input matrices.
 Figure~\ref{fig:matmul-optimization-comparison15} show results of a multiplication between two matrices of size $15\times15$ and $15\times16$, while Figure~\ref{fig:matmul-optimization-comparison30} shows results of a multiplication between two matrices of size $30\times30$ and $30\times15$.
@@ -309,18 +331,63 @@ Even if the two number of parallel loop iterations representing the changing poi
         2 \cdot \sqrt {M \cdot N \cdot R} = i \cdot j \cdot k
 \end{equation}
 
-where $M$, $N$ and $R$ are the sizes of the three nested loops, as defined in Algorithm~\ref{alg:var}, and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 0 \iff i=M \land k \neq 0 \iff j=N$.
+where $M$, $N$ and $R$ are the sizes of the three nested loops, as defined in Algorithm~\ref{alg:var}, and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 1 \iff i=M \land k \neq 1 \iff j=N$.
 
-\begin{figure}[t]
+Equation~\ref{eq:factor-relation} should not be taken as an infallible rule, it is the outcome of this experimental phase and should be used as a discriminant to decide when to use thirty-two memory channels instead of two.
+In conclusion, the generalized rule, outcome of this comparative analysis is that using thirty-two channels is preferred and convenient when the number of parallel loop iterations is greater than the one computed using Equation~\ref{eq:factor-relation}.
+
+\subsection{GCN accelerator evaluation}
+\label{subsec:gcn_accelerator_evaluation}%
+
+In this Subsection, the ultimate evaluation of the optimizations examined and suggested in Subsection~\ref{subsec:optimization-comparison} is presented, aimed at understanding their influence on GCN inference time.
+
+As previously mentioned in the previous Subsection, Table~\ref{tab:pytorch-accelerator-comparison} shows the cycle counts required by the accelerator for each experiment.
+These counts align perfectly with the anticipated expectations outlined in Equation~\ref{eq:number-cycles}.
+Specifically, dividing the cycle count of the first experiment of the table and the final one by the total count of loop iterations effectively confirms a consistent result of approximately 7 in both instances, confirming that the number of cycles per each loop iteration stayed constant.
+
+\begin{table}[t]
+\centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|p{4em} c c c c c c|}
+    \hline
+    \thead{Dataset} & \thead{PyTorch (s)} & \thead{Optimizations} & \thead{Runtime (s)} & \thead{Cycles} & \thead{Area} & \thead{SpeedUp} \T\B \\
+    \hline \hline
+    \makecell{Cora15} & 59.25E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \hline
+    \makecell{Cora30} & 66.42E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \hline
+    \makecell{Cora60} & 69.75E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \hline
+    \makecell{Cora90} & 88.88E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \hline
+    \makecell{Cora120} & 98.32E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \hline
+    \makecell{Cora150} & 115.03E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \hline
+    \end{tabular}}
+    \\[10pt]
+    \caption{GCN inference time comparison}
+    \label{tab:GCN-inference-pytorch-accelerator-comparison}
+\end{table}
+
+\begin{figure}[t!]
     \centering
-    \subfloat[Input matrices $15\times15$, $15\times16$\label{fig:matmul-optimization-comparison15}]{
-        \includegraphics[height=0.4\textwidth]{Images/matmul_comparison15}
-    }
-    %\quad
-    \hspace{0.15\textwidth}
-    \subfloat[Input matrices $30\times30$, $30\times16$\label{fig:matmul-optimization-comparison30}]{
-        \includegraphics[height=0.4\textwidth]{Images/matmul_comparison30}
-    }
-    \caption{Matrix multiplication optimization comparison}
-    \label{fig:matmul-optimization-comparison}
+    \includegraphics[height=0.4\textwidth]{Images/gcn_forward_comparison}
+    \caption{GCN inference time comparison}
+    \label{fig:gcn-inference-comparison}
 \end{figure}
+
+However, this behavior limits the utilization of the possibilities presented by FPGA technology, which encompass substantial parallelization potential and concurrent memory accesses.
+
+Figure~\ref{fig:gcn-inference-comparison} and Table~\ref{tab:GCN-inference-pytorch-accelerator-comparison}, show the result of a comparative analysis between the PyTorch CPU time and the FPGA accelerator time to perform GCN inference.
+The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
+
+The results of this final evaluation are incredibly encouraging.
+The speedup of the accelerator is not being affected by the size of the input matrices and its computation time is significantly lower with respect to the one measured on CPU with PyTorch.
+
+The area of the accelerator, instead, is obviously affected by the sizes of the input matrices.
+This because more the matrices are big, more the parallel loop iterations will be and thus the parallel processing elements.
+
+However, the possibilities offered by the proposed toolchain are various.
+It is possible to use less memory channels with a lower loop unrolling factor to still have a big positive impact on performance, but containing the accelerator area requirements.
+

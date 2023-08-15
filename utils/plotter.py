@@ -145,17 +145,18 @@ def gcn_optimization():
     w, h = figaspect(1 / 2)
     fig, ax = plt.subplots(figsize=(w, h))
     plt.xlabel('Sizes of input matrices')
-    plt.ylabel('Execution time')
+    plt.ylabel('Execution time (s)')
     plt.title("GCN inference time comparison")
-    plt.ticklabel_format(style='sci', axis='y', scilimits=(3, 3))
-    ax.scatter(x=pytorch_times,
-               y=sizes,
+    plt.subplots_adjust(bottom=0.15)
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(-6, -6))
+    ax.scatter(x=sizes,
+               y=pytorch_times,
                marker='^',
                c='orange',
                s=36,
                label="PyTorch")
-    ax.scatter(x=bambu_times,
-               y=sizes,
+    ax.scatter(x=sizes,
+               y=bambu_times,
                marker='o',
                c='tab:blue',
                s=36,

@@ -51,11 +51,12 @@
 \BOOKMARK [1][-]{section.6.2}{Matrix multiplication acceleration}{chapter.6}% 51
 \BOOKMARK [2][-]{subsection.6.2.1}{PyTorch matrix multiplication benchmark}{section.6.2}% 52
 \BOOKMARK [2][-]{subsection.6.2.2}{Optimization comparison}{section.6.2}% 53
-\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 54
-\BOOKMARK [0][-]{chapter*.44}{Bibliography}{}% 55
-\BOOKMARK [0][-]{appendix*.46}{List of Figures}{}% 56
-\BOOKMARK [0][-]{appendix*.48}{List of Tables}{}% 57
-\BOOKMARK [0][-]{appendix*.50}{List of Algorithms}{}% 58
-\BOOKMARK [0][-]{appendix*.52}{List of Listings}{}% 59
-\BOOKMARK [0][-]{appendix*.54}{List of Symbols}{}% 60
-\BOOKMARK [0][-]{appendix*.57}{Acknowledgements}{}% 61
+\BOOKMARK [2][-]{subsection.6.2.3}{GCN accelerator evaluation}{section.6.2}% 54
+\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 55
+\BOOKMARK [0][-]{chapter*.47}{Bibliography}{}% 56
+\BOOKMARK [0][-]{appendix*.49}{List of Figures}{}% 57
+\BOOKMARK [0][-]{appendix*.51}{List of Tables}{}% 58
+\BOOKMARK [0][-]{appendix*.53}{List of Algorithms}{}% 59
+\BOOKMARK [0][-]{appendix*.55}{List of Listings}{}% 60
+\BOOKMARK [0][-]{appendix*.57}{List of Symbols}{}% 61
+\BOOKMARK [0][-]{appendix*.60}{Acknowledgements}{}% 62
