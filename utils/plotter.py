@@ -138,7 +138,34 @@ def matmul_optimization30():
 
 
 def gcn_optimization():
-    print("gcn")
+    pytorch_times = [59.25e-06, 66.42e-06, 66.75e-06, 88.88e-06, 98.32e-06, 115.03e-06]
+    bambu_times = []
+    sizes = ["15x15\n15x16", "30x30\n30x16", "60x60\n60x16", "90x90\n90x16", "120x120\n120x16", "150x150\n150x16"]
+
+    w, h = figaspect(1 / 2)
+    fig, ax = plt.subplots(figsize=(w, h))
+    plt.xlabel('Sizes of input matrices')
+    plt.ylabel('Execution time')
+    plt.title("GCN inference time comparison")
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(3, 3))
+    ax.scatter(x=pytorch_times,
+               y=sizes,
+               marker='^',
+               c='orange',
+               s=36,
+               label="PyTorch")
+    ax.scatter(x=bambu_times,
+               y=sizes,
+               marker='o',
+               c='tab:blue',
+               s=36,
+               label="Accelerator")
+    ax.legend(loc="upper right")
+    path_thesis = "../docs/thesis/Images/gcn_forward_comparison.pdf"
+    path_executive = "../docs/executive_summary/Images/gcn_forward_comparison.pdf"
+    plt.savefig(path_thesis)
+    plt.savefig(path_executive)
+    print("Plot saved in {0} and {1}".format(path_thesis, path_executive))
 
 
 if __name__ == '__main__':
