@@ -11,6 +11,8 @@ import torch.optim as optim
 
 from utils import load_data, accuracy
 from models import GCN
+import torch.utils.benchmark as benchmark
+
 
 # Training settings
 parser = argparse.ArgumentParser()
@@ -110,11 +112,16 @@ print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
 ### model_script = torch.jit.script(model)
 
+num_threads = torch.get_num_threads()
 model.eval()
-inference_start = time.time()
-model(features, adj)
-inference_end = time.time()
-print("Inference time: " + str(inference_end-inference_start))
+
+t0 = benchmark.Timer(
+    stmt='model(features, adj)',
+    setup='import torch',
+    globals={'model': model, 'features': features, 'adj': adj},
+    num_threads=num_threads)
+print(t0.timeit(1000000))
+
 
 # Testing
 testing_start = time.time()
