@@ -339,6 +339,32 @@ In conclusion, the generalized rule, outcome of this comparative analysis is tha
 \subsection{GCN accelerator evaluation}
 \label{subsec:gcn_accelerator_evaluation}%
 
+\begin{table}[t]
+\centering
+    \begin{tabular}{|p{4em} c c c c c|}
+    \hline
+    \textbf{Name} & \textbf{Nodes} & \textbf{Words} & \textbf{Links} & \textbf{Task} & \textbf{Classes} \T\B \\
+    \hline \hline
+    \textbf{Cora} & 2708  & 1433 & 5429 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora15} & 15  & 15 & 3 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora30} & 30  & 30 & 4 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora60} & 60  & 60 & 8 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora90} & 90  & 90 & 18 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora120} & 120  & 120 & 22 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora150} & 150  & 150 & 37 & Multiclass classification & 7 \T\B\\
+    \hline
+    \end{tabular}
+    \\[10pt]
+    \caption{Cora sub-dataset used for GCN infernce}
+    \label{tab:dataset-definition}
+\end{table}
+
 In this Subsection, the ultimate evaluation of the optimizations examined and suggested in Subsection~\ref{subsec:optimization-comparison} is presented, aimed at understanding their influence on GCN inference time.
 
 As previously mentioned in the previous Subsection, Table~\ref{tab:pytorch-accelerator-comparison} shows the cycle counts required by the accelerator for each experiment.
@@ -380,6 +406,7 @@ Specifically, dividing the cycle count of the first experiment of the table and 
 However, this behavior limits the utilization of the possibilities presented by FPGA technology, which encompass substantial parallelization potential and concurrent memory accesses.
 
 Figure~\ref{fig:gcn-inference-comparison} and Table~\ref{tab:GCN-inference-pytorch-accelerator-comparison}, show the result of a comparative analysis between the PyTorch CPU time and the FPGA accelerator time to perform GCN inference.
+All the experiments have been performed using a subset of the Cora dataset introduced in Subsection~\ref{subsec:gnn_datasets}, detailed in Table~\ref{tab:dataset-definition}.
 The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
 
 The results of this final evaluation are incredibly encouraging.
