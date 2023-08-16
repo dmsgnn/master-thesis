@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  15 AUG 2023 17:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  16 AUG 2023 10:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1514,14 +1514,21 @@ Chapter 7.
 (./chapters/chapter7.tex [67
 
 
-]) (out/thesis.bbl [68]
+]
+Overfull \hbox (0.3068pt too wide) in paragraph at lines 26--28
+[]\T1/cmr/m/n/12 This the-sis rep-re-sents a sig-nif-i-cant ad-vance-ment in th
+e field of GNN ac-cel-er-a-tion. Nonethe-
+ []
+
+) [68] (out/thesis.bbl [69] [70
+
+]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
 \T1/cmr/m/n/12 A generic FPGA frame-work for graph neu-ral net-work ac-cel-er-a
 -tion.  \T1/cmr/m/it/12 CoRR\T1/cmr/m/n/12 ,
  []
 
-[69
-
+[71
 
 ]
 Underfull \hbox (badness 6364) in paragraph at lines 89--94
@@ -1541,50 +1548,50 @@ Underfull \hbox (badness 1466) in paragraph at lines 98--103
 ez-Bombarelli,
  []
 
-[70] [71] [72]) [73] [74
+[72] [73] [74]) [75] [76
 
 ] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [75
+ [77
 
 
-] [76
+] [78
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [77
+ [79
 
 ]
-[78
+[80
 
 ] (out/thesis.loa)
 \tf@loa=\write8
 \openout8 = `thesis.loa'.
 
- [79
+ [81
 
-] [80
+] [82
 
 ] (out/thesis.lol)
 \tf@lol=\write9
 \openout9 = `thesis.lol'.
 
- [81
-
-] [82
-
-] [83
+ [83
 
 ] [84
 
 ] [85
 
+] [86
+
+] [87
+
 ]
-[86
+[88
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 350.
@@ -1596,8 +1603,8 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: A90275F6C1585094DF560C0A0F560EBB;4220.
  ) 
 Here is how much of TeX's memory you used:
- 28490 strings out of 480608
- 520928 string characters out of 5903630
+ 28492 strings out of 480608
+ 520942 string characters out of 5903630
  1188888 words of memory out of 5000000
  43336 multiletter control sequences out of 15000+600000
  554012 words of font info for 82 fonts, out of 8000000 for 9000
@@ -1624,10 +1631,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (96 pages, 3229700 bytes).
+Output written on out/thesis.pdf (98 pages, 3232440 bytes).
 PDF statistics:
- 1767 PDF objects out of 2073 (max. 8388607)
- 1363 compressed objects within 14 object streams
- 386 named destinations out of 1000 (max. 500000)
+ 1783 PDF objects out of 2073 (max. 8388607)
+ 1377 compressed objects within 14 object streams
+ 388 named destinations out of 1000 (max. 500000)
  658 words of extra memory for PDF output out of 10000 (max. 10000000)
 

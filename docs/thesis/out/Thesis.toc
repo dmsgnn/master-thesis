@@ -57,11 +57,11 @@
 \contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{67}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Future developments}{68}{section.7.1}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{69}{chapter*.48}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{71}{chapter*.48}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{75}{appendix*.50}%
-\contentsline {chapter}{List of Tables}{77}{appendix*.52}%
-\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{79}{appendix*.54}%
-\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{81}{appendix*.56}%
-\contentsline {chapter}{List of Symbols}{83}{appendix*.58}%
-\contentsline {chapter}{Acknowledgements}{85}{appendix*.61}%
+\contentsline {chapter}{List of Figures}{77}{appendix*.50}%
+\contentsline {chapter}{List of Tables}{79}{appendix*.52}%
+\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{81}{appendix*.54}%
+\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{83}{appendix*.56}%
+\contentsline {chapter}{List of Symbols}{85}{appendix*.58}%
+\contentsline {chapter}{Acknowledgements}{87}{appendix*.61}%
