@@ -33,9 +33,9 @@ def pytorch_matmul_bench():
 
 
 def matmul_comparison():
-    python_times = [1.608e-06, 1.733e-06, 2.480e-06, 4.554e-06, 5.161e-06]
-    bambu_times = [96.492e-09, 351.18e-09, 1466.353e-09, 3150.105e-09, 9074.677e-09]
-    sizes = ["15x15\n15x16", "30x30\n30x16", "60x60\n60x16", "90x90\n90x16", "150x150\n150x16"]
+    python_times = [1.608e-06, 1.733e-06, 2.480e-06, 4.554e-06, 4.792e-06, 5.161e-06]
+    bambu_times = [96.492e-09, 351.18e-09, 1466.353e-09, 3150.105e-09, 5624.714e-09, 9074.677e-09]
+    sizes = ["15x15\n15x16", "30x30\n30x16", "60x60\n60x16", "90x90\n90x16", "120x120\n120x16", "150x150\n150x16"]
 
     w, h = figaspect(1 / 2)
     fig, ax = plt.subplots(figsize=(w, h))
