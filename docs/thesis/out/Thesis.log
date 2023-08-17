@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  16 AUG 2023 21:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  17 AUG 2023 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1268,9 +1268,7 @@ Chapter 1.
 
 
 
-]) [2] [3] [4
-
-]
+] [2]) [3] [4]
 Chapter 2.
 (./chapters/chapter2.tex
 <Images/directed_graph.pdf, id=420, 82.3055pt x 82.96194pt>
@@ -1284,6 +1282,7 @@ File: Images/undirected_graph.pdf Graphic file (type pdf)
 Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
 (pdftex.def)             Requested size: 91.04745pt x 91.04742pt.
  [5
+
 
  <./Images/directed_graph.pdf> <./Images/undirected_graph.pdf>]
 <Images/graph_example.pdf, id=445, 82.3055pt x 82.96194pt>
@@ -1644,7 +1643,7 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (98 pages, 3235225 bytes).
+Output written on out/thesis.pdf (98 pages, 3237462 bytes).
 PDF statistics:
  1783 PDF objects out of 2073 (max. 8388607)
  1377 compressed objects within 14 object streams

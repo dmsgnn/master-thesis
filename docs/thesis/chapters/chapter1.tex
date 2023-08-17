@@ -49,22 +49,36 @@ custom optimizations.
 This analysis aims to provide valuable insights for future research endeavors, enabling the development of solutions
 to overcome these limitations and further enhance the proposed toolchain.
 
-TODO: add something about results
-
-%While the intended purpose of the toolchain is to be general, the experimental phase primarily focused on two specific
-%types of Graph Neural Networks: Graph Isomorphism Networks (GIN)~\cite{xu2019powerful} and Graph Convolutional Networks (GCN)~\cite{DBLP:journals/corr/KipfW16}.
-%These models were sourced from reliable GitHub implementations and were modified as necessary.
-%
-%The GCN model~\cite{pygcn}, designed for node classification task and written in pure PyTorch, held particular importance for the
-%experimental phase as it served as the basis for the resulting accelerator.
-%On the other hand, the GIN model~\cite{ogb_gnn_models}, designed for graph classification task and written in PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428},
-%a library built upon PyTorch for easier development and training of Graph Neural Networks, did not progress through
-%the final step of the proposed toolchain.
-%This was due to some incompatibilities between PyTorch Geometric and Torch-MLIR, which are integral parts of this thesis research.
+The toolchain's effectiveness is validated through experimental results, demonstrating significant enhancements in performance.
+The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
 
 \section{Contributions}
 \label{sec:contributions}%
 
+In this thesis, a novel toolchain is introduced to accelerate GNN inference, alongside customized optimizations designed to finely enhance model performance.
+
+The initial phase in designing the toolchain involves identifying appropriate technologies.
+Given its extensive usage and popularity in Neural Network implementations, PyTorch serves as the basis of this design process.
+Following that, the selection of a technology to establish a connection between the high-level framework and the synthesizer was achieved through Torch-MLIR\@.
+This facilitated the acquisition of an MLIR representation for subsequent synthesis.
+
+A part of this research involved comprehending the process of integrating them and documenting these steps for future users.
+To the best of the author's knowledge, this thesis stands as one of the first documented attempts in combining Torch-MLIR with Graph Neural Networks.
+
+This thesis played a role in innovating Torch-MLIR by providing examples involving GNNs. Moreover, it effectively advanced this technology by introducing new compatibility support for PyTorch Geometric.
+Additionally, this effort identified the specific domain requiring future attention to accomplish this task.
+
+The compatibility between PyTorch and Torch-MLIR is enabled through the TorchScript intermediate representation.
+This study offers general adjustments for various GNN models to make them compatible with this representation, thus enabling the conversion of the model to MLIR\@.
+
+Subsequently, the following phase involved identifying the bottlenecks within the models for optimization during the synthesis stage.
+A substantial portion of this research is dedicated to evaluating and identifying the most effective optimizations offered by SODA-OPT and PandA-Bambu for GNNs.
+Both of these technologies provide various optimizations applicable during the synthesis phase, continuously integrating new features.
+This study fills the gap in both theoretical and practical evaluations concerning the unified implementation of their optimizations.
+
+To enhance the inference of the GNN model employed in this thesis, an initial step involved constructing a matrix multiplication accelerator.
+Subsequently, the insights gained were implemented in the GNN model, generating promising outcomes.
+The final contribution of this thesis is an optimized GCN accelerator, demonstrating enhanced inference speeds across diverse graph structures and sizes.
 
 \section{Thesis structure}
 \label{sec:thesis_structure}%

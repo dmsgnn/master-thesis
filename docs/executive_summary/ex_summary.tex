@@ -138,7 +138,14 @@ To address the challenge of accelerating GNNs on FPGAs without having extensive 
 a cutting-edge high-level programming framework for creating neural network algorithms based on the Python programming language, enables the
 automatic generation of a GNNs FPGA accelerator with minimal effort required.
 
-TODO: Add half column about results and contributions
+The toolchain's effectiveness is validated through experimental results, demonstrating significant enhancements in performance.
+The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
+
+The main contribution of this thesis is a novel toolchain introduced to accelerate GNN inference, alongside customized optimizations designed to finely enhance model performance.
+Part of this research contributed in innovating Torch-MLIR by introducing new compatibility support for PyTorch Geometric.
+
+To accelerate GNN inference, after having identified the main model's bottlenecks, par tof the study consisted in the acceleration of the matrix multiplication by identyfing the best optimizations.
+By leveraging the evaluated optimizations, the final outcome of this thesis is a GCN accelerator improving inference speeds.
 
 %-----------------------------------------------------------------------------
 % BACKGROUND
@@ -189,7 +196,7 @@ The resulting $H^{(l+1)}$ represents the updated node representations after the 
 %-----------------------------------------------------------------------------
 % PROBLEM FORMULATION
 %-----------------------------------------------------------------------------
-\newpage
+
 \section{Problem Formulation}
 \label{sec:problem-formulation}%
 
@@ -227,7 +234,7 @@ Figure~\ref{fig:toolchain} illustrates the entire design flow, with the steps in
 
 The first step of the toolchain is to design and implement the Graph Neural Network model in PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
 
-The main model used for this thesis is the Graph Convolutional Network~\ref{DBLP:journals/corr/KipfW16} performing node classification on the \textit{Cora} dataset.
+The main model used for this thesis is the Graph Convolutional Network~\cite{DBLP:journals/corr/KipfW16} performing node classification on the \textit{Cora} dataset.
 
 \subsection{Torch-MLIR}
 \label{subsec:torch-mlir-toolchain}%
@@ -257,6 +264,7 @@ The synthesizer represents the final step of the toolchain, which optimizes and 
 This step includes SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110}.
 
 \subsubsection*{SODA-OPT}
+\label{subsec:soda-opt}%
 
 SODA-OPT receives as input the MLIR representation of the model.
 This step is primarily responsible for applying optimizations that can be exploited in the next step.
@@ -276,6 +284,7 @@ SODA-OPT, after having identified the key code regions, having outlined them int
 As a final result, the input code is translated into an LLVM intermediate representation intentionally restructured for hardware synthesis.
 
 \subsubsection*{PandA-Bambu}
+\label{subsec:bambu}%
 
 PandA-Bambu represents the last phase of the synthesis.
 It receives the LLVM representation as input, and after having applied some optional low-level optimizations, it performs the typical steps of HLS, including allocation, scheduling and binding.
@@ -295,11 +304,114 @@ After having applied the specified optimizations, the generated design in an HDL
 \section{Experimental Results}
 \label{sec:experimental-results}%
 
+All the CPU experiments have been conducted using an Intel Core i9, with 8 cores and a frequency of 2,3 GHz.
+On the other hand, the synthesis experiments utilized an AMD Virtex UltraScale+ (Alveo U280) FPGA\@.
+
+The first step to understanding how to accelerate the PyTorch GCN model used was to analyze and profile it.
+The results showed that more than 50\% of the self CPU time is used by matrix multiplication.
+This result clearly justifies the part of this research dedicated to matrix multiplication acceleration.
+
+\subsection{Matrix multiplication acceleration}
+\label{subsec:matmul}%
+
+A first evaluation compared PyTorch times of \lstinline{torch.mm} and the baseline accelerator, showing that the latter is faster for small matrices's sizes, but becomes slower when the sizes of the input matrices increases.
+
+This was an expected result and the following optimizations makes the accelerator able to exploit more parallelism with the aim of deleting this behaviour.
+
+To verify the effectiveness of the proposed optimizations, different comparative analysis have been performed.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.24\textwidth]{Images/matmul_comparison15}
+    \caption{Matrix multiplication optimization comparison}
+    \label{fig:matmul-opts-comparison}
+\end{figure}
+
+Figure~\ref{fig:matmul-opt-comparison} shows the impact of the applied optimizations on a matrix multiplication between two matrices of size $15 \times 15$ and $15 \times 16$.
+In particular, two different optimizations have been applied: a SODA-OPT progressive loop unrolling, with unrolling factors written in the ordinate of the Figure, and the use of different number of memory channels.
+By default, the system employs two channels and utilizes \lstinline{ALL_BRAM} as the memory allocation policy, directing all objects to be stored in BRAMs.
+However, the alternative approach explored in this thesis entails employing a greater number of memory channels while utilizing external memory.
+To achieve this, the \lstinline{NO_BRAM} memory allocation policy must be selected, leading to all objects being stored in external memory.
+This choice offers both advantages and disadvantages, resulting in a trade-off.
+Loop unrolling enhances parallelization, thereby reducing computational time.
+However, especially when utilizing more than two memory channels, it increases the number of parallel processing elements, leading to a larger area footprint.
+Additionally, external memory allows for up to 32 memory channels, enabling the simultaneous loading of 32 variables.
+Nonetheless, accessing data from external memory requires more load cycles compared to accessing internal memory.
+The conducted analyses aim to highlight the differences among these various configurations, identifying the optimal balance between reducing cycles and containing area utilization.
+
+The most important result is given by the unrolling factor in which the number of cycles needed by the accelerator using 32 memory channels is fewer than the number of cycles needed by the accelerator using 2 memory channels.
+The result of this analysis, conducted using different sizes of input matrices, led to the consideration that the number of parallel unrolled loop iterations that justify the use of 32 channels is given by the following equation:
+\begin{equation}
+    \label{eq:factor-relation}
+        i \cdot j \cdot k \geq 2 \cdot \sqrt {M \cdot N \cdot R}
+\end{equation}
+
+where $M$, $N$ and $R$ are the sizes of the three nested loops (from the innermost to the outermost), , and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 1 \iff i=M \land k \neq 1 \iff j=N$.
+Equation~\ref{eq:factor-relation} should not be taken as an infallible rule, it is the outcome of this experimental phase and should be used as a general discriminant to decide when to use thirty-two memory channels instead of two.
+
+\subsection{GCN accelerator}
+\label{subsec:gcn-accelerator}%
+
+\begin{table}[t]
+\centering
+    \resizebox{0.45\textwidth}{!}{
+    \begin{tabular}{|p{4em} c c c c c|}
+    \hline
+    \textbf{Name} & \textbf{Nodes} & \textbf{Words} & \textbf{Links} & \textbf{Task} & \textbf{Classes} \T\B \\
+    \hline \hline
+    \textbf{Cora} & 2708  & 1433 & 5429 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora15} & 15  & 15 & 3 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora30} & 30  & 30 & 4 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora60} & 60  & 60 & 8 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora90} & 90  & 90 & 18 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora120} & 120  & 120 & 22 & Multiclass classification & 7 \T\B\\
+    \hline
+    \textbf{Cora150} & 150  & 150 & 37 & Multiclass classification & 7 \T\B\\
+    \hline
+    \end{tabular}}
+    \\[10pt]
+    \caption{Cora sub-dataset used for GCN infernce}
+    \label{tab:dataset-definition}
+\end{table}
+
+In this Subsection, the ultimate evaluation of the optimizations examined and suggested in the previous Subsection is presented, aimed at understanding their influence on GCN inference time.
+
+Figure~\ref{fig:gcn-inference-comparison} shows the result of a comparative analysis between the PyTorch CPU time and the FPGA accelerator time to perform GCN inference, using different substet of the Cora dataset, as defined in Table~\ref{tab:dataset-definition}.
+The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.24\textwidth]{Images/matmul_comparison15}
+    \caption{GCN inference time comparison}
+    \label{fig:gcn-inference-comparison}
+\end{figure}
+
+The results of this final evaluation are incredibly encouraging.
+The speedup of the accelerator is not being affected by the size of the input matrices and its computation time is significantly lower with respect to the one measured on CPU with PyTorch.
+
+The area of the accelerator, instead, is obviously affected by the sizes of the input matrices.
+This because more the matrices are big, more the parallel loop iterations will be and thus the parallel processing elements.
+
+However, the possibilities offered by the proposed toolchain are various.
+It is possible to use less memory channels with a lower loop unrolling factor to still have a big positive impact on performance, but containing the accelerator area requirements.
+
 %-----------------------------------------------------------------------------
 % CONCLUSION
 %-----------------------------------------------------------------------------
 \section{Conclusions}
-A final section containing the main conclusions of your research/study have to be inserted here.
+This thesis tackled the challenge of accelerating Graph Neural Network inference by leveraging High-Level Synthesis techniques targeting FPGAs.
+
+The results of this research significantly contribute to the field of GNN acceleration, introducing a new perspective about how it is possible to obtain hardware accelerators for GNNs even without having any hardware design knowledge.
+The toolchain offers different possibilities and provides various optimization passes that can be used in the synthesizer step to fine-tune the accelerator capabilities.
+
+This thesis represents a significant advancement in the field of GNN acceleration.
+Nonetheless, there exist opportunities for further enhancement through the implementation of novel features.
+Future works could build upon the innovative contributions of this thesis by adding support for new high-level frameworks or by implementing support to sparse tensors.
 
 %---------------------------------------------------------------------------
 %  BIBLIOGRAPHY
