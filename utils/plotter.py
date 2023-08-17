@@ -140,14 +140,13 @@ def matmul_optimization30():
 def gcn_optimization():
     pytorch_times = [59.25e-06, 66.42e-06, 66.75e-06, 88.88e-06, 98.32e-06, 115.03e-06]
     bambu_times = []
-    sizes = ["15x15\n15x16", "30x30\n30x16", "60x60\n60x16", "90x90\n90x16", "120x120\n120x16", "150x150\n150x16"]
+    sizes = ["Cora15", "Cora30", "Cora60", "(Cora90)", "Cora120", "(Cora150)"]
 
     w, h = figaspect(1 / 2)
     fig, ax = plt.subplots(figsize=(w, h))
-    plt.xlabel('Sizes of input matrices')
+    plt.xlabel('Dataset')
     plt.ylabel('Execution time (s)')
     plt.title("GCN inference time comparison")
-    plt.subplots_adjust(bottom=0.15)
     plt.ticklabel_format(style='sci', axis='y', scilimits=(-6, -6))
     ax.scatter(x=sizes,
                y=pytorch_times,
