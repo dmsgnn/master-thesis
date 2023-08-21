@@ -10,4 +10,5 @@
 \contentsline {table}{\numberline {6.3}{\ignorespaces Comparison between dense and sparse PyTorch matmul functions\relax }}{60}{table.caption.39}%
 \contentsline {table}{\numberline {6.4}{\ignorespaces Cora sub-dataset used for GCN infernce\relax }}{64}{table.caption.43}%
 \contentsline {table}{\numberline {6.5}{\ignorespaces GCN inference time comparison\relax }}{65}{table.caption.44}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces GCN inference time comparison\relax }}{66}{table.caption.46}%
 \addvspace {10\p@ }

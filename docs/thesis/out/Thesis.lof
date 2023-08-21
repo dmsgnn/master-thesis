@@ -35,5 +35,6 @@
 \contentsline {figure}{\numberline {6.4}{\ignorespaces Matrix multiplication optimization comparison\relax }}{63}{figure.caption.41}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Input matrices $15\times 15$, $15\times 16$}}}{63}{subfigure.4.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Input matrices $30\times 30$, $30\times 16$}}}{63}{subfigure.4.2}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces GCN inference time comparison\relax }}{65}{figure.caption.45}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{65}{figure.caption.45}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces GCN inference number of cycles comparison\relax }}{66}{figure.caption.47}%
 \addvspace {10\p@ }

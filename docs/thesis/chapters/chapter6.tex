@@ -373,24 +373,23 @@ Specifically, dividing the cycle count of the first experiment of the table and 
 
 \begin{table}[t]
 \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|p{4em} c c c c c c|}
+    \begin{tabular}{|p{4em} c c c c|}
     \hline
-    \thead{Dataset} & \thead{PyTorch (s)} & \thead{Optimizations} & \thead{Runtime (s)} & \thead{Cycles} & \thead{Area} & \thead{SpeedUp} \T\B \\
+    \thead{Dataset} & \thead{CPU PyTorch(s)} & \thead{Optimizations} & \thead{Runtime(s)} & \thead{SpeedUp} \T\B \\
     \hline \hline
-    \makecell{Cora15} & 59.25E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \makecell{Cora15} & 59.25E-06 & \makecell{Full Unroll} & 523.24E-09 & 113.23 \T\B\\
     \hline
-    \makecell{Cora30} & 66.42E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \makecell{Cora30} & 66.42E-06 & \makecell{Full Unroll} & 1.79E-06 & 37.10 \T\B\\
     \hline
-    \makecell{Cora60} & 69.75E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \makecell{Cora60} & 69.75E-06 & \makecell{Full Unroll} & 7.13E-06 & 9.78 \T\B\\
     \hline
-    \makecell{Cora90} & 88.88E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \makecell{Cora90} & 88.88E-06 & \makecell{Full Unroll} & 14.90E-06 & 5.96 \T\B\\
     \hline
-    \makecell{Cora120} & 98.32E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \makecell{Cora120} & 98.32E-06 & \makecell{Full Unroll} & 29.64E-06 & 3.31 \T\B\\
     \hline
-    \makecell{Cora150} & 115.03E-06 & \makecell{32 channels \\ Unrolling} & 0E-09 & 0 & 0 & 0 \T\B\\
+    \makecell{Cora150} & 115.03E-06 & \makecell{Full Unroll} & 41.12E-06 & 2.79 \T\B\\
     \hline
-    \end{tabular}}
+    \end{tabular}
     \\[10pt]
     \caption{GCN inference time comparison}
     \label{tab:GCN-inference-pytorch-accelerator-comparison}
@@ -399,22 +398,74 @@ Specifically, dividing the cycle count of the first experiment of the table and 
 \begin{figure}[t!]
     \centering
     \includegraphics[height=0.4\textwidth]{Images/gcn_forward_comparison}
-    \caption{GCN inference time comparison}
+    \caption{GCN inference PyTorch-Accelerator comparison}
     \label{fig:gcn-inference-comparison}
 \end{figure}
 
 However, this behavior limits the utilization of the possibilities presented by FPGA technology, which encompass substantial parallelization potential and concurrent memory accesses.
 
-Figure~\ref{fig:gcn-inference-comparison} and Table~\ref{tab:GCN-inference-pytorch-accelerator-comparison}, show the result of a comparative analysis between the PyTorch CPU time and the FPGA accelerator time to perform GCN inference.
-All the experiments have been performed using a subset of the Cora dataset introduced in Subsection~\ref{subsec:gnn_datasets}, detailed in Table~\ref{tab:dataset-definition}.
+Figure~\ref{fig:gcn-inference-comparison} and Table~\ref{tab:GCN-inference-pytorch-accelerator-comparison}, show the result of a comparative analysis between the PyTorch CPU time and the optimized FPGA accelerator time to perform GCN inference.
+All the experiments have been performed using a subset of the Cora dataset introduced in Subsection~\ref{subsec:gnn_datasets}, as detailed in Table~\ref{tab:dataset-definition}.
 The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
 
-The results of this final evaluation are incredibly encouraging.
-The speedup of the accelerator is not being affected by the size of the input matrices and its computation time is significantly lower with respect to the one measured on CPU with PyTorch.
+The accelerator times are evaluated using both baseline and optimized settings, and Figure~\ref{fig:gcn-inference-cycles-comparison} and Table~\ref{tab:GCN-inference-accelerators-comparison} show how the accelerator has been affected by the unrolling technique with respect to the baseline performance.
+The optimized settings uses two channels and one full unrolling of the innermost loop.
+This setting has been preferred to the alternative considered setting with thirty-two channels and two full loop unrolling, because it already achieved high speedup without requiring too much area.
 
-The area of the accelerator, instead, is obviously affected by the sizes of the input matrices.
+\begin{table}[t]
+\centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|p{4em} c c c c c c c c c|}
+    \hline
+    \thead{Dataset} & \thead{Optimizations} & \thead{Cycles} & \thead{Slices} & \thead{Luts} & \thead{Registers} & \thead{DSPs} & \thead{BRAMs} & \thead{Frequency(MHz)} & \thead{SpeedUp} \T\B \\
+    \hline \hline
+    \makecell{Cora15} & \makecell{Baseline} & 115,852 & 8,307 & 32,927 & 32,195 & 16 & 256 & 147.77 & - \T\B\\
+    \hline
+    \makecell{Cora15} & \makecell{Full Unroll} & 93,705 & 8,338 & 36,265 & 35,164 & 44 & 256 & 179.08 & 1.23 \T\B\\
+    \hline \hline
+    \makecell{Cora30} & \makecell{Baseline} & 385,874 & 7,457 & 30,379 & 26,925 & 16 & 256 & 158.25 & - \T\B\\
+    \hline
+    \makecell{Cora30} & \makecell{Full Unroll} & 301,800 & 12,448 & 50,907 & 50,558 & 74 & 256 & 168.12 & 1.27\T\B\\
+    \hline \hline
+    \makecell{Cora60} & \makecell{Baseline} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & - \T\B\\
+    \hline
+    \makecell{Cora60} & \makecell{Full Unroll} & 1,064,580 & 21,726 & 94,025 & 77,956 & 134 & 256 & 149.20 & 0 \T\B\\
+    \hline \hline
+    \makecell{Cora90} & \makecell{Baseline} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & - \T\B\\
+    \hline
+    \makecell{Cora90} & \makecell{Full Unroll} & 2,298,510 & 32,046 & 154,917 & 108,770 & 194 & 256 & 154.20 & 0 \T\B\\
+    \hline \hline
+    \makecell{Cora120} & \makecell{Baseline} & 5,332,200 & 8,045 & 30,441 & 25,878 & 16 & 256 & 145.79 & - \T\B\\
+    \hline
+    \makecell{Cora120} & \makecell{Full Unroll} & 3,987,840 & 43,187 & 218,178 & 135,961 & 254 & 256 & 134.49 & 1.33 \T\B\\
+    \hline \hline
+    \makecell{Cora150} & \makecell{Baseline} & 8,244,570 & 7,499 & 29,390 & 26,015 & 16 & 264 & 163.61 & - \T\B\\
+    \hline
+    \makecell{Cora150} & \makecell{Full Unroll} & 6,136,470 & 27,002 & 115,463 & 143,916 & 26 & 264 & 149.20 & 1.34 \T\B\\
+    \hline
+    \end{tabular}}
+    \\[10pt]
+    \caption{GCN inference time comparison}
+    \label{tab:GCN-inference-accelerators-comparison}
+\end{table}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[height=0.4\textwidth]{Images/gcn_forward_cycles_comparison}
+    \caption{GCN inference number of cycles comparison}
+    \label{fig:gcn-inference-cycles-comparison}
+\end{figure}
+
+The results of this final evaluation are incredibly encouraging.
+It is important to mention that the optimized accelerator uses two channels with on-chip BRAMs.
+Only the computational time of the accelerator is evaluated and results are based on the assumption that all data are loaded from BRAMs, requiring two cycles to read data and one cycle to store data.
+The speedup of the accelerator is still being affected by the size of the input matrices, but this was an expected result since the unrolling factor used is contained.
+The accelerator's computational time is significantly lower with respect to the one measured on CPU with PyTorch, and for bigger dataset sizes the technique presented in Subsection~\ref{subsec:optimization-comparison} can be used, accelerating even more the computational performance of the accelerator.
+
+The area of the accelerator, instead, is obviously affected by the sizes of the input matrices and of the unrolling factor.
 This because more the matrices are big, more the parallel loop iterations will be and thus the parallel processing elements.
 
 However, the possibilities offered by the proposed toolchain are various.
 It is possible to use less memory channels with a lower loop unrolling factor to still have a big positive impact on performance, but containing the accelerator area requirements.
+The Equation~\ref{eq:factor-relation} can be adapted also to this specific case, by considering the number of load and store and the size of the different loop iterations, becoming a valid indicator to decide which optimization to apply according to the dataset size.
 

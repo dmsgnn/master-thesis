@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.figure import figaspect
-import matplotlib.colors as mcolors
+import matplotlib.colors
 
 
 def pytorch_matmul_bench():
@@ -159,10 +159,38 @@ def gcn_optimization():
                marker='o',
                c='tab:blue',
                s=36,
-               label="Accelerator, \n 2ch 1funrll")
+               label="Optimized accelerator")
     ax.legend(loc="upper left")
     path_thesis = "../docs/thesis/Images/gcn_forward_comparison.pdf"
     path_executive = "../docs/executive_summary/Images/gcn_forward_comparison.pdf"
+    plt.savefig(path_thesis)
+    plt.savefig(path_executive)
+    print("Plot saved in {0} and {1}".format(path_thesis, path_executive))
+
+def gcn_cycles_comparison():
+    baseline_cycles = [115852, 385874, 0, 0, 5332200, 8244570]
+    optimized_cycles = [93705, 301800, 1064580, 2298510, 3987840, 6136470]
+    dataset = ["Cora15", "Cora30", "Cora60", "Cora90", "Cora120", "Cora150"]
+
+    w, h = figaspect(1 / 2)
+    fig, ax = plt.subplots(figsize=(w, h))
+    plt.xlabel('Dataset')
+    plt.ylabel('Number of cycles')
+    plt.title("GCN inference cycles comparison")
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(6, 6))
+    ax.bar(x=dataset,
+           height=baseline_cycles,
+           width=0.4,
+           color='indianred',
+           label="Baseline accelerator")
+    ax.bar(x=dataset,
+           height=optimized_cycles,
+           width=0.4,
+           color='cornflowerblue',
+           label="Optimized accelerator")
+    ax.legend(loc="upper left")
+    path_thesis = "../docs/thesis/Images/gcn_forward_cycles_comparison.pdf"
+    path_executive = "../docs/executive_summary/Images/gcn_forward_cycles_comparison.pdf"
     plt.savefig(path_thesis)
     plt.savefig(path_executive)
     print("Plot saved in {0} and {1}".format(path_thesis, path_executive))
@@ -175,9 +203,10 @@ if __name__ == '__main__':
     print("   3. matmul optimization [15][15]X[15][16]")
     print("   4. matmul optimization [30][30]X[30][16]")
     print("   5. GCN optimization")
+    print("   6. GCN cycles comparison")
 
     choice = '0'
-    choices = {pytorch_matmul_bench: '1', matmul_comparison: '2', matmul_optimization15: '3', matmul_optimization30: '4', gcn_optimization: '5'}
+    choices = {pytorch_matmul_bench: '1', matmul_comparison: '2', matmul_optimization15: '3', matmul_optimization30: '4', gcn_optimization: '5', gcn_cycles_comparison: '6'}
 
     while choice not in choices.values():
         choice = input()
