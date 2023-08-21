@@ -392,9 +392,9 @@ The PyTorch times have been acquired averaging one million of execution time mea
 \end{figure}
 
 The results of this final evaluation are incredibly encouraging.
-The speedup of the accelerator is not being affected by the size of the input matrices and its computation time is significantly lower with respect to the one measured on CPU with PyTorch.
+The speedup of the accelerator is still being affected by the size of the input matrices, but this behaviour can be corrected by applying the techniques presented in previous Sections, accelerating even more the computational performance of the accelerator.
 
-The area of the accelerator, instead, is obviously affected by the sizes of the input matrices.
+Also the area of the accelerator is obviously affected by the sizes of the input matrices.
 This because more the matrices are big, more the parallel loop iterations will be and thus the parallel processing elements.
 
 However, the possibilities offered by the proposed toolchain are various.

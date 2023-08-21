@@ -168,7 +168,7 @@ def gcn_optimization():
     print("Plot saved in {0} and {1}".format(path_thesis, path_executive))
 
 def gcn_cycles_comparison():
-    baseline_cycles = [115852, 385874, 0, 0, 5332200, 8244570]
+    baseline_cycles = [115852, 385874, 1402860, 3051630, 5332200, 8244570]
     optimized_cycles = [93705, 301800, 1064580, 2298510, 3987840, 6136470]
     dataset = ["Cora15", "Cora30", "Cora60", "Cora90", "Cora120", "Cora150"]
 
@@ -182,11 +182,13 @@ def gcn_cycles_comparison():
            height=baseline_cycles,
            width=0.4,
            color='indianred',
+           edgecolor='black',
            label="Baseline accelerator")
     ax.bar(x=dataset,
            height=optimized_cycles,
            width=0.4,
            color='cornflowerblue',
+           edgecolor='black',
            label="Optimized accelerator")
     ax.legend(loc="upper left")
     path_thesis = "../docs/thesis/Images/gcn_forward_cycles_comparison.pdf"
