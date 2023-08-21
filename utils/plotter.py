@@ -139,8 +139,8 @@ def matmul_optimization30():
 
 def gcn_optimization():
     pytorch_times = [59.25e-06, 66.42e-06, 66.75e-06, 88.88e-06, 98.32e-06, 115.03e-06]
-    bambu_times = []
-    sizes = ["Cora15", "Cora30", "Cora60", "(Cora90)", "Cora120", "(Cora150)"]
+    bambu_times_2ch_1funrll = [523.24e-09, 1.79e-06, 7.13e-06, 14.90e-06, 29.64e-06, 41.12e-06]
+    sizes = ["Cora15", "Cora30", "Cora60", "Cora90", "Cora120", "Cora150"]
 
     w, h = figaspect(1 / 2)
     fig, ax = plt.subplots(figsize=(w, h))
@@ -155,12 +155,12 @@ def gcn_optimization():
                s=36,
                label="PyTorch")
     ax.scatter(x=sizes,
-               y=bambu_times,
+               y=bambu_times_2ch_1funrll,
                marker='o',
                c='tab:blue',
                s=36,
-               label="Accelerator")
-    ax.legend(loc="upper right")
+               label="Accelerator, \n 2ch 1funrll")
+    ax.legend(loc="upper left")
     path_thesis = "../docs/thesis/Images/gcn_forward_comparison.pdf"
     path_executive = "../docs/executive_summary/Images/gcn_forward_comparison.pdf"
     plt.savefig(path_thesis)

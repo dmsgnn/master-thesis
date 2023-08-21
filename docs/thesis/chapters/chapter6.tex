@@ -328,13 +328,13 @@ Meanwhile, the total amount of possible parallel loop iterations in a matrix mul
 Even if the two number of parallel loop iterations representing the changing point of the trade-off, 120 and 240, are different, they are related by the following Equation:
 \begin{equation}
     \label{eq:factor-relation}
-        2 \cdot \sqrt {M \cdot N \cdot R} = i \cdot j \cdot k
+        i \cdot j \cdot k \geq 2 \cdot \sqrt {M \cdot N \cdot R}
 \end{equation}
 
 where $M$, $N$ and $R$ are the sizes of the three nested loops, as defined in Algorithm~\ref{alg:var}, and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 1 \iff i=M \land k \neq 1 \iff j=N$.
 
 Equation~\ref{eq:factor-relation} should not be taken as an infallible rule, it is the outcome of this experimental phase and should be used as a discriminant to decide when to use thirty-two memory channels instead of two.
-In conclusion, the generalized rule, outcome of this comparative analysis is that using thirty-two channels is preferred and convenient when the number of parallel loop iterations is greater than the one computed using Equation~\ref{eq:factor-relation}.
+In conclusion, the generalized rule, outcome of this comparative analysis, conducted using different sizes of input matrices, is that the number of parallel unrolled loop iterations that justify the use of 32 channels is given by Equation~\ref{eq:factor-relation}.
 
 \subsection{GCN accelerator evaluation}
 \label{subsec:gcn_accelerator_evaluation}%
