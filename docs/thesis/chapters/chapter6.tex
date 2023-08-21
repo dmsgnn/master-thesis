@@ -409,8 +409,8 @@ All the experiments have been performed using a subset of the Cora dataset intro
 The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
 
 The accelerator times are evaluated using both baseline and optimized settings, and Figure~\ref{fig:gcn-inference-cycles-comparison} and Table~\ref{tab:GCN-inference-accelerators-comparison} show how the accelerator has been affected by the unrolling technique with respect to the baseline performance.
-The optimized settings uses two channels and one full unrolling of the innermost loop.
-This setting has been preferred to the alternative considered setting with thirty-two channels and two full loop unrolling, because it already achieved high speedup without requiring too much area.
+The optimized settings uses two channels and one full unrolling of the innermost loop, and it obviously requires more area than the baseline accelerator, but it is computationally faster; being matrix multiplication the most time-consuming operation of the GCN, thanks to loop unrolling technique, the speedup increases as the size of the dataset increases.
+The used optimized setting has been preferred to the alternative considered setting with thirty-two channels and two full loop unrolling, because it achieves high speedup without increasing too much area requirements.
 
 \begin{table}[t]
 \centering
@@ -427,13 +427,13 @@ This setting has been preferred to the alternative considered setting with thirt
     \hline
     \makecell{Cora30} & \makecell{Full Unroll} & 301,800 & 12,448 & 50,907 & 50,558 & 74 & 256 & 168.12 & 1.27\T\B\\
     \hline \hline
-    \makecell{Cora60} & \makecell{Baseline} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & - \T\B\\
+    \makecell{Cora60} & \makecell{Baseline} & 1,402,860 & 6,928 & 30,115 & 24,287 & 16 & 256 & 158.07 & - \T\B\\
     \hline
-    \makecell{Cora60} & \makecell{Full Unroll} & 1,064,580 & 21,726 & 94,025 & 77,956 & 134 & 256 & 149.20 & 0 \T\B\\
+    \makecell{Cora60} & \makecell{Full Unroll} & 1,064,580 & 21,726 & 94,025 & 77,956 & 134 & 256 & 149.20 & 1.31 \T\B\\
     \hline \hline
-    \makecell{Cora90} & \makecell{Baseline} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & - \T\B\\
+    \makecell{Cora90} & \makecell{Baseline} & 3,051,630 & 6,769 & 29,899 & 25,966 & 16 & 256 & 166.69 & - \T\B\\
     \hline
-    \makecell{Cora90} & \makecell{Full Unroll} & 2,298,510 & 32,046 & 154,917 & 108,770 & 194 & 256 & 154.20 & 0 \T\B\\
+    \makecell{Cora90} & \makecell{Full Unroll} & 2,298,510 & 32,046 & 154,917 & 108,770 & 194 & 256 & 154.20 & 1.32 \T\B\\
     \hline \hline
     \makecell{Cora120} & \makecell{Baseline} & 5,332,200 & 8,045 & 30,441 & 25,878 & 16 & 256 & 145.79 & - \T\B\\
     \hline
