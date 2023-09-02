@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  2 SEP 2023 11:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  2 SEP 2023 11:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1316,7 +1316,7 @@ Package pdftex.def Info: Images/csr.pdf  used on input line 84.
 File: Images/google_scholar_green.pdf Graphic file (type pdf)
 <use Images/google_scholar_green.pdf>
 Package pdftex.def Info: Images/google_scholar_green.pdf  used on input line 12
-8.
+7.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
  [8] [9 <./Images/google_scholar_green.pdf>]
 [10]
@@ -1324,15 +1324,15 @@ Package pdftex.def Info: Images/google_scholar_green.pdf  used on input line 12
 File: Images/multi-layer-perceptron.pdf Graphic file (type pdf)
 <use Images/multi-layer-perceptron.pdf>
 Package pdftex.def Info: Images/multi-layer-perceptron.pdf  used on input line 
-189.
+188.
 (pdftex.def)             Requested size: 250.01385pt x 136.57462pt.
  [11 <./Images/multi-layer-perceptron.pdf>] [12] [13]
 <Images/hls.pdf, id=610, 550.66966pt x 598.87349pt>
 File: Images/hls.pdf Graphic file (type pdf)
 <use Images/hls.pdf>
-Package pdftex.def Info: Images/hls.pdf  used on input line 276.
+Package pdftex.def Info: Images/hls.pdf  used on input line 275.
 (pdftex.def)             Requested size: 167.43724pt x 182.09486pt.
- [14 <./Images/hls.pdf>] [15] [16]) [17] [18
+ [14 <./Images/hls.pdf>] [15]) [16] [17] [18
 
 ]
 Chapter 3.
@@ -1625,7 +1625,7 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Here is how much of TeX's memory you used:
  28515 strings out of 480608
  521621 string characters out of 5903630
- 1189109 words of memory out of 5000000
+ 1189108 words of memory out of 5000000
  43348 multiletter control sequences out of 15000+600000
  554012 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1651,7 +1651,7 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (100 pages, 3254476 bytes).
+Output written on out/thesis.pdf (100 pages, 3254223 bytes).
 PDF statistics:
  1847 PDF objects out of 2073 (max. 8388607)
  1397 compressed objects within 14 object streams

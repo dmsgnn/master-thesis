@@ -29,7 +29,7 @@ The vertices represent entities or elements, and the edges represent their relat
 Graphs serve as a versatile tool for describing diverse forms of data.
 For example, molecules, the fundamental units of matter, are composed of atoms and electrons arranged in three-dimensional space.
 In this intricate structure, all particles interact with each other.
-However, when a pair of atoms are stably positioned at a specific distance, we refer to their connection as a covalent bond.
+However, when a pair of atoms are stably positioned at a specific distance, their connection is referred to as a covalent bond.
 These bonds with distinct atomic distances can vary in nature, such as single or double bonds.
 Representing this complex three-dimensional object as a graph offers a practical and widely adopted abstraction, where atoms are nodes and covalent bonds act as edges~\cite{DBLP:journals/corr/DuvenaudMAGHAA15}.
 
@@ -39,7 +39,7 @@ By representing individuals as nodes and their relationships as edges, we can co
 \subsection{Graph Representation}
 \label{subsec:graph_representation}
 
-Graphs are easy to visualize, but a more formal way is needed when implementing graph algorithms.
+Graphs are easy to visualize, but a more formal representation is needed when implementing graph algorithms.
 
 \textbf{Adjacency matrix} \newline
 The adjacency matrix of a graph is a fundamental representation that provides information about the relationships between nodes in the graph.
@@ -66,11 +66,11 @@ Figure~\ref{fig:graph_adjacency} shows a directed graph and its adjacency matrix
 \end{figure}
 
 The adjacency matrix consists only of ones and zeros.
-In real-world graph-related problems, the number of edges is usually much slower than the number of nodes, leading to an adjacency matrix with many zero elements.
+In real-world graph-related problems, the number of edges is usually much lower than the number of nodes, leading to an adjacency matrix with many zero elements.
 Such matrices with mostly zero elements are called sparse matrices.
-Their sparsity enables more efficient storage and manipulation, avoiding both the storage of zeros and the operations including zero elements, reducing the computational phase.
+Their sparsity enables more efficient storage and manipulation, avoiding both the storage of zeros and the operations including zero elements, reducing the computational effort.
 
-There are two common representations for sparse matrices: the Coordinate List (COO) format and the Compressed Sparse Row (CSR) format, which are explained below.
+There are two common representations for sparse matrices: the Coordinate List (COO) format and the Compressed Sparse Row (CSR) format, which are described below.
 
 \begin{figure}[t]
     \centering
@@ -93,7 +93,7 @@ Usually, it is preferred to store the entries first by row index and then by col
 In Figure~\ref{fig:coo_csr} the COO format of the adjacency matrix represented in Figure~\ref{fig:graph_adjacency} is reported.
 For example, by considering the first element of the three arrays, it is possible to understand that the data one is placed in position [0, 1] of the adjacency matrix.
 
-The COO format is helpful for matrices with relatively few non-zero elements because it does not require any assumptions about the sparsity pattern and allows for efficient deletion and insertion of elements.
+The COO format is helpful for sparse matrices because it does not require any assumptions about the sparsity pattern and allows for efficient deletion and insertion of elements.
 However, it may not be the most efficient format for large and highly sparse matrices, as it may require more memory and may not support efficient row-wise or column-wise operations.
 In these cases, other formats, like the CSR one, are often preferred.
 
@@ -101,8 +101,8 @@ In these cases, other formats, like the CSR one, are often preferred.
 In the CSR format, a sparse matrix is represented using three arrays: the values array, the row pointers array (indices), and the column indices array (index pointers).
 The data array contains the non-zero elements of the sparse matrix stored in row-major order, the array indices contains the column position of each data, while the index pointers
 contains an increasing number of how many non-zero elements there are in the matrix row by row.
-Given a matrix of size $m \times n$, with $NNZ$ being the number of non-zero elements, the arrays data and indices are of length $NNZ$, while the array index pointers is of length $m+1$.
-Figure~\ref{fig:csr} shows the CSR format of the adjacency matrix represented in Figure~\ref{fig:graph_adjacency} is reported.
+Given a matrix of size $m \times n$, with $NNZ$ being the number of non-zero elements, the arrays data and indices are of length $NNZ$, while the array index pointers is of length $m+1$ due to the fact that its first element is always zero.
+Figure~\ref{fig:csr} shows the CSR format of the adjacency matrix represented in Figure~\ref{fig:graph_adjacency}.
 
 \textbf{Feature matrix} \newline
 Suppose to have a graph of a social network, where each node corresponds to a person and each edge to a friendship on the social media between the two nodes.
@@ -120,14 +120,13 @@ It is commonly denoted as $X$ and  each row corresponds to a node in the graph, 
 Graph neural networks are deep learning techniques that operate on graph-structured data.
 Thanks to their impressive performance, GNNs have recently gained significant popularity as a widely adopted method for graph analysis~\cite{KERAMATFAR2022100401}.
 Figure~\ref{fig:google_scholar} illustrates the steady growth in the number of publications related to Graph Neural Networks on Google Scholar from 2015 to 2022.
-The data were collected by querying papers containing the specific words "Graph Neural Network" in their whole content and aggregating them on a yearly basis.
 The increasing trend reflects the rising interest and research activity in the field of GNNs over the years.
 
 \begin{figure}[t]
     \centering
     \includegraphics[height=0.4\textwidth]{Images/google_scholar_green}
     %\caption[Shorter caption]{This is a very long caption you don't want to appear in the List of Figures.}
-    \caption{Number of GNN publications on Google Scholar per year}
+    \caption[Number of GNN publications on Google Scholar per year]{Number of GNN publications on Google Scholar per year. The data were collected by querying papers containing the specific words "Graph Neural Network" in their whole content and aggregating them on a yearly basis.}
     \label{fig:google_scholar}
 \end{figure}
 
@@ -135,7 +134,7 @@ Graph Neural Networks are a group of neural networks which are designed to solve
 Prediction tasks on graphs can generally be classified into three categories: graph-level, node-level, and edge-level predictions~\cite{sanchez-lengeling2021a}.
 
 In a graph-level task, the objective is to predict the property or characteristic of an entire graph.
-For instance, when considering a molecule represented as a graph, attributes might be aimed to be predicted such as its likelihood of binding to a receptor associated with a specific disease.
+For instance, when considering a molecule represented as a graph, the goal may be to predict attributes such as its probability of binding to a receptor associated with a specific disease.
 This assignment is comparable to image classification tasks, where the objective is to assign a label to an entire image.
 Similarly, in text analysis, sentiment analysis serves as a similar problem where the goal is to determine a complete sentence's overall mood or emotion in one go.
 
@@ -251,11 +250,11 @@ Addressing software fragmentation and enabling compilation for heterogeneous har
 MLIR empowers the design and implementation of code generators, translators, and optimizers across various levels of abstraction, application domains, hardware targets, and execution environments.
 
 The MLIR project aims to address programming language design and implementation challenges.
-It achieves this by enabling cost-effective definition, introducing new abstraction levels, and built-in infrastructure to solve common compiler engineering issues.
-MLIR ensures extensibility through Dialects, which logically group Ops, attributes, and types under a unique namespace.
-Dialects do not introduce new semantics but act as a mechanism for group-related functionality, such as constant folding behavior, for all ops in the dialect.
+It achieves this by introducing new abstraction levels and built-in infrastructure to solve common compiler engineering issues.
+MLIR ensures extensibility through Dialects, which logically group operations, attributes, and types under a unique namespace.
+Dialects do not introduce new semantics but act as a mechanism for group-related functionality, such as constant folding behavior, for all operations in the dialect.
 They organize the ecosystem of language- and domain-specific semantics while adhering to the principle of simplicity.
-Unknown Ops are treated with a conservative approach by compiler passes, and MLIR offers extensive support for describing the semantics of Ops to passes through traits and interfaces.
+Unknown operations are treated with a conservative approach by compiler passes, and MLIR offers extensive support for describing the semantics of operations to passes through traits and interfaces.
 
 \section{High-Level Synthesis}
 \label{sec:hls}%
@@ -284,9 +283,9 @@ The next step is to generate an RTL model of the synthesized design, incorporati
 LLVM is a compiler framework that enables ongoing analysis and transformation of programs through a code representation independent of any specific language.
 
 Many HLS frameworks rely on it, thanks to its intermediate level of abstraction.
-It is also the case of the HLS tool used for this thesis, which takes an LLVM representation as input.
+It is also the case of the HLS tool used for this thesis, which can take C/C++ as well as an LLVM representation as input.
 
-The LLVM Intermediate Representation (IR), which resembles the assembly code, is a low-level code representation.
+The LLVM Intermediate Representation (IR), which resembles assembly code, is a low-level code representation.
 LLVM uses a language-independent type system and utilizes an infinite set of virtual registers.
 All instructions follow the Static Single Assignment (SSA) form, meaning each virtual register appears in only one instruction, and each instruction takes one or two input operands while producing a single result.
 
@@ -296,13 +295,12 @@ All instructions follow the Static Single Assignment (SSA) form, meaning each vi
 SODA~\cite{9786533} is a software-defined accelerator synthesizer.
 It enables the creation of highly specialized accelerators from algorithms designed in high-level programming frameworks.
 The synthesizer comprises a compiler-based frontend that interfaces with high-level programming frameworks, applying advanced optimizations.
-It also includes a compiler-based backend responsible for generating Verilog code and interfacing with external tools to compile the final design, which can be applied to application-specific integrated circuits (ASICs) or Field-Programmable Gate Arrays.
+It also includes a compiler-based HLS backend responsible for generating Verilog code and interfacing with external tools to compile the final design, which can be applied to application-specific integrated circuits (ASICs) or Field-Programmable Gate Arrays.
 
 SODA's exceptional power lies in its ability to offer a fully automated end-to-end hardware compiler, eliminating the need for human intervention and any modifications to the input code.
 This framework seamlessly integrates with high-level Python frameworks by accepting their input descriptions, which are then translated by the frontend into a high-level intermediate representation.
-Leveraging the multi-level intermediate representation, the frontend facilitates hardware/software partitioning of algorithm specifications and performs architecture-independent optimizations.
+Leveraging MLIR, the frontend facilitates hardware/software partitioning of algorithm specifications and performs architecture-independent optimizations.
 Following this, it generates a low-level IR that is utilized by the hardware generation engine, PandA-Bambu~\cite{9586110}.
-PandA-Bambu can accept LLVM IR as input, making it a cutting-edge open-source HLS tool.
 Throughout the entire SODA toolchain, compiler passes are employed to implement optimizations at all levels, greatly influencing the generated hardware designs' performance, area, and power characteristics.
 
 \subsection{SODA-OPT Frontend}
@@ -311,11 +309,8 @@ Throughout the entire SODA toolchain, compiler passes are employed to implement 
 SODA-OPT, the high-level compiler frontend of the SODA synthesizer, performs search, outlining, optimization, dispatching, and acceleration passes on the input program.
 Its primary objective is to prepare the program for hardware synthesis, targeting either FPGAs or ASICs.
 To accomplish these tasks, SODA-OPT relies on and extends the MLIR framework.
-MLIR is a framework that facilitates the development of reusable, extensible, and modular compiler infrastructure by defining dialects.
-These dialects serve as self-contained intermediate representations (IRs) that adhere to the meta-IR syntax of MLIR.
-By utilizing dialects, code can be modeled at different levels of abstraction, allowing for specialized representations that aid in specific compiler optimizations.
 
- Code regions selected for hardware acceleration undergo an optimization pipeline that progressively lowers them through various MLIR dialects until they are ultimately translated into an LLVM IR format tailored explicitly for hardware synthesis.
+Code regions selected for hardware acceleration undergo an optimization pipeline that progressively lowers them through various MLIR dialects until they are ultimately translated into an LLVM IR format tailored explicitly for hardware synthesis.
 On the other hand, the host module is lowered into an LLVM IR file containing runtime calls to control the generated custom accelerators.
 
 \subsection{SODA Synthesizer Backend}
