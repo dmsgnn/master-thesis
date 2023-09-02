@@ -2,8 +2,8 @@ The main contribution of this thesis is represented by the design of a toolchain
 
 This chapter explains in detail how the toolchain has been designed and how it can be used to build GNN accelerators to enhance inference performance.
 
-The core component of the toolchain is the synthesizer, enclosing SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110}, upon which the research team responsible for supervising this thesis has dedicated significant efforts over the past years.
-The primary objective of this thesis is to enhance SODA-OPT and Bambu to bridge GNN models written in high-level frameworks, such as PyTorch, to FPGA architectures.
+The core component of the toolchain is the synthesizer, enclosing SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110}.
+The primary objective of this thesis is to enhance SODA-OPT and Bambu to synthesize GNN models written in high-level frameworks, such as PyTorch, to FPGA architectures.
 
 Figure~\ref{fig:toolchain} illustrates the entire design flow, with the steps involved in the GNN acceleration process.
 In particular, firstly, the GNN model is implemented in PyTorch, one of the most popular and powerful frameworks for Neural Network implementations.
@@ -35,26 +35,22 @@ The first step of the toolchain is to design and implement the Graph Neural Netw
 Doing so involves defining the GNN model architecture and writing the necessary forward pass to compute node and graph-level representations.
 Once having defined the model, the next step is training the GNN using standard PyTorch techniques, such as defining a loss function, setting up an optimizer, and performing backpropagation to optimize the model parameters.
 
-\subsection{GNN models}
-\label{subsec:gnn_models}%
+\subsection{Toolchain inputs}
+\label{subsec:toolchain-inputs}%
 
-Two main models have been used for this thesis: the Graph Isomorphism Network from OGB~\cite{NEURIPS2020_fb60d411, ogb_gnn_models}, written using PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428}, and the Graph Convolutional Network~\cite{DBLP:journals/corr/KipfW16, pygcn}, written using PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
+Two main models have been used as input for the developed toolchain: a Graph Isomorphism Network from OGB~\cite{NEURIPS2020_fb60d411, ogb_gnn_models}, written using PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428}, and a Graph Convolutional Network~\cite{DBLP:journals/corr/KipfW16, pygcn}, written using PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
 
 Most research and experiments have been conducted using the GCN model.
-The GCN class is characterized by two Graph Convolutional layers, and the forward function of each layer is mainly characterized by two matrix multiplications.
-
-
-\subsection{Datasets}
-\label{subsec:gnn_datasets}%
+The GCN class is characterized by two Graph Convolutional layers, and the forward function of each layer is implemented through two matrix multiplications.
 
 OGB provides different datasets that can be used with their models.
 The one used for this thesis is called \textit{ogbg-molhiv}, a molecular property prediction dataset.
 In each graph representing a molecule, nodes correspond to atoms, and edges represent chemical bonds.
 The input node features consist of nine dimensions, encompassing information like atomic number, formal charge, and whether the atom is part of a ring.
-The binary classification task consists in achieving precise predictions of target molecular properties, for example, determining whether a molecule inhibits HIV replication or not.
+The binary classification task for GIN consists in achieving precise predictions of target molecular properties, for example, determining whether a molecule inhibits HIV replication or not.
 
 The dataset used for the GCN model is the \textit{Cora} one.
-This dataset contains 2708 scientific publications, categorized into one of the seven classes considered.
+This dataset contains 2708 scientific publications, categorized into one of seven classes.
 The citation network contains 5429 links.
 Each publication in the dataset is represented by a binary-valued word vector, indicating the absence or presence of the corresponding word from a dictionary of 1433 unique words.
 The task is a multiclass classification, in which, given a paper, the objective is to classify it into one of the seven classes correctly.
@@ -70,7 +66,7 @@ There are two starting points of the flow: TorchScript and LazyTensorCode.
 The one used for this research, which is also the most tested one, is TorchScript.
 TorchScript~\cite{torchscript} offers a way to generate serializable and optimizable models directly from PyTorch code.
 
-The TorchScript representation is then converted to MLIR using the built-in conversion of Torch-MLIR. The result MLIR can use different dialects, but the one used for this thesis is the Linalg dialect, which serves as input for the next phase of the toolchain.
+The TorchScript representation is then converted to MLIR using the built-in conversion of Torch-MLIR. The resulting MLIR IR can use different dialects that can be selected by the user, but the one used for this thesis is the Linalg dialect, which serves as input for the next phase of the toolchain.
 
 \begin{figure}[t]
     \centering
@@ -84,9 +80,8 @@ The TorchScript representation is then converted to MLIR using the built-in conv
 
 Since Torch-MLIR implicitly uses the TorchScript representation to go from PyTorch to MLIR, the first part of the research consisted of a deep analysis of the Graph Neural Network models to make them compatible with TorchScript.
 
-This task required more effort for the GIN model due to its use of PyTorch Geometric than the GCN model, which only uses pure PyTorch.
-In particular, the required adaptations, that have been used for both models, have been made general aiming to make them versatile for various applications.
-They are documented below, with a small example for each of them:
+This task required more effort for the GIN model as it uses functions from PyTorch Geometric than the GCN model, which only uses pure PyTorch operations.
+The following adaptations have been applied to both models, and they can be applied to make any GNN compatible with TorchScript.
 
 \begin{itemize}
     \item[-] The GNN layer class, if created as a subclass of the Message Passing class, must be marked as Jittable whenever it is used.
@@ -97,6 +92,9 @@ self.convs.append(GINConv(emb_dim).jittable())
 \begin{lstlisting}[language=Python,label={lst:propagate-annotation}]
 propagate_type = {'x': Tensor, 'edge_attr': Tensor}
 \end{lstlisting}
+\begin{lstlisting}[language=Python,label={lst:propagate-annotation-comment}]
+# propagate_type: (x: Tensor, edge_attr: Tensor)
+\end{lstlisting}
     \item[-] It can happen that TorchScript is not able to recognize the correct type of variables.
     In this case, it is necessary to use an assertion to explicitly declare that the variable is an instance of the correct type.
 \begin{lstlisting}[language=Python,label={lst:isinstance-assertion}]
@@ -105,6 +103,9 @@ assert isinstance(edge_embedding, Tensor)
     \item[-] A common approach to speed up the training and inference steps is to use batched data.
     Unfortunately, TorchScript does not support forward functions that take as input a batch.
     For this reason, the forward function must receive Tensors as input, thus the batch must be split into its component.
+\begin{lstlisting}[language=Python,label={lst:splitted-forward-before}]
+def forward(self, batched_data):
+\end{lstlisting}
 \begin{lstlisting}[language=Python,label={lst:splitted-forward}]
 def forward(self, x, edge_index, edge_attr):
 \end{lstlisting}
@@ -125,12 +126,13 @@ for idx, layer in enumerate(self.convs):
 \label{subsec:torch-mlir-compilation}%
 
 Once having designed, implemented, made compatible with TorchScript, and trained the GNN model in PyTorch, it is possible to use the \lstinline{torch_mlir.compile} API to obtain the MLIR representation of the model.
-In particular, this API takes three parameters as input: the GNN model, an input example of the model and the desired output type.
-The Graph Neural Network model must have been already trained, being ready for inference.
-The second parameter, the input example of the model, is an arbitrary input similar to the one that would be given for inference purposes.
-It is required because, by default, the implicit Jit function called by Torch-MLIR to script the model and obtain a script module, involves compiling the forward method and recursively compiling any methods, submodules, and functions called within the forward method. This results in a JIT IR which is converted to the torch dialect which is almost in a 1:1 correspondence.
+In particular, this API takes three parameters as input: the GNN model, an example input of the model and the desired output type.
+The Graph Neural Network model must have been already trained, and frozen, ready for inference.
+The second parameter, the example input of the model, is an arbitrary input similar to the one that would be given for inference purposes.
+It is required because, by default, the implicit Jit function called by Torch-MLIR to script the model and obtain a script module involves compiling the forward method and recursively compiling any methods, submodules, and functions called within the forward method.
+This results in a JIT IR which is converted to the torch dialect, which is almost in a 1:1 correspondence.
 The torch dialect is then lowered into one of the three available output dialects: linalg, tosa, mhlo.
-The purpose of the last parameter is to choose which of these three dialects has to be used for the output MLIR\@.
+The purpose of the last parameter of \lstinline{torch_mlir.compile} is to choose which of these three dialects has to be used for the output MLIR\@.
 
 An additional parameter that can be used is related to the tracing.
 There are two ways in which it is possible to obtain a TorchScript representation: \lstinline{torch.jit.script} and \lstinline{torch.jit.tracing}.
@@ -147,8 +149,8 @@ module = torch_mlir.compile(gnn_model, (x, features, adj),
                             output_type="linalg-on-tensors")
 \end{lstlisting}
 
-Once having obtained the compiled module, the expected behavior is to use one of the backends provided by torch-MLIR to make the inference.
-This is not the flow followed in this thesis, because, as represented in the accelerator design flow, in Figure~\ref{fig:toolchain}, it is needed to export the Linalg representation for the next phase.
+Once having obtained the compiled module, the expected behavior is to use one of the backends provided by torch-MLIR to run inference.
+This is not the flow followed in this thesis, because, as represented in the accelerator design flow in Figure~\ref{fig:toolchain}, it is time to export the Linalg representation for the next phase.
 This can be done by simply saving the model to an MLIR file, as shown below.
 \begin{lstlisting}[language=Python,label={lst:torch_mlir-export}]
 with open("gnn_model.mlir", "w", encoding="utf-8") as outf:
@@ -157,26 +159,22 @@ with open("gnn_model.mlir", "w", encoding="utf-8") as outf:
 
 Only the GCN model implemented in PyTorch reached this phase of the toolchain.
 During the research, much effort has been spent in trying to add support for the PyTorch Geometric framework to the toolchain.
-Even if some innovation has been brought in this regard, there are still open points to work on.
+Even if some improvements have been achieved in this regard, such as the implementation of support of the constant of Tuple type, there are still open points to work on.
 For this reason, at the actual state, the proposed design flow only supports PyTorch as a high-level framework
-It must be noted that no documentation existed and no previous works have ever used Torch-MLIR with GNN models.
-All the examples and the work done by the Torch-MLIR community are related to Deep Neural Network models.
 
-This thesis could represent the first work that explored the use of Torch-MLIR with GNN models.
-Unfortunately, even if some innovation has been brought, such as the implementation of support of the constant of Tuple type, some more work is still required.
 In particular, Torch-MLIR does not support the \lstinline{aten.scatter_add} operation, which, at the actual state, cannot be lowered to MLIR\@.
-This operation is extensively used by PyTorch Geometric, leading to the incompatibility of the two elements.
-The next step to add support for PyTorch Geometric to the proposed toolchain would be the implementation to Torch-MLIR of the lowering of the scatter add operation.
+This operation is extensively used by PyTorch Geometric, leading to the incompatibility of the two tools.
 
-Another point discovered during this thesis is the fact that Torch-MLIR does not support the sparse tensor type. 
+Another current limitation of the framework derives from the fact that Torch-MLIR does not support the sparse tensor type.
 Each sparse tensor implemented in PyTorch, with the relative sparse operations, is lowered to MLIR to a dense tensor, losing all its representation's advantages.
 A promising option to avoid this is Taco~\cite{taco} with its PyTaco APIs for Python.
-The MLIR team started creating what is called MLIR-PyTACO~\cite{mlir-pytaco}, an end-to-end use case for the sparse tensor compiler, which can be used to lower sparse Tensor to MLIR\@.
+MLIR-PyTACO~\cite{mlir-pytaco} is an end-to-end use case for the sparse tensor compiler, which employs a Python interface to process the PyTACO language, creating MLIR \lstinline{linalg.generic} operations annotated with sparse tensor information to depict tensor computations.
+It subsequently invokes the MLIR sparse tensor code generator to produce an executable program, which is executed by the MLIR execution engine, returning the result back to the Python layer.
 It is important to clarify that, as introduced in~\cite{Bik_2022}, sparse tensors are supported by MLIR, with a dedicated sparse tensor dialect that uses intuitive annotations for different sparse tensor representations, such as CSR and COO.
 What is not supported yet is the lowering through Torch-MLIR\@.
 However, even if MLIR-PyTACO is still premature and in testing phase, interesting features could be brought by its advancement.
 
-Even losing the sparse tensor representation, using the proper optimizations provided by the toolchain in combination with the higher computational performance of FPGAs, still make it possible to accelerate the GNN operations, as will be stated in the next Chapter.
+Even without the sparse tensor representation, using the proper optimizations provided by the toolchain in combination with the higher computational performance of FPGAs, still makes it possible to accelerate the GNN operations, as will be stated in the next Chapter.
 
 \section{Synthesizer}
 \label{sec:toolchain-synthesizer}%
@@ -210,23 +208,23 @@ The output of SODA-OPT is an LLVM representation that serves as input to PandA-B
 
 Despite the remarkable capabilities of SODA-OPT, it should be noted that it does not support the entire set of dialects utilized within the MLIR ecosystem, such as the ml\_program or the Tensor dialect.
 Consequently, an additional step is required wherein the representation obtained from Torch-MLIR is lowered to remove unsupported dialects.
-In particular, once having successfully exported the MLIR representation using the \lstinline{torch_mlir.compile} API, a set of mlir-opt passes have been used to remove the unsupported dialects by lowering them to supported ones, such as the memref.
+In particular, once having successfully exported the MLIR representation using the \lstinline{torch_mlir.compile} API, a set of mlir-opt passes have been used to remove the unsupported dialects by lowering them to supported ones, such as memref.
 
 The next step consists in outlining the part of MLIR code to accelerate.
 In general, the aim is to accelerate the whole function.
-To do so, it is enough to modify the MLIR file by adding the \lstinline{soda.launch} and \lstinline{soda.terminator} flags at the beginning and end of the function, thus after the start of the forward and before the return statement.
+To do so, it is enough to modify the MLIR file by adding \lstinline{soda.launch} and \lstinline{soda.terminator} flags at the beginning and end of the function, thus after the start of the forward method and before the return statement.
 
 SODA-OPT provides various passes that can be used to apply optimization to the outlined code.
-In particular, it provides a subset of MLIR passes plus a set of passes tailored for soda optimizations.
+In particular, it provides a subset of MLIR passes and a set of custom passes.
 The SODA-OPT passes are continuously evolving, trying to keep up with rapid advancement and innovation within the domain of MLIR\@.
 
 An essential part of this research has been the analysis of the GNN model, the understanding of its bottlenecks, and the consequent identification of the optimization having the biggest impact on performance, without increasing too much the area of the accelerator.
 
 The first part of this analysis has been conducted on PyTorch.
-Profiling the inference function of the GCN model, the result showed that, in general, nearly 60\% of the time required to make a prediction was used for the matrix multiplication operation.
-For this reason, an important part of this thesis is represented by research on how to accelerate matrix multiplication using SODA-OPT passes to then accelerate the GCN inference.
+Profiling the inference function of the GCN model, the result showed that, in general, nearly 60\% of the time required to make a prediction was used for the matrix multiplication operation as will be shown in Chapter~\ref{ch:chapter_six}.
+For this reason, an important part of this thesis is represented by research on how to optimize matrix multiplication using SODA-OPT passes to then accelerate the GCN inference.
 
-This analysis has been conducted using a subset of the Cora dataset, and the first pass used transforms the linalg to affine dialect, resulting in three nested affine loops shown in Listing~\ref{lst:affine-mul}.
+A matmul operation in the linalg dialect is lowered to affine by SODA-OPT, resulting in three nested affine loops shown in Listing~\ref{lst:affine-mul}.
 
 \begin{lstlisting}[label={lst:affine-mul}, caption=Matrix multiplication in MLIR affine dialect]
 affine.for %arg3 = 0 to 15 {
@@ -243,8 +241,8 @@ affine.for %arg3 = 0 to 15 {
 }
 \end{lstlisting}
 
-The result of this research showed that the most impressive improvement in terms of performance is given by the loop unrolling technique.
-This optimization perfectly allows to exploit the extreme parallelism available on FPGAs.
+Among all optimizations available in SODA-OPT the biggest improvement in terms of performance is achieved applying the loop unrolling technique, which involves breaking down a loop into multiple smaller iterations, effectively reducing the overhead of loop control instructions and potentially exposing more opportunities for other optimizations.
+This optimization perfectly allows to exploit the extreme parallelism available on FPGAs, because the loop bodies are expanded allowing the parallel execution of multiple iterations of the original loop.
 The right choice is not to continuously unroll until having no more loops in the code.
 The solution is to pick the right trade-off between performance reduction and the area of the matrix multiplication accelerator.
 
@@ -257,32 +255,28 @@ As a final result, the input code is translated into an LLVM intermediate repres
 PandA-Bambu represents the last phase of the synthesis.
 As represented in Figure~\ref{fig:bambu_flow}, it receives the LLVM representation as input, and after having applied some optional low-level optimizations, it performs the typical steps of HLS introduced in Section~\ref{sec:hls}.
 
-This stage represented another important part of this research.
-PandA-Bambu allows the specification of different optimizations and settings that can have a big impact on accelerator performance.
-Some optimization techniques have been explored, but the most evaluated setting is the number of memory channels.
+The LLVM intermediate representation taken as input from PandA-Bambu is received by the Clang compiler frontend which builds an internal IR to perform the HLS steps.
+After having applied the specified optimizations, the generated design in an HDL is given as output.
+As a result, after traversing through each stage of the proposed toolchain's process, Bambu's output represents the final output, an accelerator tailored to target and maximize performance on cutting-edge FPGA architectures.
 
-In particular, a comparative analysis has been performed between different number of memory channels, including the minimum, 2 channels, and the maximum, 32 channels.
+PandA-Bambu allows the specification of different optimizations and settings that can have a big impact on accelerator performance.
+Some optimization techniques have been explored, including in particular an evaluation of the impact of varying the number of memory channels.
+
+In particular, an experimental analysis has been performed varying the number of memory channels, between the minimum, 2 channels, and the maximum, 32 channels.
 The latter option uses an external memory for the accelerator, which allows to better exploit the high level of parallelism that can be achieved using the loop unrolling technique, but at the same time, more cycles and area for loading data are required.
 It is the case of a trade-off between the number of channels and the required number of data load cycles.
 The conducted study revealed that there is a point, represented by a specific number of parallel operations, after which using an external memory with 32 channels becomes beneficial.
 
-PandA-Bambu also offers the possibility to apply low-level loop unrolling, but this option has been disabled to be able to evaluate in isolation the performance impact of the SODA-OPT loop unrolling technique.
-Bambu provides also the possibility to export some graphs that have been used for this research.
-One important file is represented by the HLS graph, which shows the computation states and transitions, the number of cycles needed by each operation to complete, and other information that has been really useful to study and understand the impact of both SODA-OPT and Bambu optimization settings.
+PandA-Bambu also offers the possibility to apply low-level loop unrolling, but this option has been disabled to be able to evaluate in isolation the performance impact of the SODA-OPT loop unrolling technique and avoid that loops are unrolled automatically if the option was not enabled in SODA-OPT\@.
+Bambu provides also the possibility to export some files that have been used for this research.
+One important file is represented by the HLS graph, which shows the computation states and transitions, the number of cycles needed by each operation to complete, and other information that has been useful to study and understand the impact of both SODA-OPT and Bambu optimization settings.
 
-The LLVM intermediate representation taken as input from PandA-Bambu is received by the Clang compiler frontend which builds an internal IR to perform the HLS steps.
-After having applied the specified optimizations, the generated design in an HDL is given as output.
-As a result, after traversing through each stage of the proposed toolchain's process, the accelerator, i.e., the Bambu's output, represents the final output, tailored to target and maximize performance on cutting-edge FPGA architectures.
-
-\section{Discussion}
+\section{Conclusion}
 \label{sec:toolchain-discussion}%
 
-This Chapter presented the most important contribution of this thesis, an FPGA toolchain to create GNN hardware accelerators starting directly from PyTorch high-level framework, with the possibility to use different optimizations to improve performance depending on application bottlenecks.
+This chapter presented the main contribution of this thesis, an FPGA toolchain to create GNN hardware accelerators starting directly from PyTorch high-level framework, with the possibility to use different optimizations to improve performance depending on application bottlenecks.
 
 The most crucial advantage of the proposed toolchain is that it allows obtaining an accelerator without any knowledge of hardware design and implementation.
 
-During this research, the first accelerator developed was tailored for the matrix multiplication operation.
-The second accelerator, which exploited the result of the first one, improved the inference performance of the GCN model.
-
-In conclusion, the presented toolchain allows for the easy development of the GNN hardware accelerator.
-No hardware design knowledge is required, and it can be used to develop accelerators for any application of all GNN models.
+Moreover, analyzing two representative GNN models it has been highlighted that most of the computation is composed of matrix multiplication operations.
+Available opt passes in SODA-OPT and Bambu can be tailored for matmul, their effect is shown through experiments in the next chapter.

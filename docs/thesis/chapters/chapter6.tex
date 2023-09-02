@@ -405,7 +405,7 @@ Specifically, dividing the cycle count of the first experiment of the table and 
 However, this behavior limits the utilization of the possibilities presented by FPGA technology, which encompass substantial parallelization potential and concurrent memory accesses.
 
 Figure~\ref{fig:gcn-inference-comparison} and Table~\ref{tab:GCN-inference-pytorch-accelerator-comparison}, show the result of a comparative analysis between the PyTorch CPU time and the optimized FPGA accelerator time to perform GCN inference.
-All the experiments have been performed using a subset of the Cora dataset introduced in Subsection~\ref{subsec:gnn_datasets}, as detailed in Table~\ref{tab:dataset-definition}.
+All the experiments have been performed using a subset of the Cora dataset introduced in Subsection~\ref{subsec:toolchain-inputs}, as detailed in Table~\ref{tab:dataset-definition}.
 The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
 
 The accelerator times are evaluated using both baseline and optimized settings, and Figure~\ref{fig:gcn-inference-cycles-comparison} and Table~\ref{tab:GCN-inference-accelerators-comparison} show how the accelerator has been affected by the unrolling technique with respect to the baseline performance.

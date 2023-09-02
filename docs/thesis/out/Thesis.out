@@ -35,29 +35,28 @@
 \BOOKMARK [0][-]{chapter.4}{Problem Formulation}{}% 35
 \BOOKMARK [1][-]{section.4.1}{Graph Neural Network acceleration}{chapter.4}% 36
 \BOOKMARK [1][-]{section.4.2}{Motivation and objective}{chapter.4}% 37
-\BOOKMARK [0][-]{chapter.5}{FPGA Toolchain for Graph Neural Network Acceleration}{}% 38
+\BOOKMARK [0][-]{chapter.5}{Design of the Toolchain}{}% 38
 \BOOKMARK [1][-]{section.5.1}{PyTorch}{chapter.5}% 39
-\BOOKMARK [2][-]{subsection.5.1.1}{GNN models}{section.5.1}% 40
-\BOOKMARK [2][-]{subsection.5.1.2}{Datasets}{section.5.1}% 41
-\BOOKMARK [1][-]{section.5.2}{Torch-MLIR}{chapter.5}% 42
-\BOOKMARK [2][-]{subsection.5.2.1}{From PyTorch to TorchScript}{section.5.2}% 43
-\BOOKMARK [2][-]{subsection.5.2.2}{Torch-MLIR Compilation}{section.5.2}% 44
-\BOOKMARK [1][-]{section.5.3}{Synthesizer}{chapter.5}% 45
-\BOOKMARK [2][-]{subsection.5.3.1}{SODA-OPT}{section.5.3}% 46
-\BOOKMARK [2][-]{subsection.5.3.2}{PandA-Bambu}{section.5.3}% 47
-\BOOKMARK [1][-]{section.5.4}{Discussion}{chapter.5}% 48
-\BOOKMARK [0][-]{chapter.6}{Experimental Procedures and Results}{}% 49
-\BOOKMARK [1][-]{section.6.1}{Model analysis and profiling}{chapter.6}% 50
-\BOOKMARK [1][-]{section.6.2}{Matrix multiplication acceleration}{chapter.6}% 51
-\BOOKMARK [2][-]{subsection.6.2.1}{PyTorch matrix multiplication benchmark}{section.6.2}% 52
-\BOOKMARK [2][-]{subsection.6.2.2}{Optimization comparison}{section.6.2}% 53
-\BOOKMARK [2][-]{subsection.6.2.3}{GCN accelerator evaluation}{section.6.2}% 54
-\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 55
-\BOOKMARK [1][-]{section.7.1}{Future developments}{chapter.7}% 56
-\BOOKMARK [0][-]{chapter*.51}{Bibliography}{}% 57
-\BOOKMARK [0][-]{appendix*.53}{List of Figures}{}% 58
-\BOOKMARK [0][-]{appendix*.55}{List of Tables}{}% 59
-\BOOKMARK [0][-]{appendix*.57}{List of Algorithms}{}% 60
-\BOOKMARK [0][-]{appendix*.59}{List of Listings}{}% 61
-\BOOKMARK [0][-]{appendix*.61}{List of Symbols}{}% 62
-\BOOKMARK [0][-]{appendix*.64}{Acknowledgements}{}% 63
+\BOOKMARK [2][-]{subsection.5.1.1}{Toolchain inputs}{section.5.1}% 40
+\BOOKMARK [1][-]{section.5.2}{Torch-MLIR}{chapter.5}% 41
+\BOOKMARK [2][-]{subsection.5.2.1}{From PyTorch to TorchScript}{section.5.2}% 42
+\BOOKMARK [2][-]{subsection.5.2.2}{Torch-MLIR Compilation}{section.5.2}% 43
+\BOOKMARK [1][-]{section.5.3}{Synthesizer}{chapter.5}% 44
+\BOOKMARK [2][-]{subsection.5.3.1}{SODA-OPT}{section.5.3}% 45
+\BOOKMARK [2][-]{subsection.5.3.2}{PandA-Bambu}{section.5.3}% 46
+\BOOKMARK [1][-]{section.5.4}{Conclusion}{chapter.5}% 47
+\BOOKMARK [0][-]{chapter.6}{Experimental Procedures and Results}{}% 48
+\BOOKMARK [1][-]{section.6.1}{Model analysis and profiling}{chapter.6}% 49
+\BOOKMARK [1][-]{section.6.2}{Matrix multiplication acceleration}{chapter.6}% 50
+\BOOKMARK [2][-]{subsection.6.2.1}{PyTorch matrix multiplication benchmark}{section.6.2}% 51
+\BOOKMARK [2][-]{subsection.6.2.2}{Optimization comparison}{section.6.2}% 52
+\BOOKMARK [2][-]{subsection.6.2.3}{GCN accelerator evaluation}{section.6.2}% 53
+\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 54
+\BOOKMARK [1][-]{section.7.1}{Future developments}{chapter.7}% 55
+\BOOKMARK [0][-]{chapter*.51}{Bibliography}{}% 56
+\BOOKMARK [0][-]{appendix*.53}{List of Figures}{}% 57
+\BOOKMARK [0][-]{appendix*.55}{List of Tables}{}% 58
+\BOOKMARK [0][-]{appendix*.57}{List of Algorithms}{}% 59
+\BOOKMARK [0][-]{appendix*.59}{List of Listings}{}% 60
+\BOOKMARK [0][-]{appendix*.61}{List of Symbols}{}% 61
+\BOOKMARK [0][-]{appendix*.64}{Acknowledgements}{}% 62
