@@ -11,19 +11,19 @@ and leverage graph data.
 
 Graph neural networks (GNNs) have been introduced in response to the growing demand for learning tasks involving
 graph data, which encompasses extensive relational information among its elements.
-These neural models effectively capture the interdependence among graph nodes by employing message passing mechanisms.
+These models effectively capture the interdependence among graph nodes by employing message passing mechanisms.
 
 Optimizing and accelerating the capabilities of Graph Neural Networks is necessary due to their increasingly popularity, particularly in domains characterized by vast amounts of data,
 such as social networks and chemistry.
 In particular, inference in GNNs refers to the time the model takes to make predictions after training.
 The duration of the inference process determines the speed at which queries are answered, and researchers strive to minimize this time span.
 
-In applications of deep learning that prioritize low latency, Field-programmable Gate Arrays (FPGAs) outperform other computing devices, such as Central Processing Units (CPUs) and Graphics Processing Units (GPUs).
+In applications of deep learning that prioritize low latency, Field-programmable Gate Arrays (FPGAs) can outperform other computing devices, such as Central Processing Units (CPUs) and Graphics Processing Units (GPUs).
 FPGAs offer the advantage of being fine-tuned to the application to strike the optimal balance between power efficiency and meeting performance requirements.
 
-Due to this reason, researchers have been actively pursuing the development of new FPGA accelerators for Graph Neural Networks in recent times.
+Due to these reasons, researchers have been actively pursuing the development of new FPGA accelerators for Graph Neural Networks in recent times.
 
-The conventional approach to hardware design involves a combination of manual coding and automated processing.
+A common approach to hardware design involves a combination of manual coding and automated processing.
 In particular, first the functional units are implemented in a programming language such as C/C++, then they are transformed into a Hardware Description Language (HDL) using commercial High-Level Synthesis (HLS) tools.
 Following functional verification, the HDL kernels are forwarded to downstream logic synthesis and physical design tools, and finally integrated into a system.
 However, this method demands significant effort and relies heavily on the expertise of the designers, leading to varying quality of results.
@@ -40,14 +40,9 @@ specifications and architecture-independent optimizations.
 Following this, the framework generates a low-level IR (LLVM IR) specifically tailored for the hardware generation engine,
 PandA-Bambu~\cite{9586110}.
 
-In pursuit of the thesis goal, various optimizations were adopted throughout the process.
-Specifically, efforts were made to optimize specific computations in Graph Neural Networks.
-As these networks often deal with massive graph sizes, the computation time and memory requirements are substantial.
-Consequently, a significant portion of the research focuses on optimizing the computation phase of Graph Neural Networks using
+As GNNs often deal with massive graph sizes, the computation time and memory requirements are substantial.
+Consequently, a significant portion of the research focuses on analysis of computational bottlenecks and optimizing the computation phase of Graph Neural Networks using
 custom optimizations.
-
-This analysis aims to provide valuable insights for future research endeavors, enabling the development of solutions
-to overcome these limitations and further enhance the proposed toolchain.
 
 The toolchain's effectiveness is validated through experimental results, demonstrating significant enhancements in performance.
 The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
@@ -58,15 +53,11 @@ The generated accelerators improved inference speeds while preserving the accura
 In this thesis, a novel toolchain is introduced to accelerate GNN inference, alongside customized optimizations designed to finely enhance model performance.
 
 The initial phase in designing the toolchain involves identifying appropriate technologies.
-Given its extensive usage and popularity in Neural Network implementations, PyTorch serves as the basis of this design process.
+Given its extensive usage and popularity in neural network implementations, PyTorch serves as the basis of this design process.
 Following that, the selection of a technology to establish a connection between the high-level framework and the synthesizer was achieved through Torch-MLIR\@.
 This facilitated the acquisition of an MLIR representation for subsequent synthesis.
 
-A part of this research involved comprehending the process of integrating them and documenting these steps for future users.
-To the best of the author's knowledge, this thesis stands as one of the first documented attempts in combining Torch-MLIR with Graph Neural Networks.
-
-This thesis played a role in innovating Torch-MLIR by providing examples involving GNNs. Moreover, it effectively advanced this technology by introducing new compatibility support for PyTorch Geometric.
-Additionally, this effort identified the specific domain requiring future attention to accomplish this task.
+To the best of the author's knowledge, this thesis stands as one of the first documented attempts in combining Torch-MLIR with Graph Neural Networks developed in PyTorch and PyTorch Geometric.
 
 The compatibility between PyTorch and Torch-MLIR is enabled through the TorchScript intermediate representation.
 This study offers general adjustments for various GNN models to make them compatible with this representation, thus enabling the conversion of the model to MLIR\@.
@@ -74,7 +65,7 @@ This study offers general adjustments for various GNN models to make them compat
 Subsequently, the following phase involved identifying the bottlenecks within the models for optimization during the synthesis stage.
 A substantial portion of this research is dedicated to evaluating and identifying the most effective optimizations offered by SODA-OPT and PandA-Bambu for GNNs.
 Both of these technologies provide various optimizations applicable during the synthesis phase, continuously integrating new features.
-This study fills the gap in both theoretical and practical evaluations concerning the unified implementation of their optimizations.
+This study includes theoretical and practical evaluations concerning the combination of their optimizations.
 
 To enhance the inference of the GNN model employed in this thesis, an initial step involved constructing a matrix multiplication accelerator.
 Subsequently, the insights gained were implemented in the GNN model, generating promising outcomes.
