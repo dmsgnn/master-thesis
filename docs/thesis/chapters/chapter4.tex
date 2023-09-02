@@ -25,7 +25,7 @@ Ultimately, the GNN accelerator enhances the efficiency and scalability of the r
 \label{sec:motivation}%
 
 As mentioned in Chapter~\ref{ch:chapter_three}, different state-of-the-art accelerators exist and use different approaches to improve GNNs' performance.
-Even if various alternatives are available, as anticipated in Section~\ref{sec:relater-work-conclusion}, almost all GNN acceleration research has implicitly focused on either developing highly efficient schemes tailored for specific GNN models or aiming for generality and flexibility to accommodate various types of GNNs with less efficiency.
+Even if various alternatives are available, almost all GNN acceleration research has implicitly focused on either developing highly efficient schemes tailored for specific GNN models or aiming for generality and flexibility to accommodate various types of GNNs with less efficiency.
 
 The primary challenge driving the research in this thesis lies in creating a framework that optimizes performance and efficiency while retaining the necessary flexibility to adapt to diverse graph sizes, characteristics, and GNN algorithms.
 
@@ -36,17 +36,17 @@ The main research questions that led to this thesis can be summarised as follow:
     \item What are the bottlenecks of GNNs that can slow down their inference time?
     \item What are the most effective low-level optimizations for GNNs that can improve their efficiency without sacrificing model accuracy?
     %\item How does the proposed GNN hardware accelerator compare to existing software solutions?
-    \item Can the proposed toolchain be generalized to different GNN models and datasets while ensuring high performance?
+    \item Can an automated design be generalized to different GNN models and datasets while ensuring high performance?
 \end{enumerate}
 
 
 Consequently, the main objectives of the thesis are:
 \begin{enumerate}
     \item Investigate existing GNN models and identify bottlenecks that hinder their inference efficiency.
-    \item Propose and design hardware accelerators tailored to GNNs, leveraging parallelism and memory optimizations to accelerate graph computations.
-    \item Explore low-level optimizations for GNNs to improve hardware performance.
-    \item Implement and evaluate the proposed GNN accelerators on FPGA.
     \item Develop an FPGA toolchain for GNN acceleration, allowing seamless integration with various GNN models and datasets.
+    \item Explore low-level optimizations for GNNs to improve hardware performance.
+    \item Synthesize hardware accelerators tailored to GNNs, leveraging parallelism and memory optimizations to accelerate graph computations.
+    \item Implement and evaluate the proposed GNN accelerators on FPGA\@.
 \end{enumerate}
 
 

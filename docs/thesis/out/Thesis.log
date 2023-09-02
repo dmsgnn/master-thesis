@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  2 SEP 2023 16:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  2 SEP 2023 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1422,7 +1422,7 @@ Package epstopdf Info: Source file: <Images/toolchain.eps>
 rted-to.pdf Images/toolchain.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain-eps-converted-to.pdf, id=893, 185.69376pt x 222.8325pt>
+<Images/toolchain-eps-converted-to.pdf, id=892, 185.69376pt x 222.8325pt>
 File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain-eps-converted-to.pdf>
 Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
@@ -1439,7 +1439,7 @@ Package epstopdf Info: Source file: <Images/torch-mlir.eps>
 erted-to.pdf Images/torch-mlir.eps>
 (epstopdf)             \includegraphics on input line 77.
 Package epstopdf Info: Output file is already uptodate.
-<Images/torch-mlir-eps-converted-to.pdf, id=920, 199.74625pt x 201.75375pt>
+<Images/torch-mlir-eps-converted-to.pdf, id=919, 199.74625pt x 201.75375pt>
 File: Images/torch-mlir-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/torch-mlir-eps-converted-to.pdf>
 Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input 
@@ -1450,12 +1450,12 @@ line 77.
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 [46 <./Images/torch-mlir-eps-converted-to.pdf>] [47] [48]
-<Images/soda_opt_flow.pdf, id=978, 391.44041pt x 701.256pt>
+<Images/soda_opt_flow.pdf, id=977, 391.44041pt x 701.256pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
 Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 192.
 (pdftex.def)             Requested size: 152.47pt x 273.14923pt.
-<Images/bambu_flow.pdf, id=979, 402.51875pt x 786.14798pt>
+<Images/bambu_flow.pdf, id=978, 402.51875pt x 786.14798pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
 Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 198.
@@ -1475,33 +1475,33 @@ Overfull \hbox (6.53311pt too wide) in paragraph at lines 19--19
 ] [56]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 86.
-<Images/row-by-col-mult-example.pdf, id=1088, 164.67923pt x 62.07993pt>
+<Images/row-by-col-mult-example.pdf, id=1087, 164.67923pt x 62.07993pt>
 File: Images/row-by-col-mult-example.pdf Graphic file (type pdf)
 <use Images/row-by-col-mult-example.pdf>
 Package pdftex.def Info: Images/row-by-col-mult-example.pdf  used on input line
  107.
 (pdftex.def)             Requested size: 289.84386pt x 109.26108pt.
  [57 <./Images/row-by-col-mult-example.pdf>] [58]
-<Images/torch-mm_benchmark.pdf, id=1150, 693.792pt x 346.89601pt>
+<Images/torch-mm_benchmark.pdf, id=1149, 693.792pt x 346.89601pt>
 File: Images/torch-mm_benchmark.pdf Graphic file (type pdf)
 <use Images/torch-mm_benchmark.pdf>
 Package pdftex.def Info: Images/torch-mm_benchmark.pdf  used on input line 198.
 
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
  [59 <./Images/torch-mm_benchmark.pdf>]
-<Images/matmul_comparison.pdf, id=1197, 693.792pt x 346.89601pt>
+<Images/matmul_comparison.pdf, id=1196, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison.pdf Graphic file (type pdf)
 <use Images/matmul_comparison.pdf>
 Package pdftex.def Info: Images/matmul_comparison.pdf  used on input line 241.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
  [60 <./Images/matmul_comparison.pdf>] [61]
-<Images/matmul_comparison15.pdf, id=1282, 693.792pt x 346.89601pt>
+<Images/matmul_comparison15.pdf, id=1281, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison15.pdf Graphic file (type pdf)
 <use Images/matmul_comparison15.pdf>
 Package pdftex.def Info: Images/matmul_comparison15.pdf  used on input line 300
 .
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
-<Images/matmul_comparison30.pdf, id=1283, 693.792pt x 346.89601pt>
+<Images/matmul_comparison30.pdf, id=1282, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison30.pdf Graphic file (type pdf)
 <use Images/matmul_comparison30.pdf>
 Package pdftex.def Info: Images/matmul_comparison30.pdf  used on input line 305
@@ -1518,14 +1518,14 @@ Overfull \hbox (1.82593pt too wide) in paragraph at lines 360--360
 []|\T1/cmr/bx/n/12 Cora150| 
  []
 
-<Images/gcn_forward_comparison.pdf, id=1388, 693.792pt x 346.89601pt>
+<Images/gcn_forward_comparison.pdf, id=1387, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_comparison.pdf  used on input line 
 400.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
 [64] [65 <./Images/gcn_forward_comparison.pdf>]
-<Images/gcn_forward_cycles_comparison.pdf, id=1458, 693.792pt x 346.89601pt>
+<Images/gcn_forward_cycles_comparison.pdf, id=1457, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_cycles_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_cycles_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_cycles_comparison.pdf  used on inpu
@@ -1654,10 +1654,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (100 pages, 3618592 bytes).
+Output written on out/thesis.pdf (100 pages, 3618576 bytes).
 PDF statistics:
- 1861 PDF objects out of 2073 (max. 8388607)
- 1407 compressed objects within 15 object streams
+ 1860 PDF objects out of 2073 (max. 8388607)
+ 1406 compressed objects within 15 object streams
  393 named destinations out of 1000 (max. 500000)
  668 words of extra memory for PDF output out of 10000 (max. 10000000)
 
