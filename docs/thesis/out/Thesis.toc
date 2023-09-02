@@ -27,11 +27,11 @@
 \contentsline {subsection}{\numberline {3.3.1}Unified architecture accelerators}{21}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}GNN acceleration using Tiled architecture}{24}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{25}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Discussion}{28}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.4}Challenges}{28}{subsection.3.3.4}%
 \contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{29}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{32}{section.3.5}%
+\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{31}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Graph processing acceleration}{34}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{35}{section.3.7}%
+\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{36}{section.3.7}%
 \contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{36}{subsection.3.7.1}%
 \contentsline {section}{\numberline {3.8}Conclusion}{37}{section.3.8}%
 \contentsline {chapter}{\numberline {4}Problem Formulation}{39}{chapter.4}%
@@ -57,11 +57,11 @@
 \contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{69}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Future developments}{70}{section.7.1}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{73}{chapter*.50}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{73}{chapter*.51}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{79}{appendix*.52}%
-\contentsline {chapter}{List of Tables}{81}{appendix*.54}%
-\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{83}{appendix*.56}%
-\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{85}{appendix*.58}%
-\contentsline {chapter}{List of Symbols}{87}{appendix*.60}%
-\contentsline {chapter}{Acknowledgements}{89}{appendix*.63}%
+\contentsline {chapter}{List of Figures}{79}{appendix*.53}%
+\contentsline {chapter}{List of Tables}{81}{appendix*.55}%
+\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{83}{appendix*.57}%
+\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{85}{appendix*.59}%
+\contentsline {chapter}{List of Symbols}{87}{appendix*.61}%
+\contentsline {chapter}{Acknowledgements}{89}{appendix*.64}%

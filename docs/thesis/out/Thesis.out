@@ -25,7 +25,7 @@
 \BOOKMARK [2][-]{subsection.3.3.1}{Unified architecture accelerators}{section.3.3}% 25
 \BOOKMARK [2][-]{subsection.3.3.2}{GNN acceleration using Tiled architecture}{section.3.3}% 26
 \BOOKMARK [2][-]{subsection.3.3.3}{Hybrid architectures for GNN acceleration}{section.3.3}% 27
-\BOOKMARK [2][-]{subsection.3.3.4}{Discussion}{section.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.4}{Challenges}{section.3.3}% 28
 \BOOKMARK [1][-]{section.3.4}{High-Level Synthesis based accelerators}{chapter.3}% 29
 \BOOKMARK [1][-]{section.3.5}{Software-Hardware co-design accelerators}{chapter.3}% 30
 \BOOKMARK [1][-]{section.3.6}{Graph processing acceleration}{chapter.3}% 31
@@ -54,10 +54,10 @@
 \BOOKMARK [2][-]{subsection.6.2.3}{GCN accelerator evaluation}{section.6.2}% 54
 \BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 55
 \BOOKMARK [1][-]{section.7.1}{Future developments}{chapter.7}% 56
-\BOOKMARK [0][-]{chapter*.50}{Bibliography}{}% 57
-\BOOKMARK [0][-]{appendix*.52}{List of Figures}{}% 58
-\BOOKMARK [0][-]{appendix*.54}{List of Tables}{}% 59
-\BOOKMARK [0][-]{appendix*.56}{List of Algorithms}{}% 60
-\BOOKMARK [0][-]{appendix*.58}{List of Listings}{}% 61
-\BOOKMARK [0][-]{appendix*.60}{List of Symbols}{}% 62
-\BOOKMARK [0][-]{appendix*.63}{Acknowledgements}{}% 63
+\BOOKMARK [0][-]{chapter*.51}{Bibliography}{}% 57
+\BOOKMARK [0][-]{appendix*.53}{List of Figures}{}% 58
+\BOOKMARK [0][-]{appendix*.55}{List of Tables}{}% 59
+\BOOKMARK [0][-]{appendix*.57}{List of Algorithms}{}% 60
+\BOOKMARK [0][-]{appendix*.59}{List of Listings}{}% 61
+\BOOKMARK [0][-]{appendix*.61}{List of Symbols}{}% 62
+\BOOKMARK [0][-]{appendix*.64}{Acknowledgements}{}% 63
