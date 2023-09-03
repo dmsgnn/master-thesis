@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  2 SEP 2023 23:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  3 SEP 2023 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1430,11 +1430,11 @@ ine 24.
 (pdftex.def)             Requested size: 227.6426pt x 273.14923pt.
  [44 <./Images/toolchain-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Images/torch-mlir.eps>
-(epstopdf)                    date: 2023-08-05 11:26:26
-(epstopdf)                    size: 1383598 bytes
+(epstopdf)                    date: 2023-09-03 14:51:04
+(epstopdf)                    size: 1393026 bytes
 (epstopdf)             Output file: <Images/torch-mlir-eps-converted-to.pdf>
-(epstopdf)                    date: 2023-08-05 11:26:36
-(epstopdf)                    size: 36372 bytes
+(epstopdf)                    date: 2023-09-03 14:51:55
+(epstopdf)                    size: 35426 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/torch-mlir-eps-conv
 erted-to.pdf Images/torch-mlir.eps>
 (epstopdf)             \includegraphics on input line 73.
@@ -1450,62 +1450,64 @@ line 73.
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 [46 <./Images/torch-mlir-eps-converted-to.pdf>] [47] [48]
-<Images/soda_opt_flow.pdf, id=978, 391.44041pt x 701.256pt>
+<Images/soda_opt_flow.pdf, id=977, 391.44041pt x 701.256pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
-Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 190.
+Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 193.
 (pdftex.def)             Requested size: 152.47pt x 273.14923pt.
-<Images/bambu_flow.pdf, id=979, 402.51875pt x 786.14798pt>
+<Images/bambu_flow.pdf, id=978, 402.51875pt x 786.14798pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
-Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 196.
+Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 199.
 (pdftex.def)             Requested size: 139.85796pt x 273.14923pt.
- [49 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>] [50] [51]) [52]
+ [49] [50 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>] [51]) [52] [5
+3] [54
+
+]
 Chapter 6.
 (./chapters/chapter6.tex
 Overfull \hbox (6.53311pt too wide) in paragraph at lines 19--19
 []|\T1/cmr/bx/n/12 aten::addmm| 
  []
 
-[53
+[55
 
-
-] [54]
+] [56]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 86.
-<Images/row-by-col-mult-example.pdf, id=1079, 164.67923pt x 62.07993pt>
+<Images/row-by-col-mult-example.pdf, id=1086, 164.67923pt x 62.07993pt>
 File: Images/row-by-col-mult-example.pdf Graphic file (type pdf)
 <use Images/row-by-col-mult-example.pdf>
 Package pdftex.def Info: Images/row-by-col-mult-example.pdf  used on input line
  107.
 (pdftex.def)             Requested size: 289.84386pt x 109.26108pt.
- [55 <./Images/row-by-col-mult-example.pdf>] [56]
-<Images/torch-mm_benchmark.pdf, id=1140, 693.792pt x 346.89601pt>
+ [57 <./Images/row-by-col-mult-example.pdf>] [58]
+<Images/torch-mm_benchmark.pdf, id=1148, 693.792pt x 346.89601pt>
 File: Images/torch-mm_benchmark.pdf Graphic file (type pdf)
 <use Images/torch-mm_benchmark.pdf>
 Package pdftex.def Info: Images/torch-mm_benchmark.pdf  used on input line 198.
 
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
- [57 <./Images/torch-mm_benchmark.pdf>]
-<Images/matmul_comparison.pdf, id=1188, 693.792pt x 346.89601pt>
+ [59 <./Images/torch-mm_benchmark.pdf>]
+<Images/matmul_comparison.pdf, id=1195, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison.pdf Graphic file (type pdf)
 <use Images/matmul_comparison.pdf>
 Package pdftex.def Info: Images/matmul_comparison.pdf  used on input line 241.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
- [58 <./Images/matmul_comparison.pdf>] [59]
-<Images/matmul_comparison15.pdf, id=1273, 693.792pt x 346.89601pt>
+ [60 <./Images/matmul_comparison.pdf>] [61]
+<Images/matmul_comparison15.pdf, id=1280, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison15.pdf Graphic file (type pdf)
 <use Images/matmul_comparison15.pdf>
 Package pdftex.def Info: Images/matmul_comparison15.pdf  used on input line 300
 .
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
-<Images/matmul_comparison30.pdf, id=1274, 693.792pt x 346.89601pt>
+<Images/matmul_comparison30.pdf, id=1281, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison30.pdf Graphic file (type pdf)
 <use Images/matmul_comparison30.pdf>
 Package pdftex.def Info: Images/matmul_comparison30.pdf  used on input line 305
 .
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
- [60] [61 <./Images/matmul_comparison15.pdf> <./Images/matmul_comparison30.pdf>
+ [62] [63 <./Images/matmul_comparison15.pdf> <./Images/matmul_comparison30.pdf>
 ]
 Overfull \hbox (1.82593pt too wide) in paragraph at lines 358--358
 []|\T1/cmr/bx/n/12 Cora120| 
@@ -1516,24 +1518,24 @@ Overfull \hbox (1.82593pt too wide) in paragraph at lines 360--360
 []|\T1/cmr/bx/n/12 Cora150| 
  []
 
-<Images/gcn_forward_comparison.pdf, id=1378, 693.792pt x 346.89601pt>
+<Images/gcn_forward_comparison.pdf, id=1386, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_comparison.pdf  used on input line 
 400.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
-[62] [63 <./Images/gcn_forward_comparison.pdf>]
-<Images/gcn_forward_cycles_comparison.pdf, id=1449, 693.792pt x 346.89601pt>
+[64] [65 <./Images/gcn_forward_comparison.pdf>]
+<Images/gcn_forward_cycles_comparison.pdf, id=1456, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_cycles_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_cycles_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_cycles_comparison.pdf  used on inpu
 t line 454.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
- [64 <./Images/gcn_forward_cycles_comparison.pdf>]) [65] [66
+ [66 <./Images/gcn_forward_cycles_comparison.pdf>]) [67] [68
 
 ]
 Chapter 7.
-(./chapters/chapter7.tex [67
+(./chapters/chapter7.tex [69
 
 ]
 Overfull \hbox (0.3068pt too wide) in paragraph at lines 26--28
@@ -1541,7 +1543,7 @@ Overfull \hbox (0.3068pt too wide) in paragraph at lines 26--28
 e field of GNN ac-cel-er-a-tion. Nonethe-
  []
 
-) [68] (out/thesis.bbl [69] [70
+) [70] (out/thesis.bbl [71] [72
 
 ]
 Underfull \hbox (badness 1072) in paragraph at lines 18--23
@@ -1549,7 +1551,7 @@ Underfull \hbox (badness 1072) in paragraph at lines 18--23
 -tion.  \T1/cmr/m/it/12 CoRR\T1/cmr/m/n/12 ,
  []
 
-[71
+[73
 
 ]
 Underfull \hbox (badness 6364) in paragraph at lines 89--94
@@ -1569,50 +1571,50 @@ Underfull \hbox (badness 1466) in paragraph at lines 98--103
 ez-Bombarelli,
  []
 
-[72] [73] [74]) [75] [76
+[74] [75] [76]) [77] [78
 
 ] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [77
+ [79
 
 
-] [78
+] [80
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [79
+ [81
 
 ]
-[80
+[82
 
 ] (out/thesis.loa)
 \tf@loa=\write8
 \openout8 = `thesis.loa'.
 
- [81
+ [83
 
-] [82
+] [84
 
 ] (out/thesis.lol)
 \tf@lol=\write9
 \openout9 = `thesis.lol'.
 
- [83
-
-] [84
-
-] [85
+ [85
 
 ] [86
 
 ] [87
 
+] [88
+
+] [89
+
 ]
-[88
+[90
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 331.
@@ -1624,13 +1626,13 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 29676AECBAD6DE4589B9288E404A597B;4135.
  ) 
 Here is how much of TeX's memory you used:
- 28530 strings out of 480608
- 522082 string characters out of 5903630
+ 28532 strings out of 480608
+ 522094 string characters out of 5903630
  1188487 words of memory out of 5000000
  43360 multiletter control sequences out of 15000+600000
  554012 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,21n,89p,1195b,1860s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,21n,89p,1195b,1858s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
 /usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
@@ -1652,10 +1654,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (98 pages, 3618684 bytes).
+Output written on out/thesis.pdf (100 pages, 3618432 bytes).
 PDF statistics:
- 1851 PDF objects out of 2073 (max. 8388607)
- 1400 compressed objects within 14 object streams
- 394 named destinations out of 1000 (max. 500000)
+ 1859 PDF objects out of 2073 (max. 8388607)
+ 1405 compressed objects within 15 object streams
+ 396 named destinations out of 1000 (max. 500000)
  660 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -135,13 +135,16 @@ The torch dialect is then lowered into one of the three available output dialect
 The purpose of the last parameter of \lstinline{torch_mlir.compile} is to choose which of these three dialects has to be used for the output MLIR\@.
 
 An additional parameter that can be used is related to the tracing.
-There are two ways in which it is possible to obtain a TorchScript representation: \lstinline{torch.jit.script} and \lstinline{torch.jit.tracing}.
+There are two ways in which it is possible to obtain a TorchScript representation: \lstinline{torch.jit.script} and \lstinline{torch.jit.trace}.
 The compile API of Torch-MLIR uses the first one by default.
 Instead, if the option use tracing is set to True, JIT tracing is used.
 The behavior of the two functions is slightly different.
-Tracing only captures functions and modules that lack data dependencies and untracked external dependencies.
-It records operations performed when the specified function is executed on the given tensors.
-As a result, the resulting ScriptModule consistently executes the same traced graph for any input.
+
+Tracing traces the execution of the code for the given inputs to generate a TorchScript representation.
+It only captures functions and modules that lack untracked external dependencies (e.g., perform input/output or access global variables).
+Tracing exclusively captures operations performed when the specified function is executed with the provided tensors.
+Consequently, the resulting ScriptModule will consistently execute the same traced graph for any input.
+
 In conclusion, tracing can be a valid option in some cases, such as when there is no need to record any control-flow like if-statements or loops, but the scripting is preferred, and it is guaranteed to work in a more wide set of cases.
 A call example of the compile Python API of Torch-MLIR is reported below.
 \begin{lstlisting}[language=Python,label={lst:torch_mlir-compile}]
