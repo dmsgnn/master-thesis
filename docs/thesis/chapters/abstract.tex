@@ -1,14 +1,14 @@
-Graph Neural Networks are a class of Machine Learning models that have emerged as a focal approach in dealing with graph-structured data, encompassing domains ranging from social networks to molecular chemistry.
+Graph Neural Networks are a class of Machine Learning models that have emerged as an efficient approach to dealing with graph-structured data, encompassing domains ranging from social networks to molecular chemistry and more.
 Particularly in the contemporary era of Big Data, dedicated hardware accelerators are often required to achieve optimal computational performance when processing large amounts of information.
 FPGAs offer a promising solution due to their inherent parallelism, but the process of translating Graph Neural Network models into FPGA accelerators is complex and requires extensive knowledge and expertise.
-This thesis addresses the challenge of accelerating Graph Neural Networks on Field-Programmable Gate Arrays.
-It introduces a comprehensive toolchain that simplifies the process of transitioning from the PyTorch high-level framework to synthesized hardware accelerators leveraging High-Level Synthesis.
-This toolchain not only enables seamless translation but also leverages the potential for fine-tuned optimizations during the synthesis stages.
+This thesis addresses the challenge of accelerating Graph Neural Networks on FPGA, introducing a comprehensive toolchain that simplifies the process of transitioning from the PyTorch high-level framework to synthesized hardware accelerators leveraging High-Level Synthesis.
+Torch-MLIR is employed to produce the MLIR representation of the GNN model, which serves as input for the synthesizer.
+Here, fine-tuned optimizations can be applied before generating the ultimate GNN accelerator, ready to enhance inference performance on FPGA architectures.
 Experimental results demonstrate the efficacy of the toolchain, confirming substantial improvements in both performance and resource utilization.
-The synthesized accelerators exhibit enhanced inference speeds while maintaining the accuracy of GNN models.
-Moreover, the flexibility of the toolchain enables researchers and engineers to explore optimization techniques tailored to their specific GNN applications, effectively bridging the gap between PyTorch's high-level framework and FPGA-based accelerators.
-In conclusion, this thesis presents a novel toolchain that facilitates the seamless translation of PyTorch-based Graph Neural Networks into FPGA-accelerated implementations.
-By enabling direct access to fine-tuned optimizations during synthesis, the toolchain contributes to innovating the field of efficient and high-performance GNN acceleration on FPGAs.
+This accomplishment became possible through the identification of model bottlenecks and a study on optimizing matrix multiplication operations, which resulted to be a critical component of GNN computations.
+The thesis also explores synthesis optimizations and their impact on matrix multiplication performance and overall GNN model efficiency.
+In conclusion, this thesis represents a significant advancement in the domain of FPGA-accelerated GNN models.
+By developing an accessible and versatile toolchain and exploring synthesis optimizations, the research sets the stage for more efficient and widely accessible FPGA-accelerated GNN implementations.
 \\
 \\
 \textbf{Keywords:} Graph Neural Network, Hardware Acceleration, High-Level Synthesis, FPGA, Synthesis Methodology % Keywords
