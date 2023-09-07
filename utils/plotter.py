@@ -47,13 +47,13 @@ def matmul_comparison():
                y=python_times,
                marker='^',
                c='green',
-               s=36,
+               s=40,
                label="PyTorch")
     ax.scatter(x=sizes,
                y=bambu_times,
                marker='o',
                c='orange',
-               s=36,
+               s=40,
                label="Accelerator")
     ax.legend(loc="lower right")
     path = "../docs/thesis/Images/matmul_comparison.pdf"
@@ -62,6 +62,7 @@ def matmul_comparison():
 
 
 def matmul_optimization15():
+    cycles_2channels_NO_BRAM = [29297, 26687, 25457, 26537, 16097, 10097, 7157, 5687]
     cycles_2channels = [25697, 21152, 19457, 22637, 12377, 6257, 3317, 2297]
     cycles_16channels = [29297, 25007, 21857, 24767, 12767, 6527, 3527, 2027]
     cycles_32channels = [29297, 25007, 21857, 24767, 12767, 6407, 3287, 1787]
@@ -74,23 +75,29 @@ def matmul_optimization15():
     plt.title("Matmul optimization comparison")
     plt.ticklabel_format(style='sci', axis='y', scilimits=(3, 3))
     ax.scatter(x=unroll_factors,
+               y=cycles_2channels_NO_BRAM,
+               marker='s',
+               c='tab:blue',
+               s=40,
+               label="2 channels NO_BRAM")
+    ax.scatter(x=unroll_factors,
                y=cycles_2channels,
                marker='^',
                c='green',
-               s=36,
-               label="2ch")
+               s=40,
+               label="2 channels ALL_BRAM")
     ax.scatter(x=unroll_factors,
                y=cycles_16channels,
                marker='o',
                c='orange',
-               s=36,
-               label="16ch")
+               s=40,
+               label="16 channels")
     ax.scatter(x=unroll_factors,
                y=cycles_32channels,
                marker='+',
-               c='tab:blue',
-               s=36,
-               label="32ch")
+               c='black',
+               s=40,
+               label="32 channels")
     ax.legend(loc="upper right")
     path_thesis = "../docs/thesis/Images/matmul_comparison15.pdf"
     path_executive = "../docs/executive_summary/Images/matmul_comparison15.pdf"
@@ -100,6 +107,7 @@ def matmul_optimization15():
 
 
 def matmul_optimization30():
+    cycles_2channels_NO_BRAM = [116192, 61892, 38612, 27332, 21692]
     cycles_2channels = [101792, 46562, 23522, 12242, 8402]
     cycles_16channels = [116192, 47672, 24872, 13472, 7772]
     cycles_32channels = [116192, 47132, 23852, 12452, 6752]
@@ -112,23 +120,29 @@ def matmul_optimization30():
     plt.title("Matmul optimization comparison")
     plt.ticklabel_format(style='sci', axis='y', scilimits=(3, 3))
     ax.scatter(x=unroll_factors,
+               y=cycles_2channels_NO_BRAM,
+               marker='s',
+               c='tab:blue',
+               s=40,
+               label="2 channels NO_BRAM")
+    ax.scatter(x=unroll_factors,
                y=cycles_2channels,
                marker='^',
                c='green',
-               s=36,
-               label="2ch")
+               s=40,
+               label="2 channels ALL_BRAM")
     ax.scatter(x=unroll_factors,
                y=cycles_16channels,
                marker='o',
                c='orange',
-               s=36,
-               label="16ch")
+               s=40,
+               label="16 channels")
     ax.scatter(x=unroll_factors,
                y=cycles_32channels,
                marker='+',
-               c='tab:blue',
-               s=36,
-               label="32ch")
+               c='black',
+               s=40,
+               label="32 channels")
     ax.legend(loc="upper right")
     path_thesis = "../docs/thesis/Images/matmul_comparison30.pdf"
     path_executive = "../docs/executive_summary/Images/matmul_comparison30.pdf"
@@ -152,13 +166,13 @@ def gcn_optimization():
                y=pytorch_times,
                marker='^',
                c='orange',
-               s=36,
+               s=40,
                label="PyTorch")
     ax.scatter(x=sizes,
                y=bambu_times_2ch_1funrll,
                marker='o',
                c='tab:blue',
-               s=36,
+               s=40,
                label="Optimized accelerator")
     ax.legend(loc="upper left")
     path_thesis = "../docs/thesis/Images/gcn_forward_comparison.pdf"
