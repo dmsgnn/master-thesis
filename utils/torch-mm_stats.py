@@ -128,13 +128,22 @@ def matmul_benchmark():
     plt.savefig('torch-mm.pdf')
 
 
+"""
+    This function compares PyTorch sparse and dense matrix multiplication 
+    using different matrices representation: dense, COO and CSR.
+    
+    For small matrices torch.mm is preferred, while for bigger matrices
+    (150x150) with sparsity >=0.99 the two best options are 
+    DENSExCSR and DENSExCOO.
+"""
 def matmul_comparison():
     # Torch mul comparison
     num_threads = torch.get_num_threads()
-    a_rows = 20
-    a_cols = 20
-    b_rows = 20
-    b_cols = 20
+    a_rows = 15
+    a_cols = 15
+    b_rows = 15
+    b_cols = 16
+    num_executions = 10000000
 
     m = sparse.random(a_rows, a_cols, density=0.1).toarray().astype(float32)
     m = torch.Tensor(m)
@@ -143,6 +152,8 @@ def matmul_comparison():
 
     m_coo = m.to_sparse_coo()
     p_coo = p.to_sparse_coo()
+    m_csr = m.to_sparse_csr()
+    p_csr = p.to_sparse_csr()
 
     print(">> torch.mm")
     t0 = benchmark.Timer(
@@ -151,7 +162,7 @@ def matmul_comparison():
         globals={'m': m, 'p': p},
         num_threads=num_threads)
 
-    print("A, B: dense = {0}".format(t0.timeit(10000000).times[0]))
+    print("A, B: dense = {0}".format(t0.timeit(num_executions).times[0]))
 
     t0 = benchmark.Timer(
         stmt='torch.mm(m_coo, p)',
@@ -159,7 +170,7 @@ def matmul_comparison():
         globals={'m_coo': m_coo, 'p': p},
         num_threads=num_threads)
 
-    print("A: COO, B: dense = {0}".format(t0.timeit(10000000).times[0]))
+    print("A: COO, B: dense = {0}".format(t0.timeit(num_executions).times[0]))
 
     t0 = benchmark.Timer(
         stmt='torch.mm(m_coo, p_coo)',
@@ -167,7 +178,23 @@ def matmul_comparison():
         globals={'m_coo': m_coo, 'p_coo': p_coo},
         num_threads=num_threads)
 
-    print("A, B: COO = {0}".format(t0.timeit(10000000).times[0]))
+    print("A, B: COO = {0}".format(t0.timeit(num_executions).times[0]))
+
+    t0 = benchmark.Timer(
+        stmt='torch.mm(m_csr, p)',
+        setup='from torch import mm',
+        globals={'m_csr': m_csr, 'p': p},
+        num_threads=num_threads)
+
+    print("A: CSR, B: dense = {0}".format(t0.timeit(num_executions).times[0]))
+
+    t0 = benchmark.Timer(
+        stmt='torch.mm(m_csr, p_csr)',
+        setup='from torch import mm',
+        globals={'m_csr': m_csr, 'p_csr': p_csr},
+        num_threads=num_threads)
+
+    print("A, B: CSR = {0}".format(t0.timeit(num_executions).times[0]))
 
     print(">> torch.spmm")
 
@@ -177,7 +204,7 @@ def matmul_comparison():
         globals={'m': m, 'p': p},
         num_threads=num_threads)
 
-    print("A, B: dense = {0}".format(t0.timeit(10000000).times[0]))
+    print("A, B: dense = {0}".format(t0.timeit(num_executions).times[0]))
 
     t0 = benchmark.Timer(
         stmt='torch.spmm(m_coo, p)',
@@ -185,7 +212,7 @@ def matmul_comparison():
         globals={'m_coo': m_coo, 'p': p},
         num_threads=num_threads)
 
-    print("A: COO, B: dense = {0}".format(t0.timeit(10000000).times[0]))
+    print("A: COO, B: dense = {0}".format(t0.timeit(num_executions).times[0]))
 
     t0 = benchmark.Timer(
         stmt='torch.spmm(m_coo, p_coo)',
@@ -193,7 +220,23 @@ def matmul_comparison():
         globals={'m_coo': m_coo, 'p_coo': p_coo},
         num_threads=num_threads)
 
-    print("A, B: COO = {0}".format(t0.timeit(10000000).times[0]))
+    print("A, B: COO = {0}".format(t0.timeit(num_executions).times[0]))
+
+    t0 = benchmark.Timer(
+        stmt='torch.spmm(m_csr, p)',
+        setup='from torch import spmm',
+        globals={'m_csr': m_csr, 'p': p},
+        num_threads=num_threads)
+
+    print("A: CSR, B: dense = {0}".format(t0.timeit(num_executions).times[0]))
+
+    t0 = benchmark.Timer(
+        stmt='torch.spmm(m_csr, p_csr)',
+        setup='from torch import spmm',
+        globals={'m_csr': m_coo, 'p_csr': p_coo},
+        num_threads=num_threads)
+
+    print("A, B: CSR = {0}".format(t0.timeit(num_executions).times[0]))
 
 
     # w, h = figaspect(1 / 2)
@@ -215,5 +258,5 @@ def matmul_comparison():
 
 # For calling from command line
 if __name__ == '__main__':
-    matmul_benchmark()
-    #matmul_comparison()
+    #matmul_benchmark()
+    matmul_comparison()
