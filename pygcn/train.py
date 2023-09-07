@@ -8,11 +8,11 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+import pickle
 
 from utils import load_data, accuracy
 from models import GCN
 import torch.utils.benchmark as benchmark
-
 
 # Training settings
 parser = argparse.ArgumentParser()
@@ -81,7 +81,7 @@ def train(epoch):
 
     loss_val = F.nll_loss(output[idx_val], labels[idx_val])
     acc_val = accuracy(output[idx_val], labels[idx_val])
-    print('Epoch: {:04d}'.format(epoch+1),
+    print('Epoch: {:04d}'.format(epoch + 1),
           'loss_train: {:.4f}'.format(loss_train.item()),
           'acc_train: {:.4f}'.format(acc_train.item()),
           'loss_val: {:.4f}'.format(loss_val.item()),
@@ -103,6 +103,72 @@ def test():
           "accuracy= {:.4f}".format(acc_test.item()))
 
 
+def save_binary_info():
+    data_file = open("data.log", "w")
+
+    print(type(adj[0][0].item()))
+
+    numpy_labels = labels.numpy().astype(np.int32)
+    labels_dim = numpy_labels.shape[0]
+
+    numpy_features = features.numpy().astype(np.float32)
+    features_row, features_col = numpy_features.shape
+
+    dense_adj = adj.to_dense()
+    numpy_adj = dense_adj.numpy().astype(np.float32)
+    adj_row, adj_col = numpy_adj.shape
+
+    model.eval()
+    output = model(features, adj)
+    loss_test = F.nll_loss(output[idx_test], labels[idx_test])
+    acc_test = accuracy(output[idx_test], labels[idx_test])
+
+    numpy_out = output.detach().numpy().astype(np.float32)
+    out_row, out_col = numpy_out.shape
+
+    ## save log info about data
+    data_file.write("*************************************************************\n")
+    data_file.write("*** Log data of trained GCN model for accuracy comparison ***\n")
+    data_file.write("*************************************************************\n")
+    data_file.write(f">> Labels shape: {labels_dim}\n")
+    data_file.write(f"{labels}\n")
+    data_file.write(f">> Features shape: {features_row}x{features_col}\n")
+    data_file.write(f"{features} \n")
+    data_file.write(f">> Adjacency matrix shape: {adj_row}x{adj_col}\n")
+    data_file.write(f"{adj} \n")
+    data_file.write(f">> Output shape: {out_row}x{out_col}\n")
+    data_file.write(f"{output} \n")
+
+    data_file.write("Test set results:\n")
+    data_file.write("Loss= {:.4f}\n".format(loss_test.item()))
+    data_file.write("Accuracy= {:.4f}\n".format(acc_test.item()))
+
+    # Save the tensor dimensions and data to a binary file
+    with open('data.bin', 'wb') as file:
+        file.write(labels_dim.to_bytes(4, byteorder='little'))
+        numpy_labels.tofile(file)
+        file.write(features_row.to_bytes(4, byteorder='little'))
+        file.write(features_col.to_bytes(4, byteorder='little'))
+        numpy_features.tofile(file)
+        file.write(adj_row.to_bytes(4, byteorder='little'))
+        file.write(adj_col.to_bytes(4, byteorder='little'))
+        numpy_adj.tofile(file)
+        file.write(out_row.to_bytes(4, byteorder='little'))
+        file.write(out_col.to_bytes(4, byteorder='little'))
+        numpy_out.tofile(file)
+
+
+def profile():
+    num_threads = torch.get_num_threads()
+    model.eval()
+    t0 = benchmark.Timer(
+        stmt='model(features, adj)',
+        setup='import torch',
+        globals={'model': model, 'features': features, 'adj': adj},
+        num_threads=num_threads)
+    print(t0.timeit(1000000))
+
+
 # Train model
 t_total = time.time()
 for epoch in range(args.epochs):
@@ -110,18 +176,9 @@ for epoch in range(args.epochs):
 print("Optimization Finished!")
 print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
-### model_script = torch.jit.script(model)
-
-num_threads = torch.get_num_threads()
-model.eval()
-
-t0 = benchmark.Timer(
-    stmt='model(features, adj)',
-    setup='import torch',
-    globals={'model': model, 'features': features, 'adj': adj},
-    num_threads=num_threads)
-print(t0.timeit(1000000))
-
+## model_script = torch.jit.script(model)
+## profile()
+## save_binary_info()
 
 # Testing
 testing_start = time.time()
@@ -130,5 +187,3 @@ testing_end = time.time()
 print("Number of classified nodes: " + str(len(idx_test)))
 print("Testing time : {:.6f}s".format(testing_end - testing_start))
 print("Inference time per node: {:.4f} seconds".format((testing_end - testing_start) / len(idx_test)))
-
-
