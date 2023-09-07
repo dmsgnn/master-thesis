@@ -25,17 +25,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Toolchain for Graph Neural Network Acceleration\relax }}{44}{figure.caption.29}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{46}{figure.caption.30}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{50}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{46}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{50}{figure.caption.33}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Compiler frontend}}}{50}{subfigure.3.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {High-level synthesis backend}}}{50}{subfigure.3.2}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Row-by-column matrix multiplication example\relax }}{56}{figure.caption.39}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Row-by-column matrix multiplication example\relax }}{57}{figure.caption.34}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Benchmark of \textit {torch.mm} PyTorch function\relax }}{59}{figure.caption.39}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Performance comparison between PyTorch matmul function and accelerator\relax }}{60}{figure.caption.41}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Matrix multiplication optimization comparison\relax }}{63}{figure.caption.42}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Input matrices $15\times 15$, $15\times 16$}}}{63}{subfigure.4.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Input matrices $30\times 30$, $30\times 16$}}}{63}{subfigure.4.2}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{65}{figure.caption.46}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces GCN inference number of cycles comparison\relax }}{66}{figure.caption.48}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Performance comparison between PyTorch matmul function and accelerator\relax }}{60}{figure.caption.44}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Matrix multiplication optimization comparison\relax }}{62}{figure.caption.45}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Input matrices $15\times 15$, $15\times 16$}}}{62}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Input matrices $30\times 30$, $30\times 16$}}}{62}{subfigure.2.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{64}{figure.caption.48}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces GCN inference number of cycles comparison\relax }}{65}{figure.caption.50}%
 \addvspace {10\p@ }

@@ -21,6 +21,8 @@ Warning--entry type for "mlir-pytaco" isn't style-file defined
 --line 706 of file Thesis_bibliography.bib
 Warning--entry type for "taco" isn't style-file defined
 --line 715 of file Thesis_bibliography.bib
+Warning--entry type for "aten" isn't style-file defined
+--line 724 of file Thesis_bibliography.bib
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
 while executing---line 1347 of file abbrvnat.bst
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
@@ -39,45 +41,45 @@ Name 1 in "Members of Prof. Fredrik Kjolstad's research group at Stanford Univer
 while executing---line 1429 of file abbrvnat.bst
 Warning--empty year in cublas
 Warning--empty year in openblas
-You've used 48 entries,
+You've used 49 entries,
             2773 wiz_defined-function locations,
-            879 strings with 16544 characters,
-and the built_in function-call counts, 27172 in all, are:
-= -- 2251
-> -- 2311
-< -- 25
-+ -- 774
-- -- 725
-* -- 2379
-:= -- 4348
-add.period$ -- 182
-call.type$ -- 48
-change.case$ -- 384
+            882 strings with 16632 characters,
+and the built_in function-call counts, 27473 in all, are:
+= -- 2277
+> -- 2321
+< -- 26
++ -- 779
+- -- 728
+* -- 2398
+:= -- 4393
+add.period$ -- 185
+call.type$ -- 49
+change.case$ -- 388
 chr.to.int$ -- 47
-cite$ -- 98
-duplicate$ -- 1013
-empty$ -- 1732
-format.name$ -- 793
-if$ -- 5586
-int.to.chr$ -- 2
+cite$ -- 100
+duplicate$ -- 1028
+empty$ -- 1764
+format.name$ -- 797
+if$ -- 5650
+int.to.chr$ -- 3
 int.to.str$ -- 1
 missing$ -- 37
-newline$ -- 285
-num.names$ -- 194
-pop$ -- 750
+newline$ -- 290
+num.names$ -- 198
+pop$ -- 762
 preamble$ -- 1
-purify$ -- 336
+purify$ -- 339
 quote$ -- 0
-skip$ -- 959
+skip$ -- 970
 stack$ -- 0
-substring$ -- 379
-swap$ -- 130
+substring$ -- 381
+swap$ -- 133
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 528
+type$ -- 539
 warning$ -- 2
-while$ -- 171
+while$ -- 174
 width$ -- 0
-write$ -- 691
+write$ -- 703
 (There were 8 error messages)

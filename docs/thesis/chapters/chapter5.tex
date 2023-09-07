@@ -41,7 +41,39 @@ Once having defined the model, the next step is training the GNN using standard 
 Two main models have been used as input for the developed toolchain: a Graph Isomorphism Network from OGB~\cite{NEURIPS2020_fb60d411, ogb_gnn_models}, written using PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428}, and a Graph Convolutional Network~\cite{DBLP:journals/corr/KipfW16, pygcn}, written using PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
 
 Most research and experiments have been conducted using the GCN model.
-The GCN class is characterized by two Graph Convolutional layers, and the forward function of each layer is implemented through two matrix multiplications.
+The GCN class, shown in Listing~\ref{lst:gcn-class}, is characterized by two Graph Convolutional layers, and the forward function of each layer, shown in Listing~\ref{lst:gcn-layer-forward}, is implemented through two matrix multiplications.
+
+\begin{lstlisting}[language=Python,label={lst:gcn-class}, numbers=left, xleftmargin=2em, caption=Class of GCN model, float]
+import torch.nn as nn
+import torch.nn.functional as F
+from pygcn.layers import GraphConvolution
+
+class GCN(nn.Module):
+    def __init__(self, nfeat, nhid, nclass, dropout):
+        super(GCN, self).__init__()
+
+        self.gc1 = GraphConvolution(nfeat, nhid)
+        self.gc1 = GraphConvolution(nhid, nclass)
+        self.dropout = dropout
+
+    def forward(self, x, adj):
+        x = F.relu(self.gc1(x, adj))
+        x = F.dropout(x, self.dropout,
+                      training=self.training)
+        x = self.gc2(x, adj)
+        return F.log_softmax(x, dim=1)
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=Python,label={lst:gcn-layer-forward}, numbers=left, xleftmargin=2em, caption=Forward function of GCN layer, float]
+    def forward(self, input, adj):
+        support = torch.mm(input, self.weight)
+        output = torch.spmm(adj, support)
+        if self.bias is not None:
+            return output + self.bias
+        else:
+            return output
+\end{lstlisting}
 
 OGB provides different datasets that can be used with their models.
 The one used for this thesis is called \textit{ogbg-molhiv}, a molecular property prediction dataset.
@@ -58,6 +90,13 @@ The task is a multiclass classification, in which, given a paper, the objective 
 \section{Torch-MLIR}
 \label{sec:toolchain-torch_mlir}%
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.6\textwidth]{Images/torch-mlir}
+    \caption{Torch-MLIR flow}
+    \label{fig:torch-mlir}
+\end{figure}
+
 Torch-MLIR~\cite{torch_mlir} offers compiler support for transitioning from the PyTorch ecosystem to the MLIR ecosystem.
 
 The steps Torch-MLIR follows to go from PyTorch to MLIR are shown in Figure~\ref{fig:torch-mlir}.
@@ -67,13 +106,6 @@ The one used for this research, which is also the most tested one, is TorchScrip
 TorchScript~\cite{torchscript} offers a way to generate serializable and optimizable models directly from PyTorch code.
 
 The TorchScript representation is then converted to MLIR using the built-in conversion of Torch-MLIR. The resulting MLIR IR can use different dialects that can be selected by the user, but the one used for this thesis is the Linalg dialect, which serves as input for the next phase of the toolchain.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[height=0.5\textwidth]{Images/torch-mlir}
-    \caption{Torch-MLIR flow}
-    \label{fig:torch-mlir}
-\end{figure}
 
 \subsection{From PyTorch to TorchScript}
 \label{subsec:pytorch-to-torchscript}%
@@ -229,7 +261,7 @@ For this reason, an important part of this thesis is represented by research on 
 
 A matmul operation in the linalg dialect is lowered to affine by SODA-OPT, resulting in three nested affine loops shown in Listing~\ref{lst:affine-mul}.
 
-\begin{lstlisting}[label={lst:affine-mul}, caption=Matrix multiplication in MLIR affine dialect]
+\begin{lstlisting}[label={lst:affine-mul}, caption=Matrix multiplication in MLIR affine dialect, float]
 affine.for %arg3 = 0 to 15 {
   affine.for %arg4 = 0 to 16 {
     affine.for %arg5 = 0 to 15 {
@@ -245,7 +277,56 @@ affine.for %arg3 = 0 to 15 {
 \end{lstlisting}
 
 Among all optimizations available in SODA-OPT the biggest improvement in terms of performance is achieved applying the loop unrolling technique, which involves breaking down a loop into multiple smaller iterations, effectively reducing the overhead of loop control instructions and potentially exposing more opportunities for other optimizations.
-This optimization perfectly allows to exploit the extreme parallelism available on FPGAs, because the loop bodies are expanded allowing the parallel execution of multiple iterations of the original loop.
+There are two available options: full unrolling and partial unrolling.
+In the former the entire loop is expanded so that each iteration becomes a separate iteration, resulting in a significant increase in the size of the code.
+In the latter, instead, only a subset of the loop iterations is expanded into multiple iterations.
+A parameter, called \textit{unroll factor}, can be set to decide the number of loop iterations that are combined into a single iteration.
+Listing~\ref{lst:affine-mul-unroll3} shows the effect of a partial unrolling, with unrolling factor equal to 5, to the matrix multiplication introduced in Listing~\ref{lst:affine-mul}.
+
+\begin{lstlisting}[label={lst:affine-mul-unroll3}, caption=Unrolled matrix multiplication in affine dialect with unrolling factor 5, float]
+affine.for %arg3 = 0 to 15 {
+  affine.for %arg4 = 0 to 16 {
+    affine.for %arg5 = 0 to 15 step 5 {
+      %0 = affine.load %arg0[%arg3, %arg5] : memref<15x15xf32>
+      %1 = affine.load %arg1[%arg5, %arg4] : memref<15x16xf32>
+      %2 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %3 = arith.mulf %0, %1 : f32
+      %4 = arith.addf %2, %3 : f32
+      affine.store %4, %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %5 = affine.apply affine_map<(d0) -> (d0 + 1)>(%arg5)
+      %6 = affine.load %arg0[%arg3, %5] : memref<15x15xf32>
+      %7 = affine.load %arg1[%5, %arg4] : memref<15x16xf32>
+      %8 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %9 = arith.mulf %6, %7 : f32
+      %10 = arith.addf %8, %9 : f32
+      affine.store %10, %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %11 = affine.apply affine_map<(d0) -> (d0 + 2)>(%arg5)
+      %12 = affine.load %arg0[%arg3, %11] : memref<15x15xf32>
+      %13 = affine.load %arg1[%11, %arg4] : memref<15x16xf32>
+      %14 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %15 = arith.mulf %12, %13 : f32
+      %16 = arith.addf %14, %15 : f32
+      affine.store %16, %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %17 = affine.apply affine_map<(d0) -> (d0 + 3)>(%arg5)
+      %18 = affine.load %arg0[%arg3, %17] : memref<15x15xf32>
+      %19 = affine.load %arg1[%17, %arg4] : memref<15x16xf32>
+      %20 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %21 = arith.mulf %18, %19 : f32
+      %22 = arith.addf %20, %21 : f32
+      affine.store %22, %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %23 = affine.apply affine_map<(d0) -> (d0 + 4)>(%arg5)
+      %24 = affine.load %arg0[%arg3, %23] : memref<15x15xf32>
+      %25 = affine.load %arg1[%23, %arg4] : memref<15x16xf32>
+      %26 = affine.load %arg2[%arg3, %arg4] : memref<15x16xf32>
+      %27 = arith.mulf %24, %25 : f32
+      %28 = arith.addf %26, %27 : f32
+      affine.store %28, %arg2[%arg3, %arg4] : memref<15x16xf32>
+    }
+  }
+}
+\end{lstlisting}
+
+The loop unrolling technique perfectly allows to exploit the extreme parallelism available on FPGAs, because the loop bodies are expanded allowing the parallel execution of multiple iterations of the original loop.
 The right choice is not to continuously unroll until having no more loops in the code.
 The solution is to pick the right trade-off between performance reduction and the area of the matrix multiplication accelerator.
 
@@ -273,6 +354,91 @@ The conducted study revealed that there is a point, represented by a specific nu
 PandA-Bambu also offers the possibility to apply low-level loop unrolling, but this option has been disabled to be able to evaluate in isolation the performance impact of the SODA-OPT loop unrolling technique and avoid that loops are unrolled automatically if the option was not enabled in SODA-OPT\@.
 Bambu provides also the possibility to export some files that have been used for this research.
 One important file is represented by the HLS graph, which shows the computation states and transitions, the number of cycles needed by each operation to complete, and other information that has been useful to study and understand the impact of both SODA-OPT and Bambu optimization settings.
+
+\section{Matrix multiplication synthesis heuristic}
+\label{sec:matmul-synthesis-heiristic}%
+
+\begin{algorithm}[t]
+    \label{alg:matmul_pseudo}
+    \caption{Naive matrix multiplication algorithm}
+    \label{alg:var}
+    \label{protocol1}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Data:} $A[R][P], B[M][N]$
+    \STATE \textbf{Result:} $C[R][N]$
+    \IF{$P == M$}
+    \FOR{$m=0; m<R, m++$}
+    \FOR{$r=0; r<N, r++$}
+    \STATE $C[m][r] = 0$
+    \FOR{$k=0; k<M, k++$}
+    \STATE $C[m][r] += A[m][k] * B[k][r]$
+    \ENDFOR
+    \ENDFOR
+    \ENDFOR
+    \ENDIF
+    \end{algorithmic}
+\end{algorithm}
+
+This section introduces some heuristics followed during the matrix multiplication acceleration experiments.
+They served as a guide to be followed during the preliminary study phase before conducting experiments.
+This allowed for a better understanding of which optimizations might be most appropriate and would yield the most significant positive impact on performance.
+
+The naive implementation of the row-by-column multiplication, whose pseudocode is shown below, is characterized by three nested loops.
+The multiplication is possible only in the case the number of column of the first matrix is equal to the number of row of the second one.
+
+Figure~\ref{fig:row-by-col-mul-example} highlight how an element of the output matrix is computed, using a row of the first matrix and a column of the second one.
+In a general matrix multiplication, shown in Equation~\ref{eq:matmul}, each element of the new matrix can be computed accordingly to Equation~\ref{eq:matmul-element}.
+
+\begin{equation}
+        \label{eq:matmul}
+    \begin{pmatrix}
+     a_{11} & a_{12} & \cdots & a_{1n}\\
+     a_{21} & a_{22} & \cdots & a_{2n}\\
+     \vdots & \vdots & \ddots & \vdots\\
+     a_{m1} & a_{m2} & \cdots & a_{mn}
+ \end{pmatrix}
+ \times
+ \begin{pmatrix}
+     b_{11} & b_{12} & \cdots & b_{1p}\\
+     b_{21} & b_{22} & \cdots & b_{2p}\\
+     \vdots & \vdots & \ddots & \vdots\\
+     b_{n1} & b_{n2} & \cdots & b_{np}
+ \end{pmatrix}
+  =
+ \begin{pmatrix}
+     c_{11} & c_{12} & \cdots & c_{1p}\\
+     c_{21} & c_{22} & \cdots & c_{2p}\\
+     \vdots & \vdots & \ddots & \vdots\\
+     c_{m1} & c_{m2} & \cdots & c_{mp}
+ \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    \label{eq:matmul-element}
+    c_{ij}= a_{i1} b_{1j} + a_{i2} b_{2j} +\cdots+ a_{in} b_{nj} = \sum_{k=1}^n a_{ik}b_{kj}
+\end{equation}
+
+Then, the number of cycles needed by an accelerator generated by PandA-Bambu without optimizations can be calculated using Equation~\ref{eq:number-cycles}.
+The notation used refers to Equation~\ref{eq:matmul}, but it can be referred to Algorithm~\ref{alg:var} by considering $n = M \land m=R \land p=N$
+The first part of the equation computes the total number of iterations, while the second half computes the number of cycles needed to perform multiplications and additions, and to load and store data.
+The number of cycles needed to load and store data are computed by adding one cycle for each $ch$ operands read, and one cycle for each $ch$ operand written, with $ch$ equal to the number of memory channels.
+From Listing~\ref{lst:affine-mul}, it can be seen that there are three load and one store, for a total of four memory operations.
+
+\begin{equation}
+    \label{eq:number-cycles}
+    cycles = \left(  n \cdot m \cdot p \right) \cdot \left(  cycles_{mul} + cycles_{add} + \frac{4}{ch} \right)
+\end{equation}
+
+Let us consider two matrices, the first of size $15\times15$ and the second of size $15\times16$.
+The FPGA model used for the experimental phase uses three cycles for floating-point addition and two cycles for floating-point multiplication, both single precision.
+By applying the Equation~\ref{eq:number-cycles}, the expected number of cycles for computing such matrix multiplication, using two memory channels is 25,200.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[height=0.24\textwidth]{Images/row-by-col-mult-example}
+    \caption{Row-by-column matrix multiplication example}
+    \label{fig:row-by-col-mul-example}
+\end{figure}
 
 \section{Conclusion}
 \label{sec:toolchain-discussion}%
