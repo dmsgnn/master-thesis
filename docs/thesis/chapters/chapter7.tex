@@ -1,22 +1,17 @@
 This thesis tackled the challenge of accelerating Graph Neural Network inference by leveraging High-Level Synthesis techniques targeting FPGAs.
 
-In Chapter~\ref{ch:chapter_five}, the design of the proposed toolchain was introduced, which allows to obtain a GNN inference accelerator starting directly from PyTorch.
+An HLS-based toolchain was designed to obtain a GNN inference accelerator starting directly from PyTorch.
 PyTorch stands as one of the foremost high-level frameworks for neural network implementation, extensively recognized and employed within the community, making the proposed toolchain suitable for different applications.
 
 The results of this research significantly contribute to the field of GNN acceleration, introducing a new perspective about how it is possible to obtain hardware accelerators for GNNs even without having any hardware design knowledge.
-The toolchain offers different possibilities and provides various optimization passes that can be used in the synthesizer step to fine-tune the accelerator capabilities.
+The toolchain offers different possibilities and provides various optimization passes that can be used to fine-tune the accelerator capabilities.
 
-Within the spectrum of optimizations made available by this toolchain, this thesis primarily delved into two key techniques: the loop unrolling technique of SODA-OPT and the parallel memory access of PandA-Bambu with an external memory of thirty-two channels.
+Within the spectrum of optimizations made available by this toolchain, this thesis primarily delved into two key techniques: the loop unrolling technique in SODA-OPT and the parallel memory access of PandA-Bambu with an external memory of thirty-two channels.
 These optimizations allowed to achieve encouraging and promising results in accelerating the inference of the GCN model analyzed.
 By studying and understanding the model bottlenecks, it is possible to achieve consistent improvements.
 
-Furthermore, the applicability of this toolchain extends to the industry area, making it a readily accessible resource for companies looking to explore and capitalize on the domain of GNN acceleration.
-
-An equally noteworthy contribution of this thesis lies in the innovation brought to SODA-OPT and PandA-Bambu.
-This research represents one of the first work exploring the loop-unrolling technique in combination with the recently added feature of using more than two memory channels, providing consistent results and insights for future studies.
-
 Lastly, this study has also made substantial contribution in enhancing Torch-MLIR\@.
-A new feature, the support of the constant of Tuple type, have been added and different areas of improvement have been identified, where more work would be needed to implement functionalities for the complete support of PyTorch Geometric.
+A new feature, the support of the constant of Tuple type, has been added and different areas of improvement have been identified, where more work would be needed to implement functionalities for the complete support of PyTorch Geometric.
 Before this research, no examples were available on how to use Torch-MLIR with Graph Neural Networks, and the compatibility of PyTorch Geometric and Torch-MLIR was still an unexplored area.
 
 \section{Future developments}
@@ -26,19 +21,18 @@ Before this research, no examples were available on how to use Torch-MLIR with G
 This thesis represents a significant advancement in the field of GNN acceleration.
 Nonetheless, there exist opportunities for further enhancement through the implementation of novel features.
 
-Primarily, future works could build upon the innovative contributions of this thesis in terms of enhancing compatibility between PyTorch Geometric~\cite{DBLP:journals/corr/abs-1903-02428} and Torch-MLIR~\cite{torch_mlir}.
+Primarily, future works could build upon the innovative contributions of this thesis in terms of enhancing compatibility between PyTorch Geometric and Torch-MLIR\@.
 PyTorch Geometric offers valuable features and pre-established classes for implementing Graph Neural Networks.
 Integrating this advanced framework into the toolchain would mark another significant step forward.
 This thesis identified the needed area of improvement, representing a possible starting point for these future works.
 
 Another improvement that can be applied to the presented toolchain is the support of sparse tensors.
 At the actual state, Torch-MLIR is not capable of lowering PyTorch sparse tensors to the Linalg dialect, even if it already supports them.
-For this reason, some work would be needed on Torch-MLIR to implement this feature which would bring a significant advantage also in the resulting accelerators, having the possibility to exploit faster computation with sparse tensors.
-
+For this reason, some work would be needed on Torch-MLIR to implement this feature, possibly using PyTaco, which would bring a significant advantage also in the resulting accelerators, having the possibility to exploit faster computation with sparse tensors.
 An additional enhancement that can be integrated into the proposed toolchain involves extending support to sparse tensors.
 Currently, Torch-MLIR cannot convert PyTorch sparse tensors into the Linalg dialect, even if MLIR~\cite{9370308} already has a way to represent them~\cite{Bik_2022}.
 Consequently, implementing this feature in Torch-MLIR would require dedicated efforts, producing substantial benefits in the toolchain resultant accelerators.
 Even if the resulting accelerators, as discussed in Chapter~\ref{ch:chapter_six}, greatly increase performance and reduce the computational time, this enhancement would enable leveraging faster computations through the use of sparse tensors by further improving the performance of the accelerator.
 
 In conclusion, ongoing support and dedicated efforts are consistently aimed at advancing SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110} through the integration of novel functionalities.
-This approach represents an alternative way of progress, as the introduction of fresh SODA-OPT passes and PandA-Bambu optimizations have the potential to open novel opportunities for refining and optimizing the synthesized hardware accelerators.
+The continuous evolution of these tools represents an alternative way of progress over that the classic hardware design techniques, as the introduction of fresh SODA-OPT passes and PandA-Bambu optimizations have the potential to open novel opportunities for refining and optimizing the synthesized hardware accelerators.
