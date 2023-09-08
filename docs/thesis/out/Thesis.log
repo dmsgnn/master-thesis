@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  8 SEP 2023 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  8 SEP 2023 22:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1529,15 +1529,36 @@ omparison.pdf>] [68
 ]
 Chapter 7.
 (./chapters/chapter7.tex
-Overfull \hbox (0.3068pt too wide) in paragraph at lines 21--23
+Package epstopdf Info: Source file: <Images/toolchain_future.eps>
+(epstopdf)                    date: 2023-09-08 22:25:16
+(epstopdf)                    size: 1383862 bytes
+(epstopdf)             Output file: <Images/toolchain_future-eps-converted-to.p
+df>
+(epstopdf)                    date: 2023-09-08 22:29:02
+(epstopdf)                    size: 32399 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/toolchain_future-ep
+s-converted-to.pdf Images/toolchain_future.eps>
+(epstopdf)             \includegraphics on input line 22.
+Package epstopdf Info: Output file is already uptodate.
+<Images/toolchain_future-eps-converted-to.pdf, id=1516, 185.69376pt x 249.93375
+pt>
+File: Images/toolchain_future-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/toolchain_future-eps-converted-to.pdf>
+Package pdftex.def Info: Images/toolchain_future-eps-converted-to.pdf  used on 
+input line 22.
+(pdftex.def)             Requested size: 169.12325pt x 227.62206pt.
+
+Overfull \hbox (0.3068pt too wide) in paragraph at lines 27--29
 []\T1/cmr/m/n/12 This the-sis rep-re-sents a sig-nif-i-cant ad-vance-ment in th
 e field of GNN ac-cel-er-a-tion. Nonethe-
  []
 
 [69
 
-]) (out/thesis.bbl [70] [71
+] [70 <./Images/toolchain_future-eps-converted-to.pdf>]) (out/thesis.bbl
+[71] [72
 
+] [73
 
 ]
 Underfull \hbox (badness 6364) in paragraph at lines 81--86
@@ -1557,50 +1578,50 @@ Underfull \hbox (badness 1466) in paragraph at lines 90--95
 ez-Bombarelli,
  []
 
-[72] [73] [74]) [75] [76
+[74] [75] [76]) [77] [78
 
 ] (out/thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [77
+ [79
 
 
-] [78
+] [80
 
 ] (out/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [79
+ [81
 
 ]
-[80
+[82
 
 ] (out/thesis.loa)
 \tf@loa=\write8
 \openout8 = `thesis.loa'.
 
- [81
+ [83
 
-] [82
+] [84
 
 ] (out/thesis.lol)
 \tf@lol=\write9
 \openout9 = `thesis.lol'.
 
- [83
-
-] [84
-
-] [85
+ [85
 
 ] [86
 
 ] [87
 
+] [88
+
+] [89
+
 ]
-[88
+[90
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 331.
@@ -1609,13 +1630,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 331.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 331.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 331.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: E3FACAE45809057B3323347231D46B59;4238.
+(rerunfilecheck)             Checksum: F788C45B5D268D9880CB1552098D8121;4238.
  ) 
 Here is how much of TeX's memory you used:
- 28547 strings out of 480608
- 522056 string characters out of 5903630
- 1331510 words of memory out of 5000000
- 43360 multiletter control sequences out of 15000+600000
+ 28572 strings out of 480608
+ 522782 string characters out of 5903630
+ 1331638 words of memory out of 5000000
+ 43381 multiletter control sequences out of 15000+600000
  554012 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,28n,89p,1195b,1443s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1640,10 +1661,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (98 pages, 4455567 bytes).
+Output written on out/thesis.pdf (100 pages, 4485574 bytes).
 PDF statistics:
- 1856 PDF objects out of 2073 (max. 8388607)
- 1417 compressed objects within 15 object streams
- 412 named destinations out of 1000 (max. 500000)
- 663 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1880 PDF objects out of 2073 (max. 8388607)
+ 1435 compressed objects within 15 object streams
+ 415 named destinations out of 1000 (max. 500000)
+ 668 words of extra memory for PDF output out of 10000 (max. 10000000)
 

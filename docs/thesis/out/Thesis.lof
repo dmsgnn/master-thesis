@@ -38,3 +38,4 @@
 \contentsline {figure}{\numberline {6.3}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{66}{figure.caption.48}%
 \contentsline {figure}{\numberline {6.4}{\ignorespaces GCN inference number of cycles comparison\relax }}{67}{figure.caption.50}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Future FPGA Toolchain for Graph Neural Network Acceleration\relax }}{70}{figure.caption.52}%
