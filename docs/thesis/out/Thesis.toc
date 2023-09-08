@@ -29,39 +29,39 @@
 \contentsline {subsection}{\numberline {3.3.3}Hybrid architectures for GNN acceleration}{25}{subsection.3.3.3}%
 \contentsline {subsection}{\numberline {3.3.4}Challenges}{28}{subsection.3.3.4}%
 \contentsline {section}{\numberline {3.4}High-Level Synthesis based accelerators}{29}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{31}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Graph processing acceleration}{34}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{36}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{36}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Conclusion}{37}{section.3.8}%
-\contentsline {chapter}{\numberline {4}Problem Formulation}{39}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Graph Neural Network acceleration}{39}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Motivation and objective}{40}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Design of the Toolchain}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}PyTorch}{44}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Toolchain inputs}{44}{subsection.5.1.1}%
-\contentsline {section}{\numberline {5.2}Torch-MLIR}{46}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}From PyTorch to TorchScript}{47}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Torch-MLIR Compilation}{48}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Synthesizer}{50}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}SODA-OPT}{51}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}PandA-Bambu}{52}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Matrix multiplication synthesis heuristic}{54}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Conclusion}{56}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Experimental Procedures and Results}{57}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Model analysis and profiling}{57}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Matrix multiplication acceleration}{58}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}PyTorch matrix multiplication benchmark}{58}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}FPGA-accelerated matrix multiplication}{59}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}GCN accelerator evaluation}{63}{subsection.6.2.3}%
-\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{67}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Future developments}{68}{section.7.1}%
+\contentsline {section}{\numberline {3.5}Software-Hardware co-design accelerators}{32}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Graph processing acceleration}{36}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Matrix multiplication optimization}{37}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Matrix multiplication optimization in MLIR}{37}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Conclusion}{38}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Problem Formulation}{41}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Graph Neural Network acceleration}{41}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Motivation and objective}{42}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Design of the Toolchain}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}PyTorch}{46}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Toolchain inputs}{46}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Torch-MLIR}{48}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}From PyTorch to TorchScript}{49}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Torch-MLIR Compilation}{50}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Synthesizer}{52}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}SODA-OPT}{53}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}PandA-Bambu}{54}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Matrix multiplication synthesis heuristic}{56}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Conclusion}{58}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Experimental Procedures and Results}{59}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Model analysis and profiling}{59}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Matrix multiplication acceleration}{60}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}PyTorch matrix multiplication benchmark}{60}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}FPGA-accelerated matrix multiplication}{61}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}GCN accelerator evaluation}{65}{subsection.6.2.3}%
+\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{69}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Future developments}{70}{section.7.1}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{69}{chapter*.53}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{71}{chapter*.53}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{75}{appendix*.55}%
-\contentsline {chapter}{List of Tables}{77}{appendix*.57}%
-\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{79}{appendix*.59}%
-\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{81}{appendix*.61}%
-\contentsline {chapter}{List of Symbols}{83}{appendix*.63}%
-\contentsline {chapter}{Acknowledgements}{85}{appendix*.66}%
+\contentsline {chapter}{List of Figures}{77}{appendix*.55}%
+\contentsline {chapter}{List of Tables}{79}{appendix*.57}%
+\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{81}{appendix*.59}%
+\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{83}{appendix*.61}%
+\contentsline {chapter}{List of Symbols}{85}{appendix*.63}%
+\contentsline {chapter}{Acknowledgements}{87}{appendix*.66}%

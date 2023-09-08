@@ -19,22 +19,22 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Block diagram of a tile in the GNN accelerator proposed by Auten \textit {et al.}~\cite {9218751}\relax }}{24}{figure.caption.21}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Architecture overview of HyGCN~\cite {DBLP:journals/corr/abs-2001-02514}\relax }}{26}{figure.caption.22}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces High-level overview of GRIP~\cite {DBLP:journals/corr/abs-2007-13828}\relax }}{27}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces GenGNN overall architecture~\cite {DBLP:journals/corr/abs-2201-08475}\relax }}{30}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Hardware architecture with two execution modes proposed by Zhang \textit {et al.}~\cite {9153263}\relax }}{32}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces BoostGCN framework overview~\cite {9444065}\relax }}{33}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Baseline dataflow architecture and the improved FlowGNN architecture~\cite {sarkar2022flowgnn}\relax }}{30}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Hardware architecture with two execution modes proposed by Zhang \textit {et al.}~\cite {9153263}\relax }}{33}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces BoostGCN framework overview~\cite {9444065}\relax }}{34}{figure.caption.26}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Toolchain for Graph Neural Network Acceleration\relax }}{44}{figure.caption.29}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{46}{figure.caption.32}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{50}{figure.caption.33}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Compiler frontend}}}{50}{subfigure.3.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {High-level synthesis backend}}}{50}{subfigure.3.2}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Row-by-column matrix multiplication example\relax }}{56}{figure.caption.39}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Toolchain for Graph Neural Network Acceleration\relax }}{46}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Torch-MLIR flow\relax }}{48}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{52}{figure.caption.33}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Compiler frontend}}}{52}{subfigure.3.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {High-level synthesis backend}}}{52}{subfigure.3.2}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Row-by-column matrix multiplication example\relax }}{58}{figure.caption.39}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Performance comparison between PyTorch matmul function and accelerator\relax }}{60}{figure.caption.44}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Matrix multiplication optimization comparison\relax }}{62}{figure.caption.45}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Input matrices $15\times 15$, $15\times 16$}}}{62}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Input matrices $30\times 30$, $30\times 16$}}}{62}{subfigure.2.2}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{64}{figure.caption.48}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces GCN inference number of cycles comparison\relax }}{65}{figure.caption.50}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Performance comparison between PyTorch matmul function and accelerator\relax }}{62}{figure.caption.44}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Matrix multiplication optimization comparison\relax }}{64}{figure.caption.45}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Input matrices $15\times 15$, $15\times 16$}}}{64}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Input matrices $30\times 30$, $30\times 16$}}}{64}{subfigure.2.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{66}{figure.caption.48}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces GCN inference number of cycles comparison\relax }}{67}{figure.caption.50}%
 \addvspace {10\p@ }

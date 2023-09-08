@@ -13,14 +13,6 @@ S.~Abadal, A.~Jain, R.~Guirado, J.~L{\'{o}}pez{-}Alonso, and E.~Alarc{\'{o}}n.
 \newblock \emph{CoRR}, abs/2010.00130, 2020.
 \newblock URL \url{https://arxiv.org/abs/2010.00130}.
 
-\bibitem[Abi{-}Karam et~al.(2022)Abi{-}Karam, He, Sarkar, Sathidevi, Qiao, and
-  Hao]{DBLP:journals/corr/abs-2201-08475}
-S.~Abi{-}Karam, Y.~He, R.~Sarkar, L.~Sathidevi, Z.~Qiao, and C.~Hao.
-\newblock Gengnn: {A} generic {FPGA} framework for graph neural network
-  acceleration.
-\newblock \emph{CoRR}, abs/2201.08475, 2022.
-\newblock URL \url{https://arxiv.org/abs/2201.08475}.
-
 \bibitem[Agostini et~al.(2022)Agostini, Curzel, Zhang, Limaye, Tan, Amatya,
   Minutoli, Castellana, Manzano, Brooks, Wei, and Tumeo]{9786533}
 N.~B. Agostini, S.~Curzel, J.~J. Zhang, A.~Limaye, C.~Tan, V.~Amatya,
@@ -258,6 +250,12 @@ B.~Sanchez-Lengeling, E.~Reif, A.~Pearce, and A.~B. Wiltschko.
 \newblock \emph{Distill}, 2021.
 \newblock \doi{10.23915/distill.00033}.
 \newblock https://distill.pub/2021/gnn-intro.
+
+\bibitem[Sarkar et~al.(2022)Sarkar, Abi-Karam, He, Sathidevi, and
+  Hao]{sarkar2022flowgnn}
+R.~Sarkar, S.~Abi-Karam, Y.~He, L.~Sathidevi, and C.~Hao.
+\newblock Flowgnn: A dataflow architecture for real-time workload-agnostic
+  graph neural network inference, 2022.
 
 \bibitem[team and other contributors(2020)]{ogb_gnn_models}
 O.~G.~B. team and other contributors.

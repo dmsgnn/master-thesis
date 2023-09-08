@@ -4,25 +4,25 @@ The top-level auxiliary file: out/thesis.aux
 The style file: abbrvnat.bst
 Database file #1: Thesis_bibliography.bib
 Warning--entry type for "opt_cuda_matmul" isn't style-file defined
---line 210 of file Thesis_bibliography.bib
+--line 200 of file Thesis_bibliography.bib
 Warning--entry type for "torch_mlir" isn't style-file defined
---line 336 of file Thesis_bibliography.bib
+--line 326 of file Thesis_bibliography.bib
 Warning--entry type for "ogb_gnn_models" isn't style-file defined
---line 345 of file Thesis_bibliography.bib
+--line 335 of file Thesis_bibliography.bib
 Warning--entry type for "pygcn" isn't style-file defined
---line 354 of file Thesis_bibliography.bib
+--line 344 of file Thesis_bibliography.bib
 Warning--entry type for "cublas" isn't style-file defined
---line 629 of file Thesis_bibliography.bib
+--line 619 of file Thesis_bibliography.bib
 Warning--entry type for "openblas" isn't style-file defined
---line 637 of file Thesis_bibliography.bib
+--line 627 of file Thesis_bibliography.bib
 Warning--entry type for "torchscript" isn't style-file defined
---line 697 of file Thesis_bibliography.bib
+--line 687 of file Thesis_bibliography.bib
 Warning--entry type for "mlir-pytaco" isn't style-file defined
---line 706 of file Thesis_bibliography.bib
+--line 696 of file Thesis_bibliography.bib
 Warning--entry type for "taco" isn't style-file defined
---line 715 of file Thesis_bibliography.bib
+--line 705 of file Thesis_bibliography.bib
 Warning--entry type for "aten" isn't style-file defined
---line 724 of file Thesis_bibliography.bib
+--line 714 of file Thesis_bibliography.bib
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
 while executing---line 1347 of file abbrvnat.bst
 Name 1 in "Bixia Zheng, Aart Bik, and other Torch-MLIR contributors" has a comma at the end for entry mlir-pytaco
@@ -43,34 +43,34 @@ Warning--empty year in cublas
 Warning--empty year in openblas
 You've used 49 entries,
             2773 wiz_defined-function locations,
-            882 strings with 16632 characters,
-and the built_in function-call counts, 27473 in all, are:
-= -- 2277
-> -- 2321
+            879 strings with 16540 characters,
+and the built_in function-call counts, 27390 in all, are:
+= -- 2267
+> -- 2312
 < -- 26
-+ -- 779
-- -- 728
-* -- 2398
-:= -- 4393
-add.period$ -- 185
++ -- 776
+- -- 725
+* -- 2387
+:= -- 4373
+add.period$ -- 183
 call.type$ -- 49
-change.case$ -- 388
+change.case$ -- 387
 chr.to.int$ -- 47
 cite$ -- 100
-duplicate$ -- 1028
-empty$ -- 1764
-format.name$ -- 797
-if$ -- 5650
+duplicate$ -- 1024
+empty$ -- 1766
+format.name$ -- 794
+if$ -- 5636
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 37
-newline$ -- 290
+missing$ -- 36
+newline$ -- 288
 num.names$ -- 198
-pop$ -- 762
+pop$ -- 767
 preamble$ -- 1
-purify$ -- 339
+purify$ -- 338
 quote$ -- 0
-skip$ -- 970
+skip$ -- 969
 stack$ -- 0
 substring$ -- 381
 swap$ -- 133
@@ -81,5 +81,5 @@ type$ -- 539
 warning$ -- 2
 while$ -- 174
 width$ -- 0
-write$ -- 703
+write$ -- 698
 (There were 8 error messages)

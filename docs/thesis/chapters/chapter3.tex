@@ -6,7 +6,7 @@ This chapter also delves into the relevant literature concerning various approac
 \label{sec:related_work_structure}%
 This chapter first presents the software frameworks utilized to design and train Graph Neural Networks, then provides an overview of state-of-the-art hardware accelerators, categorized based on their architecture types~\cite{DBLP:journals/corr/abs-2010-00130}.
 
-Particular attention is given to GenGNN~\cite{DBLP:journals/corr/abs-2201-08475}, an accelerator implemented using High-Level Synthesis, the same technique used by the design flow proposed in this thesis.
+Particular attention is given to FlowGNN~\cite{sarkar2022flowgnn}, an accelerator implemented using High-Level Synthesis, the same technique used by the design flow proposed in this thesis.
 As mentioned earlier, optimizing the matrix-matrix multiplication operation was a significant aspect of this research.
 Thus, a dedicated section focuses on state-of-the-art optimizations for matrix-matrix multiplication.
 
@@ -247,49 +247,68 @@ As previously highlighted, one of the main challenges of GNN hardware accelerati
 
 Unlike the designs presented in the previous section, typically designed using low-level hardware description languages by explicitly specifying the hardware components and their interconnections, this section discusses methods to generate accelerators using HLS, which automatically synthesizes high-level code into hardware, abstracting away low-level hardware details.
 
-GenGNN~\cite{DBLP:journals/corr/abs-2201-08475} is a GNN acceleration framework utilizing High-Level Synthesis, with two primary objectives.
+FlowGNN~\cite{sarkar2022flowgnn} is a GNN acceleration framework utilizing High-Level Synthesis, with two primary objectives.
 Firstly, to achieve ultra-fast GNN inference without needing graph pre-processing to meet real-time demands.
 Secondly, to support a wide range of GNN models with the flexibility to accommodate new models.
 The framework incorporates an optimized message-passing structure that applies to all models and is complemented by a diverse library of model-specific components.
 
-This framework capitalizes on the observation that each node in a GNN layer undergoes two key steps: message passing (MP) and node embedding (NE). The message passing step is further divided into gather and scatter phases, where gather involves feature aggregation, and scatter entails message transformation and forwarding.
-On the other hand, node embedding encompasses node transformation and update.
+This framework capitalizes on the observation that each node in a GNN layer undergoes two key steps: message passing (MP) and node transformation (NT). The message passing step is further divided into gather and scatter phases, where gather involves feature aggregation, and scatter entails message transformation and forwarding.
+On the other hand, node transformation usually consists of a linear layer or multi-layer perceptron, followed by node update.
 
-To accelerate MP and NE steps, GenGNN was designed using a message-passing style featuring two main processing elements (PEs): node embedding and message passing.
-As shown in Figure~\ref{fig:gengnn_architecture}, the architecture includes three data storage buffers: one node embedding buffer and two message buffers, all of which have a $O(N)$ size, where $N$ represents the number of nodes allowed on-chip.
+To accelerate MP and NE steps, FlowGNN was designed using a message-passing style featuring two main processing elements (PEs): node transformation and message passing.
+The authors proposed a baseline architecture and an improved one, as shown in Figure~\ref{fig:FlowGNN_architecture}.
+The baseline architecture includes three data storage buffers: one node embedding buffer and two message buffers, all of which have a $O(N)$ size, where $N$ represents the number of nodes allowed on-chip.
 The two message buffers are used alternately across layers, allowing for the reuse of resources and dataflow in multiple layers.
-The node embedding PE handles node transformation and update within a single layer, while the message passing PE performs the subsequent scatter operation.
+The node transformation PE handles node transformation and update within a single layer, while the message passing PE performs the subsequent scatter operation.
 The advantage of this approach is that the receivers of the messages can instantly update their partially aggregated message in the message buffer, enabling the merging of scatter and gather phases.
 Since the aggregation function is permutation invariant and the aggregation order does not matter, such a merged fashion reduces the overall process latency and minimizes memory cost.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[height=0.22\textwidth]{Images/GenGNN_architecture}
-    \caption{GenGNN overall architecture~\cite{DBLP:journals/corr/abs-2201-08475}}
-    \label{fig:gengnn_architecture}
+    \includegraphics[height=0.56\textwidth]{Images/FlowGNN_architecture}
+    \caption{Baseline dataflow architecture and the improved FlowGNN architecture~\cite{sarkar2022flowgnn}}
+    \label{fig:FlowGNN_architecture}
 \end{figure}
 
-The independence of node embedding (NE) and message passing (MP) steps across nodes and edges allows for significantly reduced processing latency by effectively pipelining these two steps.
-The authors referred to the most suitable approach for this task as streaming-based pipelining, which can be achieved using a streaming-based FIFO (first-in-first-out) memory queue.
+The independence of node transformation and message passing steps across nodes and edges allows for significantly reduced processing latency by effectively pipelining these two steps.
+The authors referred to the most suitable approach for this task as baseline dataflow pipeline.
 In this implementation that significantly reduces idle cycles and minimizes resource usage, NE and MP are pipelined flexibly using a node queue.
 Once a node completes its NE and is prepared for message passing, its embeddings are pushed into the queue.
 At the same time, the MP engine reads from the queue, fetching the node embeddings for message passing.
 
-GenGNN enhances its architecture's adaptability to different graph neural network models by offering various model-specific components.
-One particularly advantageous feature of GenGNN's streaming-based pipelining for node/edge processing is its suitability for models with virtual nodes.
+While the baseline dataflow architecture can efficiently pipeline NT and MP tasks, it has several limitations.
+These include its ability to handle only one node and one edge at a time, limiting parallel processing capabilities.
+Furthermore, NT and MP operations cannot be concurrently executed within a single node, necessitating the completion of NT before initiating MP\@.
+
+The authors introduce the FlowGNN architecture, shown in Figure~\ref{fig:FlowGNN_architecture}, to overcome these limitations and significantly enhance performance through various levels of parallelism.
+FlowGNN's capabilities can be customized using four parameters: $P_{node}$ determines the number of nodes that can undergo simultaneous processing by NT, $P_{edge}$ sets the simultaneous processing of edges by MP, $P_{apply}$ specifies the concurrent processing of node embedding dimensions by a single NT, and $P_{Scatter}$ sets the simultaneous processing of edge embedding dimensions by a single MP\@.
+
+The FlowGNN architecture incorporates multiple NT units and multiple MP units, interconnected through an NT-to-MP adapter that utilizes multiple data queues.
+To facilitate concurrent access, both the node embedding and message buffers are divided into several banks.
+
+Achieving Node/Edge Parallelism necessitates that edges and their respective target nodes reside in distinct memory banks or buffers.
+In the absence of prior graph preprocessing, such access patterns are typically random, making parallelization unfeasible.
+To tackle this challenge, the authors have introduced an innovative multi-queue dataflow approach, using an NT-to-MP adapter and implementing real-time multicasting, allowing the process of $P_{node}$ nodes in parallel as a single batch enabling concurrent NT and MP operations through dynamic node distribution.
+The core concept involves instantiating multiple NT and MP units, with each MP unit responsible for processing its designated set of edges and managing read/write operations for its allocated bank of node embeddings.
+
+Parallelism in apply/scatter operations is achieved through the utilization of NT and MP units.
+The NT unit is responsible for conducting any per-node computations necessary for a GNN, and it comprises two consecutive processes, synchronized among nodes using ping-pong buffers to mitigate latency: accumulate and output.
+During the accumulate phase, each node's aggregated message is read, and a fully-connected layer is computed in an input-stationary manner, where each element of the input vector fetched is used to update the entire output vector.
+Subsequently, once the accumulate process is complete for an entire node, the output phase carries out any finalization tasks, such as applying an activation function, before forwarding the resulting embedding to the multicasting adapter.
+
+The MP units are responsible for executing computations specific to each edge.
+Two configurations are available: NT-to-MP or MP-to-NT dataflow.
+In the former each MP unit manages an independent subset of destination nodes.
+Instead, in latter, each MP unit is allocated a subset of source nodes. Within this setup, the MP units collect partial messages from nodes within their assigned subset along the edges.
+
+Finally, another feature provided by FlowGNN is its adaptability to different graph neural network models by offering various model-specific components.
+One particularly advantageous feature of FlowGNN's dataflow architecture for node/edge processing is its suitability for models with virtual nodes.
 As defined by~\cite{DBLP:journals/corr/GilmerSRVD17}, a virtual node acts as an artificial node connected to all other nodes in the graph, creating a shortcut for message passing between node pairs.
 The authors stated that processing the virtual node can be entirely overlapped with the node embedding computation for other nodes, ensuring zero waste as long as it is handled early enough in the processing pipeline.
 
-Finally, another feature provided by GenGNN is the large graph extension.
-The authors implemented a prefetcher to accommodate large graphs that cannot be stored on-chip.
-This prefetcher retrieves consecutive nodes' degrees from DRAM and stores them in an on-chip FIFO buffer.
-As the message passing PE requires, it loads each subsequent node's degree, prompting the prefetcher to refill the buffer.
-This clever mechanism effectively conceals the latency associated with fetching from the off-chip degree table, ensuring that the message passing PE behaves similarly to handling small graphs.
-Moreover, the authors adopted packed data transfer by typecasting off-chip array pointers into the desired size pointer types, facilitating the transfer of more significant bits between DRAM and the system with every clock cycle.
-
 Another notable framework in this section is DGNN-Booster~\cite{chen2023dgnnbooster}, an innovative Field-Programmable Gate Array accelerator framework designed for real-time inference of Dynamic Graph Neural Networks (DGNNs) using High-Level Synthesis.
 Unlike the other accelerators mentioned and outside the scope of this research, DGNN-Booster focuses on DGNNs, which are Graph Neural Networks tailored for dynamic graph structures and features.
-However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on GenGNN at a lower level of parallelism.
+However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on FlowGNN at a lower level of parallelism.
 
 \section{Software-Hardware co-design accelerators}
 \label{sec:software-hardware-accelerators}%
@@ -326,7 +345,7 @@ The aggregator module adopts a double-buffering technique to hide addition laten
 Moreover, the accelerator supports two modes of operation depending on the order of matrix multiplications, leading to different pipelining strategies.
 In order to accommodate these modes, the modules are interconnected from the aggregate module to the combination modules and vice versa.
 
-GenGNN's NE/MP pipeline, introduced in Section~\ref{sec:hls-accelerators}, shares a similar concept with the task scheduling approach of BoostGCN~\cite{9444065}.
+FlowGNN's NE/MP pipeline, introduced in Section~\ref{sec:hls-accelerators}, shares a similar concept with the task scheduling approach of BoostGCN~\cite{9444065}.
 BoostGCN presents a framework, shown in Figure~\ref{fig:boost-gcn-framework}, using an algorithm-architecture co-optimization scheme tailored to enhance GCN inference on FPGA.
 The authors introduced a groundbreaking hardware-aware Partition-Centric Feature Aggregation (PCFA) scheme that capitalizes on 3-D partitioning alongside the vertex-centric computing paradigm.
 This innovation significantly boosts on-chip data reuse while minimizing the overall data communication volume with external memory.
@@ -344,13 +363,13 @@ The authors propose a specific approach to optimize task scheduling and minimize
 Furthermore, they allocate a buffer in external memory to store aggregated feature vectors produced by FAMs in case FUM is not yet prepared to consume new aggregated feature vectors.
 Subsequently, FUM can retrieve the aggregated feature vectors from external memory when ready.
 
-As indicated in~\cite{DBLP:journals/corr/abs-2201-08475}, while the scheduling approaches of GenGNN and BoostGCN share some similarities, there are notable differences.
-Firstly, BoostGCN relies on sorting vertices by degrees on the CPU to establish an execution order, whereas GenGNN processes the nodes on-the-fly in FPGA in an adaptive manner.
-Secondly, BoostGCN employs a buffer in external memory, while GenGNN utilizes an on-chip FIFO to queue the nodes ready for message passing.
+As indicated in~\cite{sarkar2022flowgnn}, while the scheduling approaches of FlowGNN and BoostGCN share some similarities, there are notable differences.
+Firstly, BoostGCN relies on sorting vertices by degrees on the CPU to establish an execution order, whereas FlowGNN processes the nodes on-the-fly in FPGA in an adaptive manner.
+Secondly, BoostGCN employs a buffer in external memory, while FlowGNN utilizes an on-chip FIFO to queue the nodes ready for message passing.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[height=0.26\textwidth]{Images/BoostGCN_Framework}
+    \includegraphics[height=0.28\textwidth]{Images/BoostGCN_Framework}
     \caption{BoostGCN framework overview~\cite{9444065}}
     \label{fig:boost-gcn-framework}
 \end{figure}
