@@ -1,4 +1,4 @@
-This chapter presents all the experiments performed and the achieved results.
+This chapter presents all the experiments performed about matrix multiplication acceleration and GNN acceleration along with the achieved results.
 
 All the CPU experiments have been conducted using an Intel Core i9, with 8 cores and a frequency of 2,3 GHz.
 On the other hand, the synthesis experiments targeted an AMD Virtex UltraScale+ (Alveo U280) FPGA\@.
@@ -18,6 +18,8 @@ On the other hand, the synthesis experiments targeted an AMD Virtex UltraScale+ 
     \textbf{aten::addmm} & 36,30\% & 731,0$\mu s$ & 37,04\% & 746,0$\mu s$ \T\B\\
     \hline
     \textbf{aten::add} & 4,67\% & 94,0$\mu s$ & 4,67\% & 94,0$\mu s$ \T\B\\
+    \hline
+    \multicolumn{5}{|c|}{\makecell{\lstinline{aten::mm} matrix multiplication; \lstinline{aten::add} matrix sum; \lstinline{aten::addmm} \\matrix multiplication plus matrix sum.}} \T\B\\
     \hline
     %\textbf{aten::\_log\_softmax} & 2,98\% & 60,0us & 2,98\% & 60,0us \T\B\\
     %\hline
@@ -54,19 +56,46 @@ The following subsections explains how this thesis improved matmul performance e
 
 PyTorch provides different matrix representations and different matrix multiplication functions.
 The one considered in this Subsection are \textit{torch.mm} and \textit{torch.spmm}.
-The former function multiplies two dense matrices, but it also supports COO representation.
+The former function multiplies two dense matrices, but it also supports COO and CSR representation.
 The latter, instead, is typically used for sparse matrix multiplications, in which one of the two matrices, or both, are saved using sparse representations.
 
 Table~\ref{tab:torch-mm-benchmark} represents a benchmark for the dense matrix multiplication between a first matrix of size $15 \times 15$ and a second matrix of size $15 \times 16$, both composed by float32 elements.
-In particular, the plot shows five measurements computed as the average of five different executions' number.
-Additionally, this average has been computed five times, and the red bar shows the range between the minimum and the maximum execution time of these repetitions.
+The chosen sizes for input matrices are not arbitrary; they have been specifically selected due to their extensive use in the following experiments, requiring an accurate benchmark for comparison purposes.
+In particular, the table shows five different runs, each composed by a different number of executions.
+Then, the final time is computed as the average of the five different runs.
+Additionally, this average has been computed five times using increasing number of executions.
+The results shows that the variance of the runs of the last experiments is lower than the others, fixing to ten millions a sufficient number of executions for good accuracy and stability.
 
-As expected, given the high amount of executions, the five average execution times are similar between them, and the red range bar decreases as the number of executions increases.
+As expected, given the globally high amount of executions, the five average execution times are similar between them, and the variance decreases as the number of executions increases.
 In conclusion, the time needed by a dense matrix multiplication between two matrices of the given size can be considered equal to 1.608$\mu s$.
-The Python timing corresponding to the accelerated matrix multiplication for each experiment has been computed using an average of ten million executions.
+%The Python timing corresponding to the accelerated matrix multiplication for each experiment has been computed using an average of ten million executions.
 
 Since the GCN model uses both dense and sparse matrix multiplication functions, Table~\ref{tab:torch-matmul-comparison} shows the times needed by both functions according to different representations of the two input matrices A and B\@.
-All the times have been computed as the average of ten millions executions, the two matrices are both of size $20 \times 20$ and randomly generated; they are both composed by float32 elements and COO matrices have a sparsity of 90\%.
+Different experiments have been performed using randomly generated input matrices; they are composed by float32 elements and different input sized and levels of sparsity have been analyzed.
+
+\begin{table}[t]
+\centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|p{6em} c c c c c c|}
+    \hline
+    \thead{Executions} & \thead{Run1} & \thead{Run2} & \thead{Run3} & \thead{Run4} & \thead{Run5} & \thead{\makecell{Avg. time}} \T\B \\
+    \hline \hline
+    \makecell{2E06} & 1.587E-06 & 1.568E-06 & 1.567E-06 & 1.594E-06 & 1.572E-06 & 1.578E-06 \T\B\\
+    \hline
+    \makecell{4E06} & 1.598E-06 & 1.585E-06 & 1.592E-06 & 1.602E-06 & 1.599E-06 & 1.595E-06 \T\B\\
+    \hline
+    \makecell{6E06} & 1.601E-06 & 1.614E-06 & 1.603E-06 & 1.603E-06 & 1.608E-06 & 1.606E-06 \T\B\\
+    \hline
+    \makecell{8E06} & 1.608E-06 & 1.607E-06 & 1.600E-06 & 1.614E-06 & 1.617E-06 & 1.609E-06 \T\B\\
+    \hline
+    \makecell{10E06} & 1.614E-06 & 1.603E-06 & 1.603E-06 & 1.613E-06 & 1.607E-06 & 1.608E-06 \T\B\\
+    \hline
+    \end{tabular}
+    }
+    \\[10pt]
+    \caption[Benchmark of \textit{torch.mm} PyTorch function]{Benchmark of \textit{torch.mm} PyTorch function. Five runs using different number of executions and their average, unit of measure is second.}
+    \label{tab:torch-mm-benchmark}
+\end{table}
 
 \begin{table}[t]
 \centering
@@ -97,30 +126,6 @@ All the times have been computed as the average of ten millions executions, the 
     \label{tab:torch-matmul-comparison}
 \end{table}
 
-\begin{table}[t]
-\centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|p{6em} c c c c c c|}
-    \hline
-    \thead{Executions} & \thead{Run1} & \thead{Run2} & \thead{Run3} & \thead{Run4} & \thead{Run5} & \thead{\makecell{Avg. time}} \T\B \\
-    \hline \hline
-    \makecell{2E06} & 1.587E-06 & 1.568E-06 & 1.567E-06 & 1.594E-06 & 1.572E-06 & 1.578E-06 \T\B\\
-    \hline
-    \makecell{4E06} & 1.598E-06 & 1.585E-06 & 1.592E-06 & 1.602E-06 & 1.599E-06 & 1.595E-06 \T\B\\
-    \hline
-    \makecell{6E06} & 1.601E-06 & 1.614E-06 & 1.603E-06 & 1.603E-06 & 1.608E-06 & 1.606E-06 \T\B\\
-    \hline
-    \makecell{8E06} & 1.608E-06 & 1.607E-06 & 1.600E-06 & 1.614E-06 & 1.617E-06 & 1.609E-06 \T\B\\
-    \hline
-    \makecell{10E06} & 1.614E-06 & 1.603E-06 & 1.603E-06 & 1.613E-06 & 1.607E-06 & 1.608E-06 \T\B\\
-    \hline
-    \end{tabular}
-    }
-    \\[10pt]
-    \caption[Benchmark of \textit{torch.mm} PyTorch function]{Benchmark of \textit{torch.mm} PyTorch function. Five runs using different number of executions and their average, unit of measure is second.}
-    \label{tab:torch-mm-benchmark}
-\end{table}
-
 %\begin{figure}[t]
 %    \centering
 %    \includegraphics[height=0.4\textwidth]{Images/torch-mm_benchmark}
@@ -128,8 +133,11 @@ All the times have been computed as the average of ten millions executions, the 
 %    \label{fig:torch-mm_benchmark}
 %\end{figure}
 
-It is clear that sparse matrix multiplication, both with dense and sparse matrix representations, does not increase performance on CPU architecture.
-The disadvantage of using sparse matrix multiplication on CPU becomes more and more evident as the size of the input matrices increases.
+It is clear that sparse matrix multiplication, both with dense and sparse matrix representations, does not increase performance on CPU architecture when the size of input matrices is small.
+The disadvantage of using sparse matrix multiplication on CPU becomes more evident as the size of the input matrices increases but the level of sparsity remains constant.
+However, when the size of input matrices increases considerably and the level of sparsity is very high, using sparse representations, in particular CSR, can bring a significant advantage.
+
+Even if the following experiments do not take advantage of sparse matrix computations, the utilization of custom optimizations for the analyzed GCN has enabled the acceleration of inference, balancing the absence of sparse matrix computations.
 
 \subsection{FPGA-accelerated matrix multiplication}
 \label{subsec:optimization-comparison}%
@@ -139,13 +147,15 @@ To obtain the matmul accelerator, the process began with following the initial s
 After having made the model compatible with TorchScript, its linalg representation has been obtained through Torch-MLIR compilation.
 Subsequently, only the matmul code of the generated MLIR representation has been outlined through the use of SODA annotation.
 Following this, the LLVM-generated file has been synthesized with PandA-Bambu using baseline attributes, including the \lstinline{-fno-unroll-loops} flag, two memory channels, and the \lstinline{ALL_BRAM} option.
-Figure~\ref{fig:pytorch-accelerator-comparison} shows the result of this analysis, which reveal the fact that the cycle counts required by the accelerator for each experiment align perfectly with the anticipated expectations outlined in Equation~\ref{eq:number-cycles}.
-Specifically, dividing the cycle count of the first experiment of the table and the final one by the total count of loop iterations effectively confirms a consistent result of approximately 7 in both instances, confirming that the number of cycles per each loop iteration stayed constant.
-However, this behavior limits the utilization of the possibilities presented by FPGA technology, which encompass substantial parallelization potential and concurrent memory accesses.
+Figure~\ref{fig:pytorch-accelerator-comparison} shows the result of this analysis, which reveal the fact that the cycle counts required by the accelerator for each experiment align perfectly with the anticipated expectations outlined in Section~\ref{sec:matmul-synthesis-heiristic}.
+Specifically, dividing the cycle count of the first experiment of the table and the final one by the total count of loop iterations effectively confirms a consistent result of approximately 7 in both instances, confirming that the number of cycles per each loop iteration stayed constant, as shown by the second part of Equation~\ref{eq:number-cycles}.
+However, this constant behavior limits the utilization of the possibilities presented by FPGA technology, which encompass substantial parallelization potential and concurrent memory accesses.
 
 The PyTorch times have been recorded by averaging five measurements each of ten millions executions.
 The baseline accelerator is much faster than PyTorch when matrices are relatively small.
-The difference of performance decreases as the size of the input matrices increase until reaching a point in which the accelerator becomes slower than PyTorch solution.
+The reason behind this behavior is that the generated accelerator simplifies data loading by assuming that all data is available in BRAM. By default, the system uses two channels and stores all memory objects in BRAMs.
+However, an alternative approach, explored in this thesis, involves employing a greater number of memory channels while utilizing external memory.
+The advantage of the accelerator in terms of performance decreases as the size of the input matrices increase, until reaching a point in which the accelerator becomes slower than PyTorch solution.
 
 %\begin{table}[t]
 %\centering
@@ -179,21 +189,18 @@ The difference of performance decreases as the size of the input matrices increa
 \end{figure}
 
 This behaviour can be attributed to the fact that PyTorch times have been recorded using all the eight available threads on the machine.
-So, the \lstinline{torch.mm} function exploits more parallelism with respect to the accelerator.
+So, it is expected that the \lstinline{torch.mm} function exploits more parallelism with respect to the accelerator, and this advantage is more evident when the potential level of parallelism increases.
 For this reason, the optimizations discussed in Section~\ref{subsec:toolchain-soda_opt} and in Section~\ref{subsec:toolchain-panda_bambu} need to be applied to exploit more parallelism.
 
-SODA-OPT offers the possibility to make different types of unrolling, among which the full unroll which completely unroll the innermost loop, and the partial unroll up to an arbitrary factor.
-% Listing~\ref{lst:affine-mul-unroll3} shows the effect of a partial unrolling, with unrolling factor equal to 3, to the matrix multiplication introduced in Listing~\ref{lst:affine-mul}.
-
-Moreover, PandA-Bambu introduces several optimization options, one of which involves expanding the number of memory channels in use.
-By default, the system employs two channels and stores all memory objects in BRAMs.
-However, there's an alternative approach explored in this thesis, which entails employing a greater number of memory channels while utilizing external memory, approach that appears to be in line with the coalescent accesses performed on CUDA.
+SODA-OPT, as introduced in Subsection~\ref{subsec:toolchain-soda_opt}, offers the possibility to make different types of unrolling, among which the full unroll which completely unroll the innermost loop, and the partial unroll up to an arbitrary factor.
+Moreover, PandA-Bambu introduces several optimization options, one of which, as already anticipated above, involves expanding the number of memory channels in use by exploiting an external memory instead of a BRAM.
 
 The combination of loop unrolling and multiple memory channels offers both advantages and disadvantages, resulting in a trade-off.
 Loop unrolling enhances parallelization, thereby reducing computational time.
 However, especially when utilizing more than two memory channels, it increases the number of parallel processing elements, leading to a larger area footprint.
 Additionally, external memory allows for up to 32 memory channels, enabling the simultaneous loading of 32 variables.
 Nonetheless, accessing data from external memory requires more load cycles compared to accessing internal memory.
+In particular, with BRAM both load and store requires one cycle, instead, loads with external memory still require one cycle, but stores require 2 cycles to complete.
 
 \begin{figure}[t]
     \centering

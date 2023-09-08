@@ -52,7 +52,7 @@
 \contentsline {section}{\numberline {6.1}Model analysis and profiling}{59}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Matrix multiplication acceleration}{60}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}PyTorch matrix multiplication benchmark}{60}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}FPGA-accelerated matrix multiplication}{61}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.2}FPGA-accelerated matrix multiplication}{62}{subsection.6.2.2}%
 \contentsline {subsection}{\numberline {6.2.3}GCN accelerator evaluation}{65}{subsection.6.2.3}%
 \contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{69}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Future developments}{70}{section.7.1}%

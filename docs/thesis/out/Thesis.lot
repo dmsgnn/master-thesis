@@ -6,8 +6,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {6.1}{\ignorespaces Excerpt of GCN model inference profiling result\relax }}{59}{table.caption.41}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Comparison between dense and sparse PyTorch matmul functions}}{61}{table.caption.42}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces Benchmark of \textit {torch.mm} PyTorch function}}{61}{table.caption.43}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces Cora sub-dataset used for GCN infernce\relax }}{65}{table.caption.47}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces GCN inference time comparison\relax }}{66}{table.caption.49}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Benchmark of \textit {torch.mm} PyTorch function}}{61}{table.caption.42}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Comparison between dense and sparse PyTorch matmul functions}}{61}{table.caption.43}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Cora sub-dataset used for GCN infernce\relax }}{66}{table.caption.47}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces GCN inference time comparison\relax }}{67}{table.caption.49}%
 \addvspace {10\p@ }
