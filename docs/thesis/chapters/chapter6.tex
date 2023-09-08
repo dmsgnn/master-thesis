@@ -70,17 +70,30 @@ All the times have been computed as the average of ten millions executions, the 
 
 \begin{table}[t]
 \centering
-    \begin{tabular}{|p{6em} c c c |}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|p{6em} c c c c c c c c|}
     \hline
-    \textbf{Function} & \textbf{Dense$\times$Dense} & \textbf{COO$\times$Dense} & \textbf{COO$\times$COO} \T\B \\
+    \textbf{Function} & \textbf{Sizes} & \textbf{Sparsity} & \textbf{Runs} & \textbf{Dense$\times$Dense} & \textbf{COO$\times$Dense} & \textbf{COO$\times$COO} & \textbf{CSR$\times$Dense} & \textbf{CSR$\times$CSR} \T\B \\
     \hline \hline
-    \textbf{torch.mm} & 1.840$\mu s$  & 3.299$\mu s$ & 16.855$\mu s$ \T\B\\
+    \textbf{torch.mm} & 15$\times$15, 15$\times$16 & 0.9 & 10E06 & \textbf{1.599E-06} & 2.844E-06 & 1.658E-05 & 1.058E-05 & 8.632E-05 \T\B\\
     \hline
-    \textbf{torch.spmm} & 1.875$\mu s$  & 3.234$\mu s$ & 15.215$\mu s$ \T\B\\
+    \textbf{torch.spmm} & 15$\times$15, 15$\times$16 & 0.9 & 10E06 & 1.934E-06 & 3.385E-06 & 1.750E-05 & 1.183E-05 & 1.746E-05 \T\B\\
+    \hline \hline
+    \textbf{torch.mm} & 150$\times$150, 150$\times$16 & 0.9 & 1E06 & \textbf{5.220E-06} & 4.303E-05 & 1.058E-04 & 1.384E-05 & 1.393E-04 \T\B\\
     \hline
-    \end{tabular}
+    \textbf{torch.spmm} & 150$\times$150, 150$\times$16 & 0.9 & 1E06 & 6.593E-06 & 4.659E-05 & 1.143E-04 & 1.461E-05 & 1.090E-04 \T\B\\
+    \hline \hline
+    \textbf{torch.mm} & 150$\times$150, 150$\times$16 & 0.99 & 1E06 & 5.752E-06 & 7.039E-06 & 1.887E-05 & 1.256E-05 & 8.730E-05 \T\B\\
+    \hline
+    \textbf{torch.spmm} & 150$\times$150, 150$\times$16 & 0.99 & 1E06 & \textbf{4.678E-06} & 7.797E-06 & 1.883E-05 & 1.214E-05 & 1.847E-05 \T\B\\
+    \hline \hline
+    \textbf{torch.mm} & 2708$\times$2708, 2708$\times$16 & 0.999 & 100E03 & 1.288E-03 & 2.030E-04 & 1.325E-04 & \textbf{3.377E-05} & 1.073E-04 \T\B\\
+    \hline
+    \textbf{torch.spmm} & 2708$\times$2708, 2708$\times$16 & 0.999 & 100E03 & 1.255E-03  & 2.012E-04 & 1.316E-04 & 3.661E-05 & 1.186E-04 \T\B\\
+    \hline
+    \end{tabular}}
     \\[10pt]
-    \caption{Comparison between dense and sparse PyTorch matmul functions}
+    \caption[Comparison between dense and sparse PyTorch matmul functions]{Comparison between dense and sparse PyTorch matmul functions, computed as average of multiple runs. Times unit of measure is seconds.}
     \label{tab:torch-matmul-comparison}
 \end{table}
 
