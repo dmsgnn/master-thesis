@@ -10,8 +10,9 @@ In particular, firstly, the GNN model is implemented in PyTorch, one of the most
 Subsequently, the model is passed as input to Torch-MLIR, a crucial middle step that enables the generation of the MLIR representation.
 This intermediate representation serves as input for the synthesizer, where, once the frontend optimization is complete, the refined version proceeds to the backend, where the actual GNN accelerator is effectively produced, ready to enhance inference performance on FPGA architectures.
 
-The following Sections provide a comprehensive and in-depth exploration of each step within the proposed design flow.
+The following sections provide a comprehensive and in-depth exploration of each step within the proposed design flow.
 This detailed breakdown highlights the various possibilities inherent in the toolchain and outlines the recommended procedures necessary to achieve the optimal outcome for GNN acceleration.
+A final section explains how matrix multiplication acceleration has been addressed, focusing on a theoretical analysis of the algorithm and the heuristics followed in the phase preceding the experiments.
 The thesis aims to equip researchers and practitioners in Graph Neural Networks with the necessary insights and understanding to harness the full potential of this toolchain and unleash the power of FPGA acceleration.
 
 In conclusion, this thesis represents a significant advancement in Graph Neural Network acceleration.
@@ -355,8 +356,8 @@ PandA-Bambu also offers the possibility to apply low-level loop unrolling, but t
 Bambu provides also the possibility to export some files that have been used for this research.
 One important file is represented by the HLS graph, which shows the computation states and transitions, the number of cycles needed by each operation to complete, and other information that has been useful to study and understand the impact of both SODA-OPT and Bambu optimization settings.
 
-\section{Matrix multiplication synthesis heuristic}
-\label{sec:matmul-synthesis-heiristic}%
+\section{Matrix multiplication algorithm}
+\label{sec:matmul-algo}%
 
 \begin{algorithm}[t]
     \label{alg:matmul_pseudo}
@@ -438,6 +439,16 @@ By applying the Equation~\ref{eq:number-cycles}, the expected number of cycles f
     \includegraphics[height=0.24\textwidth]{Images/row-by-col-mult-example}
     \caption{Row-by-column matrix multiplication example}
     \label{fig:row-by-col-mul-example}
+\end{figure}
+
+\subsection{Emulating global memory coalescing of CUDA}
+\label{subsec:CUDA-coalescing}%
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[height=0.8\textwidth]{Images/memory-coalescing}
+    \caption{Matrix multiplication memory coalescing~\cite{opt_cuda_matmul}}
+    \label{fig:memory-coalescing}
 \end{figure}
 
 \section{Conclusion}
