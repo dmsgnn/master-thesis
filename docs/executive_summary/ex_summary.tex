@@ -139,7 +139,7 @@ a cutting-edge high-level programming framework for creating neural network algo
 automatic generation of a GNNs FPGA accelerator with minimal effort required.
 
 The toolchain's effectiveness is validated through experimental results, demonstrating significant enhancements in performance.
-The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
+%The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
 
 The main contribution of this thesis is a novel toolchain introduced to accelerate GNN inference, alongside customized optimizations designed to finely enhance model performance.
 Part of this research contributed in innovating Torch-MLIR by introducing new compatibility support for PyTorch Geometric.
@@ -158,7 +158,7 @@ By leveraging the evaluated optimizations, the final outcome of this thesis is a
 In a graph, the edges can be either directed or undirected, and they typically connect two vertices, which may or may not be distinct.
 The vertices represent entities or elements, and the edges represent their relationships or connections.
 
-Graphs are easy to visualize, but a more formal way is needed when implementing graph algorithms.
+Graphs are easy to visualize, but a more formal representation is needed when implementing graph algorithms.
 The adjacency matrix of a graph provides information about the relationships between nodes in the graph.
 It is a matrix of dimensions $N \times N$ where $N$ is the number of nodes in the graph. Each matrix cell is set to 1 if the two nodes are connected, zero otherwise.
 A feature vector represents the features or attributes associated with a single entity.
@@ -306,6 +306,7 @@ After having applied the specified optimizations, the generated design in an HDL
 
 All the CPU experiments have been conducted using an Intel Core i9, with 8 cores and a frequency of 2,3 GHz.
 On the other hand, the synthesis experiments utilized an AMD Virtex UltraScale+ (Alveo U280) FPGA\@.
+The whole experimental phase evaluated only the computational time of the accelerators, and results are based on the assumption that all data are loaded from BRAMs, requiring two cycles to read data and one cycle to store data.
 
 The first step to understanding how to accelerate the PyTorch GCN model used was to analyze and profile it.
 The results showed that more than 50\% of the self CPU time is used by matrix multiplication.
@@ -327,7 +328,7 @@ To verify the effectiveness of the proposed optimizations, different comparative
     \label{fig:matmul-opts-comparison}
 \end{figure}
 
-Figure~\ref{fig:matmul-opt-comparison} shows the impact of the applied optimizations on a matrix multiplication between two matrices of size $15 \times 15$ and $15 \times 16$.
+Figure~\ref{fig:matmul-opts-comparison} shows the impact of the applied optimizations on a matrix multiplication between two matrices of size $15 \times 15$ and $15 \times 16$.
 In particular, two different optimizations have been applied: a SODA-OPT progressive loop unrolling, with unrolling factors written in the ordinate of the Figure, and the use of different number of memory channels.
 By default, the system employs two channels and utilizes \lstinline{ALL_BRAM} as the memory allocation policy, directing all objects to be stored in BRAMs.
 However, the alternative approach explored in this thesis entails employing a greater number of memory channels while utilizing external memory.
