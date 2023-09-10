@@ -380,6 +380,41 @@ The Equation~\ref{eq:factor-relation} can be adapted also to this specific case,
 \subsection{Model accuracy}
 \label{subsec:modeol-accuracy}%
 
+An evaluation of the model accuracy has been conducted for both the PyTorch-based implementation and the FPGA-accelerated version to ensure that there has been no impact on accuracy.
+
+This comparative analysis has been made possible through the possibility offered by PandA-Bambu which allows for the generation of custom simulation calls using C files.
+Specifically, the process involved training the model in PyTorch, conducting inference to generate outputs, and saving all inputs and inference results in a binary file.
+The binary file was then utilized to load all the data within a C file.
+The forward kernel function was employed to execute inference on the FPGA accelerator using the same inputs as the PyTorch version.
+The resulting inference output was saved and subjected to analysis, allowing for a comprehensive comparison with the PyTorch implementation.
+
+\begin{table}[t]
+\centering
+    \begin{tabular}{|p{5em} c c c|}
+    \hline
+%    \rowcolor{black!40}
+    \textbf{Dataset} & \textbf{PyTorch accuracy} & \textbf{Accelerator accuracy} & \textbf{Floating distance} \T\B \\
+    \hline \hline
+    \textbf{Cora15} & 0.000 & 0.000 & 0.000 \T\B\\
+    \hline
+    \textbf{Cora30} & 0.000 & 0.000 & 0.000 \T\B\\
+    \hline
+    \textbf{Cora60} & 0.000 & 0.000 & 0.000 \T\B\\
+    \hline
+    \textbf{Cora90} & 0.000 & 0.000 & 0.000 \T\B\\
+    \hline
+    \textbf{Cora120} & 0.000 & 0.000 & 0.000 \T\B\\
+    \hline
+    \textbf{Cora150} & 0.000 & 0.000 & 0.000 \T\B\\
+    \hline
+    \end{tabular}
+    \\[10pt]
+    \caption{Model accuracy comparison between PyTorch and FPGA accelerator}
+    \label{tab:model-accuracy-analysis}
+\end{table}
+
+The results presented in Table~\ref{tab:model-accuracy-analysis} indicate that the model accuracy has been maintained in the FPGA accelerator.
+Nonetheless, the slight variation in the floating-point data precision between the PyTorch inference output and the FPGA accelerator may potentially result in a difference of the accuracy, especially when dealing with very large datasets.
 
 \section{State of the art comparison}
 \label{sec:sota-comparison}%
@@ -390,6 +425,15 @@ This limitation prevents the fine-tuning of the balance between area utilization
 In contrast, the design flow introduced in this thesis provides a more refined approach to customizing the trade-off between area and performance.
 It eliminates the need for mandatory double full unrolling when a single one is not sufficient, offering the flexibility to employ a partial unrolling factor.
 
-% TODO make comparison with FlowGNN, computing the number of cycles, assuming a frequency and compute the time needed to compare to FlowGNN
-
 A noteworthy point of comparison involves FlowGNN~\cite{sarkar2022flowgnn}, which stands out among the state-of-the-art technologies introduced in Chapter~\ref{ch:chapter_three} as the only solution employing the HLS technique, which is also used in this thesis.
+
+The toolchain proposed in this thesis, as well as the dataflow of FlowGNN, offers support for a diverse range of GNN models.
+However, FlowGNN is limited to just four configurable parallelization parameters and focuses on delivering model-specific components, which limit the customization of the accelerator even further.
+In contrast, the proposed toolchain offers many optimization passes from both SODA-OPT and PandA-Bambu, allowing users to finely customize and optimize the accelerator's capabilities.
+
+Another significant advantage of the proposed toolchain is its ability to generate the accelerator directly from the PyTorch implementation, eliminating the need for low-level programming.
+This sets it apart from FlowGNN, which offers pre-built models in C++.
+The authors, through a small example, states that the provided models can be slightly changed to be adapted to different features.
+However, To do this a minimum of experience with C++ is needed, and if the changes are substantial it could be a blocking factor.
+On the contrary, the proposed toolchain, in case pre-existing models would not be sufficient, only requires knowledge in PyTorch, one of the most used the high-level framework for GNN implementations.
+

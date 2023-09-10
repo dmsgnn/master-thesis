@@ -3,7 +3,7 @@ The main contribution of this thesis is represented by the design of a toolchain
 This chapter explains in detail how the toolchain has been designed and how it can be used to build GNN accelerators to enhance inference performance.
 
 The core component of the toolchain is the synthesizer, enclosing SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110}.
-The primary objective of this thesis is to enhance SODA-OPT and Bambu to synthesize GNN models written in high-level frameworks, such as PyTorch, to FPGA architectures.
+The primary objective of this thesis is to enhance SODA-OPT and PandA-Bambu to synthesize GNN models written in high-level frameworks, such as PyTorch, to FPGA architectures.
 
 Figure~\ref{fig:toolchain} illustrates the entire design flow, with the steps involved in the GNN acceleration process.
 In particular, firstly, the GNN model is implemented in PyTorch, one of the most popular and powerful frameworks for Neural Network implementations.
@@ -345,7 +345,7 @@ As represented in Figure~\ref{fig:bambu_flow}, it receives the LLVM representati
 
 The LLVM intermediate representation taken as input from PandA-Bambu is received by the Clang compiler frontend which builds an internal IR to perform the HLS steps.
 After having applied the specified optimizations, the generated design in an HDL is given as output.
-As a result, after traversing through each stage of the proposed toolchain's process, Bambu's output represents the final output, an accelerator tailored to target and maximize performance on cutting-edge FPGA architectures.
+As a result, after traversing through each stage of the proposed toolchain's process, PandA-Bambu's output represents the final output, an accelerator tailored to target and maximize performance on cutting-edge FPGA architectures.
 
 PandA-Bambu allows the specification of different optimizations and settings that can have a big impact on accelerator performance.
 Some optimization techniques have been explored, including in particular an evaluation of the impact of varying the number of memory channels.
@@ -356,8 +356,8 @@ It is the case of a trade-off between the number of channels and the required nu
 The conducted study revealed that there is a point, represented by a specific number of parallel operations, after which using an external memory with 32 channels becomes beneficial.
 
 PandA-Bambu also offers the possibility to apply low-level loop unrolling, but this option has been disabled to be able to evaluate in isolation the performance impact of the SODA-OPT loop unrolling technique and avoid that loops are unrolled automatically if the option was not enabled in SODA-OPT\@.
-Bambu provides also the possibility to export some files that have been used for this research.
-One important file is represented by the HLS graph, which shows the computation states and transitions, the number of cycles needed by each operation to complete, and other information that has been useful to study and understand the impact of both SODA-OPT and Bambu optimization settings.
+PandA-Bambu provides also the possibility to export some files that have been used for this research.
+One important file is represented by the HLS graph, which shows the computation states and transitions, the number of cycles needed by each operation to complete, and other information that has been useful to study and understand the impact of both SODA-OPT and PandA-Bambu optimization settings.
 
 \section{Matrix multiplication algorithm}
 \label{sec:matmul-algo}%
@@ -477,4 +477,4 @@ This chapter presented the main contribution of this thesis, an FPGA toolchain t
 The most crucial advantage of the proposed toolchain is that it allows obtaining an accelerator without any knowledge of hardware design and implementation.
 
 Moreover, analyzing two representative GNN models it has been highlighted that most of the computation is composed of matrix multiplication operations.
-Available opt passes in SODA-OPT and Bambu can be tailored for matmul, their effect is shown through experiments in the next chapter.
+Available opt passes in SODA-OPT and PandA-Bambu can be tailored for matmul, their effect is shown through experiments in the next chapter.

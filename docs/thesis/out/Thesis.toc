@@ -56,15 +56,15 @@
 \contentsline {subsection}{\numberline {6.2.2}FPGA-accelerated matrix multiplication}{64}{subsection.6.2.2}%
 \contentsline {section}{\numberline {6.3}GCN accelerator evaluation}{68}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}Model accuracy}{70}{subsection.6.3.1}%
-\contentsline {section}{\numberline {6.4}State of the art comparison}{70}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{71}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Future developments}{72}{section.7.1}%
+\contentsline {section}{\numberline {6.4}State of the art comparison}{71}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{73}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Future developments}{74}{section.7.1}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{75}{chapter*.55}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase {Bibliography}}{\MakeUppercase {Bibliography}}}{77}{chapter*.56}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{81}{appendix*.57}%
-\contentsline {chapter}{List of Tables}{83}{appendix*.59}%
-\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{85}{appendix*.61}%
-\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{87}{appendix*.63}%
-\contentsline {chapter}{List of Symbols}{89}{appendix*.65}%
-\contentsline {chapter}{Acknowledgements}{91}{appendix*.68}%
+\contentsline {chapter}{List of Figures}{83}{appendix*.58}%
+\contentsline {chapter}{List of Tables}{85}{appendix*.60}%
+\contentsline {chapter}{List of Algorithms\markboth {\MakeUppercase {List of Algorithms}}{\MakeUppercase {List of Algorithms}}}{87}{appendix*.62}%
+\contentsline {chapter}{List of Listings\markboth {\MakeUppercase {List of Listings}}{\MakeUppercase {List of Listings}}}{89}{appendix*.64}%
+\contentsline {chapter}{List of Symbols}{91}{appendix*.66}%
+\contentsline {chapter}{Acknowledgements}{93}{appendix*.69}%
