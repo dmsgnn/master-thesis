@@ -46,9 +46,9 @@
 \contentsline {section}{\numberline {5.3}Synthesizer}{52}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}SODA-OPT}{52}{subsection.5.3.1}%
 \contentsline {subsection}{\numberline {5.3.2}PandA-Bambu}{56}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Matrix multiplication algorithm}{56}{section.5.4}%
+\contentsline {section}{\numberline {5.4}Matrix multiplication algorithm}{57}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}Emulating global memory coalescing of CUDA}{58}{subsection.5.4.1}%
-\contentsline {section}{\numberline {5.5}Conclusion}{58}{section.5.5}%
+\contentsline {section}{\numberline {5.5}Conclusion}{60}{section.5.5}%
 \contentsline {chapter}{\numberline {6}Experimental Procedures and Results}{61}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Model analysis and profiling}{61}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Matrix multiplication acceleration}{62}{section.6.2}%

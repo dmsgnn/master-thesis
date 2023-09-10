@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  9 SEP 2023 17:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  10 SEP 2023 11:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1453,23 +1453,25 @@ line 96.
 <Images/soda_opt_flow.pdf, id=1049, 391.44041pt x 701.256pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
-Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 226.
+Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 229.
 (pdftex.def)             Requested size: 152.47pt x 273.14923pt.
 <Images/bambu_flow.pdf, id=1050, 402.51875pt x 786.14798pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
-Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 232.
+Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 235.
 (pdftex.def)             Requested size: 139.85796pt x 273.14923pt.
- [52] [53 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>] [54] [55]
+ [52] [53 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>] [54] [55] [56
+]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 364.
- [56] [57]
-<Images/row-by-col-mult-example.pdf, id=1187, 164.67923pt x 62.07993pt>
+put line 367.
+ [57]
+<Images/row-by-col-mult-example.pdf, id=1185, 164.67923pt x 62.07993pt>
 File: Images/row-by-col-mult-example.pdf Graphic file (type pdf)
 <use Images/row-by-col-mult-example.pdf>
 Package pdftex.def Info: Images/row-by-col-mult-example.pdf  used on input line
- 439.
+ 442.
 (pdftex.def)             Requested size: 289.84386pt x 109.26108pt.
+ [58 <./Images/row-by-col-mult-example.pdf>]
 Package epstopdf Info: Source file: <Images/memory-coalescing.eps>
 (epstopdf)                    date: 2023-09-09 17:29:24
 (epstopdf)                    size: 2787726 bytes
@@ -1479,19 +1481,16 @@ pdf>
 (epstopdf)                    size: 37206 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/memory-coalescing-e
 ps-converted-to.pdf Images/memory-coalescing.eps>
-(epstopdf)             \includegraphics on input line 449.
+(epstopdf)             \includegraphics on input line 460.
 Package epstopdf Info: Output file is already uptodate.
-<Images/memory-coalescing-eps-converted-to.pdf, id=1188, 168.63pt x 206.7725pt>
+<Images/memory-coalescing-eps-converted-to.pdf, id=1214, 168.63pt x 206.7725pt>
 
 File: Images/memory-coalescing-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/memory-coalescing-eps-converted-to.pdf>
 Package pdftex.def Info: Images/memory-coalescing-eps-converted-to.pdf  used on
- input line 449.
+ input line 460.
 (pdftex.def)             Requested size: 297.04443pt x 364.19667pt.
-) [58 <./Images/row-by-col-mult-example.pdf>] [59 <./Images/memory-coalescing-e
-ps-converted-to.pdf>] [60
-
-]
+ [59 <./Images/memory-coalescing-eps-converted-to.pdf>]) [60]
 Chapter 6.
 (./chapters/chapter6.tex
 Overfull \hbox (6.53311pt too wide) in paragraph at lines 20--20
@@ -1500,20 +1499,21 @@ Overfull \hbox (6.53311pt too wide) in paragraph at lines 20--20
 
 [61
 
+
 ] [62] [63] [64]
-<Images/matmul_comparison.pdf, id=1270, 693.792pt x 346.89601pt>
+<Images/matmul_comparison.pdf, id=1273, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison.pdf Graphic file (type pdf)
 <use Images/matmul_comparison.pdf>
 Package pdftex.def Info: Images/matmul_comparison.pdf  used on input line 188.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
  [65 <./Images/matmul_comparison.pdf>]
-<Images/matmul_comparison15.pdf, id=1321, 693.792pt x 346.89601pt>
+<Images/matmul_comparison15.pdf, id=1324, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison15.pdf Graphic file (type pdf)
 <use Images/matmul_comparison15.pdf>
 Package pdftex.def Info: Images/matmul_comparison15.pdf  used on input line 211
 .
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
-<Images/matmul_comparison30.pdf, id=1322, 693.792pt x 346.89601pt>
+<Images/matmul_comparison30.pdf, id=1325, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison30.pdf Graphic file (type pdf)
 <use Images/matmul_comparison30.pdf>
 Package pdftex.def Info: Images/matmul_comparison30.pdf  used on input line 216
@@ -1530,14 +1530,14 @@ Overfull \hbox (1.82593pt too wide) in paragraph at lines 274--274
 []|\T1/cmr/bx/n/12 Cora150| 
  []
 
-<Images/gcn_forward_comparison.pdf, id=1443, 693.792pt x 346.89601pt>
+<Images/gcn_forward_comparison.pdf, id=1446, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_comparison.pdf  used on input line 
 310.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
 [68 <./Images/gcn_forward_comparison.pdf>]
-<Images/gcn_forward_cycles_comparison.pdf, id=1502, 693.792pt x 346.89601pt>
+<Images/gcn_forward_cycles_comparison.pdf, id=1505, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_cycles_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_cycles_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_cycles_comparison.pdf  used on inpu
@@ -1557,7 +1557,7 @@ df>
 s-converted-to.pdf Images/toolchain_future.eps>
 (epstopdf)             \includegraphics on input line 22.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain_future-eps-converted-to.pdf, id=1557, 185.69376pt x 249.93375
+<Images/toolchain_future-eps-converted-to.pdf, id=1560, 185.69376pt x 249.93375
 pt>
 File: Images/toolchain_future-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain_future-eps-converted-to.pdf>
@@ -1653,7 +1653,7 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Here is how much of TeX's memory you used:
  28609 strings out of 480608
  523729 string characters out of 5903630
- 1332940 words of memory out of 5000000
+ 1333940 words of memory out of 5000000
  43411 multiletter control sequences out of 15000+600000
  554012 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1679,10 +1679,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (102 pages, 4523411 bytes).
+Output written on out/thesis.pdf (102 pages, 4525762 bytes).
 PDF statistics:
- 1923 PDF objects out of 2073 (max. 8388607)
- 1471 compressed objects within 15 object streams
+ 1926 PDF objects out of 2073 (max. 8388607)
+ 1474 compressed objects within 15 object streams
  421 named destinations out of 1000 (max. 500000)
  697 words of extra memory for PDF output out of 10000 (max. 10000000)
 
