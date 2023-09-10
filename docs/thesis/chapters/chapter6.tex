@@ -390,22 +390,22 @@ The resulting inference output was saved and subjected to analysis, allowing for
 
 \begin{table}[t]
 \centering
-    \begin{tabular}{|p{5em} c c c|}
+    \begin{tabular}{|p{5em} c c c c|}
     \hline
 %    \rowcolor{black!40}
-    \textbf{Dataset} & \textbf{PyTorch accuracy} & \textbf{Accelerator accuracy} & \textbf{Floating distance} \T\B \\
+    \textbf{Dataset} & \thead{PyTorch\\accuracy} & \thead{Accelerator\\accuracy} & \thead{Total\\error} & \thead{Average\\error} \T\B \\
     \hline \hline
-    \textbf{Cora15} & 0.000 & 0.000 & 0.000 \T\B\\
+    \textbf{Cora15} & 0.333 & 0.333 & 1.31E-06 & 0.26E-06 \T\B\\
     \hline
-    \textbf{Cora30} & 0.000 & 0.000 & 0.000 \T\B\\
+    \textbf{Cora30} & 0.333 & 0.333 & 8.64E-06 & 0.54E-06  \T\B\\
     \hline
-    \textbf{Cora60} & 0.000 & 0.000 & 0.000 \T\B\\
+    \textbf{Cora60} & 0.166 & 0.166 & 4.02E-06 & 0.25E-06 \T\B\\
     \hline
-    \textbf{Cora90} & 0.000 & 0.000 & 0.000 \T\B\\
+    \textbf{Cora90} & 0.555 & 0.555 & 19.47E-06 & 0.45E-06 \T\B\\
     \hline
-    \textbf{Cora120} & 0.000 & 0.000 & 0.000 \T\B\\
+    \textbf{Cora120} & 0.291 & 0.291 & 19.86E-06 & 0.27E-06 \T\B\\
     \hline
-    \textbf{Cora150} & 0.000 & 0.000 & 0.000 \T\B\\
+    \textbf{Cora150} & 0.533 & 0.533 & 23.84E-06 & 0.30E-06 \T\B\\
     \hline
     \end{tabular}
     \\[10pt]
@@ -413,8 +413,11 @@ The resulting inference output was saved and subjected to analysis, allowing for
     \label{tab:model-accuracy-analysis}
 \end{table}
 
-The results presented in Table~\ref{tab:model-accuracy-analysis} indicate that the model accuracy has been maintained in the FPGA accelerator.
-Nonetheless, the slight variation in the floating-point data precision between the PyTorch inference output and the FPGA accelerator may potentially result in a difference of the accuracy, especially when dealing with very large datasets.
+Table~\ref{tab:model-accuracy-analysis} shows the accuracy of the PyTorch-based implementation and the FPGA accelerator.
+In addition to assessing model accuracy, it also quantifies the overall floating value error, which is calculated as the cumulative difference between PyTorch and FPGA floating values, restricted to the inference output matrix cells associated with the test set.
+Furthermore, the average floating error is determined by dividing the total error by the count of output matrix cells corresponding to the test set.
+The results indicate that the model accuracy has been maintained in the FPGA accelerator and that the average error does not increase as the dimension of the test set increases.
+Nonetheless, the slight variation in the floating-point data precision between the PyTorch inference output and the FPGA accelerator, even with very low probability, may potentially cause an error in data classification, resulting in a difference of the accuracy, especially when dealing with very large datasets.
 
 \section{State of the art comparison}
 \label{sec:sota-comparison}%

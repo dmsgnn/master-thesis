@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  10 SEP 2023 18:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  11 SEP 2023 01:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1653,7 +1653,7 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Here is how much of TeX's memory you used:
  28616 strings out of 480608
  523886 string characters out of 5903630
- 1332970 words of memory out of 5000000
+ 1332969 words of memory out of 5000000
  43412 multiletter control sequences out of 15000+600000
  554012 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1679,7 +1679,7 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (104 pages, 4527912 bytes).
+Output written on out/thesis.pdf (104 pages, 4528684 bytes).
 PDF statistics:
  1940 PDF objects out of 2073 (max. 8388607)
  1486 compressed objects within 15 object streams
