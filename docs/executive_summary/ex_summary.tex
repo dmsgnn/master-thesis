@@ -115,17 +115,15 @@
 
 Over the past few years, deep learning has significantly revolutionized various machine learning tasks,
 spanning from image classification and video processing to speech recognition and natural language understanding.
-
 A growing number of applications now generate data in the form of complex graphs with intricate relationships and interdependencies among objects.
 The inherent complexity of graph data has posed considerable challenges for existing machine learning algorithms.
 Consequently, there has been a surge of studies focusing on extending deep learning techniques to accommodate
 and leverage graph data.
-
 Graph neural networks (GNNs) have been introduced in response to the growing demand for learning tasks involving
 graph data, which encompasses extensive relational information among its elements.
 These neural models effectively capture the interdependence among graph nodes by employing message passing mechanisms.
 
-Optimizing and accelerating the capabilities of Graph Neural Networks is necessary due to their increasingly popularity, particularly in domains characterized by vast amounts of data,
+Optimizing and accelerating Graph Neural Networks is desirable due to their increasingly popularity, particularly in domains characterized by vast amounts of data,
 such as social networks and chemistry.
 In particular, inference in GNNs refers to the time the model takes to make predictions after training.
 The duration of the inference process determines the speed at which queries are answered, and researchers strive to minimize this time span.
@@ -134,18 +132,15 @@ In applications of deep learning that prioritize low latency, Field-programmable
 FPGAs offer the advantage of being fine-tuned to the application to strike the optimal balance between power efficiency and meeting performance requirements.
 However, the conventional approach to hardware design demands significant effort and relies heavily on the expertise of the designers, leading to varying quality of results.
 
-To address the challenge of accelerating GNNs on FPGAs without having extensive knowledge in hardware design, the objective of this thesis is to develop a comprehensive toolchain that, starting from PyTorch~\cite{DBLP:journals/corr/abs-1912-01703},
-a cutting-edge high-level programming framework for creating neural network algorithms based on the Python programming language, enables the
-automatic generation of a GNNs FPGA accelerator with minimal effort required.
+To address the challenge of accelerating GNNs on FPGAs without having extensive knowledge in hardware design, the objective of this thesis is to develop a comprehensive toolchain that enables the automatic generation of a GNNs FPGA accelerator with minimal effort
+starting from PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}, a cutting-edge high-level programming framework for creating neural network algorithms based on the Python programming language.
 
-The toolchain's effectiveness is validated through experimental results, demonstrating significant enhancements in performance.
-%The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
-
-The main contribution of this thesis is a novel toolchain introduced to accelerate GNN inference, alongside customized optimizations designed to finely enhance model performance.
+The main contribution of this thesis is a novel toolchain to accelerate GNN inference based on the Multi-Level Intermediate Representation (MLIR) and on High-Level Synthesis, alongside customized optimizations designed to finely enhance model performance.
 Part of this research contributed in innovating Torch-MLIR by introducing new compatibility support for PyTorch Geometric.
-
-To accelerate GNN inference, after having identified the main model's bottlenecks, par tof the study consisted in the acceleration of the matrix multiplication by identyfing the best optimizations.
+To accelerate GNN inference, after having identified the main model's bottlenecks, part of the study consisted in the acceleration of the matrix multiplication by identyfing the best optimizations.
 By leveraging the evaluated optimizations, the final outcome of this thesis is a GCN accelerator improving inference speeds.
+The toolchain's effectiveness is validated through experimental results, demonstrating significant enhancements in performance.
+The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
 
 %-----------------------------------------------------------------------------
 % BACKGROUND
@@ -154,11 +149,10 @@ By leveraging the evaluated optimizations, the final outcome of this thesis is a
 \section{Background}
 \label{sec:background}%
 
-\textit{Graphs} are data structures representing a collection of objects, known as vertices or nodes, and a set of edges connecting them.
+Graphs are data structures representing a collection of objects, known as vertices or nodes, and a set of edges connecting them.
 In a graph, the edges can be either directed or undirected, and they typically connect two vertices, which may or may not be distinct.
 The vertices represent entities or elements, and the edges represent their relationships or connections.
-
-Graphs are easy to visualize, but a more formal representation is needed when implementing graph algorithms.
+Graphs are easy to visualize, but a formal representation is needed when implementing graph algorithms.
 The adjacency matrix of a graph provides information about the relationships between nodes in the graph.
 It is a matrix of dimensions $N \times N$ where $N$ is the number of nodes in the graph. Each matrix cell is set to 1 if the two nodes are connected, zero otherwise.
 A feature vector represents the features or attributes associated with a single entity.
@@ -166,7 +160,7 @@ A feature vector represents the features or attributes associated with a single 
 Graph neural networks (GNNs) are deep learning techniques that operate on graph-structured data.
 Thanks to their impressive performance, GNNs have recently gained significant popularity as a widely adopted method for graph analysis.
 
-Graph Neural Networks are a group of neural networks which are designed to solve different tasks.
+Graph Neural Networks are designed to solve different tasks.
 Prediction tasks on graphs can generally be classified into three categories: graph-level, node-level, and edge-level predictions.
 In a graph-level task, the objective is to predict the property or characteristic of an entire graph.
 Node-level tasks involve predicting the identity or function of individual nodes within a graph.
@@ -178,11 +172,7 @@ GNNs consist of multiple interconnected layers and, by relying on the graph's st
 Different popular GNN architectures have been proposed recently, some of which are more suitable for some tasks than others.
 The main model used for this thesis is the \textit{Graph Convolutional Network} (GCN)~\cite{DBLP:journals/corr/KipfW16}.
 
-\subsection{Graph Convolutional Network}
-\label{subsec:background}%
-
-The core idea behind GCNs is to perform convolution-like operations on the graph, where the convolutional filters are defined based on the graph's adjacency matrix or other graph-specific structures.
-
+The core idea behind GCNs is to perform convolution-like operations on the graph, where the convolutional filters are applied to the graph's adjacency matrix or other graph-specific structures.
 Given an undirected graph $\mathcal{G} = (V, E)$, where $V$ represents the set of nodes (vertices), and $E$ represents the set of edges, with an adjacency matrix $\tilde{A}=A+I_N$, where $I_N$ is the identity matrix, the layer-wise propagation rule in a GCN can be expressed as:
 \begin{equation}
     \label{eq:gcn_convolution}
@@ -190,7 +180,7 @@ Given an undirected graph $\mathcal{G} = (V, E)$, where $V$ represents the set o
 \end{equation}
 
 Where $H^{(l)} \in \mathbb{R} ^{N \times D}$ is the input node features matrix, $W^{(l)}$ is a layer-specific learnable weight matrix, $\tilde{D}$ is the degree matrix defined as $\tilde{D}_{ii} = \sum_{j} \tilde{A}_{ij}$, and $f(\cdot)$ represents a non-linear activation function applied element-wise, such as $ReLU(\cdot) = max(0, \cdot)$.
-The Equation~\ref{eq:gcn_convolution} demonstrates the propagation of node features through graph convolution, where the adjacency matrix $\tilde{A}$ captures the connectivity information of the graph, $\tilde{D}^{-\tfrac{1}{2}}$ normalizes the adjacency matrix, and $H^{(l)}  W^{(l)}$ performs a linear transformation of node features.
+Equation~\ref{eq:gcn_convolution} demonstrates the propagation of node features through graph convolution, where the adjacency matrix $\tilde{A}$ captures the connectivity information of the graph, $\tilde{D}^{-\tfrac{1}{2}}$ normalizes the adjacency matrix, and $H^{(l)}  W^{(l)}$ performs a linear transformation of node features.
 The resulting $H^{(l+1)}$ represents the updated node representations after the graph convolution operation.
 
 %-----------------------------------------------------------------------------
@@ -229,32 +219,28 @@ Figure~\ref{fig:toolchain} illustrates the entire design flow, with the steps in
     \label{fig:toolchain}
 \end{figure}
 
-\subsection{PyTorch}
+\subsection{From PyTorch to MLIR}
 \label{subsec:pytorch-toolchain}%
 
 The first step of the toolchain is to design and implement the Graph Neural Network model in PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}.
-
 The main model used for this thesis is the Graph Convolutional Network~\cite{DBLP:journals/corr/KipfW16} performing node classification on the \textit{Cora} dataset.
-
-\subsection{Torch-MLIR}
-\label{subsec:torch-mlir-toolchain}%
 
 Torch-MLIR~\cite{torch_mlir} offers compiler support for transitioning from the PyTorch ecosystem to the MLIR ecosystem.
 
-For this thesis, TorchScript represented the starting point of the flow that Torch-MLIR follows to go from PyTorch to MLIR\@.
 TorchScript offers a way to generate serializable and optimizable models directly from PyTorch code.
-The TorchScript representation is then converted to MLIR using the built-in conversion of Torch-MLIR.
+The TorchScript representation is then converted to MLIR using the built-in conversion of Torch-MLIR\@.
 The result MLIR can use different dialects, but the one used for this thesis is the Linalg dialect, which serves as input for the next phase of the toolchain.
 
 Since Torch-MLIR implicitly uses the TorchScript representation to go from PyTorch to MLIR, the first part of the research consisted of a deep analysis of the Graph Neural Network models to make them compatible with TorchScript.
-Some of the used adaptations include making jittable the GNN class, annotate the parameters of the propagate function, using some types assertion and annotate the type of the forward function.
+Some of the used adaptations include making the GNN class jittable, annotate the parameters of the propagate function, using types assertion, such as Tensor, and annotate the type of the forward function.
 
-Once having designed, implemented, made compatible with TorchScript, and trained the GNN model in PyTorch, it is possible to use the \lstinline{torch_mlir.compile} API to obtain the MLIR representation of the model.
+Once having designed, implemented and made compatible with TorchScript the GNN model in PyTorch, it is possible to use the \texttt{torch\_mlir.compile} API to obtain the MLIR representation of the model.
 In particular, this API takes three parameters as input: the GNN model, an input example of the model and the desired output type.
 The Graph Neural Network model must have been already trained, being ready for inference.
 The second parameter, the input example of the model, is an arbitrary input similar to the one that would be given for inference purposes.
-It is required because, by default, the implicit Jit function called by Torch-MLIR to script the model and obtain a script module, involves compiling the forward method and recursively compiling any methods, submodules, and functions called within the forward method. This results in a JIT IR which is converted to the torch dialect which is almost in a 1:1 correspondence.
-The torch dialect is then lowered into one of the three available output dialects: linalg, tosa, mhlo.
+It is required because, by default, the implicit Jit function called by Torch-MLIR to obtain a script module, involves compiling the forward method and recursively compiling any methods, submodules, and functions called within the forward method.
+This results in a JIT IR which is converted to the torch dialect which is almost in a 1:1 correspondence.
+The torch dialect is then lowered into one of the three available output dialects: \texttt{linalg}, \texttt{tosa}, \texttt{mhlo}.
 The purpose of the last parameter is to choose which of these three dialects has to be used for the output MLIR\@.
 
 \subsection{Synthesizer}
@@ -270,7 +256,7 @@ SODA-OPT receives as input the MLIR representation of the model.
 This step is primarily responsible for applying optimizations that can be exploited in the next step.
 The output of SODA-OPT is an LLVM representation that serves as input to PandA-Bambu HLS\@.
 
-Once having successfully exported the MLIR representation using the \lstinline{torch_mlir.compile} API, a set of mlir-opt passes have been used to remove the unsupported dialects by lowering them to supported ones,
+Once having successfully exported the MLIR representation using the \texttt{torch\_mlir.compile} API, a set of \texttt{mlir-opt} passes have been used to remove the unsupported dialects by lowering them to supported ones,
 
 The next step consists in outlining the part of MLIR code to accelerate by adding the \lstinline{soda.launch} and \lstinline{soda.terminator} flags at the beginning and end of the piece of code.
 
@@ -290,11 +276,8 @@ PandA-Bambu represents the last phase of the synthesis.
 It receives the LLVM representation as input, and after having applied some optional low-level optimizations, it performs the typical steps of HLS, including allocation, scheduling and binding.
 
 PandA-Bambu allows the specification of different optimizations and settings that can have a big impact on accelerator performance.
-The most evaluated optimization is the number of memory channels.
+The most effective optimization evaluated in this thesis is the number of memory channels.
 
-A comparative analysis has been performed between different number of memory channels, including the minimum, 2 channels, and the maximum, 32 channels.
-
-The LLVM intermediate representation taken as input from PandA-Bambu is received by the Clang compiler frontend which builds an internal IR to perform the HLS steps.
 After having applied the specified optimizations, the generated design in an HDL is given as output.
 
 %-----------------------------------------------------------------------------
@@ -305,21 +288,18 @@ After having applied the specified optimizations, the generated design in an HDL
 \label{sec:experimental-results}%
 
 All the CPU experiments have been conducted using an Intel Core i9, with 8 cores and a frequency of 2,3 GHz.
-On the other hand, the synthesis experiments utilized an AMD Virtex UltraScale+ (Alveo U280) FPGA\@.
+On the other hand, the synthesis experiments targeted an AMD Virtex UltraScale+ (Alveo U280) FPGA\@.
 The whole experimental phase evaluated only the computational time of the accelerators, and results are based on the assumption that all data are loaded from BRAMs, requiring two cycles to read data and one cycle to store data.
 
-The first step to understanding how to accelerate the PyTorch GCN model used was to analyze and profile it.
+The first step to understand how to accelerate the PyTorch GCN model was to analyze and profile it.
 The results showed that more than 50\% of the self CPU time is used by matrix multiplication.
 This result clearly justifies the part of this research dedicated to matrix multiplication acceleration.
 
 \subsection{Matrix multiplication acceleration}
 \label{subsec:matmul}%
 
-A first evaluation compared PyTorch times of \lstinline{torch.mm} and the baseline accelerator, showing that the latter is faster for small matrices's sizes, but becomes slower when the sizes of the input matrices increases.
-
+A first evaluation compared execution times of \lstinline{torch.mm} and the baseline accelerator, showing that the latter is faster for small matrices's sizes, but becomes slower when the sizes of the input matrices increases.
 This was an expected result and the following optimizations makes the accelerator able to exploit more parallelism with the aim of deleting this behaviour.
-
-To verify the effectiveness of the proposed optimizations, different comparative analysis have been performed.
 
 \begin{figure}[t]
     \centering
@@ -328,26 +308,29 @@ To verify the effectiveness of the proposed optimizations, different comparative
     \label{fig:matmul-opts-comparison}
 \end{figure}
 
+To verify the effectiveness of the proposed optimizations, different comparative analyses have been performed.
 Figure~\ref{fig:matmul-opts-comparison} shows the impact of the applied optimizations on a matrix multiplication between two matrices of size $15 \times 15$ and $15 \times 16$.
-In particular, two different optimizations have been applied: a SODA-OPT progressive loop unrolling, with unrolling factors written in the ordinate of the Figure, and the use of different number of memory channels.
-By default, the system employs two channels and utilizes \lstinline{ALL_BRAM} as the memory allocation policy, directing all objects to be stored in BRAMs.
+In particular, two different optimizations have been applied: a SODA-OPT progressive loop unrolling, with unrolling factors written in the ordinate of the Figure, and the use of a different number of memory channels.
+By default directs all objects to be stored in BRAMs that can be accessed through two parallel ports.
 However, the alternative approach explored in this thesis entails employing a greater number of memory channels while utilizing external memory.
-To achieve this, the \lstinline{NO_BRAM} memory allocation policy must be selected, leading to all objects being stored in external memory.
+To achieve this, the \lstinline{NO_BRAM} memory allocation policy must be selected in the PandA-Bambu option, leading to all objects being stored in external memory.
 This choice offers both advantages and disadvantages, resulting in a trade-off.
 Loop unrolling enhances parallelization, thereby reducing computational time.
 However, especially when utilizing more than two memory channels, it increases the number of parallel processing elements, leading to a larger area footprint.
 Additionally, external memory allows for up to 32 memory channels, enabling the simultaneous loading of 32 variables.
-Nonetheless, accessing data from external memory requires more load cycles compared to accessing internal memory.
+However, accessing data from external memory typically requires a higher number of load and store cycles compared to accessing internal memory, depending on the DDR access time.
+During the experimental phase, load and store cycles remain the same in both configurations.
+Nevertheless, as shown in Figure~\ref{fig:matmul-opts-comparison}, using external memory still impacts the number of cycles for the accelerator due to a change in its structure.
 The conducted analyses aim to highlight the differences among these various configurations, identifying the optimal balance between reducing cycles and containing area utilization.
 
-The most important result is given by the unrolling factor in which the number of cycles needed by the accelerator using 32 memory channels is fewer than the number of cycles needed by the accelerator using 2 memory channels.
+The most important result on matmul is given by the unrolling factor in which the number of cycles needed by the accelerator using 32 memory channels is fewer than the number of cycles needed by the accelerator using BRAMs.
 The result of this analysis, conducted using different sizes of input matrices, led to the consideration that the number of parallel unrolled loop iterations that justify the use of 32 channels is given by the following equation:
 \begin{equation}
     \label{eq:factor-relation}
         i \cdot j \cdot k \geq 2 \cdot \sqrt {M \cdot N \cdot R}
 \end{equation}
 
-where $M$, $N$ and $R$ are the sizes of the three nested loops (from the innermost to the outermost), , and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 1 \iff i=M \land k \neq 1 \iff j=N$.
+where $M$, $N$ and $R$ are the sizes of the three nested loops (from the innermost to the outermost), and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 1 \iff i=M \land k \neq 1 \iff j=N$.
 Equation~\ref{eq:factor-relation} should not be taken as an infallible rule, it is the outcome of this experimental phase and should be used as a general discriminant to decide when to use thirty-two memory channels instead of two.
 
 \subsection{GCN accelerator}
@@ -382,7 +365,7 @@ Equation~\ref{eq:factor-relation} should not be taken as an infallible rule, it 
 
 In this Subsection, the ultimate evaluation of the optimizations examined and suggested in the previous Subsection is presented, aimed at understanding their influence on GCN inference time.
 
-Figure~\ref{fig:gcn-inference-comparison} shows the result of a comparative analysis between the PyTorch CPU time and the FPGA accelerator time to perform GCN inference, using different substet of the Cora dataset, as defined in Table~\ref{tab:dataset-definition}.
+Figure~\ref{fig:gcn-inference-comparison} shows the result of a comparative analysis between the PyTorch CPU time and the FPGA accelerator time obtained with the proposed toolchain to perform GCN inference, using different subset of the Cora dataset, as defined in Table~\ref{tab:dataset-definition}.
 The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
 
 \begin{figure}[t]
@@ -394,25 +377,21 @@ The PyTorch times have been acquired averaging one million of execution time mea
 
 The results of this final evaluation are incredibly encouraging.
 The speedup of the accelerator is still being affected by the size of the input matrices, but this behaviour can be corrected by applying the techniques presented in previous Sections, accelerating even more the computational performance of the accelerator.
-
-Also the area of the accelerator is obviously affected by the sizes of the input matrices.
-This because more the matrices are big, more the parallel loop iterations will be and thus the parallel processing elements.
-
+The area of the accelerator is obviously affected by the sizes of the input matrices.
+This because more the matrices are big, more the parallel loop iterations will be and thus the parallel processing elements when applying loop unrolling.
 However, the possibilities offered by the proposed toolchain are various.
-It is possible to use less memory channels with a lower loop unrolling factor to still have a big positive impact on performance, but containing the accelerator area requirements.
+It is possible to use less memory channels with a lower loop unrolling factor to still have a big positive impact on performance, but limiting the accelerator area requirements.
 
 %-----------------------------------------------------------------------------
 % CONCLUSION
 %-----------------------------------------------------------------------------
 \section{Conclusions}
 This thesis tackled the challenge of accelerating Graph Neural Network inference by leveraging High-Level Synthesis techniques targeting FPGAs.
-
 The results of this research significantly contribute to the field of GNN acceleration, introducing a new perspective about how it is possible to obtain hardware accelerators for GNNs even without having any hardware design knowledge.
 The toolchain offers different possibilities and provides various optimization passes that can be used in the synthesizer step to fine-tune the accelerator capabilities.
-
 This thesis represents a significant advancement in the field of GNN acceleration.
 Nonetheless, there exist opportunities for further enhancement through the implementation of novel features.
-Future works could build upon the innovative contributions of this thesis by adding support for new high-level frameworks or by implementing support to sparse tensors.
+Future works could build upon the innovative contributions of this thesis for example by adding support for new high-level frameworks or by implementing support to sparse tensors.
 
 %---------------------------------------------------------------------------
 %  BIBLIOGRAPHY
