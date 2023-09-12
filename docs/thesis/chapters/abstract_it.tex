@@ -1,12 +1,11 @@
 Le Graph Neural Networks sono una classe di modelli di Machine Learning e rappresentano l'approccio predefinito nel trattamento dei dati strutturati a grafo, comprendendo domini che vanno dai social networks alla chimica molecolare e oltre.
 Particolarmente nell'era contemporanea dei Big Data, sono spesso necessari acceleratori hardware dedicati al fine di ottenere prestazioni di calcolo ottimali durante l'elaborazione di grandi quantità di informazioni.
 Le FPGA offrono una soluzione promettente grazie al loro parallelismo intrinseco, ma il processo di traduzione dei modelli di Graph Neural Networks in acceleratori su FPGA è complesso e richiede una vasta conoscenza ed esperienza.
-Questa tesi affronta la sfida dell'accelerazione delle Graph Neural Networks su FPGA, introducendo una toolchain completa che semplifica il processo di transizione dal framework di alto livello PyTorch agli acceleratori hardware sintetizzati mediante High-Level Synthesis.
+Questa tesi affronta la sfida dell'accelerazione delle Graph Neural Networks su FPGA, introducendo una toolchain completa che semplifica il processo di transizione dal framework di alto livello PyTorch agli acceleratori hardware sintetizzati mediante High-Level Synthesis sfruttando l'infrastruttura del compilatore MLIR\@.
 Torch-MLIR consente la generazione della rappresentazione MLIR del modello, utlizzata come input per il sintetizzatore.
 In quest'ultima fase è possibile applicare diverse ottimizzazioni prima della generazione dell'acceleratore, migliorando in modo mirato le prestazioni di inferenza sulle architetture FPGA\@.
 I risultati sperimentali dimostrano l'efficacia della toolchain, confermando miglioramenti sostanziali sia nelle prestazioni che nell'utilizzo delle risorse.
 Questo risultato è stato possibile grazie all'individuazione dei colli di bottiglia del modello e allo studio dell'ottimizzazione delle operazioni di moltiplicazione matriciale, che si sono rivelate una componente fondamentale delle computazioni delle GNNs.
-La tesi esplora anche diverse ottimizzazioni di sintesi, analizzandone il loro impatto sulle prestazioni della moltiplicazione matriciale e sull'efficienza complessiva del modello di GNN\@.
 In conclusione, questa tesi rappresenta un progresso significativo nel campo dei modelli GNN accelerati da FPGA\@.
 Sviluppando una toolchain versatile ed esplorando le ottimizzazioni di sintesi, la ricerca pone le basi per implementazioni di GNN accelerate su FPGA più efficienti.
 \\

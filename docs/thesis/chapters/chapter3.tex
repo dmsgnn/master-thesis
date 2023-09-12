@@ -5,12 +5,9 @@ This chapter also delves into the relevant literature concerning various approac
 \section{Chapter structure}
 \label{sec:related_work_structure}%
 This chapter first presents the software frameworks utilized to design and train Graph Neural Networks, then provides an overview of state-of-the-art hardware accelerators, categorized based on their architecture types~\cite{DBLP:journals/corr/abs-2010-00130}.
-
 Particular attention is given to FlowGNN~\cite{sarkar2022flowgnn}, an accelerator implemented using High-Level Synthesis, the same technique used by the design flow proposed in this thesis.
 As mentioned earlier, optimizing the matrix-matrix multiplication operation was a significant aspect of this research.
 Thus, a dedicated section focuses on state-of-the-art optimizations for matrix-matrix multiplication.
-
-Finally, the chapter concludes with a summary and comparison among the accelerators presented.
 
 \section{Software frameworks}
 \label{sec:related_work_software_frameworks}%
@@ -177,7 +174,7 @@ To enhance the computation of aggregation, HyGCN uses the vertex-disperse proces
 
 HyGCN utilizes a static graph partition method to optimize memory access to improve data reuse.
 The authors identified that the feature vectors of each vertex are typically large, making the exploitation of feature locality crucial.
-To address this, they grouped vertices in disjoint sets and processed the aggregation of their source neighbors group by the group.
+To address this, they grouped vertices in disjoint sets called intervals and processed the aggregation of their source neighbors group by the group.
 By following this approach, the feature accesses of all vertices in an interval were merged.
 This grouping allowed for overlapping neighbors within the considered interval, enabling the reuse of loaded feature data during feature aggregation.
 Moreover, when traversing all the neighbors of the interval, the intermediate aggregated results of the grouped vertices were stored in a buffer and could be reused during feature updates.
@@ -280,7 +277,7 @@ While the baseline dataflow architecture can efficiently pipeline NT and MP task
 These include its ability to handle only one node and one edge at a time, limiting parallel processing capabilities.
 Furthermore, NT and MP operations cannot be concurrently executed within a single node, necessitating the completion of NT before initiating MP\@.
 
-The authors introduce the FlowGNN architecture, shown in Figure~\ref{fig:FlowGNN_architecture}, to overcome these limitations and significantly enhance performance through various levels of parallelism.
+The authors introduce the FlowGNN architecture, shown in Figure~\ref{fig:FlowGNN_architecture}b, to overcome these limitations and significantly enhance performance through various levels of parallelism.
 FlowGNN's capabilities can be customized using four parameters: $P_{node}$ determines the number of nodes that can undergo simultaneous processing by NT, $P_{edge}$ sets the simultaneous processing of edges by MP, $P_{apply}$ specifies the concurrent processing of node embedding dimensions by a single NT, and $P_{Scatter}$ sets the simultaneous processing of edge embedding dimensions by a single MP\@.
 
 The FlowGNN architecture incorporates multiple NT units and multiple MP units, interconnected through an NT-to-MP adapter that utilizes multiple data queues.
@@ -299,16 +296,18 @@ Subsequently, once the accumulate process is complete for an entire node, the ou
 The MP units are responsible for executing computations specific to each edge.
 Two configurations are available: NT-to-MP or MP-to-NT dataflow.
 In the former each MP unit manages an independent subset of destination nodes.
-Instead, in latter, each MP unit is allocated a subset of source nodes. Within this setup, the MP units collect partial messages from nodes within their assigned subset along the edges.
+Instead, in latter, each MP unit is allocated a subset of source nodes.
+Within this setup, the MP units collect partial messages from nodes within their assigned subset along the edges.
 
 Finally, another feature provided by FlowGNN is its adaptability to different graph neural network models by offering various model-specific components.
 One particularly advantageous feature of FlowGNN's dataflow architecture for node/edge processing is its suitability for models with virtual nodes.
 As defined by~\cite{DBLP:journals/corr/GilmerSRVD17}, a virtual node acts as an artificial node connected to all other nodes in the graph, creating a shortcut for message passing between node pairs.
 The authors stated that processing the virtual node can be entirely overlapped with the node embedding computation for other nodes, ensuring zero waste as long as it is handled early enough in the processing pipeline.
+All the components introduced by FlowGNN are available as highly optimized C/C++ code for HLS.
 
-Another notable framework in this section is DGNN-Booster~\cite{chen2023dgnnbooster}, an innovative Field-Programmable Gate Array accelerator framework designed for real-time inference of Dynamic Graph Neural Networks (DGNNs) using High-Level Synthesis.
+Another notable framework in this section is DGNN-Booster~\cite{chen2023dgnnbooster}, an innovative FPGA accelerator framework designed for real-time inference of Dynamic Graph Neural Networks (DGNNs) using HLS\@.
 Unlike the other accelerators mentioned and outside the scope of this research, DGNN-Booster focuses on DGNNs, which are Graph Neural Networks tailored for dynamic graph structures and features.
-However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on FlowGNN at a lower level of parallelism.
+However, it is worth mentioning that DGNN-Booster implements GNNs using a message-passing mechanism based on FlowGNN\@.
 
 \section{Software-Hardware co-design accelerators}
 \label{sec:software-hardware-accelerators}%
