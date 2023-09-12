@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  12 SEP 2023 21:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  12 SEP 2023 21:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1186,7 +1186,7 @@ IONE_COL_NEGATIVO-eps-converted-to.pdf Images/02_ING_IND_INFORMAZIONE_COL_NEGAT
 IVO.eps>
 (epstopdf)             \includegraphics on input line 153.
 Package epstopdf Info: Output file is already uptodate.
-<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=272, 493.
+<Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf, id=268, 493.
 845pt x 227.85126pt>
 File: Images/02_ING_IND_INFORMAZIONE_COL_NEGATIVO-eps-converted-to.pdf Graphic 
 file (type pdf)
@@ -1271,12 +1271,12 @@ Chapter 1.
 ] [2]) [3] [4]
 Chapter 2.
 (./chapters/chapter2.tex
-<Images/directed_graph.pdf, id=435, 82.3055pt x 82.96194pt>
+<Images/directed_graph.pdf, id=430, 82.3055pt x 82.96194pt>
 File: Images/directed_graph.pdf Graphic file (type pdf)
 <use Images/directed_graph.pdf>
 Package pdftex.def Info: Images/directed_graph.pdf  used on input line 17.
 (pdftex.def)             Requested size: 90.32784pt x 91.04742pt.
-<Images/undirected_graph.pdf, id=436, 82.3055pt x 82.3055pt>
+<Images/undirected_graph.pdf, id=431, 82.3055pt x 82.3055pt>
 File: Images/undirected_graph.pdf Graphic file (type pdf)
 <use Images/undirected_graph.pdf>
 Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
@@ -1285,12 +1285,12 @@ Package pdftex.def Info: Images/undirected_graph.pdf  used on input line 23.
 
 
  <./Images/directed_graph.pdf> <./Images/undirected_graph.pdf>]
-<Images/graph_example.pdf, id=460, 82.3055pt x 82.96194pt>
+<Images/graph_example.pdf, id=455, 82.3055pt x 82.96194pt>
 File: Images/graph_example.pdf Graphic file (type pdf)
 <use Images/graph_example.pdf>
 Package pdftex.def Info: Images/graph_example.pdf  used on input line 58.
 (pdftex.def)             Requested size: 90.32784pt x 91.04742pt.
-<Images/adjacency_matrix.pdf, id=461, 53.92947pt x 59.10783pt>
+<Images/adjacency_matrix.pdf, id=456, 53.92947pt x 59.10783pt>
 File: Images/adjacency_matrix.pdf Graphic file (type pdf)
 <use Images/adjacency_matrix.pdf>
 Package pdftex.def Info: Images/adjacency_matrix.pdf  used on input line 63.
@@ -1301,18 +1301,18 @@ Underfull \hbox (badness 2142) in paragraph at lines 63--63
  []
 
 [6 <./Images/graph_example.pdf> <./Images/adjacency_matrix.pdf>]
-<Images/coo.pdf, id=488, 107.90613pt x 71.32848pt>
+<Images/coo.pdf, id=483, 107.90613pt x 71.32848pt>
 File: Images/coo.pdf Graphic file (type pdf)
 <use Images/coo.pdf>
 Package pdftex.def Info: Images/coo.pdf  used on input line 79.
 (pdftex.def)             Requested size: 137.73734pt x 91.04742pt.
-<Images/csr.pdf, id=489, 108.34477pt x 75.01826pt>
+<Images/csr.pdf, id=484, 108.34477pt x 75.01826pt>
 File: Images/csr.pdf Graphic file (type pdf)
 <use Images/csr.pdf>
 Package pdftex.def Info: Images/csr.pdf  used on input line 84.
 (pdftex.def)             Requested size: 131.49763pt x 91.04742pt.
  [7 <./Images/coo.pdf> <./Images/csr.pdf>]
-<Images/google_scholar_green.pdf, id=513, 693.792pt x 346.89601pt>
+<Images/google_scholar_green.pdf, id=508, 693.792pt x 346.89601pt>
 File: Images/google_scholar_green.pdf Graphic file (type pdf)
 <use Images/google_scholar_green.pdf>
 Package pdftex.def Info: Images/google_scholar_green.pdf  used on input line 12
@@ -1320,14 +1320,14 @@ Package pdftex.def Info: Images/google_scholar_green.pdf  used on input line 12
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
  [8] [9 <./Images/google_scholar_green.pdf>]
 [10]
-<Images/multi-layer-perceptron.pdf, id=582, 222.64882pt x 121.62538pt>
+<Images/multi-layer-perceptron.pdf, id=577, 222.64882pt x 121.62538pt>
 File: Images/multi-layer-perceptron.pdf Graphic file (type pdf)
 <use Images/multi-layer-perceptron.pdf>
 Package pdftex.def Info: Images/multi-layer-perceptron.pdf  used on input line 
 188.
 (pdftex.def)             Requested size: 250.01385pt x 136.57462pt.
  [11 <./Images/multi-layer-perceptron.pdf>] [12] [13]
-<Images/hls.pdf, id=625, 550.66966pt x 598.87349pt>
+<Images/hls.pdf, id=620, 550.66966pt x 598.87349pt>
 File: Images/hls.pdf Graphic file (type pdf)
 <use Images/hls.pdf>
 Package pdftex.def Info: Images/hls.pdf  used on input line 275.
@@ -1339,7 +1339,7 @@ Chapter 3.
 (./chapters/chapter3.tex [19
 
 ] [20]
-<Images/AWB_GCN_SpMM_architecture.pdf, id=677, 780.64954pt x 239.69731pt>
+<Images/AWB_GCN_SpMM_architecture.pdf, id=672, 780.64954pt x 239.69731pt>
 File: Images/AWB_GCN_SpMM_architecture.pdf Graphic file (type pdf)
 <use Images/AWB_GCN_SpMM_architecture.pdf>
 Package pdftex.def Info: Images/AWB_GCN_SpMM_architecture.pdf  used on input li
@@ -1352,47 +1352,47 @@ ri-or-i-tizes high-throughput and energy-
  []
 
 [22]
-<Images/EnGN_architecture.pdf, id=698, 771.1057pt x 358.77115pt>
+<Images/EnGN_architecture.pdf, id=693, 771.1057pt x 358.77115pt>
 File: Images/EnGN_architecture.pdf Graphic file (type pdf)
 <use Images/EnGN_architecture.pdf>
 Package pdftex.def Info: Images/EnGN_architecture.pdf  used on input line 97.
 (pdftex.def)             Requested size: 293.54092pt x 136.57462pt.
  [23 <./Images/EnGN_architecture.pdf>]
-<Images/auten_tile_diagram.pdf, id=711, 736.77989pt x 439.57224pt>
+<Images/auten_tile_diagram.pdf, id=706, 736.77989pt x 439.57224pt>
 File: Images/auten_tile_diagram.pdf Graphic file (type pdf)
 <use Images/auten_tile_diagram.pdf>
 Package pdftex.def Info: Images/auten_tile_diagram.pdf  used on input line 124.
 
 (pdftex.def)             Requested size: 228.91655pt x 136.57462pt.
  [24 <./Images/auten_tile_diagram.pdf>]
-<Images/HyGCN_architecture.pdf, id=728, 733.60745pt x 387.16519pt>
+<Images/HyGCN_architecture.pdf, id=723, 733.60745pt x 387.16519pt>
 File: Images/HyGCN_architecture.pdf Graphic file (type pdf)
 <use Images/HyGCN_architecture.pdf>
 Package pdftex.def Info: Images/HyGCN_architecture.pdf  used on input line 163.
 
 (pdftex.def)             Requested size: 258.78136pt x 136.57462pt.
  [25 <./Images/HyGCN_architecture.pdf>] [26]
-<Images/GRIP_architecture.pdf, id=754, 775.82045pt x 215.80716pt>
+<Images/GRIP_architecture.pdf, id=749, 775.82045pt x 215.80716pt>
 File: Images/GRIP_architecture.pdf Graphic file (type pdf)
 <use Images/GRIP_architecture.pdf>
 Package pdftex.def Info: Images/GRIP_architecture.pdf  used on input line 212.
 (pdftex.def)             Requested size: 425.50691pt x 118.36096pt.
  [27 <./Images/GRIP_architecture.pdf>] [28]
-<Images/FlowGNN_architecture.pdf, id=776, 845.1575pt x 597.23125pt>
+<Images/FlowGNN_architecture.pdf, id=770, 845.1575pt x 597.23125pt>
 File: Images/FlowGNN_architecture.pdf Graphic file (type pdf)
 <use Images/FlowGNN_architecture.pdf>
 Package pdftex.def Info: Images/FlowGNN_architecture.pdf  used on input line 26
 5.
 (pdftex.def)             Requested size: 360.76695pt x 254.93558pt.
  [29] [30 <./Images/FlowGNN_architecture.pdf>] [31]
-<Images/zhang_architecture.pdf, id=807, 781.54877pt x 261.8564pt>
+<Images/zhang_architecture.pdf, id=802, 781.54877pt x 261.8564pt>
 File: Images/zhang_architecture.pdf Graphic file (type pdf)
 <use Images/zhang_architecture.pdf>
 Package pdftex.def Info: Images/zhang_architecture.pdf  used on input line 336.
 
 (pdftex.def)             Requested size: 353.26785pt x 118.36096pt.
  [32] [33 <./Images/zhang_architecture.pdf>]
-<Images/BoostGCN_Framework.pdf, id=832, 581.07004pt x 233.37498pt>
+<Images/BoostGCN_Framework.pdf, id=827, 581.07004pt x 233.37498pt>
 File: Images/BoostGCN_Framework.pdf Graphic file (type pdf)
 <use Images/BoostGCN_Framework.pdf>
 Package pdftex.def Info: Images/BoostGCN_Framework.pdf  used on input line 371.
@@ -1421,7 +1421,7 @@ Package epstopdf Info: Source file: <Images/toolchain.eps>
 rted-to.pdf Images/toolchain.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain-eps-converted-to.pdf, id=915, 185.69376pt x 222.8325pt>
+<Images/toolchain-eps-converted-to.pdf, id=910, 185.69376pt x 222.8325pt>
 File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain-eps-converted-to.pdf>
 Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
@@ -1441,7 +1441,7 @@ Package epstopdf Info: Source file: <Images/torch-mlir.eps>
 erted-to.pdf Images/torch-mlir.eps>
 (epstopdf)             \includegraphics on input line 96.
 Package epstopdf Info: Output file is already uptodate.
-<Images/torch-mlir-eps-converted-to.pdf, id=976, 199.74625pt x 201.75375pt>
+<Images/torch-mlir-eps-converted-to.pdf, id=971, 199.74625pt x 201.75375pt>
 File: Images/torch-mlir-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/torch-mlir-eps-converted-to.pdf>
 Package pdftex.def Info: Images/torch-mlir-eps-converted-to.pdf  used on input 
@@ -1449,47 +1449,29 @@ line 96.
 (pdftex.def)             Requested size: 270.4352pt x 273.14923pt.
 
 [46 <./Images/torch-mlir-eps-converted-to.pdf>] [47] [48] [49]
-<Images/soda_opt_flow.pdf, id=1040, 391.44041pt x 701.256pt>
+<Images/soda_opt_flow.pdf, id=1035, 391.44041pt x 701.256pt>
 File: Images/soda_opt_flow.pdf Graphic file (type pdf)
 <use Images/soda_opt_flow.pdf>
-Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 229.
+Package pdftex.def Info: Images/soda_opt_flow.pdf  used on input line 227.
 (pdftex.def)             Requested size: 152.47pt x 273.14923pt.
-<Images/bambu_flow.pdf, id=1041, 402.51875pt x 786.14798pt>
+<Images/bambu_flow.pdf, id=1036, 402.51875pt x 786.14798pt>
 File: Images/bambu_flow.pdf Graphic file (type pdf)
 <use Images/bambu_flow.pdf>
-Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 235.
+Package pdftex.def Info: Images/bambu_flow.pdf  used on input line 233.
 (pdftex.def)             Requested size: 139.85796pt x 273.14923pt.
- [50] [51 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>] [52] [53] [54
-]
+ [50] [51 <./Images/soda_opt_flow.pdf> <./Images/bambu_flow.pdf>] [52]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 367.
- [55]
-<Images/row-by-col-mult-example.pdf, id=1176, 164.67923pt x 62.07993pt>
+put line 294.
+ [53]
+<Images/row-by-col-mult-example.pdf, id=1099, 164.67923pt x 62.07993pt>
 File: Images/row-by-col-mult-example.pdf Graphic file (type pdf)
 <use Images/row-by-col-mult-example.pdf>
 Package pdftex.def Info: Images/row-by-col-mult-example.pdf  used on input line
- 442.
+ 349.
 (pdftex.def)             Requested size: 289.84386pt x 109.26108pt.
- [56 <./Images/row-by-col-mult-example.pdf>]
-Package epstopdf Info: Source file: <Images/memory-coalescing.eps>
-(epstopdf)                    date: 2023-09-09 17:29:24
-(epstopdf)                    size: 2787726 bytes
-(epstopdf)             Output file: <Images/memory-coalescing-eps-converted-to.
-pdf>
-(epstopdf)                    date: 2023-09-09 17:32:09
-(epstopdf)                    size: 37206 bytes
-(epstopdf)             Command: <repstopdf --outfile=Images/memory-coalescing-e
-ps-converted-to.pdf Images/memory-coalescing.eps>
-(epstopdf)             \includegraphics on input line 460.
-Package epstopdf Info: Output file is already uptodate.
-<Images/memory-coalescing-eps-converted-to.pdf, id=1205, 168.63pt x 206.7725pt>
+ [54 <./Images/row-by-col-mult-example.pdf>]) [55] [56] [57] [58
 
-File: Images/memory-coalescing-eps-converted-to.pdf Graphic file (type pdf)
-<use Images/memory-coalescing-eps-converted-to.pdf>
-Package pdftex.def Info: Images/memory-coalescing-eps-converted-to.pdf  used on
- input line 460.
-(pdftex.def)             Requested size: 297.04443pt x 364.19667pt.
- [57 <./Images/memory-coalescing-eps-converted-to.pdf>]) [58]
+]
 Chapter 6.
 (./chapters/chapter6.tex
 Overfull \hbox (6.53311pt too wide) in paragraph at lines 20--20
@@ -1498,21 +1480,20 @@ Overfull \hbox (6.53311pt too wide) in paragraph at lines 20--20
 
 [59
 
-
 ] [60] [61] [62]
-<Images/matmul_comparison.pdf, id=1264, 693.792pt x 346.89601pt>
+<Images/matmul_comparison.pdf, id=1242, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison.pdf Graphic file (type pdf)
 <use Images/matmul_comparison.pdf>
 Package pdftex.def Info: Images/matmul_comparison.pdf  used on input line 188.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
  [63 <./Images/matmul_comparison.pdf>]
-<Images/matmul_comparison15.pdf, id=1316, 693.792pt x 346.89601pt>
+<Images/matmul_comparison15.pdf, id=1295, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison15.pdf Graphic file (type pdf)
 <use Images/matmul_comparison15.pdf>
 Package pdftex.def Info: Images/matmul_comparison15.pdf  used on input line 211
 .
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
-<Images/matmul_comparison30.pdf, id=1317, 693.792pt x 346.89601pt>
+<Images/matmul_comparison30.pdf, id=1296, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison30.pdf Graphic file (type pdf)
 <use Images/matmul_comparison30.pdf>
 Package pdftex.def Info: Images/matmul_comparison30.pdf  used on input line 216
@@ -1529,14 +1510,14 @@ Overfull \hbox (1.82593pt too wide) in paragraph at lines 274--274
 []|\T1/cmr/bx/n/12 Cora150| 
  []
 
-<Images/gcn_forward_comparison.pdf, id=1438, 693.792pt x 346.89601pt>
+<Images/gcn_forward_comparison.pdf, id=1417, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_comparison.pdf  used on input line 
 310.
 (pdftex.def)             Requested size: 364.19331pt x 182.09486pt.
 [66 <./Images/gcn_forward_comparison.pdf>]
-<Images/gcn_forward_cycles_comparison.pdf, id=1497, 693.792pt x 346.89601pt>
+<Images/gcn_forward_cycles_comparison.pdf, id=1476, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_cycles_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_cycles_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_cycles_comparison.pdf  used on inpu
@@ -1556,7 +1537,7 @@ df>
 s-converted-to.pdf Images/toolchain_future.eps>
 (epstopdf)             \includegraphics on input line 22.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain_future-eps-converted-to.pdf, id=1564, 185.69376pt x 249.93375
+<Images/toolchain_future-eps-converted-to.pdf, id=1543, 185.69376pt x 249.93375
 pt>
 File: Images/toolchain_future-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/toolchain_future-eps-converted-to.pdf>
@@ -1647,13 +1628,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 329.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 329.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 329.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 0B1620204F1A56AC6CC16C4E83A77E5D;4459.
+(rerunfilecheck)             Checksum: 2EDA5CDD72C8932B7BA927FBBF87361B;4366.
  ) 
 Here is how much of TeX's memory you used:
- 28614 strings out of 480608
- 523872 string characters out of 5903630
- 1332970 words of memory out of 5000000
- 43412 multiletter control sequences out of 15000+600000
+ 28587 strings out of 480608
+ 523051 string characters out of 5903630
+ 1333736 words of memory out of 5000000
+ 43388 multiletter control sequences out of 15000+600000
  554012 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,28n,89p,1195b,1446s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1678,10 +1659,10 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2020/t
 exmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2020/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on out/thesis.pdf (102 pages, 4528123 bytes).
+Output written on out/thesis.pdf (102 pages, 4491949 bytes).
 PDF statistics:
- 1931 PDF objects out of 2073 (max. 8388607)
- 1479 compressed objects within 15 object streams
- 422 named destinations out of 1000 (max. 500000)
- 697 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1907 PDF objects out of 2073 (max. 8388607)
+ 1460 compressed objects within 15 object streams
+ 420 named destinations out of 1000 (max. 500000)
+ 684 words of extra memory for PDF output out of 10000 (max. 10000000)
 

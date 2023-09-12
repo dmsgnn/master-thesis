@@ -29,14 +29,13 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Synthesizer: SODA-OPT and PandA-Bambu overview~\cite {9786533}\relax }}{51}{figure.caption.33}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Compiler frontend}}}{51}{subfigure.3.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {High-level synthesis backend}}}{51}{subfigure.3.2}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Row-by-column matrix multiplication example\relax }}{56}{figure.caption.39}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Matrix multiplication memory coalescing~\cite {opt_cuda_matmul}\relax }}{57}{figure.caption.40}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Row-by-column matrix multiplication example\relax }}{54}{figure.caption.36}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Performance comparison between PyTorch matmul function and accelerator\relax }}{63}{figure.caption.45}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Matrix multiplication optimization comparison\relax }}{64}{figure.caption.46}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Performance comparison between PyTorch matmul function and accelerator\relax }}{63}{figure.caption.44}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Matrix multiplication optimization comparison\relax }}{64}{figure.caption.45}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Input matrices $15\times 15$, $15\times 16$}}}{64}{subfigure.2.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Input matrices $30\times 30$, $30\times 16$}}}{64}{subfigure.2.2}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{66}{figure.caption.49}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces GCN inference number of cycles comparison\relax }}{68}{figure.caption.51}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces GCN inference PyTorch-Accelerator comparison\relax }}{66}{figure.caption.48}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces GCN inference number of cycles comparison\relax }}{68}{figure.caption.50}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Future FPGA Toolchain for Graph Neural Network Acceleration\relax }}{72}{figure.caption.54}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Future FPGA Toolchain for Graph Neural Network Acceleration\relax }}{72}{figure.caption.53}%

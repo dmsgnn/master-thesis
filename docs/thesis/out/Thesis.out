@@ -44,23 +44,22 @@
 \BOOKMARK [1][-]{section.5.3}{Synthesizer}{chapter.5}% 44
 \BOOKMARK [2][-]{subsection.5.3.1}{SODA-OPT}{section.5.3}% 45
 \BOOKMARK [2][-]{subsection.5.3.2}{PandA-Bambu}{section.5.3}% 46
-\BOOKMARK [1][-]{section.5.4}{Matrix multiplication algorithm}{chapter.5}% 47
-\BOOKMARK [2][-]{subsection.5.4.1}{Emulating global memory coalescing of CUDA}{section.5.4}% 48
-\BOOKMARK [1][-]{section.5.5}{Conclusion}{chapter.5}% 49
-\BOOKMARK [0][-]{chapter.6}{Experimental Procedures and Results}{}% 50
-\BOOKMARK [1][-]{section.6.1}{Model analysis and profiling}{chapter.6}% 51
-\BOOKMARK [1][-]{section.6.2}{Matrix multiplication acceleration}{chapter.6}% 52
-\BOOKMARK [2][-]{subsection.6.2.1}{PyTorch matrix multiplication benchmark}{section.6.2}% 53
-\BOOKMARK [2][-]{subsection.6.2.2}{FPGA-accelerated matrix multiplication}{section.6.2}% 54
-\BOOKMARK [1][-]{section.6.3}{GCN accelerator evaluation}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.3.1}{Model accuracy}{section.6.3}% 56
-\BOOKMARK [1][-]{section.6.4}{State of the art comparison}{chapter.6}% 57
-\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 58
-\BOOKMARK [1][-]{section.7.1}{Future developments}{chapter.7}% 59
-\BOOKMARK [0][-]{chapter*.56}{Bibliography}{}% 60
-\BOOKMARK [0][-]{appendix*.58}{List of Figures}{}% 61
-\BOOKMARK [0][-]{appendix*.60}{List of Tables}{}% 62
-\BOOKMARK [0][-]{appendix*.62}{List of Algorithms}{}% 63
-\BOOKMARK [0][-]{appendix*.64}{List of Listings}{}% 64
-\BOOKMARK [0][-]{appendix*.66}{List of Symbols}{}% 65
-\BOOKMARK [0][-]{appendix*.69}{Acknowledgements}{}% 66
+\BOOKMARK [1][-]{section.5.4}{Matrix multiplication acceleration}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.5}{Conclusion}{chapter.5}% 48
+\BOOKMARK [0][-]{chapter.6}{Experimental Procedures and Results}{}% 49
+\BOOKMARK [1][-]{section.6.1}{Model analysis and profiling}{chapter.6}% 50
+\BOOKMARK [1][-]{section.6.2}{Matrix multiplication acceleration}{chapter.6}% 51
+\BOOKMARK [2][-]{subsection.6.2.1}{PyTorch matrix multiplication benchmark}{section.6.2}% 52
+\BOOKMARK [2][-]{subsection.6.2.2}{FPGA-accelerated matrix multiplication}{section.6.2}% 53
+\BOOKMARK [1][-]{section.6.3}{GCN accelerator evaluation}{chapter.6}% 54
+\BOOKMARK [2][-]{subsection.6.3.1}{Model accuracy}{section.6.3}% 55
+\BOOKMARK [1][-]{section.6.4}{State of the art comparison}{chapter.6}% 56
+\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Developments}{}% 57
+\BOOKMARK [1][-]{section.7.1}{Future developments}{chapter.7}% 58
+\BOOKMARK [0][-]{chapter*.55}{Bibliography}{}% 59
+\BOOKMARK [0][-]{appendix*.57}{List of Figures}{}% 60
+\BOOKMARK [0][-]{appendix*.59}{List of Tables}{}% 61
+\BOOKMARK [0][-]{appendix*.61}{List of Algorithms}{}% 62
+\BOOKMARK [0][-]{appendix*.63}{List of Listings}{}% 63
+\BOOKMARK [0][-]{appendix*.65}{List of Symbols}{}% 64
+\BOOKMARK [0][-]{appendix*.68}{Acknowledgements}{}% 65
