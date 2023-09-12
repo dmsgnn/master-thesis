@@ -53,9 +53,9 @@
 \contentsline {section}{\numberline {6.2}Matrix multiplication acceleration}{60}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}PyTorch matrix multiplication benchmark}{60}{subsection.6.2.1}%
 \contentsline {subsection}{\numberline {6.2.2}FPGA-accelerated matrix multiplication}{62}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}GCN accelerator evaluation}{66}{section.6.3}%
+\contentsline {section}{\numberline {6.3}GCN accelerator evaluation}{65}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}Model accuracy}{68}{subsection.6.3.1}%
-\contentsline {section}{\numberline {6.4}State of the art comparison}{69}{section.6.4}%
+\contentsline {section}{\numberline {6.4}Discussion}{69}{section.6.4}%
 \contentsline {chapter}{\numberline {7}Conclusion and Future Developments}{71}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Future developments}{72}{section.7.1}%
 \vspace {2em}

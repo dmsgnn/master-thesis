@@ -20,7 +20,7 @@ Before this research, no examples were available on how to use Torch-MLIR with G
 \begin{figure}[t]
     \centering
     \includegraphics[height=0.5\textwidth]{Images/toolchain_future}
-    \caption{Future FPGA Toolchain for Graph Neural Network Acceleration}
+    \caption{Possible future developments to the proposed toolchain}
     \label{fig:toolchain-future}
 \end{figure}
 
@@ -33,15 +33,12 @@ Integrating this advanced framework into the toolchain would mark another signif
 This thesis identified the needed area of improvement, representing a possible starting point for these future works.
 
 Another improvement that can be applied to the presented toolchain is the support of sparse tensors.
-At the actual state, Torch-MLIR is not capable of lowering PyTorch sparse tensors to the Linalg dialect, even if it already supports them.
+At the actual state, Torch-MLIR is not capable of lowering PyTorch sparse tensors to the Linalg dialect, even if MLIR already supports them.
 For this reason, some work would be needed on Torch-MLIR to implement this feature, possibly using PyTaco, which would bring a significant advantage also in the resulting accelerators, having the possibility to exploit faster computation with sparse tensors.
-An additional enhancement that can be integrated into the proposed toolchain involves extending support to sparse tensors.
-Currently, Torch-MLIR cannot convert PyTorch sparse tensors into the Linalg dialect, even if MLIR~\cite{9370308} already has a way to represent them~\cite{Bik_2022}.
-Consequently, implementing this feature in Torch-MLIR would require dedicated efforts, producing substantial benefits in the toolchain resultant accelerators.
-Even if the resulting accelerators, as discussed in Chapter~\ref{ch:chapter_six}, greatly increase performance and reduce the computational time, this enhancement would enable leveraging faster computations through the use of sparse tensors by further improving the performance of the accelerator.
+Even if the dense accelerators, described in Chapter~\ref{ch:chapter_six} already increase performance and reduce the computational time, this enhancement would enable leveraging even faster computations through the use of sparse tensors by further improving the performance of the accelerator.
 
-Figure~\ref{fig:toolchain-future} shows how the toolchain could appear with the implementation of the above-mentioned future developments.
+Figure~\ref{fig:toolchain-future} shows how the toolchain could appear with the implementation of the before-mentioned future developments.
 In particular, PyTorch Geometric would be part of the supported high-level frameworks, and the engine used by PyTaco to annotate sparse tensors would be adapted and used to convert the TorchScript representation of the model into MLIR with sparse tensor dialect, ready to be received as input by SODA-OPT\@.
 
-In conclusion, ongoing support and dedicated efforts are consistently aimed at advancing SODA-OPT~\cite{9786533} and PandA-Bambu~\cite{9586110} through the integration of novel functionalities.
-The continuous evolution of these tools represents an alternative way of progress over that the classic hardware design techniques, as the introduction of fresh SODA-OPT passes and PandA-Bambu optimizations have the potential to open novel opportunities for refining and optimizing the synthesized hardware accelerators.
+Finally, ongoing efforts are currently aimed at advancing SODA-OPT and PandA-Bambu through the integration of novel functionalities.
+The continuous evolution of these tools represents further way of improving the quality of results of GNN accelerators.

@@ -2,7 +2,7 @@ This chapter presents all the experiments performed about matrix multiplication 
 
 All the CPU experiments have been conducted using an Intel Core i9, with 8 cores and a frequency of 2,3 GHz.
 On the other hand, the synthesis experiments targeted an AMD Virtex UltraScale+ (Alveo U280) FPGA\@.
-The whole experimental phase evaluated only the computational time of the accelerators, and results are based on the assumption that all data are loaded from BRAMs, requiring two cycles to read data and one cycle to store data.
+The whole experimental phase focused on the computational time of the accelerators, assuming that all data are loaded from BRAMs, requiring two cycles to read data and one cycle to store data.
 
 
 \section{Model analysis and profiling}
@@ -21,13 +21,11 @@ The whole experimental phase evaluated only the computational time of the accele
     \hline
     \textbf{aten::add} & 4,67\% & 94,0$\mu s$ & 4,67\% & 94,0$\mu s$ \T\B\\
     \hline
-    \multicolumn{5}{|c|}{\makecell{\lstinline{aten::mm} matrix multiplication; \lstinline{aten::add} matrix sum; \lstinline{aten::addmm} \\matrix multiplication plus matrix sum.}} \T\B\\
-    \hline
     %\textbf{aten::\_log\_softmax} & 2,98\% & 60,0us & 2,98\% & 60,0us \T\B\\
     %\hline
     \end{tabular}
     \\[10pt]
-    \caption{Excerpt of GCN model inference profiling result}
+    \caption[Excerpt of GCN model inference profiling result]{Excerpt of GCN model inference profiling result. \lstinline{aten::mm}=matrix multiplication; \lstinline{aten::add}=matrix sum; \lstinline{aten::addmm}=matrix multiplication plus matrix sum.}
     \label{tab:gcn_profiling}
 \end{table}
 
@@ -35,9 +33,9 @@ As already anticipated in Section~\ref{sec:toolchain-pytorch}, the GCN model is 
 The forward function of each layer contains two matrix multiplications, and one of the two is a sparse multiplication.
 
 The first step to understand how to accelerate the PyTorch GCN model was to analyze and profile it.
-Table~\ref{tab:gcn_profiling} shows the results extracted from a run of the PyTorch profiler, which measures the ATen operations used at a lower level of PyTorch.
-In particular, ATen~\cite{aten} is a tensor library that serves as the foundation for most Python and C++ interfaces within PyTorch.
-It provides a central Tensor class that encompasses a multitude of operations, with the Tensor class dynamically selecting the appropriate one based on its type.
+Table~\ref{tab:gcn_profiling} shows the results extracted from a run of the PyTorch profiler, which measures the execution times of operations from the ATen~\cite{aten} tensor library that serves as the foundation for most Python and C++ interfaces within PyTorch.
+ATen provides a central Tensor class, on which many hundreds of operations are defined.
+The majority of these operations have both CPU and GPU implementations, to which the Tensor class dynamically dispatches based on its type.
 
 Among the profiled operations, \lstinline{aten::mm} performs a multiplication between two tensors, \lstinline{aten::addmm} performs a multiplication between two tensors and then another tensor is added to the result and finally \lstinline{aten::add} returns the sum of two tensors provided as input.
 The distinction between \textit{self CPU time} and \textit{total CPU time} lies in the fact that self CPU time does not contain the time spent in child operator calls, whereas total CPU time contains it, considering that operators can invoke other operators.
@@ -48,16 +46,11 @@ This result clearly justifies a special focus on matrix multiplication accelerat
 \section{Matrix multiplication acceleration}
 \label{sec:matmul-acceleration}%
 
-Matrix multiplication, introduced in Section~\ref{sec:matmul-algo}, is a well-known algorithm.
-It consists of multiplying two compatible matrices to obtain the result matrix.
-A lot of work has been done to try to improve its performance on different architectures~\cite{DBLP:journals/corr/abs-2003-00532, opt_cuda_matmul}.
-The following subsections explains how this thesis improved matmul performance exploiting the proposed toolchain.
-
 \subsection{PyTorch matrix multiplication benchmark}
 \label{subsec:pytorch-matmul-bench}%
 
 PyTorch provides different matrix representations and different matrix multiplication functions.
-The one considered in this Subsection are \textit{torch.mm} and \textit{torch.spmm}.
+The one considered in this subsection are \textit{torch.mm} and \textit{torch.spmm}.
 The former function multiplies two dense matrices, but it also supports COO and CSR representation.
 The latter, instead, is typically used for sparse matrix multiplications, in which one of the two matrices, or both, are saved using sparse representations.
 
@@ -95,7 +88,7 @@ Different experiments have been performed using randomly generated input matrice
     \end{tabular}
     }
     \\[10pt]
-    \caption[Benchmark of \textit{torch.mm} PyTorch function]{Benchmark of \textit{torch.mm} PyTorch function. Five runs using different number of executions and their average, unit of measure is second.}
+    \caption[Benchmark of \textit{torch.mm} PyTorch function]{Benchmark of \textit{torch.mm} PyTorch function. Five runs using different number of executions and their average, execution times reported in seconds.}
     \label{tab:torch-mm-benchmark}
 \end{table}
 
@@ -124,7 +117,7 @@ Different experiments have been performed using randomly generated input matrice
     \hline
     \end{tabular}}
     \\[10pt]
-    \caption[Comparison between dense and sparse PyTorch matmul functions]{Comparison between dense and sparse PyTorch matmul functions, computed as average of multiple runs. Times unit of measure is seconds.}
+    \caption[Comparison between dense and sparse PyTorch matmul functions]{Comparison between dense and sparse PyTorch matmul functions, computed as average of multiple runs. Execution times reported in seconds.}
     \label{tab:torch-matmul-comparison}
 \end{table}
 
@@ -145,18 +138,17 @@ Even if the following experiments do not take advantage of sparse matrix computa
 \label{subsec:optimization-comparison}%
 
 Before applying any optimization, it is necessary to understand the difference between PyTorch matrix multiplication operation and the baseline accelerator.
-To obtain the matmul accelerator, the process began with following the initial steps of the toolchain using the GCN model.
+To obtain the baseline matmul accelerator, the process began with following the initial steps of the toolchain described in Chapter~\ref{ch:chapter_five} using the GCN model.
 After having made the model compatible with TorchScript, its linalg representation has been obtained through Torch-MLIR compilation.
-Subsequently, only the matmul code of the generated MLIR representation has been outlined through the use of SODA annotation.
-Following this, the LLVM-generated file has been synthesized with PandA-Bambu using baseline attributes, including the \lstinline{-fno-unroll-loops} flag, two memory channels, and the \lstinline{ALL_BRAM} option.
+Subsequently, only the matmul code of the generated MLIR representation has been outlined through SODA annotations instead of selecting the whole GCN model.
+After lowering and optimizing the resulting kernel, its LLVM IR has been synthesized with PandA-Bambu, including the \lstinline{-fno-unroll-loops} flag, options to request two memory channels, and the \lstinline{ALL_BRAM} option requesting that all data is stored in on-chip block RAMs.
 Figure~\ref{fig:pytorch-accelerator-comparison} shows the result of this analysis, which reveal the fact that the cycle counts required by the accelerator for each experiment align perfectly with the anticipated expectations outlined in Section~\ref{sec:matmul-algo}.
-Specifically, dividing the cycle count of the first experiment of the table and the final one by the total count of loop iterations effectively confirms a consistent result of approximately 7 in both instances, confirming that the number of cycles per each loop iteration stayed constant, as shown by the second part of Equation~\ref{eq:number-cycles}.
-However, this constant behavior limits the utilization of the possibilities presented by FPGA technology, which encompass substantial parallelization potential and concurrent memory accesses.
+Specifically, dividing the cycle count of the first experiment of the table and the final one by the total count of loop iterations effectively confirms a consistent result of approximately 7 in both instances, corresponding to the second part of Equation~\ref{eq:number-cycles}.
 
 The PyTorch times have been recorded by averaging five measurements each of ten millions executions.
 The baseline accelerator is much faster than PyTorch when matrices are relatively small.
-The reason behind this behavior is that the generated accelerator simplifies data loading by assuming that all data is available in BRAM. By default, the system uses two channels and stores all memory objects in BRAMs.
-However, an alternative approach, explored in this thesis, involves employing a greater number of memory channels while utilizing external memory.
+The reason behind this behavior may lie in the fact that the generated accelerator simplifies data loading by assuming that all data is available in BRAM. By default, the system uses two channels and stores all memory objects in BRAMs.
+However, an alternative approach, explored in this thesis, to further optimize the matmul accelerator, involves employing a greater number of memory channels while utilizing external memory.
 The advantage of the accelerator in terms of performance decreases as the size of the input matrices increase, until reaching a point in which the accelerator becomes slower than PyTorch solution.
 
 %\begin{table}[t]
@@ -190,7 +182,7 @@ The advantage of the accelerator in terms of performance decreases as the size o
     \label{fig:pytorch-accelerator-comparison}
 \end{figure}
 
-This behaviour can be attributed to the fact that PyTorch times have been recorded using all the eight available threads on the machine.
+Another possible factor may be that PyTorch times have been recorded using all the eight available threads on the machine.
 So, it is expected that the \lstinline{torch.mm} function exploits more parallelism with respect to the accelerator, and this advantage is more evident when the potential level of parallelism increases.
 For this reason, the optimizations discussed in Section~\ref{subsec:toolchain-soda_opt} and in Section~\ref{subsec:toolchain-panda_bambu} need to be applied to exploit more parallelism.
 
@@ -200,9 +192,9 @@ Moreover, PandA-Bambu introduces several optimization options, one of which, as 
 The combination of loop unrolling and multiple memory channels offers both advantages and disadvantages, resulting in a trade-off.
 Loop unrolling enhances parallelization, thereby reducing computational time.
 However, especially when utilizing more than two memory channels, it increases the number of parallel processing elements, leading to a larger area footprint.
-Additionally, external memory allows for up to 32 memory channels, enabling the simultaneous loading of 32 variables.
-Nonetheless, accessing data from external memory requires more load cycles compared to accessing internal memory, depending by the access time of DDRs.
-For the performed experiments both internal and external memory requires two cycles to load data and one cycle to store data, but not using BRAM changes the structure of the accelerator, resulting in a rise of the nnumber of cycles.
+External memory allows for up to 32 memory channels, enabling the simultaneous loading of 32 variables; nonetheless, accessing data from external memory may require more load cycles compared to accessing internal memory, depending by the access time of DDRs.
+During the conducted experiments, both internal and external memory requires two cycles for data loading and one cycle for data storage.
+However, when not utilizing BRAM, which is pipelined with an initiation interval of one, a factor taken into consideration during scheduling, it leads to an increase in the number of cycles for the accelerator, resulting from the loss of pipelining.
 
 \begin{figure}[t]
     \centering
@@ -224,7 +216,7 @@ In both figures, on the x-axis there is the unrolling factor used and on the y-a
 The baseline computation does not use unrolling, instead when there are two factors it means that the first one can be considered as a full unroll of the innermost cycle, while the second one is the unrolling factor applied to the original second innermost cycle.
 
 In both cases, when the parallelization is not high, thus the unrolling factor is small, using two channels and storing all memory objects in BRAMs is the best option since a minor number of cycles is required to perform the computation.
-Using 16 channels seems to be similar to use 32 channels, but when parallelization is high the latter option uses fewer cycles.
+Using 16 channels seems to be similar to using 32 channels, but when parallelization is high the latter option uses fewer cycles.
 As expected, the findings indicate that opting for two channels with external memory is the least favorable choice.
 This is primarily because employing external memory becomes advantageous when a large volume of data can be simultaneously loaded and stored to offset the additional cycles required for external memory access.
 
@@ -240,15 +232,15 @@ These results can be used to set a heuristic useful to identify the number of pa
 
 where $M$, $N$ and $R$ are the sizes of the three nested loops, as defined in Algorithm~\ref{alg:var}, and $i$, $j$ and $k$ are their respective loop unrolling factors, following the rule $j \neq 1 \iff i=M \land k \neq 1 \iff j=N$.
 
-Equation~\ref{eq:factor-relation} captures the relations of the two results.
+Equation~\ref{eq:factor-relation} captures the parameters leading to the two results.
 In fact, using 15 and 8 as unrolling factors means having $15 \cdot 8 = 120$ parallel loop iterations.
 Instead, using 30 and 8 as unrolling factors means having $30 \cdot 8 = 240$ parallel loop iterations.
 Additionally, the total amount of possible parallel loop iterations in a matrix multiplication between two matrices of sizes $15\times15$ and $15\times16$ is equal to $15 \cdot 16 \cdot 15 = 3,600$.
 Meanwhile, the total amount of possible parallel loop iterations in a matrix multiplication between two matrices of sizes $30\times30$ and $30\times16$ is $30 \cdot 16 \cdot 30 = 14,400$.
-Even if the two number of parallel loop iterations representing the changing point of the trade-off, 120 and 240, are different, they are related by Equation~\ref{eq:factor-relation}.
+Even if the two number of parallel loop iterations representing the changing point of the trade-off are different, 120 and 240, they are related by Equation~\ref{eq:factor-relation}.
 
-Equation~\ref{eq:factor-relation} should not be taken as an infallible rule, it is the outcome of this experimental phase and should be used as a discriminant to decide when to use thirty-two memory channels instead of two.
-In conclusion, the generalized rule, outcome of this comparative analysis, conducted using different sizes of input matrices, is that the number of parallel unrolled loop iterations that justify the use of 32 channels is given by Equation~\ref{eq:factor-relation}.
+Equation~\ref{eq:factor-relation} should not be taken as an infallible rule, but it can be used as a discriminant to decide when to use 32 memory channels instead of two.
+In conclusion, the generalized rule is that the number of parallel unrolled loop iterations that justify the use of 32 channels is given by Equation~\ref{eq:factor-relation}.
 
 \section{GCN accelerator evaluation}
 \label{sec:gcn_accelerator_evaluation}%
@@ -278,8 +270,6 @@ In conclusion, the generalized rule, outcome of this comparative analysis, condu
     \caption{Cora sub-dataset used for GCN infernce}
     \label{tab:dataset-definition}
 \end{table}
-
-In this Subsection, the toolchain and the proposed optimizations are applied to the GCN model.
 
 %\begin{table}[t]
 %\centering
@@ -312,6 +302,7 @@ In this Subsection, the toolchain and the proposed optimizations are applied to 
     \label{fig:gcn-inference-comparison}
 \end{figure}
 
+In this Subsection, the toolchain and the proposed optimizations are applied to the GCN model.
 Figure~\ref{fig:gcn-inference-comparison} shows the result of a comparative analysis between the PyTorch CPU time and the optimized FPGA accelerator time to perform GCN inference.
 All the experiments have been performed using a subset of the Cora dataset introduced in Subsection~\ref{subsec:toolchain-inputs}, as detailed in Table~\ref{tab:dataset-definition}.
 The PyTorch times have been acquired averaging one million of execution time measurements using the PyTorch built-in benchmark API\@.
@@ -319,7 +310,7 @@ The PyTorch times have been acquired averaging one million of execution time mea
 Both accelerators have been obtained from the same PyTorch model, which has been lowered using Torch-MLIR\@.
 After obtaining the MLIR representation and outlining the entire forward function, the model has been synthesized using SODA-OPT and PandA-Bambu, employing both baseline and optimized configurations.
 Figure~\ref{fig:gcn-inference-cycles-comparison} and Table~\ref{tab:GCN-inference-accelerators-comparison} show how the accelerator has been affected by the unrolling technique with respect to the baseline performance.
-The optimized settings uses two channels and one full unrolling of the innermost loop, and it obviously requires more area than the baseline accelerator, but it is computationally faster; being matrix multiplication the most time-consuming operation of the GCN, thanks to loop unrolling technique, the speedup increases as the size of the dataset, and thus the number of nodes in the graph, increases.
+The optimized settings uses two channels and one full unrolling of the innermost loop, and it obviously requires more area than the baseline accelerator, but it is computationally faster; being matrix multiplication the most time-consuming operation of the GCN, thanks to loop unrolling technique, the speedup increases as the size of the dataset increases as the number of nodes in the graph affects the size of the loop.
 The used optimized setting with two channels and BRAM has been preferred to the alternative considered setting with thirty-two channels and two external memory, because it already achieves high speedup without increasing too much area requirements, representing the best trade-off for the considered experiment.
 
 \begin{table}[t]
@@ -367,25 +358,22 @@ The used optimized setting with two channels and BRAM has been preferred to the 
 \end{figure}
 
 The results of this final evaluation are incredibly encouraging, showing significant improvement obtained by the optimized accelerator using two channels with on-chip BRAMs.
-The speedup of the accelerator is still being affected by the size of the input matrices, but this was an expected result since the unrolling factor used is contained.
+The speedup of the accelerator is still being affected by the size of the input matrices, but this was an expected result since the unrolling factor used is limited.
 The accelerator's computational time is significantly lower with respect to the one measured on CPU with PyTorch, and for bigger dataset sizes the technique presented in Subsection~\ref{subsec:optimization-comparison} can be used, accelerating even more the computational performance of the accelerator.
 
 The area of the accelerator, instead, is obviously affected by the sizes of the input matrices and of the unrolling factor.
 This because more the matrices are big, more the parallel loop iterations will be and thus the parallel processing elements.
 
 However, the possibilities offered by the proposed toolchain are various.
-It is possible to use less memory channels with a lower loop unrolling factor to still have a big positive impact on performance, but containing the accelerator area requirements.
-The Equation~\ref{eq:factor-relation} can be adapted also to this specific case, by considering the number of load and store and the size of the different loop iterations, becoming a valid indicator to decide which optimization to apply according to the dataset size.
+It is possible to use less memory channels with a lower loop unrolling factor to still have a big positive impact on performance, but limiting the accelerator area requirements.
+Equation~\ref{eq:factor-relation} can be adapted also to this specific case, by considering the number of load and store and the size of the different loop iterations, becoming a valid indicator to decide which optimization to apply according to the dataset size.
 
 \subsection{Model accuracy}
 \label{subsec:modeol-accuracy}%
 
-An evaluation of the model accuracy has been conducted for both the PyTorch-based implementation and the FPGA-accelerated version to ensure that there has been no impact on accuracy.
-
-This comparative analysis has been made possible through the possibility offered by PandA-Bambu which allows for the generation of custom simulation calls using C files.
+An evaluation of the model accuracy has been conducted for both the PyTorch-based implementation and the FPGA-accelerated version to ensure that the synthesis has no impact on accuracy.
 Specifically, the process involved training the model in PyTorch, conducting inference to generate outputs, and saving all inputs and inference results in a binary file.
-The binary file was then utilized to load all the data within a C file.
-The forward kernel function was employed to execute inference on the FPGA accelerator using the same inputs as the PyTorch version.
+The binary file was then utilized to load all the data within a C file calling an external function, the forward kernel function, which was employed to run an RTL simulation of the FPGA accelerator using the same inputs as the PyTorch version.
 The resulting inference output was saved and subjected to analysis, allowing for a comprehensive comparison with the PyTorch implementation.
 
 \begin{table}[t]
@@ -393,7 +381,7 @@ The resulting inference output was saved and subjected to analysis, allowing for
     \begin{tabular}{|p{5em} c c c c|}
     \hline
 %    \rowcolor{black!40}
-    \textbf{Dataset} & \thead{PyTorch\\accuracy} & \thead{Accelerator\\accuracy} & \thead{Total\\error} & \thead{Average\\error} \T\B \\
+    \textbf{Dataset} & \thead{PyTorch} & \thead{Accelerator} & \textbf{$\bm \epsilon$} & \thead{$\bm{\bar \epsilon}$} \T\B \\
     \hline \hline
     \textbf{Cora15} & 0.333 & 0.333 & 1.31E-06 & 0.26E-06 \T\B\\
     \hline
@@ -409,34 +397,37 @@ The resulting inference output was saved and subjected to analysis, allowing for
     \hline
     \end{tabular}
     \\[10pt]
-    \caption{Model accuracy comparison between PyTorch and FPGA accelerator}
+    \caption[Model accuracy comparison between PyTorch and FPGA accelerator]{Model accuracy comparison between PyTorch and FPGA accelerator. $\epsilon$ = total error; $\bar \epsilon$ = average error.}
     \label{tab:model-accuracy-analysis}
 \end{table}
 
 Table~\ref{tab:model-accuracy-analysis} shows the accuracy of the PyTorch-based implementation and the FPGA accelerator.
-In addition to assessing model accuracy, it also quantifies the overall floating value error, which is calculated as the cumulative difference between PyTorch and FPGA floating values, restricted to the inference output matrix cells associated with the test set.
-Furthermore, the average floating error is determined by dividing the total error by the count of output matrix cells corresponding to the test set.
+Given that the datasets used are subsets of the Cora dataset and the small size of the training sets, the accuracy is understandably low.
+In addition to assessing model accuracy, it also quantifies the overall value error, which is calculated as the cumulative difference between PyTorch and FPGA floating values, restricted to the inference output matrix cells associated with the test set.
+Furthermore, the average floating error is determined by dividing the total error by the count of output matrix cells affected by the error.
 The results indicate that the model accuracy has been maintained in the FPGA accelerator and that the average error does not increase as the dimension of the test set increases.
 Nonetheless, the slight variation in the floating-point data precision between the PyTorch inference output and the FPGA accelerator, even with very low probability, may potentially cause an error in data classification, resulting in a difference of the accuracy, especially when dealing with very large datasets.
 
-\section{State of the art comparison}
+\section{Discussion}
 \label{sec:sota-comparison}%
 
-The proposed design flow offers the flexibility of utilizing customized settings tailored to diverse applications, which presents a distinct advantage in contrast to the optimized pipeline offered by SODA-OPT~\cite{9786533}.
-The latter confines users to employ only the full unrolling optimization technique, which can represent a limitation when dealing with extensive loop iterations.
-This limitation prevents the fine-tuning of the balance between area utilization and performance, particularly when handling significant large loops, potentially leading to resource exhaustion and errors.
-In contrast, the design flow introduced in this thesis provides a more refined approach to customizing the trade-off between area and performance.
-It eliminates the need for mandatory double full unrolling when a single one is not sufficient, offering the flexibility to employ a partial unrolling factor.
+%The proposed design flow offers the flexibility of utilizing customized settings tailored to diverse applications, which presents a distinct advantage in contrast to the optimized pipeline offered by SODA-OPT~\cite{9786533}.
+%The latter confines users to employ only the full unrolling optimization technique, which can represent a limitation when dealing with extensive loop iterations.
+%This limitation prevents the fine-tuning of the balance between area utilization and performance, particularly when handling significant large loops, potentially leading to resource exhaustion and errors.
+%In contrast, the design flow introduced in this thesis provides a more refined approach to customizing the trade-off between area and performance.
+%It eliminates the need for mandatory double full unrolling when a single one is not sufficient, offering the flexibility to employ a partial unrolling factor.
 
-A noteworthy point of comparison involves FlowGNN~\cite{sarkar2022flowgnn}, which stands out among the state-of-the-art technologies introduced in Chapter~\ref{ch:chapter_three} as the only solution employing the HLS technique, which is also used in this thesis.
+The proposed design flow offers the flexibility of utilizing customized settings tailored to diverse applications.
+Employing SODA-OPT~\cite{9786533} with its default optimized pipeline can result in excessive area consumption, which can lead to memory errors.
+In contrast, this thesis provides a selection of SODA-OPT optimizations aimed at achieving improved performance, customizing the trade-off between area and performance.
 
-The toolchain proposed in this thesis, as well as the dataflow of FlowGNN, offers support for a diverse range of GNN models.
+A possible comparison involves FlowGNN~\cite{sarkar2022flowgnn}, which stands out among the state-of-the-art technologies introduced in Chapter~\ref{ch:chapter_three} as the only solution employing the HLS technique, which is also used in this thesis.
+The toolchain proposed in this thesis, as well as the dataflow accelerator of FlowGNN, offers support for a diverse range of GNN models.
 However, FlowGNN is limited to just four configurable parallelization parameters and focuses on delivering model-specific components, which limit the customization of the accelerator even further.
 In contrast, the proposed toolchain offers many optimization passes from both SODA-OPT and PandA-Bambu, allowing users to finely customize and optimize the accelerator's capabilities.
-
 Another significant advantage of the proposed toolchain is its ability to generate the accelerator directly from the PyTorch implementation, eliminating the need for low-level programming.
 This sets it apart from FlowGNN, which offers pre-built models in C++.
-The authors, through a small example, states that the provided models can be slightly changed to be adapted to different features.
-However, To do this a minimum of experience with C++ is needed, and if the changes are substantial it could be a blocking factor.
-On the contrary, the proposed toolchain, in case pre-existing models would not be sufficient, only requires knowledge in PyTorch, one of the most used the high-level framework for GNN implementations.
+The authors, through a small example, state that the provided models can be slightly changed to be adapted to different features.
+However, to do this a minimum of experience with C++ is needed, and if the changes are substantial it could be a blocking factor.
+On the contrary, the proposed toolchain, only requires knowledge in PyTorch, one of the most used the high-level framework for GNN implementations.
 

@@ -320,7 +320,7 @@ However, especially when utilizing more than two memory channels, it increases t
 Additionally, external memory allows for up to 32 memory channels, enabling the simultaneous loading of 32 variables.
 However, accessing data from external memory typically requires a higher number of load and store cycles compared to accessing internal memory, depending on the DDR access time.
 During the experimental phase, load and store cycles remain the same in both configurations.
-Nevertheless, as shown in Figure~\ref{fig:matmul-opts-comparison}, using external memory still impacts the number of cycles for the accelerator due to a change in its structure.
+Nevertheless, as shown in Figure~\ref{fig:matmul-opts-comparison}, using external memory still impacts the number of cycles for the accelerator due to the loss of pipelining of BRAMs.
 The conducted analyses aim to highlight the differences among these various configurations, identifying the optimal balance between reducing cycles and containing area utilization.
 
 The most important result on matmul is given by the unrolling factor in which the number of cycles needed by the accelerator using 32 memory channels is fewer than the number of cycles needed by the accelerator using BRAMs.
