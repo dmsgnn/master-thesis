@@ -1,6 +1,6 @@
 \babel@toc {english}{}
 \contentsline {chapter}{Abstract}{i}{chapter*.2}%
-\contentsline {chapter}{Abstract in Lingua Italiana}{iii}{chapter*.4}%
+\contentsline {chapter}{Abstract in lingua italiana}{iii}{chapter*.4}%
 \contentsline {chapter}{Contents\markboth {\MakeUppercase {Contents}}{\MakeUppercase {Contents}}}{v}{chapter*.6}%
 \vspace {2em}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%

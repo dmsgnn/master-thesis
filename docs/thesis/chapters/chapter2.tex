@@ -82,7 +82,7 @@ There are two common representations for sparse matrices: the Coordinate List (C
     \subfloat[CSR format\label{fig:csr}]{
         \includegraphics[height=0.2\textwidth]{Images/csr}
     }
-    \caption{COO and CSR format of Adjacency matrix in Figure~\ref{fig:graph_adjacency}}
+    \caption{COO and CSR format of Adjacency matrix in Figure~\ref{fig:adjacency_mat}}
     \label{fig:coo_csr}
 \end{figure}
 
@@ -90,7 +90,7 @@ There are two common representations for sparse matrices: the Coordinate List (C
 In the COO format, a sparse matrix is represented as a list of [row, column, data] tuples, where each tuple corresponds to a non-zero element in the matrix.
 The [row, column] coordinates represent the position of the non-zero element, and the value is the actual numerical value of that element.
 Usually, it is preferred to store the entries first by row index and then by column index, to improve random access times.
-In Figure~\ref{fig:coo_csr} the COO format of the adjacency matrix represented in Figure~\ref{fig:graph_adjacency} is reported.
+In Figure~\ref{fig:coo} the COO format of the adjacency matrix represented in Figure~\ref{fig:adjacency_mat} is reported.
 For example, by considering the first element of the three arrays, it is possible to understand that the data one is placed in position [0, 1] of the adjacency matrix.
 
 The COO format is helpful for sparse matrices because it does not require any assumptions about the sparsity pattern and allows for efficient deletion and insertion of elements.
