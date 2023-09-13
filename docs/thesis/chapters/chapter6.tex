@@ -59,7 +59,7 @@ The chosen sizes for input matrices are not arbitrary; they have been specifical
 In particular, the table shows five different runs, each composed by a different number of executions.
 Then, the final time is computed as the average of the five different runs.
 Additionally, this average has been computed five times using increasing number of executions.
-The results shows that the variance of the runs of the last experiments is lower than the others, fixing to ten millions a sufficient number of executions for good accuracy and stability.
+The results show that the variance of the runs of the last experiments is lower than the others, fixing to ten millions a sufficient number of executions for good accuracy and stability.
 
 As expected, given the globally high amount of executions, the five average execution times are similar between them, and the variance decreases as the number of executions increases.
 In conclusion, the time needed by a dense matrix multiplication between two matrices of the given size can be considered equal to 1.608$\mu s$.
@@ -311,7 +311,7 @@ Both accelerators have been obtained from the same PyTorch model, which has been
 After obtaining the MLIR representation and outlining the entire forward function, the model has been synthesized using SODA-OPT and PandA-Bambu, employing both baseline and optimized configurations.
 Figure~\ref{fig:gcn-inference-cycles-comparison} and Table~\ref{tab:GCN-inference-accelerators-comparison} show how the accelerator has been affected by the unrolling technique with respect to the baseline performance.
 The optimized settings uses two channels and one full unrolling of the innermost loop, and it obviously requires more area than the baseline accelerator, but it is computationally faster; being matrix multiplication the most time-consuming operation of the GCN, thanks to loop unrolling technique, the speedup increases as the size of the dataset increases as the number of nodes in the graph affects the size of the loop.
-The used optimized setting with two channels and BRAM has been preferred to the alternative considered setting with thirty-two channels and two external memory, because it already achieves high speedup without increasing too much area requirements, representing the best trade-off for the considered experiment.
+The used optimized setting with two channels and BRAM has been preferred to the alternative considered setting with thirty-two channels and external memory, because it already achieves high speedup without increasing too much area requirements, representing the best trade-off for the considered experiment.
 
 \begin{table}[t]
 \centering
@@ -429,5 +429,5 @@ Another significant advantage of the proposed toolchain is its ability to genera
 This sets it apart from FlowGNN, which offers pre-built models in C++.
 The authors, through a small example, state that the provided models can be slightly changed to be adapted to different features.
 However, to do this a minimum of experience with C++ is needed, and if the changes are substantial it could be a blocking factor.
-On the contrary, the proposed toolchain, only requires knowledge in PyTorch, one of the most used the high-level framework for GNN implementations.
+On the contrary, the proposed toolchain, only requires knowledge in PyTorch, one of the most used high-level framework for GNN implementations.
 

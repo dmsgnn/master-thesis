@@ -35,7 +35,7 @@ This thesis identified the needed area of improvement, representing a possible s
 Another improvement that can be applied to the presented toolchain is the support of sparse tensors.
 At the actual state, Torch-MLIR is not capable of lowering PyTorch sparse tensors to the Linalg dialect, even if MLIR already supports them.
 For this reason, some work would be needed on Torch-MLIR to implement this feature, possibly using PyTaco, which would bring a significant advantage also in the resulting accelerators, having the possibility to exploit faster computation with sparse tensors.
-Even if the dense accelerators, described in Chapter~\ref{ch:chapter_six} already increase performance and reduce the computational time, this enhancement would enable leveraging even faster computations through the use of sparse tensors by further improving the performance of the accelerator.
+Even if the dense accelerators, described in Chapter~\ref{ch:chapter_six}, already increase performance and reduce the computational time, this enhancement would enable leveraging even faster computations through the use of sparse tensors by further improving the performance of the accelerator.
 
 Figure~\ref{fig:toolchain-future} shows how the toolchain could appear with the implementation of the before-mentioned future developments.
 In particular, PyTorch Geometric would be part of the supported high-level frameworks, and the engine used by PyTaco to annotate sparse tensors would be adapted and used to convert the TorchScript representation of the model into MLIR with sparse tensor dialect, ready to be received as input by SODA-OPT\@.
