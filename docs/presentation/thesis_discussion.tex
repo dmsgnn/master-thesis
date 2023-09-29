@@ -1,0 +1,153 @@
+\documentclass{article}
+
+\title{\textbf{Master's Thesis defense}}
+\author{Giovanni Demasi}
+\date{September 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Speech}
+
+\noindent
+Hi, my name is Giovanni Demasi and today I am going to discuss my thesis about an FPGA toolchain for Graph Neural Network acceleration using High-Level synthesis, supervised by Professor Fabrizio Ferrandi , and by doctors Serena Curzel and Michele Fiorito. 
+\\
+\\
+\noindent
+This presentation is going to firstly introduce which were the objectives of this thesis, followed by a brief summary about background knowledge.
+Then, after having summarized the most relevant part of the state of the art, the proposed solution will be introduced, along with experiments that support it.
+Finally, a summary of the study and some possible future developments will be discussed.
+\\
+\\
+\noindent
+Graph neural networks have been introduced in response to the growing demand for learning tasks involving graph data, particularly in domains characterized by vast amounts of data, such as social networks and chemistry.
+Optimizing and accelerating the capabilities of Graph Neural Networks is necessary due to their increasingly popularity, as shown by the increasing trend in the number of publications related to Graph Neural Networks on Google Scholar in the past years. 
+In particular, inference in graph neural networks refers to the time the model takes to make predictions when training is completed. The duration of the inference process determines the speed at which the model answer to the queries, and researchers strive to minimize this time span. 
+For this reason, the main goal of this thesis was to develop a  comprehensive toolchain that, starting directly from an high-level framework, enables the automatic generation of a graph neural networks FPGA accelerator with minimal effort required. 
+\\
+\\
+\noindent
+Graph neural networks are deep learning techniques that operate on graph-structured data to solve prediction tasks that can be classified into three categories: graph-level, node-level, and edge-level predictions.
+In a graph-level task, the objective is to predict the property of an entire graph. 
+Node-level tasks, instead, involve predicting the identity of individual nodes within a graph. The remaining prediction tasks are related to edge prediction. 
+Graph Neural Networks consist of multiple interconnected layers and typically encompasses three main stages: pre-processing for transforming the input data, iterative updates of each edge and vertex feature vector using aggregate-combine functions, and readout which aggregates information from the node and edge embeddings to produce a global feature vector that summarizes the entire graph's information.
+\\
+\\
+\noindent
+The toolchain proposed in this thesis makes use of MLIR and is based on High-Level Synthesis.
+MLIR represents a novel approach for constructing reusable and extensible compiler infrastructure. 
+Addressing software fragmentation and enabling compilation for heterogeneous hardware, MLIR reduces the effort to build domain-specific compilers and seamlessly connect existing compilers. 
+High level synthesis tools simplify hardware development by allowing users to provide programs written in common programming languages like C/C++, deleting the need for manual VHDL and Verilog coding. 
+High level synthesis significantly reduces design time and effort, making the final implementation’s functionality independent of hardware design knowledge. 
+\\
+\\
+\noindent
+Accelerating Graph Neural Networks has become a subject of interest within the research community, exploring especially FPGA accelerators. 
+State of the art accelerators can be grouped in different categories according to their hardware architecture’s type. Most of them focus on a particular type of graph neural network called graph convolutional network and their hardware has been designed according to its specific needs.
+Instead, only one solution, FlowGNN, proposed a general approach that can be used also without any hardware design knowledge, leveraging high level synthesis as done in this thesis. 
+In particular, FlowGNN proposes C++ implementations of different models that can be slightly modified according to different needs before being synthesized.
+\\
+\\
+\noindent
+As already said, the main contribution of this thesis is represented by the design of a toolchain for Graph Neural Network acceleration on FPGA leveraging High-Level Synthesis. 
+In particular, the entry point of the toolchain is represented by PyTorch, one of the most popular and powerful framework for neural network implementations. 
+Subsequently, the model is passed as input to Torch-MLIR, a crucial middle step that enables the generation of the MLIR representation. 
+This intermediate representation serves as input for the synthesizer, where, once the frontend optimization is complete, the refined version proceeds to the backend, where the actual GNN accelerator is effectively produced. 
+\\
+\\
+\noindent
+The first step of the flow consists in the implementation of the model in PyTorch. 
+The main model used in this thesis is a graph convolutional network with two convolutional layers. The forward function of the model is made of different operations such as Relu and log-softmax and the forward function of each convolutional layer is mainly made of two matrix multiplications, one of which is sparse.
+The dataset used is the Cora dataset, which contains different scientific publications, categorized into one of seven classes.
+The task is a multi-class classification, in which, given a paper, the objective is to classify it into one of the seven classes correctly. 
+In this case, the Cora dataset represents the graph, with information about nodes, edges and features, and its size influences the computational time of both training and inference. 
+For this reason, in order to keep the synthesis and evaluation times contained, for the experimental phase different subsets of the original Cora dataset have been prepared and used.
+\\
+\\
+\noindent
+To being able to apply fine-tuned synthesis optimizations in the next phases of the toolchain, an analysis about model performance to identify the computational bottlenecks has been performed.
+The results showed that more than 50\% of the CPU time was used by matrix multiplication. 
+As previously said, the model uses both dense and sparse matrix multiplication, but at the actual state Torch-MLIR does not support sparse tensors, so an analysis has been performed to understand the performance differences between dense and sparse matrix multiplication in PyTorch.
+The results of this analysis showed that sparse matrix multiplication performance is faster than dense only in case of very big matrix sizes with sparsity lower or equal than 0.001%.
+However, even if the following experiments do not take advantage of sparse matrix computations, 
+the utilization of custom optimizations for the analyzed model has enabled the acceleration of inference, balancing the absence of sparse operations.
+\\
+\\
+\noindent
+After having identified the dataset to use and having implemented the graph neural network model in PyTorch, the next step is to make it compatible with torch script, an intermediate representation used to generate serializable and optimizable models directly from PyTorch code. 
+This intermediate representation represents the bridge between PyTorch and Torch-MLIR.
+Once having designed, implemented, made compatible with TorchScript, and trained the GNN model in PyTorch, it is possible to use torch-MLIR to obtain the MLIR representation of the model.
+\\
+\\
+\noindent
+The synthesizer represents the final step of the toolchain, which optimizes and synthesizes the MLIR representation, targeting FPGA. This step includes SODA-OPT and PandA-Bambu.
+In particular, SODA-OPT receives as input the MLIR representation of the model with the outlined code to accelerate. This step is primarily responsible for applying optimizations that can be exploited in the next step. In particular, a subset of MLIR passes can be used to do so. 
+The output of SODA-OPT serves as input to PandA-Bambu, which represents the last phase of the synthesis. Bambu, after having applied some optional low-level optimizations, performs the HLS steps producing the final output, an accelerator tailored to target and maximize performance on cutting-edge FPGA architectures. 
+\\
+\\
+\noindent
+Being matrix multiplication the most computational expensive operation of the analysed model, the first step was to understand how to optimize it, in order to then apply these optimizations to the whole model.
+The toolchain offers the possibility to apply different optimizations during synthesis, but before doing so, it was necessary to understand the performance difference between PyTorch matrix multiplication operation and the baseline accelerator. 
+To obtain the baseline matrix multiplication accelerator, after having completed the initial steps of the toolchain, only the matrix multiplication code of the generated MLIR representation has been outlined through SODA annotations, which has been then synthesized with Bambu.
+By default, Bambu uses two memory channels with the ALL\_BRAM option, requesting that all data is stored in on-chip block RAMs. 
+The baseline accelerator is much faster than PyTorch when matrices are relatively small. 
+The reasons behind this behavior may lie in the fact that the generated accelerator assumes that all data is available in BRAM, and also in the fact that PyTorch times have been measured using all the eight available threads on the machine, exploiting more parallelism with respect to the accelerator.
+\\
+\\
+\noindent
+In order to make the accelerator able to exploits more parallelism, two main optimizations have been applied.
+Among all optimizations available in SODA-OPT the biggest improvement in terms of performance has been achieved by applying the loop unrolling technique, which involves expanding completely or partially the loop. A parameter, called unroll factor, can be set to decide the number of loop iterations that are combined into a single iteration. 
+The optimization used in Bambu consisted in increasing the number of memory channels, using an external memory, which allows to better exploit the high level of parallelism that can be achieved using the loop unrolling technique, but at the same time, more cycles and area for loading data are required. 
+\\
+\\
+\noindent
+The conducted study revealed that there is a point, represented by a specific number of parallel operations, after which using an external memory with 32 channels becomes beneficial.
+As it is visible by the two following plots, which analysed the number of cycles needed using different loop unrolling factors, when the parallelization is not high, using two channels and storing all memory objects in BRAMs is the best option. Using 16 channels seems to be similar to using 32 channels, but when parallelization is high the latter option uses fewer cycles. 
+As expected, the findings indicate that opting for two channels with external memory is the least favorable choice. This is primarily because employing external memory becomes advantageous when a large volume of data can be simultaneously loaded and stored to offset the additional cycles required for external memory access. 
+\\
+\\
+\noindent
+Having obtained promising results on matrix multiplication, the analysed optimizations have been applied to the graph convolutional network.
+This plot shows the result of a comparative analysis between the PyTorch CPU time and the optimized FPGA accelerator time to perform GCN inference using different sizes of the dataset. 
+The results of this evaluation are incredibly encouraging, showing significant improvement obtained by the optimized accelerator using two channels with on-chip BRAMs. 
+The accelerator’s computational time is significantly lower with respect to the one measured on CPU with PyTorch, and this advantage is maintained also with bigger dataset sizes. 
+\\
+\\
+\noindent
+An interesting analysis showed how the accelerator has been affected by the unrolling technique with respect to the baseline performance. 
+The optimized settings uses two channels and one full unrolling of the innermost loop, and it obviously requires more area than the baseline accelerator, but it is computationally faster; being matrix multiplication the most time-consuming operation of the graph convolutional network, thanks to loop unrolling technique, the speedup increases as the size of the dataset increases. 
+\\
+\\
+\noindent
+Accelerating inference performance is important, but this improvement should not affect the capabilities of the model. For this reason, an evaluation of the model accuracy has been conducted for both the PyTorch-based implementation and the FPGA-accelerated version to ensure that the synthesis has no impact on model accuracy. 
+The following table shows the accuracy of the PyTorch-based implementation and the FPGA accelerator. Given that the datasets used are subsets of the Cora dataset and the small size of the training sets, the accuracy is understandably low. 
+However, the results show that the model accuracy has been maintained in the FPGA accelerator and that the average error does not increase as the dimension of the test set increases. 
+We can conclude that the probability that the slight variation in the floating-point data precision between the two implementation may potentially cause an error in data classification is very low. 
+\\
+\\
+\noindent
+Almost all the state of the art accelerators only support a limited set of models, they are not customizable and not adaptable to new functionalities. 
+One advantage of the proposed design flow is that it offers the flexibility of using customized settings tailored to various applications.
+An interesting comparison involves FlowGNN, which stands out among the state-of-the-art technologies introduced before as the only solution employing the HLS technique, which is also used in this thesis.
+The toolchain proposed in this thesis, as well as the dataflow accelerator of FlowGNN, offers support for a diverse range of GNN models. 
+However, FlowGNN is limited to just four configurable parallelization parameters and focuses on delivering model-specific components, which limit the customization of the accelerator even further. 
+In contrast, the proposed toolchain offers many optimization passes from both SODA-OPT and PandA-Bambu, allowing users to finely customize and optimize the accelerator’s capabilities. 
+Another significant advantage of the proposed toolchain is its ability to generate the accelerator directly from the PyTorch implementation, eliminating the need for low-level programming. This sets it apart from FlowGNN, which offers pre-built models in C++. The authors, through a small example, state that the provided models can be slightly changed to be adapted to different features. However, to do this a minimum of experience with C++ is needed, and if the changes are substantial it could be a blocking factor. On the contrary, the proposed toolchain, only requires knowledge in PyTorch, one of the most used high-level framework for GNN implementations. 
+\\
+\\
+\noindent
+This thesis tackled the challenge of accelerating Graph Neural Network inference by leveraging High-Level Synthesis techniques targeting FPGAs. 
+This study has also made substantial contribution in enhancing Torch-MLIR. A new feature, the support of the constant of Tuple type, has been added and different areas of improvement have been identified in order to add the support of PyTorch Geometric; these findings could be the starting point of future works to enhance the compatibility between PyTorch Geometric and Torch-MLIR.
+Before this research, no examples were available on how to use Torch-MLIR with Graph Neural Networks, and the compatibility of PyTorch Geometric and Torch-MLIR was still an unexplored area. 
+Another improvement that can be applied to the presented toolchain is the support of sparse tensors.
+At the actual state, Torch-MLIR is not capable of lowering PyTorch sparse tensors, even if MLIR already supports them. For this reason, some work would be needed on Torch-MLIR to implement this feature, possibly using PyTaco, an end-to-end use case for the sparse tensor compiler, which employs a Python interface to process the PyTACO language, creating MLIR operations annotated with sparse tensor information to depict tensor computations.
+\\
+\\
+\noindent
+This was a summary of the entire work done during my thesis, thanks for your attention.
+
+\section{Questions and answers}
+
+
+\end{document}
