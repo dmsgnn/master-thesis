@@ -47,7 +47,7 @@ The GCN class, shown in Listing~\ref{lst:gcn-class}, is characterized by two Gra
 \begin{lstlisting}[language=Python,label={lst:gcn-class}, numbers=left, xleftmargin=2em, caption=Class of GCN model, float]
 import torch.nn as nn
 import torch.nn.functional as F
-from pygcn.layers import GraphConvolution
+from models.pygcn.layers import GraphConvolution
 
 class GCN(nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout):

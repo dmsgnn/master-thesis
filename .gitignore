@@ -1,7 +1,7 @@
 /dataset/
-/gnn/dataset/
-/gnn/gin-batch1.pt
-/gnn/gin-script.pt
+/models/gnn/dataset/
+/models/gnn/gin-batch1.pt
+/models/gnn/gin-script.pt
 docs/thesis/Thesis_old.tex
 docs/thesis/compilatex.sh
 docs/thesis/out_old
