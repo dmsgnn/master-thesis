@@ -22,7 +22,7 @@ By developing an accessible and versatile toolchain and exploring synthesis opti
 <img src="https://github.com/dmsgnn/master-thesis/blob/main/docs/executive_summary/Images/toolchain_modified.svg" width="50%" height="50%">
 </div>
 
-Firstly, the GNN model must be implemented in PyTorch, one of the most popular and powerful frameworks for Neural Network implementations. Subse- quently, the model is passed as input to Torch-MLIR, a crucial middle step that enables the generation of the MLIR representation. This intermediate representation serves as input for the synthesizer, where, once the frontend optimization is complete, the refined version proceeds to the backend, where the actual GNN accelerator is effectively produced, ready to enhance inference performance on FPGA architectures.
+Firstly, the GNN model must be implemented in PyTorch, one of the most popular and powerful frameworks for Neural Network implementations. Subsequently, the model is passed as input to Torch-MLIR, a crucial middle step that enables the generation of the MLIR representation. This intermediate representation serves as input for the synthesizer, where, once the frontend optimization is complete, the refined version proceeds to the backend, where the actual GNN accelerator is effectively produced, ready to enhance inference performance on FPGA architectures.
 
 
 ## Experimental results
