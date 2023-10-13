@@ -18,9 +18,9 @@ By developing an accessible and versatile toolchain and exploring synthesis opti
 
 ## Design of the Toolchain
 
-![FPGA Toolchain for Graph Neural Network Acceleration. The contribution of the thesis are represented in green.](/docs/executive_summary/Images/toolchain_modified.svg)
+<img src="https://github.com/dmsgnn/master-thesis/blob/main/docs/executive_summary/Images/toolchain_modified.svg" width="50%" height="50%">
 
-Firstly, the GNN model is implemented in PyTorch, one of the most popular and powerful frameworks for Neural Network implementations. Subse- quently, the model is passed as input to Torch-MLIR, a crucial middle step that enables the generation of the MLIR representation. This intermediate representation serves as input for the synthesizer, where, once the frontend optimization is complete, the refined version proceeds to the backend, where the actual GNN accelerator is effectively produced, ready to enhance inference performance on FPGA architectures.
+Firstly, the GNN model must be implemented in PyTorch, one of the most popular and powerful frameworks for Neural Network implementations. Subse- quently, the model is passed as input to Torch-MLIR, a crucial middle step that enables the generation of the MLIR representation. This intermediate representation serves as input for the synthesizer, where, once the frontend optimization is complete, the refined version proceeds to the backend, where the actual GNN accelerator is effectively produced, ready to enhance inference performance on FPGA architectures.
 
 
 ## Experimental results
@@ -35,7 +35,7 @@ On the other hand, the synthesis experiments targeted an AMD Virtex UltraScale+ 
 The toolchain has been evaluated using a Graph Convolutional Network by applying fine-tuned optimizations to accelerate inference time. 
 The figure below shows the result of a comparative analysis between the PyTorch CPU time and the optimized FPGA accelerator time to perform inference.
 
-![GCN inference time PyTorch-Accelerator comparison](/docs/presentation/images/GCN_inference_comparison.svg)
+<img src="https://github.com/dmsgnn/master-thesis/blob/main/docs/presentation/images/GCN_inference_comparison.svg" width="70%" height="70%">
 
 The optimized setting uses two memory channels with on-chip BRAM and one full unroll of the innermost loop.
 The results of this final evaluation are incredibly encouraging, showing significant improvement obtained by the optimized accelerator with respect to the PyTorch implementation on CPU.
