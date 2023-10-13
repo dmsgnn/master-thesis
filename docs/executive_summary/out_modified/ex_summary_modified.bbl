@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{9786533}
+Nicolas~Bohm Agostini, Serena Curzel, Jeff~Jun Zhang, Ankur Limaye, Cheng Tan,
+  Vinay Amatya, Marco Minutoli, Vito~Giovanni Castellana, Joseph Manzano, David
+  Brooks, Gu-Yeon Wei, and Antonino Tumeo.
+\newblock Bridging python to silicon: The soda toolchain.
+\newblock {\em IEEE Micro}, 42(5):78--88, 2022.
+
+\bibitem{9586110}
+Fabrizio Ferrandi, Vito~Giovanni Castellana, Serena Curzel, Pietro Fezzardi,
+  Michele Fiorito, Marco Lattuada, Marco Minutoli, Christian Pilato, and
+  Antonino Tumeo.
+\newblock Invited: Bambu: an open-source research framework for the high-level
+  synthesis of complex applications.
+\newblock In {\em 2021 58th ACM/IEEE Design Automation Conference (DAC)}, pages
+  1327--1330, 2021.
+
+\bibitem{DBLP:journals/corr/KipfW16}
+Thomas~N. Kipf and Max Welling.
+\newblock Semi-supervised classification with graph convolutional networks.
+\newblock {\em CoRR}, abs/1609.02907, 2016.
+
+\bibitem{DBLP:journals/corr/abs-1912-01703}
+Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory
+  Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban
+  Desmaison, Andreas K{\"{o}}pf, Edward~Z. Yang, Zach DeVito, Martin Raison,
+  Alykhan Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu~Fang, Junjie Bai, and
+  Soumith Chintala.
+\newblock Pytorch: An imperative style, high-performance deep learning library.
+\newblock {\em CoRR}, abs/1912.01703, 2019.
+
+\bibitem{torch_mlir}
+nod.ai~team Torch-MLIR~team and other contributors.
+\newblock Torch-mlir: Mlir based compiler toolkit for pytorch programs, 2021.
+
+\end{thebibliography}

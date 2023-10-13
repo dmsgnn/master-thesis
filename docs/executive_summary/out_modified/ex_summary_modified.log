@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  13 OCT 2023 11:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.2.23)  13 OCT 2023 11:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**ex_summary.tex
-(./ex_summary.tex
+**ex_summary_modified.tex
+(./ex_summary_modified.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06>
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
@@ -919,8 +919,8 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \c@proposition=\count336
 \c@algsubstate=\count337
 )
-(./ex_summary.aux)
-\openout1 = `ex_summary.aux'.
+(./ex_summary_modified.aux)
+\openout1 = `ex_summary_modified.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
 LaTeX Font Info:    ... okay on input line 99.
@@ -993,9 +993,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 99.
 LaTeX Info: Redefining \pageref on input line 99.
 LaTeX Info: Redefining \nameref on input line 99.
- (./ex_summary.out) (./ex_summary.out)
+ (./ex_summary_modified.out) (./ex_summary_modified.out)
 \@outlinefile=\write7
-\openout7 = `ex_summary.out'.
+\openout7 = `ex_summary_modified.out'.
 
 
 ABD: EveryShipout initializing macros
@@ -1100,107 +1100,114 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/sc' in size <8.5359> not available
 
 
  <./Images/logo_polimi_ing_indinf_neg-eps-converted-to.pdf>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 157
-.
+Underfull \hbox (badness 2142) in paragraph at lines 144--145
+\T1/cmr/m/n/10.95 OPT and PandA-Bambu op-ti-miza-tions,
+ []
 
+LaTeX Font Info:    Trying to load font information for U+msa on input line 165
+.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 157
+LaTeX Font Info:    Trying to load font information for U+msb on input line 165
 .
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 1097) in paragraph at lines 175--180
+Underfull \hbox (badness 1097) in paragraph at lines 183--188
 []\T1/cmr/m/n/10.95 The core idea be-hind GCNs is to per-form
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 175--180
+Underfull \hbox (badness 1400) in paragraph at lines 183--188
 \T1/cmr/m/n/10.95 the con-vo-lu-tional fil-ters are ap-plied to the
  []
 
 [2]
-Underfull \hbox (badness 1442) in paragraph at lines 197--198
+Underfull \hbox (badness 1442) in paragraph at lines 205--206
 \T1/cmr/m/n/10.95 cial-ized hard-ware to ef-fi-ciently per-form the
  []
 
 
-Underfull \hbox (badness 1521) in paragraph at lines 197--198
+Underfull \hbox (badness 1521) in paragraph at lines 205--206
 \T1/cmr/m/n/10.95 computation-intensive op-er-a-tions in-volved in
  []
 
-Package epstopdf Info: Source file: <Images/toolchain.eps>
-(epstopdf)                    date: 2023-07-31 21:51:57
-(epstopdf)                    size: 1355670 bytes
-(epstopdf)             Output file: <Images/toolchain-eps-converted-to.pdf>
-(epstopdf)                    date: 2023-10-13 11:15:26
-(epstopdf)                    size: 30491 bytes
-(epstopdf)             Command: <repstopdf --outfile=Images/toolchain-eps-conve
-rted-to.pdf Images/toolchain.eps>
-(epstopdf)             \includegraphics on input line 217.
+Package epstopdf Info: Source file: <Images/toolchain_modified.eps>
+(epstopdf)                    date: 2023-10-02 18:40:42
+(epstopdf)                    size: 1380486 bytes
+(epstopdf)             Output file: <Images/toolchain_modified-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2023-10-13 11:16:31
+(epstopdf)                    size: 30519 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/toolchain_modified-
+eps-converted-to.pdf Images/toolchain_modified.eps>
+(epstopdf)             \includegraphics on input line 225.
 Package epstopdf Info: Output file is already uptodate.
-<Images/toolchain-eps-converted-to.pdf, id=86, 185.69376pt x 222.8325pt>
-File: Images/toolchain-eps-converted-to.pdf Graphic file (type pdf)
-<use Images/toolchain-eps-converted-to.pdf>
-Package pdftex.def Info: Images/toolchain-eps-converted-to.pdf  used on input l
-ine 217.
-(pdftex.def)             Requested size: 145.10971pt x 174.13116pt.
+<Images/toolchain_modified-eps-converted-to.pdf, id=91, 185.69376pt x 222.8325p
+t>
+File: Images/toolchain_modified-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/toolchain_modified-eps-converted-to.pdf>
+Package pdftex.def Info: Images/toolchain_modified-eps-converted-to.pdf  used o
+n input line 225.
+(pdftex.def)             Requested size: 161.23207pt x 193.47578pt.
+[3 <./Images/toolchain_modified-eps-converted-to.pdf>]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
-37.
+45.
+
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Underfull \hbox (badness 8170) in paragraph at lines 237--245
+Underfull \hbox (badness 8170) in paragraph at lines 245--253
 \T1/cmr/m/n/10.95 in Py-Torch, it is pos-si-ble to use the
  []
 
-[3 <./Images/toolchain-eps-converted-to.pdf>]
-Underfull \hbox (badness 1325) in paragraph at lines 249--251
+
+Underfull \hbox (badness 1325) in paragraph at lines 257--259
 \T1/cmr/m/n/10.95 the toolchain, which op-ti-mizes and syn-the-
  []
 
 
-Underfull \hbox (badness 1019) in paragraph at lines 261--262
+Underfull \hbox (badness 1019) in paragraph at lines 269--270
 \T1/cmr/m/n/10.95 of MLIR code to ac-cel-er-ate by adding the
  []
 
 [4]
-<Images/matmul_comparison15.pdf, id=118, 693.792pt x 346.89601pt>
+<Images/matmul_comparison15.pdf, id=122, 693.792pt x 346.89601pt>
 File: Images/matmul_comparison15.pdf Graphic file (type pdf)
 <use Images/matmul_comparison15.pdf>
-Package pdftex.def Info: Images/matmul_comparison15.pdf  used on input line 306
+Package pdftex.def Info: Images/matmul_comparison15.pdf  used on input line 314
 .
 (pdftex.def)             Requested size: 232.18091pt x 116.0899pt.
 
-Overfull \hbox (5.33247pt too wide) in paragraph at lines 306--307
+Overfull \hbox (5.33247pt too wide) in paragraph at lines 314--315
  [][] 
  []
 
 
-Overfull \hbox (1.70676pt too wide) in paragraph at lines 360--360
+Overfull \hbox (1.70676pt too wide) in paragraph at lines 368--368
 []|\T1/cmr/bx/n/10.95 Cora120| 
  []
 
 
-Overfull \hbox (1.70676pt too wide) in paragraph at lines 360--360
+Overfull \hbox (1.70676pt too wide) in paragraph at lines 368--368
 []|\T1/cmr/bx/n/10.95 Cora150| 
  []
 
 [5 <./Images/matmul_comparison15.pdf>]
-<Images/gcn_forward_comparison.pdf, id=182, 693.792pt x 346.89601pt>
+<Images/gcn_forward_comparison.pdf, id=184, 693.792pt x 346.89601pt>
 File: Images/gcn_forward_comparison.pdf Graphic file (type pdf)
 <use Images/gcn_forward_comparison.pdf>
 Package pdftex.def Info: Images/gcn_forward_comparison.pdf  used on input line 
-373.
+381.
 (pdftex.def)             Requested size: 232.18091pt x 116.0899pt.
 
-Overfull \hbox (5.33247pt too wide) in paragraph at lines 373--374
+Overfull \hbox (5.33247pt too wide) in paragraph at lines 381--382
  [][] 
  []
 
-(./ex_summary.bbl
+(./ex_summary_modified.bbl
 Underfull \hbox (badness 3333) in paragraph at lines 4--9
 []\T1/cmr/m/n/10.95 Nicolas Bohm Agos-tini, Ser-ena Curzel,
  []
@@ -1215,34 +1222,36 @@ Underfull \hbox (badness 2409) in paragraph at lines 25--32
 \T1/cmr/m/n/10.95 Adam Lerer, James Brad-bury, Gre-gory
  []
 
-)
+[6 <./Images/gcn_forward_comparison.pdf>])
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 22.
 See the caption package documentation for explanation.
 
-[6 <./Images/gcn_forward_comparison.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 402.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 402.
- (./ex_summary.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 402.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 402.
-Package rerunfilecheck Info: File `ex_summary.out' has not changed.
+[7
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 410.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 410.
+ (./ex_summary_modified.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 410.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 410.
+Package rerunfilecheck Info: File `ex_summary_modified.out' has not changed.
 (rerunfilecheck)             Checksum: 809B121F6C40484D20971CB46F0615E3;568.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.4641pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 402.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 410.
  ) 
 Here is how much of TeX's memory you used:
- 25252 strings out of 480608
- 464623 string characters out of 5903630
- 839886 words of memory out of 5000000
- 40581 multiletter control sequences out of 15000+600000
+ 25261 strings out of 480608
+ 465052 string characters out of 5903630
+ 840922 words of memory out of 5000000
+ 40584 multiletter control sequences out of 15000+600000
  549163 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,14n,75p,983b,993s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,14n,75p,992b,993s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
 /usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -1260,10 +1269,10 @@ ive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texliv
 e/2020/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/
 2020/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/20
 20/texmf-dist/fonts/type1/public/cm-super/sfxc0900.pfb>
-Output written on ex_summary.pdf (6 pages, 382690 bytes).
+Output written on ex_summary_modified.pdf (7 pages, 384412 bytes).
 PDF statistics:
- 294 PDF objects out of 1000 (max. 8388607)
- 173 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 305 PDF objects out of 1000 (max. 8388607)
+ 183 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
  113 words of extra memory for PDF output out of 10000 (max. 10000000)
 

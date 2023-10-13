@@ -135,12 +135,20 @@ However, the conventional approach to hardware design demands significant effort
 To address the challenge of accelerating GNNs on FPGAs without having extensive knowledge in hardware design, the objective of this thesis is to develop a comprehensive toolchain that enables the automatic generation of a GNNs FPGA accelerator with minimal effort
 starting from PyTorch~\cite{DBLP:journals/corr/abs-1912-01703}, a cutting-edge high-level programming framework for creating neural network algorithms based on the Python programming language.
 
-The main contribution of this thesis is a novel toolchain to accelerate GNN inference based on the Multi-Level Intermediate Representation (MLIR) and on High-Level Synthesis, alongside customized optimizations designed to finely enhance model performance.
-Part of this research contributed in innovating Torch-MLIR by introducing new compatibility support for PyTorch Geometric.
-To accelerate GNN inference, after having identified the main model's bottlenecks, part of the study consisted in the acceleration of the matrix multiplication by identyfing the best optimizations.
+The main contributions of this thesis are:
+\begin{enumerate}
+    \item Analysis of the existing tools for the implementation of Graph Neural Networks;
+    \item Enhancement of Torch-MLIR to ensure its compatibility with models implemented in PyTorch Geometric, specifically by adding support for the Tuple type constant, which is now available in the public Torch-MLIR repository;
+    \item Identification of missing features required to achieve full compatibility between PyTorch Geometric and Torch-MLIR; these findings have been reported to the Torch-MLIR developer team for future implementations;
+    \item Analysis of bottlenecks in the execution of a Graph Convolutional Network;
+    \item Exploration of the combination of SODA-OPT and PandA-Bambu optimizations, leading to the development of a novel default optimization pipeline for Graph Neural Networks.
+\end{enumerate}
+
+The final outcome of this thesis is a novel toolchain to accelerate GNN inference based on the Multi-Level Intermediate Representation (MLIR) and on High-Level Synthesis, alongside customized optimizations designed to finely enhance model performance.
 By leveraging the evaluated optimizations, the final outcome of this thesis is a GCN accelerator improving inference speeds.
 The toolchain's effectiveness is validated through experimental results, demonstrating significant enhancements in performance.
 The generated accelerators improved inference speeds while preserving the accuracy of GNN models.
+Specifically, by applying the proposed GNN optimization pipeline, an average 3x improvement in inference time on FPGA has been achieved compared to the CPU baseline.
 
 %-----------------------------------------------------------------------------
 % BACKGROUND
@@ -214,8 +222,8 @@ Figure~\ref{fig:toolchain} illustrates the entire design flow, with the steps in
 
 \begin{figure}[t]
     \centering
-    \includegraphics[height=0.36\textwidth]{Images/toolchain}
-    \caption{FPGA Toolchain for Graph Neural Network Acceleration}
+    \includegraphics[height=0.4\textwidth]{Images/toolchain_modified}
+    \caption{FPGA Toolchain for Graph Neural Network Acceleration. The contribution of this thesis are represented in green.}
     \label{fig:toolchain}
 \end{figure}
 
