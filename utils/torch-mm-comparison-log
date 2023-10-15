@@ -1,9 +1,0 @@
->> torch.mm
-A, B: dense = 1.840352208299919e-06
-A: COO, B: dense = 3.299480526900152e-06
-<timeit-src>:6: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /Users/runner/work/_temp/anaconda/conda-bld/pytorch_1678402629672/work/aten/src/ATen/SparseCsrTensorImpl.cpp:56.)
-A, B: COO = 1.6855348561699974e-05
->> torch.spmm
-A, B: dense = 1.8759053619998667e-06
-A: COO, B: dense = 3.2340087311999014e-06
-A, B: COO = 1.621582499569995e-05
