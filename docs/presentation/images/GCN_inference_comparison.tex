@@ -1,0 +1,77 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+\pgfplotsset{ytick style={draw=none}}
+\pgfplotsset{xtick style={draw=none}}
+\usepackage{helvet}
+\usepackage[eulergreek]{sansmath}
+\pgfplotsset{
+  tick label style = {font=\sansmath\sffamily\small},
+  every axis label = {font=\sansmath\sffamily\small},
+  legend style = {font=\sansmath\sffamily\small},
+  label style = {font=\sansmath\sffamily\small},
+  nodes near coords style={font=\sansmath\sffamily\small},
+  title style={font=\sansmath\sffamily\normalsize}
+}
+
+\definecolor{GREEN}{RGB}{169,209,142}
+\definecolor{ROSE}{RGB}{243,177,131}
+\definecolor{BLUE}{RGB}{157,194,230}
+
+\begin{document}
+
+\pgfplotstableread[row sep=\\,col sep=&]{
+    interval    & PyTorch   & Accelerator   & Baseline \\
+    Cora15      & 59.25     & 0.52          & 0.78 \\
+    Cora30      & 66.42     & 1.79          & 2.43 \\
+    Cora60      & 69.75     & 7.13          & 8.87 \\
+    Cora90      & 88.88     & 14.90         & 18.30 \\
+    Cora120     & 98.32     & 29.64         & 36.57 \\
+    Cora150     & 115.03    & 41.12         & 50.39\\
+    }\mydata
+
+\begin{tikzpicture}
+    \begin{axis}[
+            ybar,
+            bar width=.5cm,
+            width=1.2\textwidth,
+            height=.5\textwidth,
+            ymajorgrids=true,
+            grid style={gray!30},
+            legend style={at={(0,1)},
+            anchor=north west,legend columns=-1, },
+            x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+            title style={at={(axis description cs:0.5,1.15)},anchor=north},
+            x tick label style={align=center, text width=1.8cm},
+            symbolic x coords={Cora15, Cora30, Cora60, Cora90, Cora120, Cora150},
+            xtick=data,
+            nodes near coords,
+            nodes near coords align={vertical},
+            %nodes near coords style={rotate=90, font=\small, color=black, /pgf/number format/fixed, precision=2},
+            nodes near coords={%
+            \pgfkeys{/pgf/fpu=true}% Switch on the fpu library
+            \pgfmathparse{\pgfplotspointmeta<0.1}% Do the comparison
+            \pgfmathfloattofixed{\pgfmathresult}% convert the result to fixed point
+            \pgfkeys{/pgf/fpu=false}% switch off the fpu library
+            \ifdim\pgfmathresult pt=1pt % If the condition was true...
+                    $0.09$
+            \else 
+                    \pgfmathprintnumber{\pgfplotspointmeta}     
+            \fi
+        },
+            %nodes near coords align={below right},
+            %nodes near coords style={font=\small},
+            ymin=0,ymax=130,
+            ylabel={Execution time (us)},
+            xlabel={Dataset},
+            title={GCN inference time comparison},
+            xticklabels style={align=center},
+        ]
+        \addplot[fill=GREEN, draw=GREEN] table[x=interval,y=PyTorch]{\mydata};
+        \addplot[fill=BLUE, draw=BLUE] table[x=interval,y=Baseline]{\mydata};
+        \addplot[fill=ROSE, draw=ROSE] table[x=interval,y=Accelerator]{\mydata};
+        \legend{PyTorch, Baseline accelerator, Optimized accelerator}
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

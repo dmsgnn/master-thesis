@@ -1,0 +1,105 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+\pgfplotsset{ytick style={draw=none}}
+\pgfplotsset{xtick style={draw=none}}
+\usepackage{helvet}
+\usepackage[eulergreek]{sansmath}
+\pgfplotsset{
+  tick label style = {font=\sansmath\sffamily\small},
+  every axis label = {font=\sansmath\sffamily\small},
+  legend style = {font=\sansmath\sffamily\small},
+  label style = {font=\sansmath\sffamily\small},
+  nodes near coords style={font=\sansmath\sffamily\small},
+  title style={font=\sansmath\sffamily\normalsize}
+}
+
+\definecolor{GREEN}{RGB}{76,166,48}
+\definecolor{RED}{RGB}{184,60,61}
+\definecolor{BLUE}{RGB}{0,118,194}
+\definecolor{YELLOW}{RGB}{199,155,0}
+
+\begin{document}
+
+\pgfplotstableread[row sep=\\,col sep=&]{
+    interval  & 2chNO_BRAM  & 2chALL_BRAM   & 16channels    & 32channels    \\
+    1         & 29297       & 25697         & 29297         & 29297         \\
+    2         & 26687       & 21152         & 25007         & 25007         \\
+    4         & 25457       & 19457         & 21857         & 21857         \\
+    8         & 26537       & 22637         & 24767         & 24767         \\
+    15        & 16097       & 12377         & 12767         & 12767         \\
+    15+2      & 10097       & 6257          & 6527          & 6407          \\
+    15+4      & 7157        & 3317          & 3527          & 3287          \\
+    15+8      & 5687        & 2297          & 2027          & 1787          \\
+    }\mydata
+
+\begin{tikzpicture}
+    \begin{axis}[
+            ybar=0pt,
+            bar width=.25cm,
+            width=1\textwidth,
+            height=0.4\textwidth,
+            ymajorgrids=true,
+            grid style={gray!30},
+            legend style={at={(1,1)},
+            anchor=north east },
+            x label style={at={(axis description cs:0.5,-0.05)},anchor=north},
+            title style={at={(axis description cs:0.5,1.15)},anchor=north},
+            x tick label style={align=center, text width=1.8cm},
+            symbolic x coords={1, 2,4,8, 15,15+2, 15+4, 15+8},
+            xtick=data,
+            ymin=0,ymax=30000,
+            ylabel={Execution cycles},
+            xlabel={Unrolling factor},
+            title={Input matrix sizes = 15x15, 15x16},
+            xticklabels style={align=center},
+        ]
+        \addplot[fill=BLUE, draw=BLUE] table[x=interval,y=2chNO_BRAM]{\mydata};
+        \addplot[fill=GREEN, draw=GREEN] table[x=interval,y=2chALL_BRAM]{\mydata};        
+        \addplot[fill=RED, draw=RED] table[x=interval,y=16channels]{\mydata};
+        \addplot[fill=YELLOW, draw=YELLOW] table[x=interval,y=32channels]{\mydata};
+
+        \legend{2ch NO\_BRAM, 2ch ALL\_BRAM, 16 channels, 32 channels}
+    \end{axis}
+\end{tikzpicture}
+
+\pgfplotstableread[row sep=\\,col sep=&]{
+    interval  & 2chNO_BRAM & 2chALL_BRAM & 16channels & 32channels \\
+    1  & 116192   & 101792 & 116192 & 116192  \\
+    30         & 61892   & 46562 & 47672 & 47132  \\
+    30+2         & 38612   & 23522 & 24872 & 23852 \\
+    30+4         & 27332   & 12242 & 13472 & 12452 \\
+    30+8        & 21692   & 8402 & 7772 & 6752 \\
+    }\mydataa
+
+\begin{tikzpicture}
+    \begin{axis}[
+            ybar=0pt,
+            bar width=.25cm,
+            width=0.8\textwidth,
+            height=0.4\textwidth,
+            ymajorgrids=true,
+            grid style={gray!30},
+            legend style={at={(1,1)},
+            anchor=north east },
+            x label style={at={(axis description cs:0.5,-0.05)},anchor=north},
+            title style={at={(axis description cs:0.5,1.15)},anchor=north},
+            x tick label style={align=center, text width=1.8cm},
+            symbolic x coords={1, 30, 30+2, 30+4, 30+8},
+            xtick=data,
+            ymin=0,ymax=120000,
+            ylabel={Execution cycles},
+            xlabel={Unrolling factor},
+            title={Input matrix sizes = 30x30, 30x16},
+            xticklabels style={align=center},
+        ]
+        \addplot[fill=BLUE, draw=BLUE] table[x=interval,y=2chNO_BRAM]{\mydataa};
+        \addplot[fill=GREEN, draw=GREEN] table[x=interval,y=2chALL_BRAM]{\mydataa};        
+        \addplot[fill=RED, draw=RED] table[x=interval,y=16channels]{\mydataa};
+        \addplot[fill=YELLOW, draw=YELLOW] table[x=interval,y=32channels]{\mydataa};
+
+        \legend{2ch NO\_BRAM, 2ch ALL\_BRAM, 16 channels, 32 channels}
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

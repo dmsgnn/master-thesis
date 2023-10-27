@@ -1,0 +1,76 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+\pgfplotsset{ytick style={draw=none}}
+\pgfplotsset{xtick style={draw=none}}
+\usepackage{helvet}
+\usepackage[eulergreek]{sansmath}
+\pgfplotsset{
+  tick label style = {font=\sansmath\sffamily\small},
+  every axis label = {font=\sansmath\sffamily\small},
+  legend style = {font=\sansmath\sffamily\small},
+  label style = {font=\sansmath\sffamily\small},
+  nodes near coords style={font=\sansmath\sffamily\small},
+  title style={font=\sansmath\sffamily\normalsize}
+}
+
+\definecolor{GREEN}{RGB}{169,209,142}
+\definecolor{ROSE}{RGB}{243,177,131}
+\definecolor{BLUE}{RGB}{157,194,230}
+
+\begin{document}
+
+\pgfplotstableread[row sep=\\,col sep=&]{
+    interval & PyTorch & Accelerator \\
+    15x15 15x16     & 1.608     & 96.492e-03  \\
+    30x30 30x16     & 1.733     & 351.182e-03  \\
+    60x60 60x16     & 2.480     & 1466.353e-03 \\
+    90x90 90x16     & 4.554     & 3150.106e-03 \\
+    120x120 120x16  & 4.792     & 5624.714e-03 \\
+    150x150 150x16  & 5.161     & 9074.677e-03 \\
+    }\mydata
+
+\begin{tikzpicture}
+    \begin{axis}[
+            ybar,
+            bar width=.5cm,
+            width=\textwidth,
+            height=.5\textwidth,
+            ymajorgrids=true,
+            grid style={gray!30},
+            legend style={at={(0.5,1)},
+            anchor=north east,legend columns=-1, },
+            x label style={at={(axis description cs:0.5,-0.15)},anchor=north},
+            title style={at={(axis description cs:0.5,1.15)},anchor=north},
+            x tick label style={align=center, text width=1.8cm},
+            symbolic x coords={15x15 15x16,30x30 30x16, 60x60 60x16,90x90 90x16,120x120 120x16,150x150 150x16},
+            xtick=data,
+            nodes near coords,
+            nodes near coords align={vertical},
+            %nodes near coords style={rotate=90, font=\small, color=black, /pgf/number format/fixed, precision=2},
+            nodes near coords={%
+            \pgfkeys{/pgf/fpu=true}% Switch on the fpu library
+            \pgfmathparse{\pgfplotspointmeta<0.1}% Do the comparison
+            \pgfmathfloattofixed{\pgfmathresult}% convert the result to fixed point
+            \pgfkeys{/pgf/fpu=false}% switch off the fpu library
+            \ifdim\pgfmathresult pt=1pt % If the condition was true...
+                    $0.09$
+            \else 
+                    \pgfmathprintnumber{\pgfplotspointmeta}     
+            \fi
+        },
+            %nodes near coords align={below right},
+            %nodes near coords style={font=\small},
+            ymin=0,ymax=10,
+            ylabel={Execution time (us)},
+            xlabel={Size of input matrices},
+            title={PyTorch and baseline accelerator matmul comparison},
+            xticklabels style={align=center},
+        ]
+        \addplot[fill=GREEN, draw=GREEN] table[x=interval,y=PyTorch]{\mydata};
+        \addplot[fill=ROSE, draw=ROSE] table[x=interval,y=Accelerator]{\mydata};
+        \legend{PyTorch, Accelerator}
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
